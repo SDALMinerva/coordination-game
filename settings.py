@@ -9,7 +9,6 @@ import otree.settings
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = environ.Path(__file__) - 1
-
 env = environ.Env()
 env.read_env(ROOT_DIR('.env'))
 
@@ -27,7 +26,6 @@ ADMIN_PASSWORD = env.str('OTREE_ADMIN_PASSWORD', None)
 
 # don't share this with anybody.
 SECRET_KEY = env.str('DJANGO_SECRET_KEY')
-#'tr%%l^ti@@47(!6)d6fr5&i*81iyndp&prm5*7k1_d*+7yy9)f'
 
 # To use a database other than sqlite,
 # set the DATABASE_URL environment variable.
