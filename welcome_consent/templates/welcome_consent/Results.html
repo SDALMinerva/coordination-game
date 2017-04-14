@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Thank you!
+{% endblock %}
+
+{% block content %}
+
+    Your choice: {{ player.consent }}
+
+    {% next_button %}
+{% endblock %}
+
+

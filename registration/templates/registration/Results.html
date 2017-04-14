@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Success!
+{% endblock %}
+
+{% block content %}
+
+<div class="panel panel-default">
+	<div class="panel-heading">This is your profile:</div>
+	<div class="panel-body image-form-selection">
+		<h2>User Name:</h2>	
+		<h1 style="text-align: center;">{{player.user_name}}</h1>
+		<h2>Profile Image:</h2>
+		{% with 'avatar/'|add:player.avatar as image_static %}
+  			<img src= {% static image_static %}  alt="" class=".img-responsive center-block">
+		{% endwith %}
+	</div>	
+</div>
+    {% next_button %}
+{% endblock %}
+
+

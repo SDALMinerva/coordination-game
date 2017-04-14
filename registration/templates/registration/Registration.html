@@ -1,0 +1,57 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block content %}
+
+	{% formfield player.user_name %}
+	
+	<label class="control-label">Choose a profile image :</label>
+	<div class="row" id= "image-form">
+		<div class="col-xs-4 col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Current Selection.</div>
+			<div class="panel-body image-form-selection"></div>	
+		</div>
+		</div>
+		<div class="col-xs-8 col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">Click to choose different profile image.</div>
+			<div class="panel-body image-form-choose" style="max-height:300px; overflow-y:scroll;"></div>	
+		</div>
+		</div>
+	</div>
+	
+   {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+var error = $('{{form.avatar.errors}}').text();
+
+if (error.length > 0){
+	$('.image-form-selection').popover({content: error, trigger: 'focus', container: 'body'});
+	$('.image-form-selection').popover('show');
+	$('.image-form-choose').addClass("alert alert-danger")
+	.hover(function () {
+		$('.image-form-selection').popover('destroy');
+	})
+	.click(function () {
+		$(this).removeClass("alert alert-danger");
+	});
+}
+
+avatar_list = [];
+{% for avatar in avatars %}
+avatar_list.push('{{avatar}}');
+{% endfor %}
+
+</script>
+<script type="text/javascript" src={% static "global/avatar.js" %} ></script>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Discuss Options
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-lg-3">
+          <nav class="navbar navbar-default navbar-fixed-side">
+          	<div id="playerLabel"></div>
+				<div id="playerList"></div>            
+          </nav>
+        </div>
+        <div class="col-sm-9 col-lg-9">
+          <div id="wall"></div>
+          
+          {% next_button %}
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+var messageList = [];
+{% for mId, mValue in messages.items %}
+	messageList.push('{{mValue}}');
+{% endfor %}
+
+var playerId = {{player.id}};
+var neighbors = {{neighbors}};
+var avatars = {{avatars|safe}};
+var entries = JSON.parse('{{wall|safe}}');
+console.log(entries[0]);
+
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src={% static "global/wall.js" %}></script>
+<script type="text/javascript" src={% static "global/send_message.js" %}></script>
+<script type="text/javascript" src={% static "global/player_list.js" %}></script>
+<script type="text/javascript" src={% static "global/chat_channels.js" %}></script>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}

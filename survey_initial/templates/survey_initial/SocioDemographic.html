@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block content %}
+
+    {% for field in form %}
+        {% formfield field%}
+    {% endfor %}
+
+    {% next_button %}
+
+{% endblock %}

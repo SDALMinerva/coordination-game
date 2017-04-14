@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Consent Agreement
+{% endblock %}
+
+{% block content %}
+
+{% formfield player.consent with label=" By checking here, I offer my consent." %}
+
+{% next_button %}
+
+{% endblock %}
