@@ -8,6 +8,7 @@ class SocioDemographic(Page):
     form_model = models.Player
     form_fields = [
         'age',
+        'skipAgeQ',
         'sex',
         'income',
         'numRoommates',
@@ -16,6 +17,7 @@ class SocioDemographic(Page):
         'country_born',
         'country_reside',
         'city',
+        'skipCityQ',
         'neighborhoodType',
         'ethnicity',
         'degree',
@@ -23,6 +25,7 @@ class SocioDemographic(Page):
         'subject_econ',
         'subject_finance',
         'subject_stat',
+        'skipSubjectQ',
         'partTime',    
         'fullTime',
         'homeEmployed',
@@ -46,6 +49,7 @@ class SocioDemographic(Page):
         'otherFreeTime',
         'skipFreeTimeQ',
         'occupation',
+        'skipOccupationQ',
         'residents0to6',
         'residents7to12',
         'residents13to18',

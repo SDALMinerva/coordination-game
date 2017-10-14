@@ -282,6 +282,12 @@ class Player(BasePlayer):
 
     age = models.PositiveIntegerField(
         verbose_name = 'What is your age?',
+        blank = True,
+    )
+    
+    skipAgeQ = models.BooleanField(
+        verbose_name = 'Skip this question',
+        widget = widgets.CheckboxInput(),
     )
 
     sex = models.CharField(
@@ -289,6 +295,7 @@ class Player(BasePlayer):
         choices = [
             'male',
             'female',
+            'Skip this question',
         ],
     )
 
@@ -326,6 +333,7 @@ class Player(BasePlayer):
             [1, 'single'],
             [2, 'married'],
             [3, 'living with partner'],
+            [4, 'Skip this question']
         ],
     )
 
@@ -485,13 +493,18 @@ class Player(BasePlayer):
         blank = True,
     )
     
+    skipCityQ = models.BooleanField(
+        verbose_name = 'Skip this question',
+        widget = widgets.CheckboxInput(),
+    )
+    
     neighborhoodType = models.PositiveIntegerField(
         verbose_name = 'What is the density of your neighborhood',
         choices = [
             [1, 'Rural (mostly farmland)'],
             [2, 'Suburban (large house lots)'],
             [3, 'Urban (small or no lots)'],
-            [4, 'Skip this question.'],
+            [4, 'Skip this question'],
         ],
     )
 
@@ -521,6 +534,7 @@ class Player(BasePlayer):
             [4, 'BA/BS'],
             [5, 'JD/MA/MS/MBA/MD'],
             [6, 'PhD/Postdoc'],
+            [7, 'Skip this question'],
         ],
     )
     
@@ -562,6 +576,11 @@ class Player(BasePlayer):
     subject_stat = models.BooleanField(
         verbose_name = 'Statistics',
         widget = widgets.RadioSelectHorizontal()
+    )
+    
+    skipSubjectQ = models.BooleanField(
+        verbose_name = 'Skip this question',
+        widget = widgets.CheckboxInput(),
     )
     # end college courses questions
     
@@ -637,7 +656,7 @@ class Player(BasePlayer):
     )
     
     skipWorkQ = models.BooleanField(
-        verbose_name = 'Skip this question.',
+        verbose_name = 'Skip this question',
         widget = widgets.CheckboxInput(),
     )
     # end employment questions
@@ -674,7 +693,7 @@ class Player(BasePlayer):
     )    
     
     skipFreeTimeQ = models.BooleanField(
-        verbose_name = 'Skip this question.',
+        verbose_name = 'Skip this question',
         widget = widgets.CheckboxInput(),
     )
     # end free time questions
@@ -682,6 +701,11 @@ class Player(BasePlayer):
     occupation = models.CharField(
         verbose_name = 'What is your occupation, if applicable?',
         blank = True,
+    )
+    
+    skipOccupationQ = models.BooleanField(
+        verbose_name = 'Skip this question',
+        widget = widgets.CheckboxInput(),
     )
     
     # How many of the people living in your residence/home are in each of the following age categories?
@@ -711,7 +735,7 @@ class Player(BasePlayer):
     )
     
     skipResidentsQ = models.BooleanField(
-        verbose_name = 'Skip this question.',
+        verbose_name = 'Skip this question',
         widget = widgets.CheckboxInput(),
     )
     # end residents age questions
@@ -743,7 +767,7 @@ class Player(BasePlayer):
     )
     
     skipActivity18Q = models.BooleanField(
-        verbose_name = 'Skip this question.',
+        verbose_name = 'Skip this question',
         widget = widgets.CheckboxInput(),
     )
     # end activity under 18 questions
@@ -780,7 +804,7 @@ class Player(BasePlayer):
     )
     
     skipActivity19Q = models.BooleanField(
-        verbose_name = 'Skip this question.',
+        verbose_name = 'Skip this question',
         widget = widgets.CheckboxInput(),
     )
     # end activity over 19 questions
