@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
+    <!-- The instructions/introductions needs to be updated -->
+    <h4>Hello.  This survey is designed to obtain some demographic information and traits.  Each question has a “skip” option in case you do not want to answer the question.  To be paid, you must answer at least 14 of the 17 questions.</h4>
 
     {% for field in form %}
         {% if field.label_tag|striptags == 'Economics:' %}
