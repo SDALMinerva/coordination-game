@@ -15,17 +15,6 @@ class Constants(BaseConstants):
     name_in_url = 'survey_initial'
     players_per_group = None
     num_rounds = 1
-
-
-class Subsession(BaseSubsession):
-    pass
-
-
-class Group(BaseGroup):
-    pass
-
-
-class Player(BasePlayer):
     countries = [
         'Skip this question',
         'AD - Andorra',
@@ -280,6 +269,16 @@ class Player(BasePlayer):
         'ZW - Zimbabwe',
     ]
 
+
+class Subsession(BaseSubsession):
+    pass
+
+
+class Group(BaseGroup):
+    pass
+
+
+class Player(BasePlayer):
     age = models.PositiveIntegerField(
         verbose_name = 'What is your age?',
         blank = True,
@@ -354,12 +353,12 @@ class Player(BasePlayer):
 
     country_born = models.CharField(
         verbose_name = 'In which country were you born?',
-        choices = countries,
+        choices = Constants.countries,
     )
 
     country_reside = models.CharField(
         verbose_name = 'In which country do you currently reside?',
-        choices = countries,
+        choices = Constants.countries,
     )
     
     moveYear = models.CharField(
