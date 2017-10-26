@@ -4,7 +4,7 @@ from otree.api import (
 )
 
 
-author = 'Brian J. Goode'
+author = 'Brian J. Goode & Ethan Vu'
 
 doc = """
 Sociodemographics Survey.

@@ -1,6 +1,14 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
+{% block app_styles %}
+    <style type="text/css">
+        .subquestion label {
+            font-weight: normal;
+        }
+    </style>
+{% endblock %}
+
 {% block title %}
     Survey
 {% endblock %}
@@ -12,23 +20,27 @@
     {% for field in form %}
         {% if field.label_tag|striptags == 'Economics:' %}
             <label>Have you taken college-level courses in the following subjects?</label>
-        {% endif %}
-        {% if field.label_tag|striptags == 'Part-time paid employment outside the home.' %}
+			<div class='subquestion'>
+        {% elif field.label_tag|striptags == 'Part-time paid employment outside the home.' %}
             <label>What is your employment status?  Please check all that apply</label>
-        {% endif %}
-        {% if field.label_tag|striptags == 'Less than equal to 6 years?' %}
+        {% elif field.label_tag|striptags == 'Less than equal to 6 years?' %}
             <label>How many of the people living in your residence/home are in each of the following age categories?</label>
-        {% endif %}
-        {% if field.label_tag|striptags == 'Play on sports team/club, such as for soccer, football, hockey, basketball, baseball.' %}
+			<div class='subquestion'>
+        {% elif field.label_tag|striptags == 'Play on sports team/club, such as for soccer, football, hockey, basketball, baseball.' %}
             <label>How do you spend your free time?  Please check all that apply.</label>
-        {% endif %}
-        {% if field.label_tag|striptags == 'Attend day care, school, or college?' %}
+        {% elif field.label_tag|striptags == 'Attend day care, school, or college?' %}
             <label>Of the people 18 years old or younger living in your residence/home, how many participate in each of the following activities?</label>
-        {% endif %}
-        {% if field.label_tag|striptags == 'Work outside the home for wages?' %}
+			<div class='subquestion'>
+        {% elif field.label_tag|striptags == 'Work outside the home for wages?' %}
             <label>Of the people 19 years old or older living in your residence/home, how many participate in each of the following activities?</label>
+			<div class='subquestion'>
         {% endif %}
+		
         {% formfield field %}
+		
+		{% if field.label_tag|striptags == 'Statistics:' or field.label_tag|striptags == 'Over 65 years?' or field.label_tag|striptags == 'Have taken this year’s flu vaccine?' %}
+			</div>
+        {% endif %}
     {% endfor %}
 
     {% next_button %}
