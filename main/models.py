@@ -42,13 +42,13 @@ class Player(BasePlayer):
         return wall_out
 
     def get_avatar(self):
-        own_players = self.participant.get_players()
-        p_dict = dict([(p.subsession.app_name, p) for p in own_players])
+        return self.participant.vars['avatar-src']
+        
+    def get_user_name(self):
+        return self.participant.vars['user-name']
 
-        reg_player = p_dict['registration']
-        avatar = reg_player.avatar
-
-        return avatar
+    threshold = models.IntegerField(default = -99)
+    
 
 class Wall(models.Model):
     owner = models.ForeignKey(Player)

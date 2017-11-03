@@ -29,7 +29,7 @@ class Results(Page):
 
 
 page_sequence = [
-    Registration,
-    ResultsWaitPage,
+#    Registration,     #Use only when players get to select their avatar.
+#    ResultsWaitPage,
     Results
 ]

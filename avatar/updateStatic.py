@@ -9,7 +9,8 @@ django.setup()
 
 from avatar.models import Avatar
 
-img_list = os.listdir('static/avatar/')
+dir_path = os.path.dirname(os.path.realpath(__file__))
+img_list = os.listdir(os.path.join(dir_path,'static/avatar/'))
 
 for img in img_list:
     name = img.split('.')[0]

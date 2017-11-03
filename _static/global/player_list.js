@@ -10,11 +10,11 @@ function PlayerList() {
 		this.playerList = document.createElement('div');
 		this.playerList.className = 'list-group';
 		
-		var listTitle = document.createElement('li');
-		listTitle.className = 'list-group-item active';
-		listTitle.innerHTML = 'Your Friends';
+		//var listTitle = document.createElement('li');
+		//listTitle.className = 'list-group-item';
+		//listTitle.innerHTML = 'Your Friends';
 		
-		this.playerList.appendChild(listTitle);		
+		//this.playerList.appendChild(listTitle);		
 
 		this.Parent.appendChild(this.playerList);
 		
@@ -26,10 +26,13 @@ function PlayerList() {
 		}
 		
 		this.updateCount = function(id,count) {
-			if (count > 0){
-				this.counts[id].innerHTML = count;
-			} else {
-				this.counts[id].innerHTML = '';
+			//Change when decide what to do with player counts...
+			if (id != playerId){			
+				if (count > 0){
+					this.counts[id].innerHTML = count;
+				} else {
+					this.counts[id].innerHTML = '';
+				}
 			}
 		};
 		return
@@ -58,8 +61,12 @@ function createMediaObject(img_src, heading, content){
 	var media_heading = document.createElement('h4');
 	media_heading.className = "media-heading";
 	media_heading.innerHTML = heading;	
+
+	var media_content = document.createElement('p');
+	media_content.innerHTML = content;	
 	
 	media_body.appendChild(media_heading);
+	media_body.appendChild(media_content);
 	
 	media.appendChild(media_object);
 	media.appendChild(media_body);
@@ -70,7 +77,8 @@ function createMediaObject(img_src, heading, content){
 function PlayerButton(id) {
 	this.id = id;
 	
-	var display_name = 'Player ' + this.id;
+	var display_name = userNames[id];
+	var display_threshold = 'Threshold: ' + thresholds[id];
 	
 	var count = document.createElement('span');
 	count.className = 'badge';
@@ -79,7 +87,7 @@ function PlayerButton(id) {
 	
 	this.Link = function(){
 
-		var media = createMediaObject(img_src, display_name, "no comment");		
+		var media = createMediaObject(img_src, display_name, display_threshold);		
 		
 		var element = document.createElement('a');
 		element.href = "#" + id;

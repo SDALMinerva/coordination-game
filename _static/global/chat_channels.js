@@ -15,6 +15,10 @@ chat.setActiveChannel(playerId);
 
 function Chat(idList, activeFunction, nonActiveFunction) {
 
+	if (!(idList.indexOf(playerId))>-1){
+		idList.push(playerId);
+	}
+
 	var channels = {};
 	for (i = 0, len = idList.length; i < len; i++) {
 		var id = idList[i];

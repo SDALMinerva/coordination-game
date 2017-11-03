@@ -3,6 +3,8 @@ from otree.api import (
     Currency as c, currency_range
 )
 
+from avatar.models import Avatar
+from random import randint
 
 author = 'Brian J. Goode'
 
@@ -18,7 +20,14 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    def before_session_starts(self):
+        rand_avatars = Avatar.randAvatars()
+        for p in self.get_players():
+            p.avatar = next(rand_avatars)
+            p.user_name = p.avatar.name.split('-')[0]
+            
+            p.participant.vars['avatar-src'] = p.avatar.src
+            p.participant.vars['user-name'] = p.user_name
 
 
 class Group(BaseGroup):
@@ -26,6 +35,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    user_name = models.CharField()
-    avatar = models.CharField()
+    user_name = models.CharField(default = 'Not Assigned')
+    avatar = models.ForeignKey(Avatar, default = 1)
     pass

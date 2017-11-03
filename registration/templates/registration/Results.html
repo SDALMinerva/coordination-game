@@ -13,7 +13,7 @@
 		<h2>User Name:</h2>	
 		<h1 style="text-align: center;">{{player.user_name}}</h1>
 		<h2>Profile Image:</h2>
-		{% with 'avatar/'|add:player.avatar as image_static %}
+		{% with 'avatar/'|add:player.avatar.src as image_static %}
   			<img src= {% static image_static %}  alt="" class=".img-responsive center-block">
 		{% endwith %}
 	</div>	
