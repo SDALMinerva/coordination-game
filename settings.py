@@ -138,6 +138,14 @@ SESSION_CONFIGS = [
                          ],
      },
      {
+         'name': 'instructions',
+         'display_name': 'Instructions',
+         'num_demo_participants': 1,
+         'app_sequence': [
+                          'instructions', 
+                         ],
+     },
+     {
          'name': 'registration',
          'display_name': 'Experiment Registration',
          'num_demo_participants': 1,
