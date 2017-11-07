@@ -14,7 +14,7 @@
 	        		<div id="playerLabel" style="height: 200px; border-bottom: 1px gray solid;">
 	        			<h4>Your User Profile:</h4>
 	        			<img src={% static "avatar/"|add:avatar %} alt="Error: No Avatar Available" style="display: block; margin: auto; width:120px">
-	        			<p> Name: {{user_name}}, Threshold: {{player.threshold}} </p>
+	        			<p> Name: {{user_name}}, Threshold: {{player.node.threshold_text}} </p>
       	    	</div>
    	         <h4>Your Friends:</h4>
 					<div id="playerList"></div>            
@@ -54,11 +54,14 @@ var messageList = [];
 
 var playerId = {{player.id}};
 var neighbors = {{neighbors}};
-var thresholds = {{thresholds}};
+var thresholds = {{thresholds|safe}};
 var userNames = {{user_names|safe}};
 console.log(userNames);
 var avatars = {{avatars|safe}};
 var entries = JSON.parse('{{wall|safe}}');
+var network_nodes = JSON.parse('{{nodes|safe}}');
+var network_edges = JSON.parse('{{edges|safe}}');
+
 </script>
 
 <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
@@ -70,22 +73,10 @@ var entries = JSON.parse('{{wall|safe}}');
 
 <script type="text/javascript" >
 // create an array with nodes
-  var nodes = new vis.DataSet([
-    {id: 1, shape: 'circularImage', image: '/static/avatar/Bear-icon.png'},
-    {id: 2, shape: 'circularImage', image: '/static/avatar/Beaver-icon.png'},
-    {id: 3, shape: 'circularImage', image: '/static/avatar/Fish-icon.png'},
-    {id: 4, shape: 'circularImage', image: '/static/avatar/Chicken-icon.png'},
-    {id: 5, shape: 'circularImage', image: '/static/avatar/Goat-icon.png'},
-  ]);
+  var nodes = new vis.DataSet(network_nodes);
 
   // create an array with edges
-  var edges = new vis.DataSet([
-    {from: 1, to: 3},
-    {from: 1, to: 2},
-    {from: 2, to: 4},
-    {from: 2, to: 5},
-    {from: 3, to: 3}
-  ]);
+  var edges = new vis.DataSet(network_edges);
 
   // create a network
   var container = document.getElementById('mynetwork');
@@ -93,7 +84,28 @@ var entries = JSON.parse('{{wall|safe}}');
     nodes: nodes,
     edges: edges
   };
-  var options = {};
+  var options = {
+  		interaction:{
+    	dragNodes:false,
+    	dragView: false,
+    	hideEdgesOnDrag: false,
+    	hideNodesOnDrag: false,
+    	hover: false,
+    	hoverConnectedEdges: true,
+    	keyboard: {
+      	enabled: false,
+      	speed: {x: 10, y: 10, zoom: 0.02},
+      	bindToWindow: true
+    	},
+    	multiselect: false,
+    	navigationButtons: false,
+    	selectable: true,
+    	selectConnectedEdges: true,
+    	tooltipDelay: 300,
+    	zoomView: true
+  		}
+	}
+
   var network = new vis.Network(container, data, options);
   $('a[data-toggle="tab"][href="#network"]').on('shown.bs.tab', function (e) {
   	 network.fit();  		

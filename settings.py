@@ -72,6 +72,7 @@ LANGUAGE_CODE = 'en'
 INSTALLED_APPS = [
     'otree',
     'avatar',
+    'network',
     'django_extensions',
 ]
 
@@ -114,6 +115,9 @@ SESSION_CONFIG_DEFAULTS = {
     'participation_fee': 0.00,
     'doc': "",
     'mturk_hit_settings': mturk_hit_settings,
+    'nType': 'star',
+    'network_description': 'Test',
+    'thresholds': 'H,L',
 }
 
 SESSION_CONFIGS = [
@@ -164,7 +168,7 @@ SESSION_CONFIGS = [
      {
          'name': 'main',
          'display_name': 'Main Coordination Experiment',
-         'num_demo_participants': 3,
+         'num_demo_participants': 5,
          'app_sequence': [ 
                           'registration',
                           'main',
