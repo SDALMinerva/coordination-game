@@ -1,6 +1,17 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
+{% block app_styles %}
+
+    <style type="text/css">
+        #playerLabel:hover {
+            cursor: pointer;
+            background-color: #f5f5f5;
+        }
+    </style>
+
+{% endblock %}
+
 {% block title %}
     Discuss Options
 {% endblock %}
