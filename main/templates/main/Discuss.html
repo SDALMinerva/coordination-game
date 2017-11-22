@@ -1,17 +1,6 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-{% block app_styles %}
-
-    <style type="text/css">
-        #playerLabel:hover {
-            cursor: pointer;
-            background-color: #f5f5f5;
-        }
-    </style>
-
-{% endblock %}
-
 {% block title %}
     Discuss Options
 {% endblock %}
@@ -50,7 +39,10 @@
         	  </div>
         </div>
       </div>
-      {% next_button %}
+      <div class="buttons">
+        <a class="btn btn-large btn-primary" href="javascript:void(0);" onclick="startIntro();">Help</a>
+        {% next_button %}
+      </div>
     </div>
 
 
@@ -81,6 +73,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
 <script type="text/javascript" src={% static "global/send_message.js" %}></script>
 <script type="text/javascript" src={% static "global/player_list.js" %}></script>
 <script type="text/javascript" src={% static "global/chat_channels.js" %}></script>
+<script type="text/javascript" src={% static "global/intro.min.js" %}></script>
 
 <script type="text/javascript" >
   var playerProfile = document.getElementById('playerLabel');
@@ -129,11 +122,43 @@ var network_edges = JSON.parse('{{edges|safe}}');
 
   var network = new vis.Network(container, data, options);
   $('a[data-toggle="tab"][href="#network"]').on('shown.bs.tab', function (e) {
-  	 network.fit();  		
+    network.fit();  		
   });
   window.onresize = function() {network.fit();}
+  
+  function startIntro() {
+    var intro = introJs()
+    intro.addSteps([
+      {
+        element: document.querySelectorAll('#playerList')[0],
+        intro: "Click here to see your friend(s)'s wall and post on it."
+      }, 
+      {
+        element: document.querySelectorAll('#playerLabel')[0],
+        intro: "Click here to see your own wall and what your friend(s) posted on there."
+      },
+      {
+        element: document.querySelectorAll('#main-tabs .nav-item')[1],
+        intro: "Click here to see the network of friends and who's friends with who.  Lines connecting two players mean that those players are friends."
+      },
+      {
+        element: document.querySelectorAll('#main-tabs .nav-item')[0],
+        intro: "Click here to go back to the last wall you were looking at."
+      },
+      {
+        element: document.querySelectorAll('.dropdown-toggle')[0],
+        intro: "Click here to choose a message to send..."
+      },
+      {
+        element: document.querySelectorAll('.send-message')[0],
+        intro: "...and click here to post that message to the current wall."
+      }
+    ]);
+    intro.start();
+  }
 
 </script>
+
 {% endblock %}
 
 {% block styles %}
@@ -141,4 +166,17 @@ var network_edges = JSON.parse('{{edges|safe}}');
 <link rel="stylesheet" href={% static "global/wall.css" %}>
 <link rel="stylesheet" href={% static "global/player_list.css" %}>
 <link rel="stylesheet" href={% static "global/vis.min.css" %}>
+<link rel="stylesheet" href={% static "global/introjs.min.css" %}>
+
+
+<style type="text/css">
+    #playerLabel:hover {
+        cursor: pointer;
+        background-color: #f5f5f5;
+    }
+    
+    .buttons * {
+        display: inline-block;
+    }
+</style>
 {% endblock %}
