@@ -3,8 +3,12 @@
 
 {% block app_styles %}
     <style type="text/css">
-        .subquestion label {
+        .subquestion label, li label {
             font-weight: normal;
+        }
+        
+        #id_middleInitial {
+            max-width: 50px;
         }
     </style>
 {% endblock %}
@@ -15,33 +19,35 @@
 
 {% block content %}
     <!-- The instructions/introductions needs to be updated -->
-    <h4>Hello.  This survey is designed to obtain some demographic information and traits.  Each question has a “skip” option in case you do not want to answer the question.  To be paid, you must answer at least 14 of the 17 questions.</h4>
+    <h4>This survey is designed to collect personal and household information.</h4>
 
     {% for field in form %}
-        {% if field.label_tag|striptags == 'Economics:' %}
+        {% if field.html_name == "country_reside" %}
+            <label>What is your current residence?</label>
+			<div class="subquestion">
+        {% elif field.html_name == "subject_econ" %}
             <label>Have you taken college-level courses in the following subjects?</label>
-			<div class='subquestion'>
-        {% elif field.label_tag|striptags == 'Part-time paid employment outside the home.' %}
-            <label>What is your employment status?  Please check all that apply</label>
-        {% elif field.label_tag|striptags == 'Less than equal to 6 years?' %}
-            <label>How many of the people living in your residence/home are in each of the following age categories?</label>
-			<div class='subquestion'>
-        {% elif field.label_tag|striptags == 'Play on sports team/club, such as for soccer, football, hockey, basketball, baseball.' %}
+			<div class="subquestion">
+        {% elif field.html_name == "partTime" %}
+            <label>What is your employment status?  Please check all that apply.</label>
+        {% elif field.html_name == "sports" %}
             <label>How do you spend your free time?  Please check all that apply.</label>
-        {% elif field.label_tag|striptags == 'Attend day care, school, or college?' %}
-            <label>Of the people 18 years old or younger living in your residence/home, how many participate in each of the following activities?</label>
-			<div class='subquestion'>
-        {% elif field.label_tag|striptags == 'Work outside the home for wages?' %}
-            <label>Of the people 19 years old or older living in your residence/home, how many participate in each of the following activities?</label>
-			<div class='subquestion'>
+			<div class="subquestion">
+        {% elif field.html_name == "residents0to6" %}
+            <label>How many of the people living in your residence are in each of the following age categories?</label>
+			<div class="subquestion">
+        {% elif field.html_name == "activitySchool" %}
+            <label>Of the people living in your residence, how many ...</label>
+			<div class="subquestion">
         {% endif %}
 		
         {% formfield field %}
 		
-		{% if field.label_tag|striptags == 'Statistics:' or field.label_tag|striptags == 'Over 65 years?' or field.label_tag|striptags == 'Have taken this year’s flu vaccine?' %}
+		{% if field.html_name == "city_reside" or field.html_name == "subject_stat" or field.html_name == "otherWork" or field.html_name == "otherFreeTime" or field.html_name == "residents65up" or field.html_name == "activityEvening" %}
 			</div>
         {% endif %}
     {% endfor %}
+    
 
     {% next_button %}
 
