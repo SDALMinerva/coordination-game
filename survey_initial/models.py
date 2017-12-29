@@ -333,7 +333,7 @@ class Player(BasePlayer):
         ],
     )
     
-    # TODO: Add "Please specify" options
+    # TODO: Modify "Please specify" options s.t. if choice selected, must fill out please specify
     race = models.PositiveIntegerField(
         verbose_name = "What is your race?",
         choices = [
@@ -354,6 +354,26 @@ class Player(BasePlayer):
             [15, "Some other race"],
         ],
         widget = widgets.RadioSelect,
+    )
+    
+    tribe = models.CharField(
+        verbose_name = "(print names of enrolled or principle tribe)",
+        blank = True,
+    )
+    
+    otherAsian = models.CharField(
+        verbose_name = "(print race)",
+        blank = True,
+    )
+    
+    otherPacificIslander = models.CharField(
+        verbose_name = "(print race)",
+        blank = True,
+    )
+    
+    otherRace = models.CharField(
+        verbose_name = "(print race)",
+        blank = True,
     )
     
     maritalStatus = models.PositiveIntegerField(
@@ -519,6 +539,11 @@ class Player(BasePlayer):
     )
     # end employment questions
     
+    otherWorkSpecify = models.CharField(
+        verbose_name = "(print other)",
+        blank = True,
+    )
+    
     # How do you spend your free time?  Please check all that apply.
     sports = models.BooleanField(
         verbose_name = "Play on sports team/club, such as for soccer, football, hockey, basketball, baseball",
@@ -551,6 +576,11 @@ class Player(BasePlayer):
         widget = widgets.CheckboxInput(),
     )
     # end free time questions
+    
+    otherFreeTimeSpecify = models.CharField(
+        verbose_name = "(print other)",
+        blank = True,
+    )
     
     occupation = models.CharField(
         verbose_name = "What is your occupation, if applicable?",

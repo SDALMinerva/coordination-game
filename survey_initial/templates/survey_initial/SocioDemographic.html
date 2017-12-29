@@ -1,24 +1,11 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-{% block app_styles %}
-    <style type="text/css">
-        .subquestion label, li label {
-            font-weight: normal;
-        }
-        
-        #id_middleInitial {
-            max-width: 50px;
-        }
-    </style>
-{% endblock %}
-
 {% block title %}
     Survey
 {% endblock %}
 
 {% block content %}
-    <!-- The instructions/introductions needs to be updated -->
     <h4>This survey is designed to collect personal and household information.</h4>
 
     {% for field in form %}
@@ -51,4 +38,88 @@
 
     {% next_button %}
 
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        var tribe1 = document.querySelectorAll("[for=\"id_tribe\"]")[0];
+        tribe1.style.display = "inline-block";
+        var tribe2 = document.getElementsByClassName("field-tribe")[0];
+        tribe2.style.display = "inline-block";
+        var tribeSpecify = tribe1.parentNode;
+        var tribe = document.querySelectorAll("[for=\"id_race_3\"]")[0].parentNode;
+        tribe.appendChild(tribeSpecify);
+        tribeSpecify.style.display = "inline-block";
+        tribeSpecify.style.marginLeft = "5px";
+        tribeSpecify.style.marginBottom = "1px";
+        
+        var otherAsian1 = document.querySelectorAll("[for=\"id_otherAsian\"]")[0];
+        otherAsian1.style.display = "inline-block";
+        var otherAsian2 = document.getElementsByClassName("field-otherAsian")[0];
+        otherAsian2.style.display = "inline-block";
+        var otherAsianSpecify = otherAsian1.parentNode;
+        var otherAsian = document.querySelectorAll("[for=\"id_race_13\"]")[0].parentNode;
+        otherAsian.appendChild(otherAsianSpecify);
+        otherAsianSpecify.style.display = "inline-block";
+        otherAsianSpecify.style.marginLeft = "5px";
+        otherAsianSpecify.style.marginBottom = "1px";
+        
+        var otherPacificIslander1 = document.querySelectorAll("[for=\"id_otherPacificIslander\"]")[0];
+        otherPacificIslander1.style.display = "inline-block";
+        var otherPacificIslander2 = document.getElementsByClassName("field-otherPacificIslander")[0];
+        otherPacificIslander2.style.display = "inline-block";
+        var otherPacificIslanderSpecify = otherPacificIslander1.parentNode;
+        var otherPacificIslander = document.querySelectorAll("[for=\"id_race_14\"]")[0].parentNode;
+        otherPacificIslander.appendChild(otherPacificIslanderSpecify);
+        otherPacificIslanderSpecify.style.display = "inline-block";
+        otherPacificIslanderSpecify.style.marginLeft = "5px";
+        otherPacificIslanderSpecify.style.marginBottom = "1px";
+        
+        var otherRace1 = document.querySelectorAll("[for=\"id_otherRace\"]")[0];
+        otherRace1.style.display = "inline-block";
+        var otherRace2 = document.getElementsByClassName("field-otherRace")[0];
+        otherRace2.style.display = "inline-block";
+        var otherRaceSpecify = otherRace1.parentNode;
+        var otherRace = document.querySelectorAll("[for=\"id_race_15\"]")[0].parentNode;
+        otherRace.appendChild(otherRaceSpecify);
+        otherRaceSpecify.style.display = "inline-block";
+        otherRaceSpecify.style.marginLeft = "5px";
+        otherRaceSpecify.style.marginBottom = "1px";
+        
+        var otherWork1 = document.querySelectorAll("[for=\"id_otherWorkSpecify\"]")[0];
+        otherWork1.style.display = "inline-block";
+        var otherWork2 = document.getElementsByClassName("field-otherWorkSpecify")[0];
+        otherWork2.style.display = "inline-block";
+        var otherWorkSpecify = otherWork1.parentNode;
+        var otherWork = document.querySelectorAll("[for=\"id_otherWork\"]")[0].parentNode;
+        otherWork.appendChild(otherWorkSpecify);
+        otherWorkSpecify.style.display = "inline";
+        otherWork.marginTop = "10px";
+        
+        var otherFreeTime1 = document.querySelectorAll("[for=\"id_otherFreeTimeSpecify\"]")[0];
+        otherFreeTime1.style.display = "inline-block";
+        var otherFreeTime2 = document.getElementsByClassName("field-otherFreeTimeSpecify")[0];
+        otherFreeTime2.style.display = "inline-block";
+        var otherFreeTimeSpecify = otherFreeTime1.parentNode;
+        var otherFreeTime = document.querySelectorAll("[for=\"id_otherFreeTime\"]")[0].parentNode;
+        otherFreeTime.appendChild(otherFreeTimeSpecify);
+        otherFreeTimeSpecify.style.display = "inline";
+        otherFreeTime.marginTop = "10px";
+    </script>
+{% endblock %}
+
+{% block app_styles %}
+    <style type="text/css">
+        .subquestion label, li label {
+            font-weight: normal;
+        }
+        
+        #id_middleInitial {
+            max-width: 50px;
+        }
+        
+        #id_otherWork, #id_otherFreeTime {
+            margin-top: 10px;
+        }
+    </style>
 {% endblock %}
