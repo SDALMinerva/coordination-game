@@ -10,3 +10,4 @@ _coverage_results/
 *~
 *.swp
 _static_root
+*.bat
