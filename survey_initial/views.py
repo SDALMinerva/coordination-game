@@ -84,6 +84,5 @@ class Results(Page):
 
 page_sequence = [
     SocioDemographic,
-    ResultsWaitPage,
-    Results
+    Results,
 ]

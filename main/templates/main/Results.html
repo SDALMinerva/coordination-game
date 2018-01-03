@@ -2,12 +2,19 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Page title
+    Will you participate?
 {% endblock %}
 
 {% block content %}
 
+    {% for field in form %}
+    
+        {% formfield field %}
+
+    {% endfor %}
+    
     {% next_button %}
+
 {% endblock %}
 
 

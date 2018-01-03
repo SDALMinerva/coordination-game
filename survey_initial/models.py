@@ -593,7 +593,7 @@ class Player(BasePlayer):
             [1, "Less than $25,000"],
             [2, "$25,000 - $49,999"],
             [3, "$50,000 - $89,999"],
-            [4, "$190,000 - $149,999"],
+            [4, "$90,000 - $149,999"],
             [5, "Greater than $150,000"],
         ],
         widget = widgets.RadioSelect,

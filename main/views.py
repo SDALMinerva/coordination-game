@@ -25,18 +25,22 @@ class Discuss(Page):
         'edges': json.dumps(self.subsession.network.getEdges()),
         }
 
-class ResultsWaitPage(WaitPage):
+class BeginWaitPage(WaitPage):
 
     def after_all_players_arrive(self):
         pass
 
 
 class Results(Page):
+    form_model = models.Player
+    form_fields = [
+        'participate'
+    ]
     pass
 
 
 page_sequence = [
+    BeginWaitPage,
     Discuss,
-    ResultsWaitPage,
-    Results
+    Results,
 ]
