@@ -315,22 +315,8 @@ class Player(BasePlayer):
         widget = widgets.RadioSelect,
     )
 
-    # TODO:  What are the ethnicities?
-    ethnicity = models.PositiveIntegerField(
-        verbose_name = "If you identify with an ethnic group, select the group you identify with.",
-        choices = [
-            [1, "American Indian or Alaska Native"],
-            [2, "Asian"],
-            [3, "Black or African American"],
-            [4, "Hispanic or Latino"],
-            [5, "Native Hawaiian or Other Pacific Islander"],
-            [6, "White or Caucasian"],
-            [7, "Latin American"],
-            [8, "Mixed"],
-            [9, "Unknown"],
-            [10, "Other"],
-            [11, "Skip this question"],
-        ],
+    ethnicity = models.CharField(
+        verbose_name = "Enter your ethnic group, if you identify with one.",
     )
     
     # TODO: Modify "Please specify" options s.t. if choice selected, must fill out please specify
@@ -532,17 +518,16 @@ class Player(BasePlayer):
         widget = widgets.CheckboxInput(),
     )
     
-    # TODO: Add please specify
     otherWork = models.BooleanField(
         verbose_name = "Other",
         widget = widgets.CheckboxInput(),
     )
-    # end employment questions
     
     otherWorkSpecify = models.CharField(
         verbose_name = "(print other)",
         blank = True,
     )
+    # end employment questions
     
     # How do you spend your free time?  Please check all that apply.
     sports = models.BooleanField(
@@ -570,17 +555,16 @@ class Player(BasePlayer):
         widget = widgets.CheckboxInput(),
     )
     
-    # TODO: add please sepcify
     otherFreeTime = models.BooleanField(
         verbose_name = "Other",
         widget = widgets.CheckboxInput(),
     )
-    # end free time questions
     
     otherFreeTimeSpecify = models.CharField(
         verbose_name = "(print other)",
         blank = True,
     )
+    # end free time questions
     
     occupation = models.CharField(
         verbose_name = "What is your occupation, if applicable?",
