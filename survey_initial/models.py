@@ -270,6 +270,16 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
+    '''
+    def creating_session(self):
+        for p in self.get_players():
+            if 'treatment' in self.session.config:
+                # demo mode
+                p.isStudent = self.session.config['treatment']
+            else:
+                # live experiment mode
+                p.isStudent = random.choice([True, False])
+    '''
     pass
 
 
@@ -278,6 +288,10 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    isStudent = models.BooleanField(
+        verbose_name = "Are you currently a college student?",
+    )
+
     lastName = models.CharField(
         verbose_name = "Last Name",
     )
@@ -584,7 +598,7 @@ class Player(BasePlayer):
     )
 
     numRoommates = models.PositiveIntegerField(
-        verbose_name = "How many people live with you in your residence?",
+        verbose_name = "How many people live in your residence?",
     )
     
     # How many of the people living in your residence are in each of the following age categories?
@@ -640,5 +654,13 @@ class Player(BasePlayer):
     
     activityEvening = models.PositiveIntegerField(
         verbose_name = "Participate in evening or weekend group activities?",
+    )
+    
+    activityCollegeClubs = models.PositiveIntegerField(
+        verbose_name = "Participate in college clubs and organizations?"
+    )
+    
+    activityPartTimeWork = models.PositiveIntegerField(
+        verbose_name = "Have a part-time job?"
     )
     # end activity questions
