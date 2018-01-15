@@ -1,13 +1,13 @@
-var wall = new Wall();
-wall.init(playerId, entries);
+var messenger = new Messenger();
+messenger.init(playerId, entries);
 
-function Wall() {
+function Messenger() {
 	
 	this.init = function (id,entries) {
 
         this.ownId = id;		
 		
-		this.Parent = document.getElementById('wall');
+		this.Parent = document.getElementById('messenger');
 
 		this.topRow = document.createElement('div');
 		this.topRow.className = 'row topRow';

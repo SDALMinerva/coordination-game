@@ -1,11 +1,13 @@
 var player_list = new PlayerList();
-player_list.init(neighbors);
+player_list.init(neighbors, 'playerList', true);
 
 function PlayerList() {
 	
-	this.init = function (idList) {
+	this.init = function (idList, divId, link) {
 			
-		this.Parent = document.getElementById('playerList');
+		this.Parent = document.getElementById(divId);
+		
+		$(this.Parent).empty();
 
 		this.playerList = document.createElement('div');
 		this.playerList.className = 'list-group';
@@ -18,9 +20,10 @@ function PlayerList() {
 
 		this.Parent.appendChild(this.playerList);
 		
+		if (idList == null){ return }
 		this.counts = {}
 		for (var i=0, len = idList.length; i<len; i++){
-			var newButton = new PlayerButton(idList[i]);			
+			var newButton = new PlayerButton(idList[i], link);			
 			this.addButton(newButton);
 			this.counts[idList[i]] = newButton.count;	
 		}
@@ -53,7 +56,7 @@ function createMediaObject(img_src, heading, content){
 	media_object.className = "media-object pull-left media-center";
 	media_object.src = img_src;
 	media_object.alt = "not found";
-	media_object.width = 48;
+	media_object.width = 30;
 	
 	var media_body = document.createElement('div');
 	media_body.className = "media-body";
@@ -74,7 +77,7 @@ function createMediaObject(img_src, heading, content){
 	return media;
 };
 
-function PlayerButton(id) {
+function PlayerButton(id, link) {
 	this.id = id;
 	
 	var display_name = userNames[id];
@@ -89,10 +92,11 @@ function PlayerButton(id) {
 
 		var media = createMediaObject(img_src, display_name, display_threshold);		
 		
-		var element = document.createElement('a');
-		element.href = "#" + id;
-		element.className = "list-group-item";
-		element.onclick = function () {
+		if (link){
+		    var element = document.createElement('a');
+		    element.href = "#" + id;
+		    element.className = "list-group-item player-button linking-button";
+		    element.onclick = function () {
 				chat.setActiveChannel(id);
 				wall.changeId(id);
 				chat.infoChannel.send(JSON.stringify({
@@ -100,6 +104,11 @@ function PlayerButton(id) {
 					'content': {'playerId': id},				
 				}));
 			};
+		} else {
+		    var element = document.createElement('div');
+		    element.className = "list-group-item player-button";
+		}
+		
 		element.appendChild(media);
 		element.appendChild(count);
 		return element
@@ -107,3 +116,10 @@ function PlayerButton(id) {
 	
 	this.count = count;
 };
+
+$('.linking-button').click(function (e) {
+    $('.linking-button').removeClass('active');
+    var $this = $(this);
+    $this.addClass('active');
+    
+});

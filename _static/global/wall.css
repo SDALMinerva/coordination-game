@@ -6,9 +6,29 @@
 	#border-bottom-style: inset;
 }
 
+#wallMessage{
+    position: absolute;
+    width: 80%; 
+    color: gray; 
+    padding-left: 15px;
+    top: 40px;
+    z-index: 1;
+}
+
+.highlight{
+    border: 1px solid rgba(81, 203, 238, 1);
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border-radius: 5px;
+}
+
 .message-list{
 	width: 300px;
 	cursor: pointer;
+	z-index: 9;
+}
+
+.message-item{
+    z-index: 5;
 }
 
 #message-box{
@@ -16,6 +36,7 @@
 	left: auto;
 	width: 270px;
 	cursor: pointer;
+	z-index: 6;
 }
 
 .media{
@@ -29,15 +50,28 @@
 
 .wallimg{
 	border: solid gray 2px;
+	width: 80px;
 }
 
 #wallImgContainer{
-height: 110px;
-max-width: 120px;
-padding: 8px;
-padding-left: 15px;
+    max-width: 100px;
+    min-width: 100px;
 }
 
 #wall h2{
-	margin: 0;
+    position: relative;
+	margin-bottom: 0;
+	margin-top: 0px;
+}
+
+.send-message{
+    width: 120px;
+}
+
+#wall .titleContainer{
+    padding: 0;
+    max-width: 300px;
+}
+.shiftleft {
+    padding-left: 0px;
 }

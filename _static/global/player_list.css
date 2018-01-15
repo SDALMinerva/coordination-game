@@ -2,3 +2,65 @@
 	width: 100%;
 	margin-top: 10px;
 }
+
+#playerList a:active{
+    background-color: #ededed;
+}
+
+#playerList .list-group-item{
+    height: 55px;
+}
+
+#playerList{
+    padding: 0;
+}
+
+#playerList .media-heading{
+    font-size: 10pt;
+    padding: 0;
+    margin: 0;
+}
+
+#playerList .media-body{
+    font-size: 7pt;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+#playerList .media{
+    padding: 0;
+    margin: 0;
+}
+
+#friendWall .list-group-item{
+    height: 35px;
+}
+
+#friendWall .media-heading{
+    font-size: 10pt;
+    padding: 0;
+    margin: 0;
+}
+
+#friendWall .media-body{
+    font-size: 7pt;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+#friendWall img{
+    width: 25px;
+}
+
+#friendWall .list-group{
+	width: 100%;
+	margin-top: 0px;
+}
+
+#friendWall .player-button{
+    padding: 3px;
+    background-color: #eeeeee;
+    border: none;
+}

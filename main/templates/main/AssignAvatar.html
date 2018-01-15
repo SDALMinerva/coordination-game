@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Your Game {{subsession.round_number}} Profile
+{% endblock %}
+
+{% block content %}
+
+<h4>Your user name: <font size="+2"><strong><em>{{player.user_name}}</em></strong></font></h4>	
+<h4 style="text-align: center;"></h4>	
+<h4>Your profile image:</h4>
+<div style="background: linear-gradient(white,#dddddd); padding: 10px; padding-top: 0px">
+		{% with 'avatar/'|add:player.avatar.src as image_static %}
+  			<img src='{% static image_static %}'  alt="" class=".img-responsive center-block">
+		{% endwith %}
+</div>
+<br>		
+<p>
+This is your assigned profile for Game {{subsession.round_number}}. 
+Click <strong>next</strong> to proceed to the game.
+</p>
+    {% next_button %}
+{% endblock %}

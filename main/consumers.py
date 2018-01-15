@@ -17,20 +17,27 @@ def ws_receive(message):
         data = ws_data['content']
         player_wall = Player.objects.get(id = data['wallId'])
         createdBy = Player.objects.get(id = data['createdBy'])
-        message = Message(createdBy=createdBy, message=data['text'])
+        messageRound = data['messageRound']
+        message = Message(createdBy=createdBy, message=data['text'], messageRound=messageRound)
         player_wall.wall_set.first().message_set.add(message)
 
-        toSend = {
-            'type': ws_data['type'],
-            'content': message.to_dict(),
-        }
-
-        Group('chat-' + label).send({'text': json.dumps(toSend)})
+        if player_wall.session.config['instant_messaging'] == 'True':
+            toSend = {
+                'type': ws_data['type'],
+                'content': message.to_dict(),
+            }
+            Group('chat-' + label).send({'text': json.dumps(toSend)})
 
     elif ws_data['type'] == 'list':
         data = ws_data['content']
-        player_wall = Player.objects.get(id = data['playerId'])
-        entryList = player_wall.wall_set.first().message_set.all().order_by('datetime');
+        player_wall = Player.objects.get(id = data['playerId'])      
+        
+        if player_wall.session.config['instant_messaging'] == 'True':
+            entryList = player_wall.wall_set.first().message_set.all().order_by('datetime')
+        else:
+            P = player_wall.group.get_player_by_id(1)
+            messageRound = P.participant.vars['message_round']
+            entryList = player_wall.wall_set.first().message_set.filter(messageRound__lt = messageRound).order_by('datetime')
         entries = [entry.to_dict() for entry in entryList]
         toSend = {
             'type': ws_data['type'],

@@ -36,14 +36,18 @@ class Network(models.Model):
     description = models.CharField()
     nType = models.CharField()
 
+    def __str__(self):
+        return 'Id: {}\n{}'.format(self.id, self.description)
+
     def getNodes(self):
         nodes = [{
             'id': node.id,
             'shape': 'circularImage',
             'image': '/static/avatar/{}'.format(node.player_set.first().get_avatar()),
-            'label': 'Threshold: {}'.format(node.threshold_text),
+            'label': '{}\nThreshold: {}'.format(node.player_set.first().get_user_name(), node.threshold_text),
         } for node in self.node_set.all()]
         return nodes
+
 
     def getEdges(self, directed = False):
         pairs = self.edge_set.all().values_list('node_to', 'node_from')
@@ -53,11 +57,45 @@ class Network(models.Model):
 
         edges = [{'to': t, 'from': f,} for t,f in pairs]
         return edges
+        
+    
+    def get_nodes_from_player(self, player):
+        
+        edge_list = self.edge_set.filter(node_from__player = player)
+        nodes = [{
+            'id': edge.node_to.id,
+            'shape': 'circularImage',
+            'image': '/static/avatar/{}'.format(edge.node_to.player_set.first().get_avatar()),
+            'label': '{}\nThreshold: {}'.format(edge.node_to.player_set.first().get_user_name(), edge.node_to.threshold_text),
+        } for edge in edge_list]
+        
+        nodes.append({
+            'id': player.node.id,
+            'shape': 'circularImage',
+            'image': '/static/avatar/{}'.format(player.get_avatar()),
+            'label': '{}\nThreshold: {}'.format(player.get_user_name(), player.node.threshold_text),
+        })
 
-    def addNodes(self, group, threshold, threshold_text):
+        return nodes
+        
+        
+    def get_edges_from_player(self, player, directed = False):
+        pairs = self.edge_set.filter(node_from__player = player).values_list('node_to', 'node_from')
+        
+        if not directed:
+            pairs = list(set([tuple(sorted(pair)) for pair in pairs]))
 
-        posis = list(range(1,self.n_nodes + 1))
-        shuffle(posis)
+        edges = [{'to': t, 'from': f,} for t,f in pairs]
+        return edges
+        
+
+    def addNodes(self, group, threshold, threshold_text, shuffle = False):
+        
+        posis = list(range(1,self.n_nodes + 1))        
+        
+        if shuffle:
+            shuffle(posis)
+            
         for p, pos, thrs in zip(group.get_players(), posis, threshold):
             node = Node(
                     position = pos, 
@@ -75,13 +113,13 @@ class Network(models.Model):
         n = self.n_nodes
         nType = self.nType
 
-        if nType == 'complete':
+        if nType == 'clique':
             edges = combinations(range(1,n+1), 2)
 
         elif nType == 'star':
             edges = product([1], range(2,n+1))
 
-        elif nType == 'ring':
+        elif nType == 'circle':
             edges = zip(range(1,n+1),[i - (i // (n+1))*n for i in range(2,n+2)])
 
         else:
@@ -105,6 +143,9 @@ class Node(models.Model):
     network = models.ForeignKey(Network)
     threshold = models.FloatField(default = -1)
     threshold_text = models.CharField()
+    
+    def __str__(self):
+        return 'P: {} - T: {}'.format(self.position, self.threshold)
 
 
 class Edge(models.Model):

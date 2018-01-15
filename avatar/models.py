@@ -13,6 +13,9 @@ class Avatar(models.Model):
     name = models.CharField(max_length = 100)
     src = models.URLField()
 
+    def __str__(self):
+        return self.src
+
     @classmethod
     def randAvatars(self,n=None):
         avatars = self._meta.model.objects.all()

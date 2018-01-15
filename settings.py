@@ -111,13 +111,29 @@ mturk_hit_settings = {
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
+    # AMT Configs
     'real_world_currency_per_point': 0.000,
     'participation_fee': 0.00,
     'doc': "",
     'mturk_hit_settings': mturk_hit_settings,
-    'nType': 'star',
-    'network_description': 'Test',
-    'thresholds': 'H,L',
+    
+    # Narrative Configs
+    'thresholds': '1,3',
+    
+    # Treatment Configs
+    'condition_messaging': 'wall',               #none, bilateral
+    'condition_network_knowledge': 'local',      #local
+
+    # Payoff Configs
+    'payoff_no_participate': '50',
+    'payoff_below_threshold': '0',
+    'payoff_above_threshold': '150',
+
+    # Rounds
+    'round_seq_file': 'seq-48rounds.json',
+
+    # Messaging Type
+    'instant_messaging': 'False',
 }
 
 SESSION_CONFIGS = [
@@ -168,9 +184,8 @@ SESSION_CONFIGS = [
      {
          'name': 'main',
          'display_name': 'Main Coordination Experiment',
-         'num_demo_participants': 5,
+         'num_demo_participants': 15,
          'app_sequence': [ 
-                          'registration',
                           'main',
                          ],
      },
