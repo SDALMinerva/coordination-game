@@ -24,7 +24,7 @@ function PlayerList() {
 		this.counts = {}
 		for (var i=0, len = idList.length; i<len; i++){
 			var newButton = new PlayerButton(idList[i], link);			
-			this.addButton(newButton);
+			this.addButton(newButton, link);
 			this.counts[idList[i]] = newButton.count;	
 		}
 		
@@ -41,8 +41,19 @@ function PlayerList() {
 		return
 	};
 	
-	this.addButton = function(playerButton) {
-		this.playerList.appendChild(playerButton.Link())
+	this.addButton = function(playerButton, link) {
+	    var row = document.createElement('div');
+	    row.className = "float-left";
+	    row.appendChild(playerButton.Link());
+	    
+	    if (link){
+	       var privateMessage = document.createElement('button');
+		   privateMessage.className = "glyphicon glyphicon-envelope message-icon pull-right";
+		   row.appendChild(privateMessage);
+        }		
+		
+		this.playerList.appendChild(row);
+
 	};
 	
 	

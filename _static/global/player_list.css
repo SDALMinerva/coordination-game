@@ -1,5 +1,5 @@
 #playerList .list-group{
-	width: 100%;
+	float: left;
 	margin-top: 10px;
 }
 
@@ -9,6 +9,7 @@
 
 #playerList .list-group-item{
     height: 55px;
+    padding-left: 5px;
 }
 
 #playerList{
@@ -55,7 +56,7 @@
 }
 
 #friendWall .list-group{
-	width: 100%;
+
 	margin-top: 0px;
 }
 
@@ -63,4 +64,27 @@
     padding: 3px;
     background-color: #eeeeee;
     border: none;
+}
+
+.float-left{
+    float: left;
+    display: inline-block;
+    min-width: 150px;
+    max-width: 160px;
+}
+
+#playerList .message-icon{
+    display: inline-block;
+    text-align: center;
+    margin-top: 15px;
+    vertical-align: top;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    height: 25px;
+    width: 25px;
+    padding:0;
+}
+
+#playerList a{
+    display: inline-block;
 }

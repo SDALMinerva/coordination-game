@@ -124,7 +124,11 @@ function Wall() {
 	};
 	
 	this.addEntry = function(entry) {
-		$(entry.Entry())
+	    var newEntry = entry.Entry();
+	    var entryBackground = newEntry.backgroundColor;
+
+	    if (!entryBackground){entryBackground = '#fff';}
+		$(newEntry)
 		.hide()
 		.prependTo(this.wall)
 		.css({
@@ -132,8 +136,9 @@ function Wall() {
 			})
 		.slideDown()
 		.animate({
-			backgroundColor: "white",
+			backgroundColor: entryBackground,
 			}, 1000);
+		
 	};
 	
 	this.parseAddEntry = function(input) {
@@ -157,7 +162,7 @@ function Wall() {
 		this.wallimg.src = '/static/avatar/' + avatars[id];
 		$(this.wall).empty();
 		
-		this.wall.innerHTML = '<h5 id="wallMessage"> To display a message in the next messaging round, use the post tool above.</h5>';
+		this.wall.innerHTML = '<h5 id="wallMessage"> Use the post tool above to put a message on the wall.</h5>';
 	}.bind(this);
 	
 	this.loadFromPost = function(){
@@ -171,32 +176,34 @@ function Wall() {
 	};
 };
 
-$(".send-message").click(function(event){
+$("#wall .send-message").click(function(event){
   if ($(".message-text").val() == ''){
   		return false;
   }
   var message = {
   	 wallId: wall.Id,
     createdBy: playerId,
-    text: $(".message-text").val(),
+    text: $("#wall .message-text").val(),
     messageRound: messageRound,
   }
 
 // Button Behavior After Clicking - Depends on interaction type.
 if (messageRound == -1){
-    $(".message-text").val('');
+    $("#wall .message-text").val('');
 } else {
-    $(".message-text").prop("disabled", true);
-    $(wall.dropdown_button).prop("disabled", true);
-    wall.send_button.innerHTML = 'Posted'
+//    $("#wall .message-text").prop("disabled", true);
+//    $(wall.dropdown_button).prop("disabled", true);
+//    wall.send_button.innerHTML = 'Posted'
     
-    $("span .glyphicon").fadeOut(500, function(){
-        $("span .glpyhicon").removeClass("glyphicon-pencil");
-        $("span .glyphicon").addClass("glyphicon-ok");
-        $("span .glyphicon").fadeIn(500);
-        $(wall.send_button).prop("disabled",true);
-        $(".highlight").removeClass("highlight");
-    });
+//    $("#wall span .glyphicon").fadeOut(500, function(){
+//        $("#wall span .glpyhicon").removeClass("glyphicon-pencil");
+//        $("#wall span .glyphicon").addClass("glyphicon-ok");
+//        $("#wall span .glyphicon").fadeIn(500);
+//        $(wall.send_button).prop("disabled",true);
+//        $("#wall .highlight").removeClass("highlight");
+//    });
+    wall.addEntry(new NewlyAddedEntry(playerId,2018,$("#wall .message-text").val()));
+    $("#wall .message-text").val('');
 }  
 
   var toSend = JSON.stringify({
@@ -209,14 +216,14 @@ if (messageRound == -1){
 });
 
 
-$(".message-option").click(function(event){
+$("#wall .message-option").click(function(event){
 	var text = $(this).html();
-	$(".message-text").val(text);
+	$("#wall .message-text").val(text);
 });
 
 // enable clicking on text input
 $('#wall input[type="text"]:disabled').click(function(e){
-	alert('hey');
+//	alert('hey');
   // Kill click event:
 //  e.stopPropagation();
   // Toggle dropdown if not already visible:
@@ -243,6 +250,7 @@ function Entry(id,timestamp,content) {
 		var listHeading = document.createElement('h4');
 		var listP = document.createElement('p');
 		
+		listItem.backgroundColor = '#fff';
 		listItem.className = 'list-group-item media message-item';
 
 		var img_src = '/static/avatar/' + avatars[id];
@@ -259,6 +267,43 @@ function Entry(id,timestamp,content) {
    	listItem.appendChild(listHeading);
    	
    	listP.innerHTML= 'Post by: ' + userNames[id];// + '       ' 
+//   						+ '[' + this.timestamp + ']';
+   	listP.className = 'media-body';
+   	listItem.appendChild(listP);
+   	
+   	return listItem;
+	};
+};
+
+
+function NewlyAddedEntry(id,timestamp,content) {
+	this.id = id;
+	this.timestamp = timestamp;
+	this.content = content;
+	
+	this.Entry = function () {
+		var listItem = document.createElement('li');
+		var listHeading = document.createElement('h4');
+		var listP = document.createElement('p');
+		
+		listItem.backgroundColor = '#ddd';
+		listItem.className = 'newly-added list-group-item media message-item';
+		
+
+		var img_src = '/static/avatar/' + avatars[id];
+
+      media_object = document.createElement('img');
+		media_object.className = "media-object pull-left media-center";
+		media_object.src = img_src;
+		media_object.alt = "not found";
+		media_object.width = 48;	
+		listItem.appendChild(media_object)	
+		
+		listHeading.innerHTML = this.content;
+   	listHeading.className = 'media-heading';
+   	listItem.appendChild(listHeading);
+   	
+   	listP.innerHTML= 'Post by: ' + userNames[id] + '       <em>(to appear)</em>'; 
 //   						+ '[' + this.timestamp + ']';
    	listP.className = 'media-body';
    	listItem.appendChild(listP);

@@ -1,6 +1,6 @@
 from channels import Group
 from channels.sessions import channel_session
-from .models import Player, Wall, Message
+from .models import Player, Wall, Message, PrivateMessage, PrivateMessageBoard
 import json
 
 @channel_session
@@ -27,6 +27,36 @@ def ws_receive(message):
                 'content': message.to_dict(),
             }
             Group('chat-' + label).send({'text': json.dumps(toSend)})
+
+    elif ws_data['type'] == 'private':
+        
+        data = ws_data['content']
+        createdBy = Player.objects.get(id = data['createdBy'])
+        messageRound = data['messageRound']
+
+        if data['recipientId'] != "all":        
+            player = Player.objects.get(id = data['recipientId'])
+            private_message = PrivateMessage(createdBy=createdBy, message=data['text'], messageRound=messageRound)
+            player.privatemessageboard_set.first().privatemessage_set.add(private_message)
+
+            if player.session.config['instant_messaging'] == 'True':
+                toSend = {
+                    'type': ws_data['type'],
+                    'content': private_message.to_dict(),
+                }
+                Group('chat-private-' + str(player.id)).send({'text': json.dumps(toSend)})
+                
+        else:
+            for player in createdBy.get_neighbors():
+                private_message = PrivateMessage(createdBy=createdBy, message=data['text'], messageRound=messageRound)
+                player.privatemessageboard_set.first().privatemessage_set.add(private_message)
+
+                if player.session.config['instant_messaging'] == 'True':
+                    toSend = {
+                        'type': ws_data['type'],
+                        'content': private_message.to_dict(),
+                    }
+                    Group('chat-private-' + str(player.id)).send({'text': json.dumps(toSend)})
 
     elif ws_data['type'] == 'list':
         data = ws_data['content']

@@ -79,6 +79,14 @@ class Subsession(BaseSubsession):
 #                )
 #            )
 
+            privateMessageBoard = PrivateMessageBoard.objects.create(owner = p)
+#            privateMessageBoard.privatemessage_set.add(
+#                PrivateMessage(createdBy=p,
+#                        messageRound = 0, 
+#                        message='Hi, Player {}!'.format(p.id_in_group)
+#                )
+#            )
+
         # Thresholds for Players (stylistic):
         for p in self.get_players():
             p.threshold = int(p.node.threshold_text)
@@ -107,7 +115,7 @@ class Group(BaseGroup):
     pass
 
 
-class Player(BasePlayer):
+class Player(BasePlayer):  
     
     def get_messages(self):
         wall = self.wall_set.first()
@@ -121,6 +129,19 @@ class Player(BasePlayer):
 
         wall_out = [m.to_dict() for m in wall_messages]
         return wall_out
+        
+    def get_private_messages(self):
+        pmb = self.privatemessageboard_set.first()
+        
+        if self.session.config['instant_messaging'] == 'True':
+            private_messages = pmb.privatemessage_set.all()
+        else:
+            p = self.group.get_player_by_id(1)
+            messageRound = p.participant.vars['message_round']
+            private_messages = pmb.privatemessage_set.filter(messageRound__lt = messageRound)
+
+        pmb_out = [m.to_dict() for m in private_messages]
+        return pmb_out
 
     def get_neighbors(self):
         results = Edge.objects.filter(node_from = self.node)
@@ -133,13 +154,13 @@ class Player(BasePlayer):
     def get_user_name(self):
         return self.user_name
 
-    node = models.ForeignKey(Node, default = 1)
+    node = models.ForeignKey(Node, db_column = 'node', default = 1)
     threshold = models.IntegerField()
     participate = models.BooleanField()
     
     # Avatar Portions
     user_name = models.CharField(default = 'Not Assigned')
-    avatar = models.ForeignKey(Avatar, default = 1, related_name = 'avatar_seq')
+    avatar = models.ForeignKey(Avatar, db_column = 'avatar', default = 1, related_name = 'avatar_seq')
 
 
 class Wall(models.Model):

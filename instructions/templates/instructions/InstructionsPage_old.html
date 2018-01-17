@@ -1,0 +1,134 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% load staticfiles %}
+
+{% block app_styles %}
+    <style type="text/css">
+        .otree-title {
+            position: relative;
+            width: 800px;
+            color: white;
+            background-color: #FF6903;
+            display: inline-block;
+            padding: 10px;
+        }
+        
+        .otree-title:before {
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: 800px;
+            height: 0;
+            width: 0;
+            border-top: 26px solid transparent;
+            border-left: 53px solid #FF6903;
+            border-bottom: 27px solid transparent;
+        }
+
+        .subtitle * {
+            display: inline-block;
+        }
+        
+        .subtitle h4 {
+            width: 50%;
+            padding: 11px;
+            margin-top: 0px;
+            margin-bottom: 10px;
+            background-color: #FF6903;
+            color: white;
+        }
+
+        .subtitle .triangle_right {
+            position: relative;
+            top: 14.45px;
+            width: 0;
+            height: 0;
+            border-top: 21px solid transparent;
+            border-left: 42px solid #FF6903;
+            border-bottom: 21px solid transparent;
+        }
+    
+        .otree-btn-next, .otree-btn-next:hover {
+            font-weight: 600;
+            text-shadow: 0 0px 0;
+            background-image: none;
+            background-color: #92C67A;
+            border-color: black;
+            border-radius: 0px;
+        }
+        
+        .otree-btn-next:hover {
+            background-color: #A7E68F;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block content %}
+<div><div class='subtitle'><h4><b>Welcome!</b></h4><div class='triangle_right'></div></div>
+
+<p>This is an experiment to study how individuals and groups make decisions. Your earnings for your participation will depend on your own decisions, the decisions of others, and chance. If you follow the instructions carefully, you will earn a considerable amount of money in cash (US Dollars) at the end of the experiment. During the experiment, your earnings will be accounted in ECU (Experimental Currency Units). You will be paid privately and in cash at the end of the experiment. Please remain quiet throughout the experiment. If you have a question, please raise your hand and one of us will approach you.</p></div>
+
+
+<div><div class='subtitle'><h4><b>General Instructions</b></h4><div class='triangle_right'></div></div>
+
+<p>The experiment consists of you and four other people independently making the decision on whether to participate together in a group event. You make money based on your participation decision and the decisions of others of whether to Participate (P) in the event or Not Participate (NP).</p>
+
+<p>There are 44 rounds in which you will make this decision. In each round, you will be assigned to a different group. Each group will consist of five people total (including yourself). You will not know the identities of any of the other four participants.</p>
+
+<p>At the beginning of each round, you will be assigned an identity or avatar.  In addition, you will receive a Threshold (to be explained below) and a list of some or all of the other participants in your group. The screen below shows an example of the screen you will see.</p>
+
+<img src={% static 'instructions/msg_ex.png' %} height='40%' width='40%'/></div>
+
+
+<div><div class='subtitle'><h4><b>Thresholds</b></h4><div class='triangle_right'></div></div>
+
+<p>In each round, each player, including you, will be assigned a number either 1 or 3.  This number represents the number of other participants that you need in order to make it worthwhile for you to participate. If your number in a round is 1, for example, it means that you need one other person in order to make it worthwhile to participate in the group event. Likewise, if the number assigned to you in a round is 3, it means that you would need 3 other participants to participate in the event.  Thus, the number assigned to you in each round represents a threshold that we will call T. The screen below shows an example of the threshold that you will see.  You may be able to see the thresholds of some or all the other participants in your group.</p></div>
+
+
+<div><div class='subtitle'><h4><b>Payoffs for each round</b></h4><div class='triangle_right'></div></div>
+
+<p>If you Participate (P) and at least T other players participate, then your earnings in the round will be 150 ECU.</p>
+
+<p>If you Participate (P) and less than T other players participate, then your earnings in the round will be 0 ECU.</p>
+
+<p>If you do NOT Participate (NP) your earnings in the round will be 50 ECU regardless of what others choose.</p></div>
+
+
+<div><div class='subtitle'><h4><b>Experimental Earnings</b></h4><div class='triangle_right'></div></div>
+
+<p>Each 1 ECU is equivalent to 0.10 US dollars. You will be paid for one randomly chosen round. Thus, your total earnings, including your participation fee, could equal either $3, $8, or $18.</p>
+
+<p>At the end of the experiment, we will draw a random number between 1 and 44. You will be paid for the round that corresponds to the number drawn.</p></div>
+
+
+<div><div class='subtitle'><h4><b>Messaging</b></h4><div class='triangle_right'></div></div>
+
+<p>As mentioned above, your payoffs depend on your decision to participate and others’ decision to participate.  Before making the participation decision, you will be given an opportunity to 1) reveal your intention to participate in the group event, 2) reveal your intention to Not participate in the event, or 3) not send a message.</p>
+
+<p>&lt;For Facebook Communication&gt;</p>
+
+<p>You and all the other people in your group can view the thresholds of friends and friends of friends. However, each participant can send a message only to her/his own friends. Later (in the decision part) each person may also observe the messages sent by the friends of friends. No one can see other people’s messages or proceed until all participants in the group have made their messaging decision.</p>
+
+<p>&lt;For Bilateral Communication&gt;</p>
+
+<p>All the five people in your group can view the thresholds of their friends. Each participant can send a message only to their own friends. No one can see other people’s messages or proceed to the decision part until all participants in the group have made their messaging decision.</p></div>
+
+
+<div><div class='subtitle'><h4><b>Participation Decision</b></h4><div class='triangle_right'></div></div>
+
+<p>&lt;For Facebook Communication&gt;</p>
+
+<p>In each round, after all people in a group have finished messaging, each participant can observe the messages sent to them and the messages sent to their friends.  Each person in the group then must decide whether to Participate (P) or Not Participate (NP) in the group event. After every player has made their decision P or NP, a new round starts fresh.</p>
+
+<p>&lt;For Bilateral Communication&gt;</p>
+
+<p>In each round, after all people in a group have finished messaging, each participant can observe the messages sent to them.  Each person in the group then must decide whether to Participate (P) or Not Participate (NP) in the group event. After every player has made their decision P or NP, a new round starts fresh.</p></div>
+
+
+{% next_button %}
+
+{% endblock %}

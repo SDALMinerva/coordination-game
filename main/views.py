@@ -37,16 +37,18 @@ class Discuss(Page):
         'avatars': dict([(p.id, p.get_avatar()) for p in group_players]),
         'thresholds': dict([(p.id, p.node.threshold_text) for p in group_players]),
         'user_names': dict([(p.id, p.get_user_name()) for p in group_players]),
-        'neighbor_net': dict(zip([p.id for p in self.player.get_neighbors()],[[p.id for P in self.player.get_neighbors() for p in P.get_neighbors()]])),
+        'neighbor_net': dict(zip([p.id for p in self.player.get_neighbors()],[[p.id for p in P.get_neighbors()] for P in self.player.get_neighbors()])),
         'neighbors': [p.id for p in self.player.get_neighbors()],    
         'messages': {
             1: 'I will participate.',
             2: 'I will not participate.',
             },
         'wall': json.dumps(self.player.get_messages()),
+        'privateMessages': json.dumps(self.player.get_private_messages()), 
         'nodes': json.dumps(nodes),
         'edges': json.dumps(edges),
         'messageRound': message_round,
+        'lastRound': message_round == Constants.num_messaging_rounds,
         'networkDisplay': networkDisplay,
         }
 

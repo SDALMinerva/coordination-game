@@ -7,19 +7,11 @@ from .models import Constants
 class InstructionsPage(Page):
     pass
 
-
-class ResultsWaitPage(WaitPage):
-
-    def after_all_players_arrive(self):
-        pass
-
-
-class Results(Page):
+class Quiz(Page):
     pass
 
 
 page_sequence = [
     InstructionsPage,
-    ResultsWaitPage,
-    Results
+    Quiz,
 ]

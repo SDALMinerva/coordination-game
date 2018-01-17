@@ -2,14 +2,14 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Messaging Round - {{messageRound}} of {{Constants.num_messaging_rounds}}
+    Game {{subsession.round_number}}: Messaging Round ({{messageRound}} of {{Constants.num_messaging_rounds}})
 {% endblock %}
 
 {% block content %}
 
 <div class="container-fluid">
     <div class="row" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
-        <div class="col-sm-2 col-lg-2" style="min-width: 160px; max-width: 160px; padding:5px;">
+        <div class="col-sm-2 col-lg-2" style="min-width: 160px; max-width: 260px; padding:5px;">
         <h4 style="text-align: left; padding-left: 0px">Your Profile:</h4>
             <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
                 <br>
@@ -22,12 +22,24 @@
         </div>
         <div class="col-sm-6 col-lg-6" style="padding: 5px;">
         <ul id="main-tabs" class="nav nav-tabs" role="tablist">
-  		    <li class="nav-item">
+        {% with 'wall both' as list %}
+            {% if session.config.condition_messaging in list.split %}
+  		    <li class="nav-item active">
     			<a class="nav-link active" data-toggle="tab" href="#wall" role="tab">Wall Posts</a>
   			</li>
-  			<li class="nav-item">
-    			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Your Private Messages</a>
+  			{% endif %}
+  		{% endwith %}
+  		{% if session.config.condition_messaging == 'bilateral' %}
+  			<li class="nav-item active">
+    			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
   			</li>
+		{% endif %}
+		{% if session.config.condition_messaging == 'both' %}
+  			<li class="nav-item">
+    			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
+  			</li>
+		{% endif %}
+
 		</ul>
 
 		<!-- Tab panes -->
@@ -47,9 +59,11 @@
 <div class="row">
     <p style="text-align: left; font-size: 10pt; margin: 0; margin-left: 20px; padding: 0px;">What you can earn playing this game:</p>
     <p style="text-align: left; font-size: 10pt; margin: 0; margin-left: 20px; padding: 0px;">If you do not participate: <strong>{{session.config.payoff_no_participate | c}}</strong> </p>
-	<p style="text-align: left; font-size: 10pt; margin: 0; margin-left: 20px">If you participate and at least {{player.threshold}} more <strong>do not</strong> participate: <strong>{{session.config.payoff_below_threshold | c}}</strong> </p>
-	<p style="text-align: left; font-size: 10pt; margin: 0; margin-left: 20px">If you participate and at least {{player.threshold}} more participate: <strong>{{session.config.payoff_above_threshold | c}}</strong> </p>
+	<p style="text-align: left; font-size: 10pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more <strong>do not</strong> participate: <strong>{{session.config.payoff_below_threshold | c}}</strong> </p>
+	<p style="text-align: left; font-size: 10pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more participate: <strong>{{session.config.payoff_above_threshold | c}}</strong> </p>
 </div>
+<br>
+<p><strong>Click 'Next' to proceed to the next round.</strong></p>
 <br>
 <div class="buttons">
     <a class="btn btn-large btn-primary" href="javascript:void(0);" onclick="startIntro();">Help</a>
@@ -74,6 +88,7 @@ var thresholds = {{thresholds|safe}};
 var userNames = {{user_names|safe}};
 var avatars = {{avatars|safe}};
 var entries = JSON.parse('{{wall|safe}}');
+var privateEntries = JSON.parse('{{privateMessages|safe}}');
 var network_nodes = JSON.parse('{{nodes|escapejs}}');
 var network_edges = JSON.parse('{{edges|safe}}');
 
@@ -82,6 +97,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
 <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
 <script type="text/javascript" src={% static "global/player_list.js" %}></script>
 <script type="text/javascript" src={% static "global/wall.js" %}></script>
+<script type="text/javascript" src={% static "global/messenger.js" %}></script>
 <script type="text/javascript" src={% static "global/vis.min.js" %}></script>
 <script type="text/javascript" src={% static "global/send_message.js" %}></script>
 <script type="text/javascript" src={% static "global/chat_channels.js" %}></script>
@@ -190,6 +206,21 @@ var network_edges = JSON.parse('{{edges|safe}}');
     intro.start();
   }
 
+{% with 'wall none' as list %}
+    {% if session.config.condition_messaging in list.split %}    
+        $('.message-icon').hide();
+    {% endif %}
+{% endwith %}
+
+{% with 'bilateral none' as list %}
+    {% if session.config.condition_messaging in list.split %}    
+        $('.linking-button').off("click");
+        $('.linking-button').each(function () {
+            this.onclick = undefined;
+            });
+    {% endif %}
+{% endwith %}
+
 </script>
 
 {% endblock %}
@@ -197,6 +228,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
 {% block styles %}
 <link rel="stylesheet" href={% static "global/jquery-ui.min.css" %}>
 <link rel="stylesheet" href={% static "global/wall.css" %}>
+<link rel="stylesheet" href={% static "global/messenger.css" %}>
 <link rel="stylesheet" href={% static "global/player_list.css" %}>
 <link rel="stylesheet" href={% static "global/vis.min.css" %}>
 <link rel="stylesheet" href={% static "global/introjs.min.css" %}>
@@ -212,4 +244,5 @@ var network_edges = JSON.parse('{{edges|safe}}');
         display: inline-block;
     }
 </style>
+
 {% endblock %}

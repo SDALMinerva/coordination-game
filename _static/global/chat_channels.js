@@ -1,7 +1,9 @@
 function activeFunction(data){
 	if (data.type == 'send') {	
 		wall.parseAddEntry(data.content);
-	} else {
+	} else if (data.type == 'private') {
+        messenger.parseAddEntry(data.content);	    
+	} else if (data.type == 'list') {
 		wall.parseExistingEntries(data.content);		
 	}
 };
@@ -26,6 +28,8 @@ function Chat(idList, activeFunction, nonActiveFunction) {
 	};
 	this.infoChannel = new Channel('comm-'+playerId,activeFunction,nonActiveFunction);
 	this.infoChannel.active = true;
+    this.privateChannel = new Channel('private-'+playerId,activeFunction,nonActiveFunction);
+	this.privateChannel.active = true;
 	this.channels = channels;
 
 	this.setActiveChannel = function (id) {

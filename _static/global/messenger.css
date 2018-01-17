@@ -1,0 +1,53 @@
+#messenger .topRow{
+    background: linear-gradient(#ffffff00, #ffffff00, #9b9);
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-bottom: 4px;
+}
+
+#messenger #recipient-box{
+	right: 90px;
+	left: auto;
+	width: 270px;
+	cursor: pointer;
+	z-index: 6;
+}
+
+#messenger h2{
+    position: relative;
+	margin-bottom: 0;
+	margin-top: 0px;
+}
+
+#messenger .topRow span{
+    font-size: 3em;
+    padding-top: 10px;
+}
+
+#messenger input[type="text"]:disabled {
+	cursor: pointer;
+	background-color: white;
+}
+
+#messenger .recipient-option img{
+    display: inline;
+    float: left;
+    width: 25px;
+}
+
+#messenger span img{
+    display: inline;
+    float: left;
+    width: 20px;
+}
+
+#messenger .recipient-option span{
+    display: inline-block;
+    float: left;
+}
+
+#messenger a{
+    display: block;
+    cursor: pointer;
+    height: 30px;
+}

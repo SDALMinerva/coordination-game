@@ -7,7 +7,7 @@ from otree.api import (
 author = 'Ethan Vu'
 
 doc = """
-Instructions for participants.  Explains how the experiment will work.
+Instructions and quiz for participants.  Explains how the experiment will work.
 """
 
 

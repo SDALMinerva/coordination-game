@@ -119,84 +119,218 @@ SESSION_CONFIG_DEFAULTS = {
     
     # Narrative Configs
     'thresholds': '1,3',
-    
-    # Treatment Configs
-    'condition_messaging': 'wall',               #none, bilateral
-    'condition_network_knowledge': 'local',      #local
 
     # Payoff Configs
     'payoff_no_participate': '50',
     'payoff_below_threshold': '0',
     'payoff_above_threshold': '150',
 
-    # Rounds
-    'round_seq_file': 'seq-48rounds.json',
-
     # Messaging Type
-    'instant_messaging': 'False',
+    'instant_messaging': 'False',               #True, False
 }
 
 SESSION_CONFIGS = [
      {
-         'name': 'all',
-         'display_name': 'Complete Experiment',
-         'num_demo_participants': 1,
+         'name': 'run_group3_treatment1',
+         'display_name': '[1] Run: Groups, 3; Messaging, none; Network Knowledge, local',
+         'num_demo_participants': 15,
          'app_sequence': [
                           'welcome_consent', 
-                          'registration',
+                          'instructions',
                           'survey_initial',
                           'main',
                           'survey_final',
                          ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
      },
      {
-         'name': 'welcome',
-         'display_name': 'Welcome and Consent',
+         'name': 'run_group3_treatment2',
+         'display_name': '[2] Run: Groups, 3; Messaging, wall; Network Knowledge, local',
+         'num_demo_participants': 15,
+         'app_sequence': [
+                          'welcome_consent', 
+                          'instructions',
+                          'survey_initial',
+                          'main',
+                          'survey_final',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'run_group3_treatment3',
+         'display_name': '[3] Run: Groups, 3; Messaging, bilateral; Network Knowledge, local',
+         'num_demo_participants': 15,
+         'app_sequence': [
+                          'welcome_consent', 
+                          'instructions',
+                          'survey_initial',
+                          'main',
+                          'survey_final',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'bilateral',           #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'run_group3_treatment4',
+         'display_name': '[4] Run: Groups, 3; Messaging, both; Network Knowledge, local',
+         'num_demo_participants': 15,
+         'app_sequence': [
+                          'welcome_consent', 
+                          'instructions',
+                          'survey_initial',
+                          'main',
+                          'survey_final',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'both',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'run_group3_treatment5',
+         'display_name': '[5] Run: Groups, 3; Messaging, none; Network Knowledge, global',
+         'num_demo_participants': 15,
+         'app_sequence': [
+                          'welcome_consent', 
+                          'instructions',
+                          'survey_initial',
+                          'main',
+                          'survey_final',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'run_group3_treatment6',
+         'display_name': '[6] Run: Groups, 3; Messaging, wall; Network Knowledge, global',
+         'num_demo_participants': 15,
+         'app_sequence': [
+                          'welcome_consent', 
+                          'instructions',
+                          'survey_initial',
+                          'main',
+                          'survey_final',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'run_group3_treatment7',
+         'display_name': '[7] Run: Groups, 3; Messaging, bilateral; Network Knowledge, global',
+         'num_demo_participants': 15,
+         'app_sequence': [
+                          'welcome_consent', 
+                          'instructions',
+                          'survey_initial',
+                          'main',
+                          'survey_final',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'run_group3_treatment8',
+         'display_name': '[8] Run: Groups, 3; Messaging, both; Network Knowledge, global',
+         'num_demo_participants': 15,
+         'app_sequence': [
+                          'welcome_consent', 
+                          'instructions',
+                          'survey_initial',
+                          'main',
+                          'survey_final',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'both',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'test_welcome',
+         'display_name': 'Test: Welcome and Consent',
          'num_demo_participants': 1,
          'app_sequence': [
                           'welcome_consent', 
                          ],
      },
      {
-         'name': 'instructions',
-         'display_name': 'Instructions',
+         'name': 'test_instructions',
+         'display_name': 'Test: Instructions',
          'num_demo_participants': 1,
          'app_sequence': [
                           'instructions', 
                          ],
+         'condition_messaging': 'bilateral',
+         'condition_network_knowledge': 'local',
      },
      {
-         'name': 'registration',
-         'display_name': 'Experiment Registration',
+         'name': 'test_registration',
+         'display_name': 'Test: Experiment Registration',
          'num_demo_participants': 1,
          'app_sequence': [
                           'registration',
                          ],
      },
      {
-         'name': 'survey_initial',
-         'display_name': 'Initial Survey',
+         'name': 'test_survey_initial',
+         'display_name': 'Test: Initial Survey',
          'num_demo_participants': 1,
          'app_sequence': [ 
                           'survey_initial',
                          ],
      },
      {
-         'name': 'main',
-         'display_name': 'Main Coordination Experiment',
+         'name': 'test_main',
+         'display_name': 'Test: Main Coordination Experiment',
          'num_demo_participants': 15,
          'app_sequence': [ 
                           'main',
                          ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
      },
      {
-         'name': 'survey_final',
-         'display_name': 'Final Survey',
+         'name': 'test_survey_final',
+         'display_name': 'Test: Final Survey',
          'num_demo_participants': 1,
          'app_sequence': [
                           'survey_final',
                          ],
      },
+     
 ]
 
 CHANNEL_ROUTING = 'main.routing.channel_routing'
