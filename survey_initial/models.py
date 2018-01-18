@@ -270,6 +270,16 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
+    '''
+    def creating_session(self):
+        for p in self.get_players():
+            if 'treatment' in self.session.config:
+                # demo mode
+                p.isStudent = self.session.config['treatment']
+            else:
+                # live experiment mode
+                p.isStudent = random.choice([True, False])
+    '''
     pass
 
 
@@ -278,6 +288,10 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    isStudent = models.BooleanField(
+        verbose_name = "Are you currently a college student?",
+    )
+
     lastName = models.CharField(
         verbose_name = "Last Name",
     )
@@ -315,22 +329,8 @@ class Player(BasePlayer):
         widget = widgets.RadioSelect,
     )
 
-    # TODO:  What are the ethnicities?
-    ethnicity = models.PositiveIntegerField(
-        verbose_name = "If you identify with an ethnic group, select the group you identify with.",
-        choices = [
-            [1, "American Indian or Alaska Native"],
-            [2, "Asian"],
-            [3, "Black or African American"],
-            [4, "Hispanic or Latino"],
-            [5, "Native Hawaiian or Other Pacific Islander"],
-            [6, "White or Caucasian"],
-            [7, "Latin American"],
-            [8, "Mixed"],
-            [9, "Unknown"],
-            [10, "Other"],
-            [11, "Skip this question"],
-        ],
+    ethnicity = models.CharField(
+        verbose_name = "Enter your ethnic group, if you identify with one.",
     )
     
     # TODO: Modify "Please specify" options s.t. if choice selected, must fill out please specify
@@ -532,17 +532,16 @@ class Player(BasePlayer):
         widget = widgets.CheckboxInput(),
     )
     
-    # TODO: Add please specify
     otherWork = models.BooleanField(
         verbose_name = "Other",
         widget = widgets.CheckboxInput(),
     )
-    # end employment questions
     
     otherWorkSpecify = models.CharField(
         verbose_name = "(print other)",
         blank = True,
     )
+    # end employment questions
     
     # How do you spend your free time?  Please check all that apply.
     sports = models.BooleanField(
@@ -570,17 +569,16 @@ class Player(BasePlayer):
         widget = widgets.CheckboxInput(),
     )
     
-    # TODO: add please sepcify
     otherFreeTime = models.BooleanField(
         verbose_name = "Other",
         widget = widgets.CheckboxInput(),
     )
-    # end free time questions
     
     otherFreeTimeSpecify = models.CharField(
         verbose_name = "(print other)",
         blank = True,
     )
+    # end free time questions
     
     occupation = models.CharField(
         verbose_name = "What is your occupation, if applicable?",
@@ -600,7 +598,7 @@ class Player(BasePlayer):
     )
 
     numRoommates = models.PositiveIntegerField(
-        verbose_name = "How many people live with you in your residence?",
+        verbose_name = "How many people live in your residence?",
     )
     
     # How many of the people living in your residence are in each of the following age categories?
@@ -656,5 +654,13 @@ class Player(BasePlayer):
     
     activityEvening = models.PositiveIntegerField(
         verbose_name = "Participate in evening or weekend group activities?",
+    )
+    
+    activityCollegeClubs = models.PositiveIntegerField(
+        verbose_name = "Participate in college clubs and organizations?"
+    )
+    
+    activityPartTimeWork = models.PositiveIntegerField(
+        verbose_name = "Have a part-time job?"
     )
     # end activity questions
