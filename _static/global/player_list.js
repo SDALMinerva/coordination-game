@@ -9,7 +9,7 @@ function PlayerList() {
 		
 		$(this.Parent).empty();
 
-		this.playerList = document.createElement('div');
+		this.playerList = document.createElement('ul');
 		this.playerList.className = 'list-group';
 		
 		//var listTitle = document.createElement('li');
@@ -42,7 +42,7 @@ function PlayerList() {
 	};
 	
 	this.addButton = function(playerButton, link) {
-	    var row = document.createElement('div');
+	    var row = document.createElement('li');
 	    row.className = "float-left";
 	    row.appendChild(playerButton.Link());
 	    
