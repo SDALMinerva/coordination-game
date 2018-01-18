@@ -54,11 +54,15 @@ class Discuss(Page):
 
 class BeginWaitPage(WaitPage):
 
+    template_name = 'main/wait_page.html'
+
     def after_all_players_arrive(self):
         pass
         
 
 class IntermediateWaitPage(WaitPage):
+
+    template_name = 'main/wait_page.html'
 
     def after_all_players_arrive(self):
         group_players = self.group.get_players()
@@ -66,6 +70,8 @@ class IntermediateWaitPage(WaitPage):
 
 
 class EndWaitPage(WaitPage):
+
+    template_name = 'main/wait_page.html'
 
     def after_all_players_arrive(self):
         

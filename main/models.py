@@ -9,7 +9,7 @@ from network.models import Network, Edge, Node
 from random import randint
 import json
 
-author = 'Brian J. Goode'
+author = 'Brian J. Goode, Ethan Vu'
 
 doc = """
 Main Coordination Game
@@ -105,12 +105,12 @@ class Group(BaseGroup):
                         n_participants += 1
                     
                 if p.threshold < n_participants:
-                    p.payoff = self.session.config['payoff_above_threshold']
+                    p.round_payoff = self.session.config['payoff_above_threshold']
                 else:
-                    p.payoff = self.session.config['payoff_below_threshold']
+                    p.round_payoff = self.session.config['payoff_below_threshold']
                 
             else:
-                p.payoff = self.session.config['payoff_no_participate']       
+                p.round_payoff = self.session.config['payoff_no_participate']       
             
     pass
 
@@ -161,6 +161,9 @@ class Player(BasePlayer):
     # Avatar Portions
     user_name = models.CharField(default = 'Not Assigned')
     avatar = models.ForeignKey(Avatar, db_column = 'avatar', default = 1, related_name = 'avatar_seq')
+    
+    # Round_Payoff
+    round_payoff = models.CurrencyField();
 
 
 class Wall(models.Model):

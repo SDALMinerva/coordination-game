@@ -64,17 +64,17 @@ to participate in the event.
 
 <p>
 If you <strong>participate</strong> and at least <strong>1 other player</strong> participates, 
-then your earnings in the round will be <strong>150 ECU</strong>.
+then your earnings in the round will be <strong>{{session.config.payoff_above_threshold|c}}</strong>.
 </p>
 
 <p>
 If you <strong>participate</strong> and <strong>no one else</strong> participates, 
-then your earnings in the round will be <strong>0 ECU</strong>.
+then your earnings in the round will be <strong>{{session.config.payoff_below_threshold|c}}</strong>.
 </p>
 
 <p>
 If you do <strong>not participate</strong>, your earnings in the round will be 
-<strong>50 ECU</strong> regardless of what others do.
+<strong>{{session.config.payoff_no_participate|c}}</strong> regardless of what others do.
 </p>
 
 
@@ -82,16 +82,16 @@ If you do <strong>not participate</strong>, your earnings in the round will be
 
 <p>
 If you <strong>participate</strong> and at least <strong>3 other players</strong> participate, 
-then your earnings in the round will be <strong>150 ECU</strong>.
+then your earnings in the round will be <strong>{{session.config.payoff_above_threshold|c}}</strong>.
 </p>
 
 <p>
 If you <strong>participate</strong> and less than <strong>3 other players</strong> participate, 
-then your earnings in the round will be <strong>0 ECU</strong>.
+then your earnings in the round will be <strong>{{session.config.payoff_below_threshold|c}}</strong>.
 </p>
 
 <p> 
-If you do <strong>not participate</strong>, your earnings in the round will be <strong>50 ECU</strong> 
+If you do <strong>not participate</strong>, your earnings in the round will be <strong>{{session.config.payoff_no_participate|c}}</strong> 
 regardless of what others do.
 </p>
 
@@ -99,7 +99,7 @@ regardless of what others do.
 <p> 
 <strong>Experimental Earnings:</strong> After completing all the rounds, 
 we will choose a random round and your earnings will be based on the result of that round. 
-1 experimental point is equivalent to 0.03 US dollars. You will be paid $3.00 for completing all the rounds, 
+1 experimental point is equivalent to {{session.config.real_world_currency_per_point}} US dollars. You will be paid $3.00 for completing all the rounds, 
 plus a payment based on the outcome of the randomly chosen round. 
 Thus, at the end of the experiment your total earnings, including the $3 completion fee, could equal either $3, $4.50, or $7.50.
 </p>
@@ -129,9 +129,7 @@ Note that, in each round, everyone will be assigned a new avatar and a new thres
 </p>
 
 
-
-<g:if test="${sts.knowledgeCond== 'local'}">
-
+{% if session.config.condition_network_knowledge == 'local' %}
 
     <h4>Your Network:</h4>
 
@@ -156,11 +154,12 @@ Note that, in each round, everyone will be assigned a new avatar and a new thres
     </p>
 
 <br>
-    <img src="https://experiment.sandia.gov/images/NetworkView-local-V7.png" width="500"/>
+    <img src= {% static "instructions/groupNetwork.png" %} width="250"/>
 
 
-</g:if>
-<g:else>
+{% endif %}
+
+{% if session.config.condition_network_knowledge == 'global' %}
 
     <h4>The Network:</h4>
 
@@ -179,7 +178,7 @@ Note that, in each round, everyone will be assigned a new avatar and a new thres
     </p>
 
     <p> 
-        The screen below shows an example of the network you will see in a round; 
+        The screen below shows an example of the network you may see in a round; 
         the gray line between two avatars means that they are friends. 
         You will also see the list of your friends, and a list of all the players in your group. 
         Note that you will be assigned to a new group in each round. 
@@ -187,10 +186,9 @@ Note that, in each round, everyone will be assigned a new avatar and a new thres
     </p>
 
 <br>
-    <img src="https://experiment.sandia.gov/images/NetworkView-global-V7.png" width="500"/>
+    <img src= {% static "instructions/groupNetwork.png" %} width="250"/>
 
-
-</g:else>
+{% endif %}
 
 
 <g:if test="${sts.messagingCond == 'nocomm'}">

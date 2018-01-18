@@ -112,7 +112,7 @@ mturk_hit_settings = {
 
 SESSION_CONFIG_DEFAULTS = {
     # AMT Configs
-    'real_world_currency_per_point': 0.000,
+    'real_world_currency_per_point': 0.03,
     'participation_fee': 0.00,
     'doc': "",
     'mturk_hit_settings': mturk_hit_settings,
