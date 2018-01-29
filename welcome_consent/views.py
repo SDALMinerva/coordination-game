@@ -10,6 +10,9 @@ class WelcomePage(Page):
 class ConsentPage(Page):
     form_model = models.Player
     form_fields = ['consent']
+    
+    def before_next_page(self):
+        self.participant.vars['consent'] = self.player.consent
 
 class ResultsWaitPage(WaitPage):
 
