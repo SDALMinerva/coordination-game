@@ -124,6 +124,9 @@ SESSION_CONFIG_DEFAULTS = {
     'payoff_no_participate': '50',
     'payoff_below_threshold': '0',
     'payoff_above_threshold': '150',
+    
+    # Survey Type
+    'student_survey': 'False',
 
     # Messaging Type
     'instant_messaging': 'False',               #True, False
