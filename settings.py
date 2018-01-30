@@ -126,7 +126,7 @@ SESSION_CONFIG_DEFAULTS = {
     'payoff_above_threshold': '150',
     
     # Survey Type
-    'student_survey': 'False',
+    'student_survey': 'True',
 
     # Messaging Type
     'instant_messaging': 'False',               #True, False

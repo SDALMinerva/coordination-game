@@ -3,13 +3,6 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-
-class Student(Page):
-    form_model = models.Player
-    form_fields = [
-        "isStudent",
-    ]
-
 class SocioDemographic(Page):
     form_model = models.Player
     def get_form_fields(self):
@@ -62,7 +55,7 @@ class SocioDemographic(Page):
             "otherFreeTimeSpecify",
             "occupation",
         ]
-        if self.player.isStudent:
+        if self.session.config['student_survey']:
             questions.extend([
                 "numRoommates",
                 "activityCollegeClubs",
@@ -100,7 +93,6 @@ class Results(Page):
 
 
 page_sequence = [
-    Student,
     SocioDemographic,
     Results,
 ]
