@@ -388,6 +388,7 @@ class Player(BasePlayer):
     
     province_reside = models.CharField(
         verbose_name = "State/Province",
+        blank = True,
     )
     
     city_reside = models.CharField(
