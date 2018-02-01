@@ -1,9 +1,9 @@
 var wall = new Wall();
-wall.init(playerId, entries);
+wall.init(playerId, entries, output);
 
 function Wall() {
 	
-	this.init = function (id,entries) {
+	this.init = function (id,entries, output=true) {
 
         this.ownId = id;		
 		
@@ -35,10 +35,14 @@ function Wall() {
 
         this.messageBlock = document.createElement('div');
         this.messageBlock.className = "col-xs-12";
-        this.postBlock.appendChild(this.messageBlock);
+        
+        if (output){
+            this.postBlock.appendChild(this.messageBlock);
+        }
 
 		this.instructions = document.createElement('h5');
 		this.instructions.innerHTML = 'Post a message to ' + userNames[id] + ':';
+		
 		this.messageBlock.appendChild(this.instructions);		
 		
 		// Input Form.

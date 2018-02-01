@@ -110,7 +110,10 @@ class Group(BaseGroup):
                     p.round_payoff = self.session.config['payoff_below_threshold']
                 
             else:
-                p.round_payoff = self.session.config['payoff_no_participate']       
+                p.round_payoff = self.session.config['payoff_no_participate']
+                
+            if self.subsession.round_number == int(self.session.config['payoff_round']):
+                p.payoff = p.round_payoff       
             
     pass
 
@@ -156,7 +159,7 @@ class Player(BasePlayer):
 
     node = models.ForeignKey(Node, db_column = 'node', default = 1)
     threshold = models.IntegerField()
-    participate = models.BooleanField()
+    participate = models.BooleanField(verbose_name="Will you participate?")
     
     # Avatar Portions
     user_name = models.CharField(default = 'Not Assigned')

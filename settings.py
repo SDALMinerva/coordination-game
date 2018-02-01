@@ -119,11 +119,13 @@ SESSION_CONFIG_DEFAULTS = {
     
     # Narrative Configs
     'thresholds': '1,3',
+    'show_network_threshold': 'False',
 
     # Payoff Configs
     'payoff_no_participate': '50',
     'payoff_below_threshold': '0',
-    'payoff_above_threshold': '150',
+    'payoff_above_threshold': '100',
+    'payoff_round': '1',
     
     # Survey Type
     'student_survey': 'True',

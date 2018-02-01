@@ -2,13 +2,23 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Round {{subsession.round_number}}: Message Exchange ({{messageRound}} of {{Constants.num_messaging_rounds}})
+    Round {{subsession.round_number}}: 
+    {% if messageRound > Constants.num_messaging_rounds %}
+        Will you participate?
+    {% else %}    
+        Message Exchange ({{messageRound}} of {{Constants.num_messaging_rounds}})
+    {% endif %}
 {% endblock %}
 
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container-fluid" style="position: relative;">
+    {% if messageRound > Constants.num_messaging_rounds %}
+    <p>Look through your messages and then make your decision below.</p>
+    {% endif %}
+    <div id="cover" style="position: absolute; visibility: hidden; z-index: 100; background-color: #ffffff; pointer-events: none; opacity: .4; height: 100%; left: -20px; right: -20px;">
+    </div>
     <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
         
         <div class="col-sm-2 col-lg-2" style="min-width: 160px; max-width: 260px; padding:5px;">
@@ -16,7 +26,7 @@
             <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
                 <br>
 	        	   <img src={% static "avatar/"|add:avatar %} alt="Error: No Avatar Available" style="display: block; border-bottom: black 1px solid; margin: auto; width:90px">
-                   <p style="text-align: left; font-size: 13pt; margin: 0; margin-top: 5px; margin-left: 15px;">{{player.user_name}}</p>	        	   
+                   <p style="text-align: left; font-size: 13pt; margin: 0; margin-top: 5px; margin-left: 15px;">{{player.user_name}} (You)</p>	        	   
 	        	   <p style="text-align: left; font-size: 9pt; margin: 0; margin-top: 0px; margin-left: 15px;"><strong>Your Threshold: {{player.node.threshold_text}}</strong> </p>
       	    </div>
       	    <h4>Your Friends:</h4>
@@ -43,13 +53,16 @@
     			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
   			</li>
 		{% endif %}
-
+		
+        
   		    <li class="no-hover nav-item pull-right">
     			<a class="nav-link" href="">Instructions</a>
   			</li>
+  			{% if messageRound <= Constants.num_messaging_rounds %}
   			<li class="no-hover nav-item pull-right">
-    			<a class="nav-link" href="">Tour</a>
+    			<a class="nav-link" href="javascript:void(0);" onclick="startIntro();">Tour</a>
   			</li>
+  			{% endif %}
   			<li class="no-hover nav-item pull-right">
     			<a class="nav-link" href="">Quiz</a>
   			</li>
@@ -78,10 +91,18 @@
 </div>
 
 <br>
-<p><strong>Click 'Next' to proceed to the next round.</strong></p>
+
+{% if messageRound > Constants.num_messaging_rounds %}
+    {% for field in form %}
+    
+        {% formfield field %}
+
+    {% endfor %}
+{% endif %}
+
+<p>Click <strong>Next</strong> to continue.</p>
 <br>
 <div class="buttons">
-    <a class="btn btn-large btn-primary" href="javascript:void(0);" onclick="startIntro();">Help</a>
     {% next_button %}
 </div>
 
@@ -106,6 +127,14 @@ var entries = JSON.parse('{{wall|safe}}');
 var privateEntries = JSON.parse('{{privateMessages|safe}}');
 var network_nodes = JSON.parse('{{nodes|escapejs}}');
 var network_edges = JSON.parse('{{edges|safe}}');
+
+    {% if messageRound > Constants.num_messaging_rounds %}
+        var output = false;
+        $("#cover").css("visibility", "visible");
+    {% else %}    
+        var output = true;
+    {% endif %}
+
 
 </script>
 
@@ -267,7 +296,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
     }
 
     .container-fluid .main{
-        background-color: #ffffff;    
+        background-color: #ffffff;   
     }
 
     .page-header {

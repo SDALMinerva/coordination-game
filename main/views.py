@@ -29,6 +29,16 @@ class Discuss(Page):
         else:
             nodes = []
             edges = []
+
+        for node in nodes:
+            string = node['label'].split('\n')
+            if string[0] == self.player.get_user_name():
+                string[0] += ' (You)'
+            node['label'] = '\n'.join(string)        
+            
+        if self.session.config['show_network_threshold'] == 'False':
+            for node in nodes:
+                node['label'] = node['label'].split('\n')[0]
             
         
         return {
@@ -79,7 +89,10 @@ class EndWaitPage(WaitPage):
         
         pass
 
-class Decide(Page):
+class Decide(Discuss):
+    
+    template_name = 'main/Discuss.html'
+    
     form_model = models.Player
     form_fields = [
         'participate'

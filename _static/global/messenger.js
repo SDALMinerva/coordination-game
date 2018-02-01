@@ -1,9 +1,9 @@
 var messenger = new Messenger();
-messenger.init(playerId, privateEntries);
+messenger.init(playerId, privateEntries, output);
 
 function Messenger() {
 	
-	this.init = function (id,entries) {
+	this.init = function (id,entries, output = true) {
 
         this.ownId = id;		
 		
@@ -35,7 +35,10 @@ function Messenger() {
 
         this.messageBlock = document.createElement('div');
         this.messageBlock.className = "col-xs-12";
-        this.postBlock.appendChild(this.messageBlock);
+        
+        if (output) {
+            this.postBlock.appendChild(this.messageBlock);
+        }
 
 		this.instructions = document.createElement('h5');
 //		this.instructions.innerHTML = 'Send a message to ' + userNames[id] + ':';
