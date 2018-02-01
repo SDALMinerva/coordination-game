@@ -7,7 +7,8 @@ import json
 def ws_connect(message):
     label = message['path'].split('/')[-1]
     Group('chat-' + label).add(message.reply_channel)
-    message.channel_session['room'] = label
+    message.channel_session['room'] = label  
+    message.reply_channel.send({'accept': True})
 
 @channel_session
 def ws_receive(message):
