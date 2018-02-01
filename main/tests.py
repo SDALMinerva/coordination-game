@@ -5,7 +5,9 @@ from .models import Constants
 
 
 class PlayerBot(Bot):
-
+    # add cases
     def play_round(self):
-        yield (views.MyPage)
-        yield (views.Results)
+        yield (views.AssignAvatar)
+        yield (views.Discuss)
+        # yield
+        yield (views.Decide)
