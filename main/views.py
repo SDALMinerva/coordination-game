@@ -1,7 +1,8 @@
 from otree.api import Currency as c, currency_range
 from . import models
 from ._builtin import Page, WaitPage
-from .models import Constants
+from .models import Constants, Message
+from random import random, randint
 import json
 
 
@@ -49,10 +50,7 @@ class Discuss(Page):
         'user_names': dict([(node.id, node.avatar.get_name()) for node in self.group.network.node_set.all()]),
         'neighbor_net': dict(zip([node.id for node in self.player.get_neighbors()],[[node.id for node in P.get_neighbors()] for P in self.player.get_neighbors()])),
         'neighbors': [node.id for node in self.player.get_neighbors()],    
-        'messages': {
-            1: 'I will participate.',
-            2: 'I will not participate.',
-            },
+        'messages': Constants.messages,
         'wall': json.dumps(self.player.get_messages()),
         'privateMessages': json.dumps(self.player.get_private_messages()), 
         'nodes': json.dumps(nodes),
@@ -76,6 +74,31 @@ class IntermediateWaitPage(WaitPage):
 
     def after_all_players_arrive(self):
         group_players = self.group.get_players()
+
+### SIMPLE CODE FOR AUTOMATED MESSAGES
+        message_round = group_players[0].participant.vars['message_round']        
+        for node in self.group.network.node_set.all():
+            if node.bot:
+                neighbors = node.get_neighbors()
+                for neighbor in neighbors:
+                    if int(round(random())) and (self.session.config['condition_messaging'] in ['wall','both']):
+                        wall = neighbor.wall_set.first()
+                        wall.message_set.add(
+                            Message(createdBy=node,
+                            messageRound = message_round, 
+                            message=Constants.messages[randint(1,2)]
+                            )
+                        )
+                    
+                    if int(round(random())) and (self.session.config['condition_messaging'] in ['bilateral','both']):    
+                        privateMessageBoard = neighbor.privatemessageboard_set.first()
+                        privateMessageBoard.privatemessage_set.add(
+                        PrivateMessage(createdBy=node,
+                            messageRound = message_round, 
+                            message=Constants.messages[randint(1,2)]
+                            )
+                        )        
+        
         group_players[0].participant.vars['message_round'] += 1
 
 
@@ -84,6 +107,12 @@ class EndWaitPage(WaitPage):
     template_name = 'main/wait_page.html'
 
     def after_all_players_arrive(self):
+
+        for node in self.group.network.node_set.all():
+            if node.bot:
+                node.participate = randint(0,1)
+            else:
+                node.participate = node.player_set.first().participate        
         
         self.group.set_payoffs()
         group_players = self.group.get_players()

@@ -162,6 +162,7 @@ class Node(models.Model):
     network = models.ForeignKey(Network)
     threshold = models.FloatField(default = -1)
     threshold_text = models.CharField()
+    participate = models.BooleanField()
 
     def get_neighbors(self):
         results = Edge.objects.filter(node_from = self)

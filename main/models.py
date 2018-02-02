@@ -26,6 +26,10 @@ class Constants(BaseConstants):
     players_per_group = None               #EDIT: Make flexible with number of players.
     num_rounds = 3                      #EDIT: Make adjustable from session config.
     num_messaging_rounds = 1            #EDIT: Make adjustable from session config.
+    messages = {
+            1: 'I will participate.',
+            2: 'I will not participate.',
+            }
 
 
 class Subsession(BaseSubsession):
@@ -96,20 +100,7 @@ class Subsession(BaseSubsession):
         for group in self.get_groups():
             for node in group.network.node_set.all():       
                 wall = Wall.objects.create(node=node,subsession=self)
-#            wall.message_set.add(
-#                Message(createdBy=p,
-#                        messageRound = 0, 
-#                        message='Hi, Player {}!'.format(p.id_in_group)
-#                )
-#            )
-
                 privateMessageBoard = PrivateMessageBoard.objects.create(node=node,subsession=self)
-#            privateMessageBoard.privatemessage_set.add(
-#                PrivateMessage(createdBy=p,
-#                        messageRound = 0, 
-#                        message='Hi, Player {}!'.format(p.id_in_group)
-#                )
-#            )
 
         # Thresholds for Players (stylistic):
         for p in self.get_players():
@@ -126,11 +117,11 @@ class Group(BaseGroup):
     def set_payoffs(self):
         for p in self.get_players():
             if p.participate:
-                group = p.get_others_in_group()
+                group_nodes = p.node.network.node_set.all()
             
-                n_participants = 1
-                for player in group:
-                    if player.participate:
+                n_participants = 0
+                for node in group_nodes:
+                    if node.participate:
                         n_participants += 1
                     
                 if p.threshold < n_participants:
