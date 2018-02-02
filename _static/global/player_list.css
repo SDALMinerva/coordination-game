@@ -68,9 +68,9 @@
 
 .float-left{
     float: left;
-    display: inline-block;
-    min-width: 150px;
-    max-width: 160px;
+    display: block;
+    min-width: 70px;
+    max-width: 150px;
 }
 
 #playerList .message-icon{

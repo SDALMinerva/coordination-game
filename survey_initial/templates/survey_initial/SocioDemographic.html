@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block content %}
+    {% if session.is_demo %}
+        <a href="#" onclick="setVals()">DEMO: Click here to fill vals.</a>
+    {% endif %}
     <h4>This survey is designed to collect personal and household information.</h4>
 
     {% for field in form %}
@@ -42,7 +45,17 @@
 
 {% block scripts %}
     <script type="text/javascript">
-        {% if player.isStudent %}
+
+        {% if session.is_demo %}
+        var setVals = function (){
+            $(":text").val('X');
+           	$('input[type="number"]').val('999');
+           	$('input:radio').prop('checked', true);
+           	$('select option').prop('selected', true);
+        }
+        {% endif %}    
+    
+        {% if session.config.student_survey %}
             var major = document.querySelectorAll("[for=\"id_major\"]")[0];
             major.innerHTML = "What is your major?";
         {% endif %}

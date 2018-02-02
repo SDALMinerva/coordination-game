@@ -270,16 +270,6 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    '''
-    def creating_session(self):
-        for p in self.get_players():
-            if 'treatment' in self.session.config:
-                # demo mode
-                p.isStudent = self.session.config['treatment']
-            else:
-                # live experiment mode
-                p.isStudent = random.choice([True, False])
-    '''
     pass
 
 
@@ -288,9 +278,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    isStudent = models.BooleanField(
-        verbose_name = "Are you currently a college student?",
-    )
 
     lastName = models.CharField(
         verbose_name = "Last Name",
@@ -401,6 +388,7 @@ class Player(BasePlayer):
     
     province_reside = models.CharField(
         verbose_name = "State/Province",
+        blank = True,
     )
     
     city_reside = models.CharField(

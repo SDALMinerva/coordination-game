@@ -2,25 +2,39 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Game {{subsession.round_number}}: Messaging Round ({{messageRound}} of {{Constants.num_messaging_rounds}})
+    Round {{subsession.round_number}}: 
+    {% if messageRound > Constants.num_messaging_rounds %}
+        Will you participate?
+    {% else %}    
+        Message Exchange ({{messageRound}} of {{Constants.num_messaging_rounds}})
+    {% endif %}
 {% endblock %}
+
 
 {% block content %}
 
-<div class="container-fluid">
-    <div class="row" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
+<div class="container-fluid" style="position: relative;">
+    {% if messageRound > Constants.num_messaging_rounds %}
+    <p>Look through your messages and then make your decision below.</p>
+    {% endif %}
+    <div id="cover" style="position: absolute; visibility: hidden; z-index: 100; background-color: #ffffff; pointer-events: none; opacity: .4; height: 100%; left: -20px; right: -20px;">
+    </div>
+    <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
+        
         <div class="col-sm-2 col-lg-2" style="min-width: 160px; max-width: 260px; padding:5px;">
         <h4 style="text-align: left; padding-left: 0px">Your Profile:</h4>
             <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
                 <br>
 	        	   <img src={% static "avatar/"|add:avatar %} alt="Error: No Avatar Available" style="display: block; border-bottom: black 1px solid; margin: auto; width:90px">
-                   <p style="text-align: left; font-size: 13pt; margin: 0; margin-top: 5px; margin-left: 15px">{{player.user_name}}</p>	        	   
-	        	   <p style="text-align: left; font-size: 9pt; margin: 0; margin-top: 0px; margin-left: 15px"><strong>Your Threshold: {{player.node.threshold_text}}</strong> </p>
+                   <p style="text-align: left; font-size: 13pt; margin: 0; margin-top: 5px; margin-left: 15px;">{{player.user_name}} (You)</p>	        	   
+	        	   <p style="text-align: left; font-size: 9pt; margin: 0; margin-top: 0px; margin-left: 15px;"><strong>Your Threshold: {{player.node.threshold_text}}</strong> </p>
       	    </div>
       	    <h4>Your Friends:</h4>
-            <div id="playerList"></div>        
+            <div id="playerList" class="clearfix" ></div>        
         </div>
+
         <div class="col-sm-6 col-lg-6" style="padding: 5px;">
+
         <ul id="main-tabs" class="nav nav-tabs" role="tablist">
         {% with 'wall both' as list %}
             {% if session.config.condition_messaging in list.split %}
@@ -39,7 +53,19 @@
     			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
   			</li>
 		{% endif %}
-
+		
+        
+  		    <li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="">Instructions</a>
+  			</li>
+  			{% if messageRound <= Constants.num_messaging_rounds %}
+  			<li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="javascript:void(0);" onclick="startIntro();">Tour</a>
+  			</li>
+  			{% endif %}
+  			<li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="">Quiz</a>
+  			</li>
 		</ul>
 
 		<!-- Tab panes -->
@@ -47,26 +73,36 @@
             <div class="tab-pane active" id="wall" role="tabpanel"></div>
       		<div class="tab-pane" id="messenger" role="tabpanel"></div>
 		</div>
+
+
         </div>
         
-                <div class="col-sm-4 col-lg-4" style="padding:5px;">
+        <div class="col-sm-4 col-lg-4" style="padding:5px;">
             <h4>{{networkDisplay}} Network:</h4>
             <div id="mynetwork" style="height: 300px; width: 100%; border-left: 1px solid #ddd;"></div>
+            <div class="row">
+                <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;"><strong>Possible Earnings:</strong></p>
+                <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;">If you do not participate:<strong> {{session.config.payoff_no_participate | c}}</strong> </p>
+	            <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more <strong>do not</strong> participate: <strong>{{session.config.payoff_below_threshold | c}}</strong> </p>
+	            <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more participate: <strong>{{session.config.payoff_above_threshold | c}}</strong> </p>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <p style="text-align: left; font-size: 10pt; margin: 0; margin-left: 20px; padding: 0px;">What you can earn playing this game:</p>
-    <p style="text-align: left; font-size: 10pt; margin: 0; margin-left: 20px; padding: 0px;">If you do not participate: <strong>{{session.config.payoff_no_participate | c}}</strong> </p>
-	<p style="text-align: left; font-size: 10pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more <strong>do not</strong> participate: <strong>{{session.config.payoff_below_threshold | c}}</strong> </p>
-	<p style="text-align: left; font-size: 10pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more participate: <strong>{{session.config.payoff_above_threshold | c}}</strong> </p>
-</div>
 <br>
-<p><strong>Click 'Next' to proceed to the next round.</strong></p>
+
+{% if messageRound > Constants.num_messaging_rounds %}
+    {% for field in form %}
+    
+        {% formfield field %}
+
+    {% endfor %}
+{% endif %}
+
+<p>Click <strong>Next</strong> to continue.</p>
 <br>
 <div class="buttons">
-    <a class="btn btn-large btn-primary" href="javascript:void(0);" onclick="startIntro();">Help</a>
     {% next_button %}
 </div>
 
@@ -91,6 +127,14 @@ var entries = JSON.parse('{{wall|safe}}');
 var privateEntries = JSON.parse('{{privateMessages|safe}}');
 var network_nodes = JSON.parse('{{nodes|escapejs}}');
 var network_edges = JSON.parse('{{edges|safe}}');
+
+    {% if messageRound > Constants.num_messaging_rounds %}
+        var output = false;
+        $("#cover").css("visibility", "visible");
+    {% else %}    
+        var output = true;
+    {% endif %}
+
 
 </script>
 
@@ -127,6 +171,9 @@ var network_edges = JSON.parse('{{edges|safe}}');
     edges: edges
   };
   var options = {
+        physics: {
+            enabled: true,
+        },
   		interaction:{
     	dragNodes:false,
     	dragView: false,
@@ -172,6 +219,11 @@ var network_edges = JSON.parse('{{edges|safe}}');
   var network = new vis.Network(container, data, options);
   $('a[data-toggle="tab"][href="#network"]').on('shown.bs.tab', function (e) {
     network.fit();  		
+  });
+  
+  network.on("afterDrawing", function (event) {
+  	network.fit();
+  	network.off("afterDrawing");
   });
   window.onresize = function() {network.fit();}
   
@@ -235,6 +287,32 @@ var network_edges = JSON.parse('{{edges|safe}}');
 
 
 <style type="text/css">
+    .clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+
+    .nav-tabs .no-hover a:hover{
+        background-color: transparent;
+        border: 1px solid transparent;
+        text-decoration: underline;   
+    }
+
+    .container-fluid .main{
+        background-color: #ffffff;   
+    }
+
+    .page-header {
+        padding: 0;    
+        margin: 0;
+        margin-left: -15px;
+        margin-right: -15px;
+        border-bottom: 1px solid black;
+    }
+    
+    .page-header h2 {
+        padding: 0;
+        margin: 10px;
+        margin-left: 0px;
+    }
+
     #playerLabel:hover {
         cursor: pointer;
         background-color: #f5f5f5;
