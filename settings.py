@@ -339,7 +339,7 @@ SESSION_CONFIGS = [
           
           # Treatment Configs
           'condition_messaging': 'wall',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'global',      #local, global
+          'condition_network_knowledge': 'local',      #local, global
      },
      {
          'name': 'test_survey_final',

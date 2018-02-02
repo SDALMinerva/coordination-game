@@ -67,7 +67,7 @@ class Network(models.Model):
             'id': edge.node_to.id,
             'shape': 'circularImage',
             'image': '/static/avatar/{}'.format(edge.node_to.avatar.src),
-            'label': '{}\nThreshold: {}'.format(edge.node_to.get_name(), edge.node_to.threshold_text),
+            'label': '{}\nThreshold: {}'.format(edge.node_to.avatar.get_name(), edge.node_to.threshold_text),
         } for edge in edge_list]
         
         nodes.append({
