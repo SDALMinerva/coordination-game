@@ -26,4 +26,22 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    qa1 = models.BooleanField(choices = ['True', 'False'])
+    qa2 = models.BooleanField(choices = ['True', 'False'])
+    qa3 = models.BooleanField(choices = ['True', 'False'])
+    
+    qb1a = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    qb1b = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    qb1c = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    
+    qb2a = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    qb2b = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    qb2c = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    qb2d = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    
+    qb3a = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    qb3b = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    qb3c = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    qb3d = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    qb3e = models.CharField(choices = ['100 points', '50 points', '0 points'])
+    qb3f = models.CharField(choices = ['100 points', '50 points', '0 points'])

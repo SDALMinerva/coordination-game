@@ -2,13 +2,121 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Page title
+    Instructions Quiz
 {% endblock %}
 
 {% block content %}
 
+<p>
+This short quiz will test your understanding of the instructions. 
+Each question addresses a different situation for fictional players. 
+Therefore, treat each question separately. 
+Once you submit your answer, you can view the correct answer and the explanation. 
+Please submit answers to all of the questions before proceeding! 
+</p>
 <br>
-<p><strong>Click 'Next' to submit.</strong></p>
+
+<h3>Part A.</h3>
+<p>
+<strong>Question A1.</strong> Suppose player Cat has a threshold <strong>T=3</strong> in a round. 
+If Cat chooses <strong>participate</strong> and <strong>2 other players</strong> choose <strong>participate</strong>, Cat earns 100 points in that round.
+</p>
+{% formfield player.qa1 label=''%}   
+<br>
+<p>
+<strong>Question A2.</strong>
+Suppose Tiger has a threshold <strong>T=3</strong> in a round. If Tiger chooses <strong>not participate</strong>, her earnings are 0 points in that round. 
+</p>
+{% formfield player.qa2 label=''%} 
+<br>
+<p>
+<strong>Question A3.</strong>
+Suppose Elephant has a threshold <strong>T=1</strong> in a round, her earning for choosing <strong>participate</strong> is always 
+equal to 100 points in that round.
+</p>
+{% formfield player.qa3 label=''%}   
+
+
+<h3 style="margin-top: 40px;">Part B.</h3>
+<p>
+Each question below addresses a different scenario in a particular round of a game. 
+Each circle represents a player in the game. 
+In each figure, two circles that are connected with a line mean that they are friends. 
+A circle that is not colored means that the player has not yet made a decision in the game. 
+A <span style="color: red; font-weight: bold;">red</span> circle means that the player has chosen <span style="color: red; font-weight: bold;">not participate</span> in that round. 
+A <span style="color: green; font-weight: bold;">green</span> circle means that the player has chosen <span style="color: green; font-weight: bold;">participate</span> in that round.
+</p>
+
+<p style="margin-top: 30px;">
+<strong>Question B1.</strong>
+Suppose there are <strong>3 players</strong> in the game, as shown in the figure below. 
+Everyone’s threshold is <strong>T=1</strong>. 
+Each player’s choices for the round are shown by colors for three different scenarios in the figure below.
+</p>
+
+<div class="row">
+<div class="col-xs-4">
+<h4>Scenario A</h4>
+<img style="max-height: 250px" class="img img-responsive" src={% static "instructions/qb1a.png" %} alt="">
+{% formfield player.qb1a label="Duck's earnings are"%}
+</div>
+<div style = "border-left: 1px solid gray; border-right: 1px solid gray;" class="col-xs-4">
+<h4>Scenario B</h4>
+<img style="max-height: 250px" class="img img-responsive" src={% static "instructions/qb1b.png" %} alt="">
+{% formfield player.qb1b label="Duck's earnings are"%}
+</div>
+<div class="col-xs-4">
+<h4>Scenario C</h4>
+<img style="max-height: 250px" class="img img-responsive" src={% static "instructions/qb1c.png" %} alt="">
+{% formfield player.qb1c label="Duck's earnings are"%}
+</div>
+</div>
+
+<p style="margin-top: 30px;">
+<strong>Question B2.</strong>
+Suppose there are <strong>3 players</strong> in the game, as shown in the figure below. 
+Everyone’s threshold is <strong>T=1</strong>. 
+Player’s choices for the round are shown by colors in the figure below (Bull and Chicken have 
+chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle has chosen <span style="color: red; font-weight: bold;">not participate</span>).
+</p>
+
+<div class="row">
+<div class="col-xs-4">
+<img class="img img-responsive" src={% static "instructions/qb2.png" %} alt="">
+</div>
+<div class="col-xs-6">
+{% formfield player.qb2a label="Bull's earnings are"%}
+{% formfield player.qb2b label="Chicken's earnings are"%}
+{% formfield player.qb2c label="Eagle's earnings are"%}
+{% formfield player.qb2d label="If Eagle had chosen to participate, her earnings would be"%}
+</div>
+</div>
+
+
+<p style="margin-top: 30px;">
+<strong>Question B3.</strong>
+Suppose there are <strong>4 players</strong> in the game, as shown in the figure below. 
+Beaver and Fish’s thresholds are <strong>T= 3</strong>; Cat and Giraffe’s thresholds are <strong>T=1</strong>. 
+Player’s choices for the round are shown by colors in the figure below (Cat and Giraffe have chosen <span style="color: green; font-weight: bold;">participate</span>, 
+Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not participate</span>).
+</p>
+
+<div class="row">
+<div class="col-xs-5">
+<img class="img img-responsive" src={% static "instructions/qb3.png" %} alt="">
+</div>
+<div class="col-xs-7">
+{% formfield player.qb3a label="Cat's earnings are"%}
+{% formfield player.qb3b label="Giraffe's earnings are"%}
+{% formfield player.qb3c label="Beaver's earnings are"%}
+{% formfield player.qb3d label="Fish's earnings are"%}
+{% formfield player.qb3e label="If Beaver had chosen to participate, her earnings would be"%}
+{% formfield player.qb3f label="If Beaver and Fish had chosen to participate, their earnings would each be"%}
+</div>
+</div>
+
+<br>
+<p><strong>Click 'Next' to proceed.</strong></p>
     {% next_button %}
 {% endblock %}
 
