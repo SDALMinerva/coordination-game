@@ -1,7 +1,7 @@
 from otree.api import Currency as c, currency_range
 from . import models
 from ._builtin import Page, WaitPage
-from .models import Constants, Message
+from .models import Constants, Message, PrivateMessage
 from random import random, randint
 import json
 
@@ -22,7 +22,7 @@ class Discuss(Page):
         if self.session.config['condition_network_knowledge'] == 'global':
             nodes = self.group.network.getNodes()
             edges = self.group.network.getEdges()
-            networkDisplay = 'Group'
+            networkDisplay = 'The'
         elif self.session.config['condition_network_knowledge'] == 'local':
             nodes = self.group.network.get_nodes_from_player(self.player)
             edges = self.group.network.get_edges_from_player(self.player)
