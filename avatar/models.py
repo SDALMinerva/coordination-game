@@ -29,3 +29,6 @@ class Avatar(models.Model):
         sorted_objects = [avatars[id] for id in pk_list]
         
         return iter(sorted_objects)
+        
+    def get_name(self):
+        return self.name.split('-')[0]

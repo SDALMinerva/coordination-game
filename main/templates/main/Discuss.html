@@ -118,6 +118,7 @@ var messageList = [];
 
 var messageRound = {{messageRound}};
 var playerId = {{player.id}};
+var nodeId = {{player.node.id}};
 var neighbor_net = {{neighbor_net|safe}};
 var neighbors = {{neighbors|safe}};
 var thresholds = {{thresholds|safe}};
@@ -150,11 +151,11 @@ var network_edges = JSON.parse('{{edges|safe}}');
 <script type="text/javascript" >
   var playerProfile = document.getElementById('playerLabel');
   playerProfile.onclick = function() {
-    chat.setActiveChannel(playerId);
-	wall.changeId(playerId);
+    chat.setActiveChannel(nodeId);
+	wall.changeId(nodeId);
 	chat.infoChannel.send(JSON.stringify({
 	  'type': 'list',
-	  'content': {'playerId': playerId},				
+	  'content': {'playerId': nodeId},				
 	}));
   }
 

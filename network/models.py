@@ -5,6 +5,7 @@ from otree.api import (
 
 from random import shuffle
 from itertools import combinations, product
+from avatar.models import Avatar
 
 author = 'Brian J. Goode'
 
@@ -43,8 +44,8 @@ class Network(models.Model):
         nodes = [{
             'id': node.id,
             'shape': 'circularImage',
-            'image': '/static/avatar/{}'.format(node.player_set.first().get_avatar()),
-            'label': '{}\nThreshold: {}'.format(node.player_set.first().get_user_name(), node.threshold_text),
+            'image': '/static/avatar/{}'.format(node.avatar.src),
+            'label': '{}\nThreshold: {}'.format(node.avatar.get_name(), node.threshold_text),
         } for node in self.node_set.all()]
         return nodes
 
@@ -65,8 +66,8 @@ class Network(models.Model):
         nodes = [{
             'id': edge.node_to.id,
             'shape': 'circularImage',
-            'image': '/static/avatar/{}'.format(edge.node_to.player_set.first().get_avatar()),
-            'label': '{}\nThreshold: {}'.format(edge.node_to.player_set.first().get_user_name(), edge.node_to.threshold_text),
+            'image': '/static/avatar/{}'.format(edge.node_to.avatar.src),
+            'label': '{}\nThreshold: {}'.format(edge.node_to.get_name(), edge.node_to.threshold_text),
         } for edge in edge_list]
         
         nodes.append({
@@ -89,22 +90,33 @@ class Network(models.Model):
         return edges
         
 
-    def addNodes(self, group, threshold, threshold_text, shuffle = False):
+    def addNodes(self, players, threshold, threshold_text, avatars, shuffle = False):
         
         posis = list(range(1,self.n_nodes + 1))        
         
         if shuffle:
             shuffle(posis)
             
-        for p, pos, thrs in zip(group.get_players(), posis, threshold):
+        for player, pos, thrs, avatar in zip(players, posis, threshold, avatars):
+            
+            bot = True
+            
+            if player:
+                bot = False            
+            
             node = Node(
+                    bot = bot,
                     position = pos, 
-                    network=self, 
+                    network= self, 
                     threshold=thrs,
                     threshold_text=threshold_text[thrs],
+                    avatar=Avatar.objects.get(src=avatar),
                     )
             node.save()
-            p.node = node
+            
+            if not bot:
+                player.node = node
+                
         return 
 
 
@@ -139,10 +151,22 @@ class Network(models.Model):
 
 
 class Node(models.Model):
+    bot = models.BooleanField()
+    avatar = models.ForeignKey(
+        Avatar, 
+        db_column = 'avatar', 
+        default = 1, 
+        related_name = 'avatar_node',
+        )
     position = models.IntegerField()
     network = models.ForeignKey(Network)
     threshold = models.FloatField(default = -1)
     threshold_text = models.CharField()
+
+    def get_neighbors(self):
+        results = Edge.objects.filter(node_from = self)
+        neighbors = [r.node_to for r in results]
+        return neighbors    
     
     def __str__(self):
         return 'P: {} - T: {}'.format(self.position, self.threshold)

@@ -44,11 +44,11 @@ class Discuss(Page):
         return {
         'avatar': self.player.get_avatar(),
         'user_name': self.player.get_user_name(),
-        'avatars': dict([(p.id, p.get_avatar()) for p in group_players]),
-        'thresholds': dict([(p.id, p.node.threshold_text) for p in group_players]),
-        'user_names': dict([(p.id, p.get_user_name()) for p in group_players]),
-        'neighbor_net': dict(zip([p.id for p in self.player.get_neighbors()],[[p.id for p in P.get_neighbors()] for P in self.player.get_neighbors()])),
-        'neighbors': [p.id for p in self.player.get_neighbors()],    
+        'avatars': dict([(node.id, node.avatar.src) for node in self.group.network.node_set.all()]),
+        'thresholds': dict([(node.id, node.threshold_text) for node in self.group.network.node_set.all()]),
+        'user_names': dict([(node.id, node.avatar.get_name()) for node in self.group.network.node_set.all()]),
+        'neighbor_net': dict(zip([node.id for node in self.player.get_neighbors()],[[node.id for node in P.get_neighbors()] for P in self.player.get_neighbors()])),
+        'neighbors': [node.id for node in self.player.get_neighbors()],    
         'messages': {
             1: 'I will participate.',
             2: 'I will not participate.',
@@ -85,7 +85,9 @@ class EndWaitPage(WaitPage):
 
     def after_all_players_arrive(self):
         
-        self.group.set_payoffs()        
+        self.group.set_payoffs()
+        group_players = self.group.get_players()
+        group_players[0].participant.vars['message_round'] = 1        
         
         pass
 

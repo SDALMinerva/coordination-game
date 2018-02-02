@@ -1,5 +1,5 @@
 var wall = new Wall();
-wall.init(playerId, entries, output);
+wall.init(nodeId, entries, output);
 
 function Wall() {
 	
@@ -186,7 +186,7 @@ $("#wall .send-message").click(function(event){
   }
   var message = {
   	 wallId: wall.Id,
-    createdBy: playerId,
+    createdBy: nodeId,
     text: $("#wall .message-text").val(),
     messageRound: messageRound,
   }
@@ -206,7 +206,7 @@ if (messageRound == -1){
 //        $(wall.send_button).prop("disabled",true);
 //        $("#wall .highlight").removeClass("highlight");
 //    });
-    wall.addEntry(new NewlyAddedEntry(playerId,2018,$("#wall .message-text").val()));
+    wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#wall .message-text").val()));
     $("#wall .message-text").val('');
 }  
 

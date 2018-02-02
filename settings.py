@@ -328,6 +328,20 @@ SESSION_CONFIGS = [
           'condition_network_knowledge': 'global',      #local, global
      },
      {
+         'name': 'test_main_oneParticipant',
+         'display_name': 'Test: Main Coordination Experiment',
+         'num_demo_participants': 1,
+         'app_sequence': [ 
+                          'main',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
          'name': 'test_survey_final',
          'display_name': 'Test: Final Survey',
          'num_demo_participants': 1,
