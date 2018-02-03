@@ -166,7 +166,7 @@ function Wall() {
 		this.wallimg.src = '/static/avatar/' + avatars[id];
 		$(this.wall).empty();
 		
-		this.wall.innerHTML = '<h5 id="wallMessage"> Use the post tool above to put a message on the wall.</h5>';
+		this.wall.innerHTML = '<p style="font-size: 10pt; line-height: 100%;" id="wallMessage"> Use the tool above to post a message on the wall. The posts will appear once you and everyone else is done with sending messages and proceed to the decision part by clicking "Next" below.</p>';
 	}.bind(this);
 	
 	this.loadFromPost = function(){
@@ -270,7 +270,9 @@ function Entry(id,timestamp,content) {
    	listHeading.className = 'media-heading';
    	listItem.appendChild(listHeading);
    	
-   	listP.innerHTML= 'Post by: ' + userNames[id];// + '       ' 
+   	var nameAdd = ((id == this.ownId) ? '' : " (You)");
+   	listP.style = "font-size: 9pt;";
+   	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd;// + '       ' 
 //   						+ '[' + this.timestamp + ']';
    	listP.className = 'media-body';
    	listItem.appendChild(listP);
@@ -293,6 +295,11 @@ function NewlyAddedEntry(id,timestamp,content) {
 		listItem.backgroundColor = '#ddd';
 		listItem.className = 'newly-added list-group-item media message-item';
 		
+		var closebutton = document.createElement('button');
+   	    closebutton.innerHTML = "<span style='font-size: 25pt;'>&times;</span>";
+   	    closebutton.className = "close pull-left";
+   	    closebutton.style = "margin-left: -10px; margin-top: 0; padding: 0;";
+   	    listItem.appendChild(closebutton);
 
 		var img_src = '/static/avatar/' + avatars[id];
 
@@ -307,7 +314,9 @@ function NewlyAddedEntry(id,timestamp,content) {
    	listHeading.className = 'media-heading';
    	listItem.appendChild(listHeading);
    	
-   	listP.innerHTML= 'Post by: ' + userNames[id] + '       <em>(to appear)</em>'; 
+   	var nameAdd = ((id == this.ownId) ? '' : " (You)");
+   	listP.style = "font-size: 9pt;";
+   	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd; 
 //   						+ '[' + this.timestamp + ']';
    	listP.className = 'media-body';
    	listItem.appendChild(listP);
