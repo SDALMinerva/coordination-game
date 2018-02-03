@@ -5,6 +5,7 @@ from .models import Constants
 
 
 class WelcomePage(Page):
+    is_debug = False
     pass
 
 class ConsentPage(Page):
