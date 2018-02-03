@@ -24,7 +24,7 @@ with open('./main/round_specs/seq-48rounds.json') as oFile:
 class Constants(BaseConstants):
     name_in_url = 'coordinate'
     players_per_group = None               #EDIT: Make flexible with number of players.
-    num_rounds = 3                      #EDIT: Make adjustable from session config.
+    num_rounds = 10                      #EDIT: Make adjustable from session config.
     num_messaging_rounds = 1            #EDIT: Make adjustable from session config.
     messages = {
             1: 'I will participate.',
