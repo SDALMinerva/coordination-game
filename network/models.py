@@ -61,7 +61,6 @@ class Network(models.Model):
         
     
     def get_nodes_from_player(self, player):
-        
         edge_list = self.edge_set.filter(node_from__player = player)
         nodes = [{
             'id': edge.node_to.id,
