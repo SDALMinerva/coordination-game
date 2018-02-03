@@ -19,39 +19,6 @@
 
 {% include "instructions/main.html" %}
 
-{% comment %}
-DOES NOT INCLUDE BOTH CONDITION!
-{% endcomment %}
-
-{% if session.config.condition_messaging == 'bilateral'%}
-    {% if session.config.condition_network_knowledge == 'global'%}
-        {% include "instructions/global_network-bilateral.html" %}
-    {% endif %}
-    {% if session.config.condition_network_knowledge == 'local'%}
-        {% include "instructions/local_network-bilateral.html" %}
-    {% endif %}
-    {% include "instructions/private-messaging.html" %}
-{% endif %}
-
-{% if session.config.condition_messaging == 'wall'%}
-    {% if session.config.condition_network_knowledge == 'global'%}
-        {% include "instructions/global_network.html" %}
-    {% endif %}
-    {% if session.config.condition_network_knowledge == 'local'%}
-        {% include "instructions/local_network.html" %}
-    {% endif %}
-    {% include "instructions/wall-messaging.html" %}
-{% endif %}
-    
-{% if session.config.condition_messaging == 'none'%}
-    {% if session.config.condition_network_knowledge == 'global'%}
-        {% include "instructions/global_network.html" %}
-    {% endif %}
-    {% if session.config.condition_network_knowledge == 'local'%}
-        {% include "instructions/local_network.html" %}
-    {% endif %}
-    {% include "instructions/no-message.html" %}
-{% endif %}
 
 {% next_button %}
 
