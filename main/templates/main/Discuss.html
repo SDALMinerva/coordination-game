@@ -4,19 +4,18 @@
 {% block title %}
     Round {{subsession.round_number}}: 
     {% if messageRound > Constants.num_messaging_rounds %}
-        Will you participate?
+        Decision Part
     {% else %}    
-        Message Exchange ({{messageRound}} of {{Constants.num_messaging_rounds}})
+        Messaging Part
     {% endif %}
 {% endblock %}
 
 
 {% block content %}
 
+{% include "main/instructions_modal.html" %}
+
 <div class="container-fluid" style="position: relative;">
-    {% if messageRound > Constants.num_messaging_rounds %}
-    <p>Look through your messages and then make your decision below.</p>
-    {% endif %}
     <div id="cover" style="position: absolute; visibility: hidden; z-index: 100; background-color: #ffffff; pointer-events: none; opacity: .4; height: 100%; left: -20px; right: -20px;">
     </div>
     <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
@@ -54,18 +53,17 @@
   			</li>
 		{% endif %}
 		
-        
+          	<li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="" data-toggle="modal" data-target="#QuizModal">Quiz</a>
+  			</li>
   		    <li class="no-hover nav-item pull-right">
-    			<a class="nav-link" href="">Instructions</a>
+    			<a class="nav-link" href="" data-toggle="modal" data-target="#InstructionsModal">Instructions</a>
   			</li>
   			{% if messageRound <= Constants.num_messaging_rounds %}
   			<li class="no-hover nav-item pull-right">
     			<a class="nav-link" href="javascript:void(0);" onclick="startIntro();">Tour</a>
   			</li>
   			{% endif %}
-  			<li class="no-hover nav-item pull-right">
-    			<a class="nav-link" href="">Quiz</a>
-  			</li>
 		</ul>
 
 		<!-- Tab panes -->
@@ -140,7 +138,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
 
     {% if messageRound > Constants.num_messaging_rounds %}
         var output = false;
-        $("#cover").css("visibility", "visible");
+//        $("#cover").css("visibility", "visible");
     {% else %}    
         var output = true;
     {% endif %}
@@ -179,6 +177,13 @@ var network_edges = JSON.parse('{{edges|safe}}');
 	}));
   }
 
+  for (var i = 0; i < network_nodes.length; i++) {
+      var x = 100*Math.cos(i*2*Math.PI/network_nodes.length) + 100;
+      var y = 100*Math.sin(i*2*Math.PI/network_nodes.length) + 100;
+      network_nodes[i]['x'] = x;
+      network_nodes[i]['y'] = y;
+  }
+
   // create an array with nodes
   var nodes = new vis.DataSet(network_nodes);
 
@@ -193,7 +198,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
   };
   var options = {
         physics: {
-            enabled: true,
+            enabled: false,
         },
   		interaction:{
     	dragNodes:false,
@@ -215,6 +220,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
     	zoomView: false,
   		},
   		nodes:{
+  		    mass: 1,
   		    borderWidth: 2,
             color: '#ffffff',
             fixed: false,
@@ -233,6 +239,8 @@ var network_edges = JSON.parse('{{edges|safe}}');
         },
         edges:{
             width: 6,
+            length: 150,
+            smooth: {'enabled': false},
         },
 
 	}
