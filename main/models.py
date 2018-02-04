@@ -148,7 +148,12 @@ class Player(BasePlayer):
         else:
             p = self.group.get_player_by_id(1)
             messageRound = p.participant.vars['message_round']
-            wall_messages = wall.message_set.filter(messageRound__lt = messageRound)
+            past_wall_messages = wall.message_set.filter(messageRound__lt = messageRound)
+            past_wall_messages = past_wall_messages.exclude(deleted = True)
+            posted_wall_messages = wall.message_set.filter(createdBy = self.node)
+            posted_wall_messages = posted_wall_messages.exclude(deleted = True)
+            
+            wall_messages = past_wall_messages | posted_wall_messages
 
         wall_out = [m.to_dict() for m in wall_messages]
         return wall_out
@@ -201,12 +206,17 @@ class Message(models.Model):
     datetime = models.DateTimeField(auto_now=True)
     message = models.CharField()
     messageRound = models.IntegerField()
+    deleted = models.BooleanField(initial=False)
+    key = models.CharField()
 
     def to_dict(self):
         return {
+            'id': self.id,
             'timestamp': self.datetime.strftime("%Y-%m-%d %H:%M:%S"),
             'content': self.message,
-            'author': 'Player {}'.format(self.createdBy_id)
+            'author': 'Player {}'.format(self.createdBy_id),
+            'messageRound': self.messageRound,
+            'key': self.key,
             } 
 
 
@@ -221,10 +231,18 @@ class PrivateMessage(models.Model):
     datetime = models.DateTimeField(auto_now=True)
     message = models.CharField()
     messageRound = models.IntegerField()
+    deleted = models.BooleanField(initial=False)
+    key = models.CharField()
 
     def to_dict(self):
         return {
+            'id': self.id,
             'timestamp': self.datetime.strftime("%Y-%m-%d %H:%M:%S"),
             'content': self.message,
-            'author': 'Player {}'.format(self.createdBy_id)
+            'author': 'Player {}'.format(self.createdBy_id),
+            'messageRound': self.messageRound,
+            'key': self.key,
             } 
+            
+            
+            

@@ -112,7 +112,7 @@ function PlayerButton(id, link) {
 				wall.changeId(id);
 				chat.infoChannel.send(JSON.stringify({
 					'type': 'list',
-					'content': {'playerId': id},				
+					'content': {'playerId': id, 'sentBy': nodeId},				
 				}));
 			};
 		} else {

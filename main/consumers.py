@@ -20,7 +20,7 @@ def ws_receive(message):
         node = Node.objects.get(id = data['wallId'])
         createdBy = Node.objects.get(id = data['createdBy'])
         messageRound = data['messageRound']
-        message = Message(createdBy=createdBy, message=data['text'], messageRound=messageRound)
+        message = Message(createdBy=createdBy, message=data['text'], messageRound=messageRound, key=data['key'])
         wall = node.wall_set.first()
         wall.message_set.add(message)
 
@@ -30,6 +30,15 @@ def ws_receive(message):
                 'content': message.to_dict(),
             }
             Group('chat-' + label).send({'text': json.dumps(toSend)})
+    
+    elif ws_data['type'] == 'wall-delete':
+        data = ws_data['content']
+        node = Node.objects.get(id = data['wallId'])
+        wall = node.wall_set.first()
+        message = wall.message_set.get(key=data['key'])
+        message.deleted = True
+
+        message.save()
 
     elif ws_data['type'] == 'private':
         
@@ -65,7 +74,8 @@ def ws_receive(message):
 
     elif ws_data['type'] == 'list':
         data = ws_data['content']
-        node = Node.objects.get(id = data['playerId'])      
+        node = Node.objects.get(id = data['playerId'])
+        player_node = Node.objects.get(id = data['sentBy'])      
         
         wall = node.wall_set.first()
         if wall.subsession.session.config['instant_messaging'] == 'True':
@@ -74,7 +84,17 @@ def ws_receive(message):
             # Note: will not work for all-automated code (e.g., has to be at least 1 player in the group)
             P = node.network.group_set.first().get_player_by_id(1)
             messageRound = P.participant.vars['message_round']
-            entryList = node.wall_set.first().message_set.filter(messageRound__lt = messageRound).order_by('datetime')
+#            entryList = node.wall_set.first().message_set.filter(messageRound__lt = messageRound).order_by('datetime')
+            
+            past_wall_messages = wall.message_set.filter(messageRound__lt = messageRound)
+            past_wall_messages = past_wall_messages.exclude(deleted = True)
+            posted_wall_messages = wall.message_set.filter(createdBy = player_node)
+            posted_wall_messages = posted_wall_messages.exclude(deleted = True)
+            
+            entryList = past_wall_messages | posted_wall_messages
+            entryList.order_by('datetime')
+            
+            
         entries = [entry.to_dict() for entry in entryList]
         toSend = {
             'type': ws_data['type'],

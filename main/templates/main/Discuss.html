@@ -124,6 +124,7 @@ var messageList = [];
 {% endfor %}
 
 var messageRound = {{messageRound}};
+var nMessagingRound = {{Constants.num_messaging_rounds}};
 var playerId = {{player.id}};
 var nodeId = {{player.node.id}};
 var neighbor_net = {{neighbor_net|safe}};
@@ -145,7 +146,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
 
 
 </script>
-
+<script type="text/javascript" src={% static "global/hash.js" %}></script>
 <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
 <script type="text/javascript" src={% static "global/player_list.js" %}></script>
 
@@ -173,7 +174,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
 	wall.changeId(nodeId);
 	chat.infoChannel.send(JSON.stringify({
 	  'type': 'list',
-	  'content': {'playerId': nodeId},				
+	  'content': {'playerId': nodeId, 'sentBy': nodeId},				
 	}));
   }
 
