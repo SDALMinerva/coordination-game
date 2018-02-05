@@ -652,3 +652,281 @@ class Player(BasePlayer):
         verbose_name = "Have a part-time job?"
     )
     # end activity questions
+    
+    # start behavioral questions
+    # start preference elicitation
+    daringness = models.PositiveIntegerField(
+        verbose_name = "How do you see yourself? Are you a person who is generally willing to take risks, or do you try to avoid taking risks? Please indicate your answer on a scale from 0 to 10, where a 0 means \"not at all willing to take risks\", and a 10 means \"very willing to take risks\". You can also use the values in between to indicate where you fall on the scale.",
+        choices = [
+            [1, "1"],
+            [2, "2"],
+            [3, "3"],
+            [4, "4"],
+            [5, "5"],
+            [6, "6"],
+            [7, "7"],
+            [8, "8"],
+            [9, "9"],
+            [10, "10"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    selflessness = models.PositiveIntegerField(
+        verbose_name = "How do you see yourself? In comparison to others are you a person who is generally willing to give up something today in order to benefit from that in the future, or are you not willing to do so in comparison to others? Please indicate your answer on a scale from 0 to 10, where a 0 means \"not at all willing to give up something\", and a 10 means \"very willing to give up something\". You can use the values in between to indicate where you fall on the scale.",
+        choices = [
+            [1, "1"],
+            [2, "2"],
+            [3, "3"],
+            [4, "4"],
+            [5, "5"],
+            [6, "6"],
+            [7, "7"],
+            [8, "8"],
+            [9, "9"],
+            [10, "10"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    trustingness = models.PositiveIntegerField(
+        verbose_name = "How well does the following statement describe you as a person? As long as I am not convinced otherwise, I assume that people have only the best intentions. Please indicate your answer on a scale from 0 to 10. A 0 means \"does not describe me at all\", a 10 means \"describes me very well\". You can use the values in between to indicate where you fall on the scale.",
+        choices = [
+            [1, "1"],
+            [2, "2"],
+            [3, "3"],
+            [4, "4"],
+            [5, "5"],
+            [6, "6"],
+            [7, "7"],
+            [8, "8"],
+            [9, "9"],
+            [10, "10"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    donation = models.PositiveIntegerField(
+        verbose_name = "Imagine the following situation: you won 1,000 Euro in a lottery. Considering your current situation, how much would you donate to charity?",
+        max = 1000,
+    )
+    
+    punishInclination = models.PositiveIntegerField(
+        verbose_name = "How do you see yourself? Are you a person who is generally willing to punish unfair behavior even if it is costly? Please indicate your answer on a scale from 0 to 10. A 0 means “not at all willing to punish”, a 10 means “very willing to punish”. You can use the values in between to indicate where you fall on the scale.",
+        choices = [
+            [1, "1"],
+            [2, "2"],
+            [3, "3"],
+            [4, "4"],
+            [5, "5"],
+            [6, "6"],
+            [7, "7"],
+            [8, "8"],
+            [9, "9"],
+            [10, "10"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    # end preference elicitation
+    
+    # start preference module i
+    timeScenerio_1 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "100$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_2 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "103$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_3 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "106.10$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_4 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "109.20$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_5 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "112.40$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_6 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "115.60$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_7 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "118.80$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_8 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "122.10$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_9 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "125.40$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_10 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "128.80$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_11 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "132.30$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_12 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "135.70$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_13 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "139.20$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_14 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "142.80$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_15 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "146.40$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_16 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "150.10$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_17 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "153.80$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_18 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "157.50$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_19 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "161.30$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_20 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "165.10$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_21 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "169.00$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_22 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "172.90$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_23 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "176.90$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_24 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "180.90$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    
+    timeScenerio_25 = models.PositiveIntegerField(
+        choices = [
+            [1, "100$"],
+            [2, "185.00$"],
+        ],
+        widget = widgets.RadioSelectHorizontal,
+    )
+    # end preference module i
