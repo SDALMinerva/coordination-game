@@ -85,7 +85,7 @@
         </div>
         
         <div class="col-sm-4 col-lg-4" style="padding:5px;">
-            <h4>{{networkDisplay}} Network:</h4>
+            <h4 id="network-title">{{networkDisplay}} Network:</h4>
             <div id="mynetwork" style="height: 300px; width: 100%; border-left: 1px solid #ddd;"></div>
             <div class="row">
                 <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;"><strong>Possible Earnings:</strong></p>
@@ -269,12 +269,8 @@ var network_edges = JSON.parse('{{edges|safe}}');
         intro: "Click here to see your own wall and what your friend(s) posted on there."
       },
       {
-        element: document.querySelectorAll('#main-tabs .nav-item')[1],
-        intro: "Click here to see the network of friends and who's friends with who.  Lines connecting two players mean that those players are friends."
-      },
-      {
-        element: document.querySelectorAll('#main-tabs .nav-item')[0],
-        intro: "Click here to go back to the last wall you were looking at."
+        element: document.querySelectorAll('#mynetwork')[0],
+        intro: "Network of friends.  Lines connecting two players mean that those players are friends."
       },
       {
         element: document.querySelectorAll('.dropdown-toggle')[0],
