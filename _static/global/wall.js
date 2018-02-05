@@ -307,7 +307,7 @@ function Entry(id,timestamp,content,key) {
    	listHeading.className = 'media-heading';
    	listItem.appendChild(listHeading);
    	
-   	var nameAdd = ((id == this.ownId) ? '' : " (You)");
+   	var nameAdd = ((id == wall.ownId) ? " (You)" : '');
    	listP.style = "font-size: 9pt;";
    	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd;// + '       ' 
 //   						+ '[' + this.timestamp + ']';
@@ -358,7 +358,7 @@ function NewlyAddedEntry(id,timestamp,content, key) {
    	listHeading.className = 'media-heading';
    	listItem.appendChild(listHeading);
    	
-   	var nameAdd = ((id == this.ownId) ? '' : " (You)");
+   	var nameAdd = ((id == wall.ownId) ? " (You)" : '');
    	listP.style = "font-size: 9pt;";
    	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd; 
 //   						+ '[' + this.timestamp + ']';
