@@ -21,20 +21,120 @@ Please submit answers to all of the questions before proceeding!
 <strong>Question A1.</strong> Suppose player Cat has a threshold <strong>T=3</strong> in a round. 
 If Cat chooses <strong>participate</strong> and <strong>2 other players</strong> choose <strong>participate</strong>, Cat earns 100 points in that round.
 </p>
-{% formfield player.qa1 label=''%}   
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="form-group required">
+            <div class="controls  field-qa1">
+                <ul>
+	               <li>
+	               <div class="row">
+	                    <div class="col-xs-2" style="max-width: 125px;">
+	                       <label for="id_qa1_1"><input type="radio" id="id_qa1_1" value="True" name="qa1" required> True</label>
+	                    </div>
+	                    <div class="col-xs-10 question-message">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span class="question-explain"> Player Cat needs at least three other players to participate in order to earn 100 points.</span>	               
+                        </div>	
+                     </div>               
+	               </li>
+                   <li>
+                   <div class="row">
+                        <div class="col-xs-2" style="max-width: 125px;">
+                            <label for="id_qa1_2"><input type="radio" id="id_qa1_2" value="False" name="qa1" required> False</label>
+   	                    </div>
+	                    <div class="col-xs-10 question-message">                        
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="question-explain"> Player Cat needs at least three other players to participate in order to earn 100 points.</span>
+                        </div> 
+                     </div>                  
+                   </li>
+                </ul>
+            </div><!--- .controls -->
+        </div><!--- .form-group -->
+    </div>
+</div>
+
+
+
+   
 <br>
 <p>
 <strong>Question A2.</strong>
 Suppose Tiger has a threshold <strong>T=3</strong> in a round. If Tiger chooses <strong>not participate</strong>, her earnings are 0 points in that round. 
 </p>
-{% formfield player.qa2 label=''%} 
+<div class="row">
+    <div class="col-xs-12">
+        <div class="form-group required">
+            <div class="controls  field-qa2">
+                <ul>
+	               <li>
+	               <div class="row">
+	                   <div class="col-xs-2" style="max-width: 125px;">
+	                        <label for="id_qa2_1"><input type="radio" id="id_qa2_1" value="True" name="qa2" required> True</label>
+	                    </div>
+	                    <div class="col-xs-10 question-message">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span class="question-explain">If Tiger participates, she earns 50 points regardless of what other players do. </span>
+                        </div>	
+                    </div>               
+	               </li>
+                   <li>
+                   <div class="row">
+                        <div class="col-xs-2" style="max-width: 125px;">
+                            <label for="id_qa2_2"><input type="radio" id="id_qa2_2" value="False" name="qa2" required> False</label>
+                        </div>
+	                    <div class="col-xs-10 question-message">                        
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="question-explain">If Tiger participates, she earns 50 points regardless of what other players do. </span>
+                        </div>
+                    </div>
+                   </li>
+                </ul>
+            </div><!--- .controls -->
+        </div><!--- .form-group -->
+    </div>
+</div>
+ 
 <br>
 <p>
 <strong>Question A3.</strong>
 Suppose Elephant has a threshold <strong>T=1</strong> in a round, her earning for choosing <strong>participate</strong> is always 
 equal to 100 points in that round.
 </p>
-{% formfield player.qa3 label=''%}   
+<div class="row">
+    <div class="col-xs-12">
+        <div class="form-group required">
+            <div class="controls  field-qa3">
+                <ul>
+	               <li>
+	                   <div class="row">
+	                    <div class="col-xs-2" style="max-width: 125px;">
+	                        <label for="id_qa3_1"><input type="radio" id="id_qa3_1" value="True" name="qa3" required> True</label>
+	                    </div>
+	                    <div class="col-xs-10 question-message"> 
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span class="question-explain">Elephant’s earning for choosing participate is 100 points if at least 1 other player participates.</span>
+                        </div>
+                        </div>	               
+	               </li>
+                   <li>
+                   <div class="row">
+                        <div class="col-xs-2" style="max-width: 125px;">
+                            <label for="id_qa3_2"><input type="radio" id="id_qa3_2" value="False" name="qa3" required> False</label>
+                        </div>
+	                    <div class="col-xs-10 question-message"> 
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="question-explain">Elephant’s earning for choosing participate is 100 points if at least 1 other player participates.</span>
+                        </div>
+                    </div>
+                   </li>
+                </ul>
+            </div><!--- .controls -->
+        </div><!--- .form-group -->
+    </div>
+</div>
+   
 
 
 <h3 style="margin-top: 40px;">Part B.</h3>
@@ -120,4 +220,34 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
     {% next_button %}
 {% endblock %}
 
+{% block scripts %}
+<script type="text/javascript" >
+$(".controls li").click(function () {
+    $(this).siblings('li').find('.question-message').css('visibility', 'hidden');
+	var showElement = $(this).find('.question-message')[0];
+	$(showElement).css('visibility', 'visible');
+});
+</script>
+{% endblock %}
 
+{% block styles %}
+<style type="text/css">
+    .glyphicon-ok{
+        color: green;    
+    }
+    
+    .glyphicon-remove{
+        color: red;    
+    }
+    
+    .question-explain{
+        font-size: 9pt;
+        font-weight: bold;    
+    }
+    
+    .question-message{
+        visibility: hidden;    
+    }
+    
+</style>
+{% endblock %}
