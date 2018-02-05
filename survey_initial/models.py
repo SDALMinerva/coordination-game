@@ -735,7 +735,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "100$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_2 = models.PositiveIntegerField(
@@ -743,7 +743,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "103$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_3 = models.PositiveIntegerField(
@@ -751,7 +751,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "106.10$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_4 = models.PositiveIntegerField(
@@ -759,7 +759,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "109.20$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_5 = models.PositiveIntegerField(
@@ -767,7 +767,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "112.40$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_6 = models.PositiveIntegerField(
@@ -775,7 +775,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "115.60$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_7 = models.PositiveIntegerField(
@@ -783,7 +783,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "118.80$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_8 = models.PositiveIntegerField(
@@ -791,7 +791,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "122.10$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_9 = models.PositiveIntegerField(
@@ -807,7 +807,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "128.80$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_11 = models.PositiveIntegerField(
@@ -815,7 +815,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "132.30$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_12 = models.PositiveIntegerField(
@@ -823,7 +823,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "135.70$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_13 = models.PositiveIntegerField(
@@ -831,7 +831,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "139.20$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_14 = models.PositiveIntegerField(
@@ -839,7 +839,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "142.80$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_15 = models.PositiveIntegerField(
@@ -847,7 +847,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "146.40$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_16 = models.PositiveIntegerField(
@@ -855,7 +855,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "150.10$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_17 = models.PositiveIntegerField(
@@ -863,7 +863,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "153.80$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_18 = models.PositiveIntegerField(
@@ -871,7 +871,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "157.50$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_19 = models.PositiveIntegerField(
@@ -879,7 +879,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "161.30$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_20 = models.PositiveIntegerField(
@@ -887,7 +887,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "165.10$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_21 = models.PositiveIntegerField(
@@ -895,7 +895,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "169.00$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_22 = models.PositiveIntegerField(
@@ -903,7 +903,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "172.90$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_23 = models.PositiveIntegerField(
@@ -911,7 +911,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "176.90$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_24 = models.PositiveIntegerField(
@@ -919,7 +919,7 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "180.90$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     
     timeScenerio_25 = models.PositiveIntegerField(
@@ -927,6 +927,256 @@ class Player(BasePlayer):
             [1, "100$"],
             [2, "185.00$"],
         ],
-        widget = widgets.RadioSelectHorizontal,
+        widget = widgets.RadioSelect,
     )
     # end preference module i
+    
+    # start preference module ii
+    coinScenerio_1 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "0$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_2 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "10$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_3 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "20$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_4 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "30$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_5 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "40$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_6 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "50$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_7 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "60$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_8 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "70$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_9 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "80$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_10 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "90$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_11 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "100$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_12 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "110$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_13 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "120$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_14 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "130$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_15 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "140$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_16 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "150$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_17 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "160$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_18 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "170$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_19 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "180$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_20 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "190$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_21 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "200$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_22 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "210$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_23 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "220$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_24 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "230$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_25 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "240$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_26 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "250$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_27 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "260$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_28 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "270$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_29 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "280$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_30 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "290$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+
+    coinScenerio_31 = models.PositiveIntegerField(
+        choices = [
+            [1, "Tail = 300$    Head = 0$"],
+            [2, "300$"],
+        ],
+        widget = widgets.RadioSelect,
+    )
+    # end preference module ii

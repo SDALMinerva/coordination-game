@@ -22,7 +22,7 @@
         <td><input type="radio" name="timeScenerio_{{ offer.num }}" value="2" required> {{ offer.amt|floatformat:2 }}$</td>
     </tr>
     {% endfor %}
-</table>
+    </table>
     
 
     {% next_button %}
@@ -41,17 +41,5 @@
         }
         {% endif %}
         
-        //var elems = document.getElementsByClassName("control-label");
-        //var i = elems.length - 1;
-        
-        //for (; i >= 0; i--) {
-        //    elems[i].parentNode.removeChild(elems[i]);
-        //}
-
     </script>
-{% endblock %}
-
-{% block app_styles %}
-    <style type="text/css">
-    </style>
 {% endblock %}

@@ -82,7 +82,7 @@ class SocioDemographic(Page):
                 "activityEvening",])
         return questions
 
-        
+
 class Behavioral1(Page):
     form_model = models.Player
     form_fields = [
@@ -92,7 +92,8 @@ class Behavioral1(Page):
         "donation",
         "punishInclination",
     ]
-    
+
+
 class Behavioral2(Page):
     form_model = models.Player
     form_fields = ['timeScenerio_{}'.format(i) for i in range(1, 26)]
@@ -127,6 +128,15 @@ class Behavioral2(Page):
             ]
         }
 
+
+class Behavioral3(Page):
+    form_model = models.Player
+    form_fields = ['coinScenerio_{}'.format(i) for i in range(1, 32)]
+    
+    def vars_for_template(self):
+        return {'coinOffers': [{"num": i, "amt": 10 * (i - 1)} for i in range(1, 32)]}
+
+    
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         pass
@@ -140,5 +150,6 @@ page_sequence = [
     SocioDemographic,
     Behavioral1,
     Behavioral2,
+    Behavioral3,
     Results,
 ]
