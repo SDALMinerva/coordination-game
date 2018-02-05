@@ -1,3 +1,13 @@
-{% extends "instructions/Quiz.html" %}
 {% load staticfiles otree_tags %}
-{% load staticfiles %}
+
+<div id="quiz">
+    {% include "instructions/quiz-main.html" %}
+</div>
+
+<script type="text/javascript" src={% static "instructions/quiz.js" %} ></script>
+<script type="text/javascript" >
+    complete();
+    disable();
+</script>
+
+<link rel="stylesheet" href={% static "instructions/quiz.css" %}>
