@@ -2,10 +2,17 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Page title
+    Experiment Complete!
 {% endblock %}
 
 {% block content %}
+
+<h3>Thank you for participating in our experiment. Your earnings for this experiment are:</h3>
+<p>Participation Earnings: {{session.config.participation_fee}}</p>
+<p>Experiment Earnings: {{payoff_currency}}</p>
+<p><strong>Total Earnings:</strong> {{participant.payoff_plus_participation_fee}}</p>
+
+<p>Click <strong>Next</strong> to finish.</p>
 
     {% next_button %}
 {% endblock %}
