@@ -134,7 +134,7 @@ SESSION_CONFIG_DEFAULTS = {
     'instant_messaging': 'False',               #True, False
 }
 
-SESSION_CONFIGS = [
+DEV_CONFIGS = [
      {
          'name': 'run_group3_treatment1',
          'display_name': '[1] Run: Groups, 3; Messaging, none; Network Knowledge, local',
@@ -151,24 +151,6 @@ SESSION_CONFIGS = [
           
           # Treatment Configs
           'condition_messaging': 'none',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'local',      #local, global
-     },
-     {
-         'name': 'run_group3_treatment2',
-         'display_name': '[2] Run: Groups, 3; Messaging, wall; Network Knowledge, local',
-         'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                          'survey_initial',
-                          'instructions',
-                          'main',
-                          'survey_final',
-                         ],
-          # Rounds
-          'round_seq_file': 'seq-48rounds.json',
-          
-          # Treatment Configs
-          'condition_messaging': 'wall',               #none, wall, bilateral, both
           'condition_network_knowledge': 'local',      #local, global
      },
      {
@@ -226,24 +208,6 @@ SESSION_CONFIGS = [
           'condition_network_knowledge': 'global',      #local, global
      },
      {
-         'name': 'run_group3_treatment6',
-         'display_name': '[6] Run: Groups, 3; Messaging, wall; Network Knowledge, global',
-         'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                          'survey_initial',
-                          'instructions',
-                          'main',
-                          'survey_final',
-                         ],
-          # Rounds
-          'round_seq_file': 'seq-48rounds.json',
-          
-          # Treatment Configs
-          'condition_messaging': 'wall',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'global',      #local, global
-     },
-     {
          'name': 'run_group3_treatment7',
          'display_name': '[7] Run: Groups, 3; Messaging, bilateral; Network Knowledge, global',
          'num_demo_participants': 1,
@@ -277,6 +241,45 @@ SESSION_CONFIGS = [
           
           # Treatment Configs
           'condition_messaging': 'both',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+]
+
+SESSION_CONFIGS = [
+     {
+         'name': 'run_group3_treatment2',
+         'display_name': '[2] Run: Groups, 3; Messaging, wall; Network Knowledge, local',
+         'num_demo_participants': 1,
+         'app_sequence': [
+                          'welcome_consent', 
+                          'survey_initial',
+                          'instructions',
+                          'main',
+                          'survey_final',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'run_group3_treatment6',
+         'display_name': '[6] Run: Groups, 3; Messaging, wall; Network Knowledge, global',
+         'num_demo_participants': 1,
+         'app_sequence': [
+                          'welcome_consent', 
+                          'survey_initial',
+                          'instructions',
+                          'main',
+                          'survey_final',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
           'condition_network_knowledge': 'global',      #local, global
      },
      {
@@ -348,9 +351,11 @@ SESSION_CONFIGS = [
          'app_sequence': [
                           'survey_final',
                          ],
-     },
-     
+     },  
 ]
+
+if DEBUG:
+    SESSION_CONFIGS += DEV_CONFIGS
 
 CHANNEL_ROUTING = 'main.routing.channel_routing'
 
