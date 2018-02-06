@@ -83,6 +83,60 @@ class SocioDemographic(Page):
         return questions
 
 
+class Behavioral1(Page):
+    form_model = models.Player
+    form_fields = [
+        "daringness",
+        "selflessness",
+        "trustingness",
+        "donation",
+        "punishInclination",
+    ]
+
+
+class Behavioral2(Page):
+    form_model = models.Player
+    form_fields = ['timeScenerio_{}'.format(i) for i in range(1, 26)]
+    
+    def vars_for_template(self):
+        return {'sixMonthOffers': [
+                {"num": 1, "amt": 100},
+                {"num": 2, "amt": 103},
+                {"num": 3, "amt": 106.10},
+                {"num": 4, "amt": 109.20},
+                {"num": 5, "amt": 112.40},
+                {"num": 6, "amt": 115.60},
+                {"num": 7, "amt": 118.80},
+                {"num": 8, "amt": 122.10},
+                {"num": 9, "amt": 125.40},
+                {"num": 10, "amt": 128.80},
+                {"num": 11, "amt": 132.30},
+                {"num": 12, "amt": 135.70},
+                {"num": 13, "amt": 139.20},
+                {"num": 14, "amt": 142.80},
+                {"num": 15, "amt": 146.40},
+                {"num": 16, "amt": 150.10},
+                {"num": 17, "amt": 153.80},
+                {"num": 18, "amt": 157.50},
+                {"num": 19, "amt": 161.30},
+                {"num": 20, "amt": 165.10},
+                {"num": 21, "amt": 169.00},
+                {"num": 22, "amt": 172.90},
+                {"num": 23, "amt": 176.90},
+                {"num": 24, "amt": 180.90},
+                {"num": 25, "amt": 185.00},
+            ]
+        }
+
+
+class Behavioral3(Page):
+    form_model = models.Player
+    form_fields = ['coinScenerio_{}'.format(i) for i in range(1, 32)]
+    
+    def vars_for_template(self):
+        return {'coinOffers': [{"num": i, "amt": 10 * (i - 1)} for i in range(1, 32)]}
+
+    
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         pass
@@ -94,5 +148,8 @@ class Results(Page):
 
 page_sequence = [
     SocioDemographic,
+    Behavioral1,
+    Behavioral2,
+    Behavioral3,
     Results,
 ]

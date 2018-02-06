@@ -1,0 +1,47 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block content %}
+    {% if session.is_demo %}
+        <a href="#" onclick="setVals()">DEMO: Click here to fill vals.</a>
+    {% endif %}
+    <h4>We will now present to you hypothetical scenarios and ask you to imagine that you had to choose between a payment that you would receive from yes coin toss with either heads or tails and a payment that you would receive from no coin toss. The payment from yes coin toss with either heads or tails will be the same in each scenario, the payment for no coin toss will differ from scenario to scenario. For each of these scenarios we want to know how you would decide. You will now see an overview over all choices you will have to make.</h4>
+
+    <table class="table">
+    <tr>
+        <th>Scenario</th><th>YES: Coin Toss</th><th>NO: Coin Toss</th><th colspan="2">Your choice of Coin Toss</th>
+    </tr>
+    {% for offer in coinOffers %}
+    <tr>
+        <td>{{ offer.num }}</td>
+        <td>Tail = 300$    Head = 0$</td>
+        <td>{{ offer.amt }}$</td>
+        <td><input type="radio" name="coinScenerio_{{ offer.num }}" value="1" required> Yes</td>
+        <td><input type="radio" name="coinScenerio_{{ offer.num }}" value="2" required> No</td>
+    </tr>
+    {% endfor %}
+    </table>
+    
+
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+
+        {% if session.is_demo %}
+        var setVals = function (){
+            $(":text").val('X');
+           	$('input[type="number"]').val('999');
+           	$('input:radio').prop('checked', true);
+           	$('select option').prop('selected', true);
+        }
+        {% endif %}
+        
+    </script>
+{% endblock %}
