@@ -18,8 +18,8 @@
     {% for offer in coinOffers %}
     <tr>
         <td>{{ offer.num }}</td>
-        <td>Tail = 300$    Head = 0$</td>
-        <td>{{ offer.amt }}$</td>
+        <td>Tail = $300    Head = $0</td>
+        <td>${{ offer.amt }}</td>
         <td><input type="radio" name="coinScenerio_{{ offer.num }}" value="1" required> Yes</td>
         <td><input type="radio" name="coinScenerio_{{ offer.num }}" value="2" required> No</td>
     </tr>
