@@ -26,9 +26,9 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    qa1 = models.BooleanField(choices = ['True', 'False'])
-    qa2 = models.BooleanField(choices = ['True', 'False'])
-    qa3 = models.BooleanField(choices = ['True', 'False'])
+    qa1 = models.BooleanField(choices = [(True, 'True'), (False, 'False')])
+    qa2 = models.BooleanField(choices = [(True, 'True'), (False, 'False')])
+    qa3 = models.BooleanField(choices = [(True, 'True'), (False, 'False')])
     
     qb1a = models.CharField(choices = ['100 points', '50 points', '0 points'])
     qb1b = models.CharField(choices = ['100 points', '50 points', '0 points'])
