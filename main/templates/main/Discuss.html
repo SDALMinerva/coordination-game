@@ -300,6 +300,10 @@ var network_edges = JSON.parse('{{edges|safe}}');
     {% endif %}
 {% endwith %}
 
+$('[data-toggle="tooltip"]').tooltip({
+    trigger: 'hover'
+});
+
 </script>
 
 {% endblock %}

@@ -339,10 +339,13 @@ function NewlyAddedEntry(id,timestamp,content, key) {
 		listItem.className = 'newly-added list-group-item media message-item';
 		
 		var closebutton = document.createElement('button');
-   	    closebutton.innerHTML = "<span style='font-size: 25pt;'>&times;</span>";
+   	    closebutton.innerHTML = "<span style='font-size: 13pt; color: #000;' class='glyphicon glyphicon-trash'></span>";
    	    closebutton.className = "close pull-left removeEntry";
-   	    closebutton.style = "margin-left: -10px; margin-top: 0; padding: 0;";
+   	    closebutton.style = "display: inline-block; margin-left: -10px; margin-top: 12px; padding: 0px;";
    	    closebutton.type = "button";
+   	    closebutton.setAttribute('data-toggle','tooltip'); 
+   	    closebutton.setAttribute('data-placement','tooltip');
+   	    closebutton.title='Delete Message';
    	    listItem.appendChild(closebutton);
 
 		var img_src = '/static/avatar/' + avatars[id];
