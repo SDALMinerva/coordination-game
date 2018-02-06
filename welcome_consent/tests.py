@@ -3,7 +3,6 @@ from . import views
 from ._builtin import Bot
 from .models import Constants
 
-
 class PlayerBot(Bot):
     cases = ["yes_consent", "no_consent"]
     

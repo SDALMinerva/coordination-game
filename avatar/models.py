@@ -26,6 +26,6 @@ class Avatar(models.Model):
             pk_list = pk_list[:n]    
 
         objects = dict([(obj.id, obj) for obj in avatars])
-        sorted_objects = [avatars[id] for id in pk_list]
+        sorted_objects = [avatars[id] for id in pk_list]       
         
         return iter(sorted_objects)
