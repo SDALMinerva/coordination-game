@@ -317,6 +317,18 @@ SESSION_CONFIGS = [
                          ],
      },
      {
+         'name': 'test_tour',
+         'display_name': 'Test: Tour',
+         'num_demo_participants': 1,
+         'app_sequence': [ 
+                          'tour',
+                         ],
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
          'name': 'test_main',
          'display_name': 'Test: Main Coordination Experiment',
          'num_demo_participants': 15,
@@ -351,7 +363,7 @@ SESSION_CONFIGS = [
          'app_sequence': [
                           'survey_final',
                          ],
-     },  
+     },
 ]
 
 if DEBUG:

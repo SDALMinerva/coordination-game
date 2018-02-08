@@ -1,0 +1,382 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Tour
+{% endblock %}
+
+
+{% block content %}
+
+{% include "main/instructions_modal.html" %}
+{% include "main/quiz_modal.html" %}
+
+<div class="container-fluid" style="position: relative;">
+    <div id="cover" style="position: absolute; visibility: hidden; z-index: 100; background-color: #ffffff; pointer-events: none; opacity: .4; height: 100%; left: -20px; right: -20px;">
+    </div>
+    <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
+        
+        <div class="col-sm-2 col-lg-2" style="min-width: 160px; max-width: 260px; padding:5px;">
+        <h4 style="text-align: left; padding-left: 0px">Your Profile:</h4>
+            <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
+                <br>
+	        	   <img src={% static "avatar/Turtle-icon.png" %} alt="Error: No Avatar Available" style="display: block; border-bottom: black 1px solid; margin: auto; width:90px">
+                   <p style="text-align: left; font-size: 13pt; margin: 0; margin-top: 5px; margin-left: 15px;">Turtle (You)</p>	        	   
+	        	   <p style="text-align: left; font-size: 9pt; margin: 0; margin-top: 0px; margin-left: 15px;"><strong>Your Threshold: 3</strong> </p>
+      	    </div>
+      	    <h4>Your Friends:</h4>
+            <div id="playerList" class="clearfix" >
+                <ul class="list-group">
+                    <li class="float-left">
+                        <a href="#906" class="list-group-item player-button linking-button">
+                        <div class="media"><img class="media-object pull-left media-center" src="/static/avatar/Gorilla-icon.png" alt="not found" width="30">
+                            <div class="media-body">
+                                <h4 class="media-heading">Gorilla</h4>
+                                <p>Threshold: 1</p>
+                            </div>
+                        </div>
+                        <span class="badge"></span></a>
+                        <button class="glyphicon glyphicon-envelope message-icon pull-right" style="display: none;"></button>
+                    </li>
+                </ul>
+            </div>        
+        </div>
+
+        <div class="col-sm-6 col-lg-6" style="padding: 5px;">
+
+        <ul id="main-tabs" class="nav nav-tabs" role="tablist">
+        {% with 'wall both' as list %}
+            {% if session.config.condition_messaging in list.split %}
+  		    <li class="nav-item active">
+    			<a class="nav-link active" data-toggle="tab" href="#wall" role="tab">Wall Posts</a>
+  			</li>
+  			{% endif %}
+  		{% endwith %}
+  		{% if session.config.condition_messaging == 'bilateral' %}
+  			<li class="nav-item active">
+    			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
+  			</li>
+		{% endif %}
+		{% if session.config.condition_messaging == 'both' %}
+  			<li class="nav-item">
+    			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
+  			</li>
+		{% endif %}
+		
+          	<li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="" data-toggle="modal" data-target="#QuizModal">Quiz</a>
+  			</li>
+  		    <li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="" data-toggle="modal" data-target="#InstructionsModal">Instructions</a>
+  			</li>
+  			<li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="javascript:void(0);" onclick="startIntro();">Tour</a>
+  			</li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content"  style="position: relative; margin-top: 5px; min-height: 550px; padding: 10px; background-color: #f5f5f5">
+        {% with 'wall both' as list %}
+            {% if session.config.condition_messaging in list.split %}
+                <div class="tab-pane active" id="wall" role="tabpanel"></div>
+          	{% endif %}
+  		{% endwith %}
+  		{% if session.config.condition_messaging == 'bilateral' %}
+      		<div class="tab-pane active" id="messenger" role="tabpanel"></div>
+        {% endif %}
+  		{% if session.config.condition_messaging == 'both' %}
+      		<div class="tab-pane" id="messenger" role="tabpanel"></div>
+        {% endif %}
+		</div>
+
+
+        </div>
+        
+        <div class="col-sm-4 col-lg-4" style="padding:5px;">
+            {% if session.config.condition_network_knowledge == "global" %}
+                <h4 id="network-title">The Network:</h4>
+            {% elif session.config.condition_network_knowledge == "local" %}
+                <h4 id="network-title">Your Network:</h4>
+            {% endif %}
+            <div id="mynetwork" style="height: 300px; width: 100%; border-left: 1px solid #ddd;"></div>
+            <div class="row">
+                <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;"><strong>Possible Earnings:</strong></p>
+                <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;">If you do not participate:<strong> {{session.config.payoff_no_participate | c}}</strong> </p>
+	            <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more <strong>do not</strong> participate: <strong>{{session.config.payoff_below_threshold | c}}</strong> </p>
+	            <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more participate: <strong>{{session.config.payoff_above_threshold | c}}</strong> </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+{% if messageRound > Constants.num_messaging_rounds %}
+    {% for field in form %}
+    
+        {% formfield field %}
+
+    {% endfor %}
+{% endif %}
+
+<p>Click <strong>Next</strong> to end the tour.</p>
+<br>
+<div class="buttons">
+    {% next_button %}
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+var messageList = [];
+messageList.push('I will participate.');
+messageList.push('I will not participate.');
+var nodeId = 907;
+var neighbor_net = {906: [907]};
+var neighbors = [906];
+var thresholds = {906: '1', 907: '3'};
+var userNames = {906: 'Gorilla', 907: 'Turtle'};
+var avatars = {906: 'Gorilla-icon.png', 907: 'Turtle-icon.png'};
+var entries = JSON.parse('[]');
+var privateEntries = JSON.parse('[]');
+var network_nodes = JSON.parse('[{\u0022label\u0022: \u0022Turtle (You)\u0022, \u0022shape\u0022: \u0022circularImage\u0022, \u0022image\u0022: \u0022/static/avatar/Turtle\u002Dicon.png\u0022, \u0022id\u0022: 907}, {\u0022label\u0022: \u0022Gorilla\u0022, \u0022shape\u0022: \u0022circularImage\u0022, \u0022image\u0022: \u0022/static/avatar/Gorilla\u002Dicon.png\u0022, \u0022id\u0022: 906}]');
+var network_edges = JSON.parse('[{"to": 906, "from": 907}]');
+var output = true;
+
+</script>
+<script type="text/javascript" src={% static "global/hash.js" %}></script>
+<script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
+<script type="text/javascript" src={% static "global/player_list.js" %}></script>
+
+        {% with 'wall both' as list %}
+            {% if session.config.condition_messaging in list.split %}
+                <script type="text/javascript" src={% static "global/wall.js" %}></script>
+          	{% endif %}
+  		{% endwith %}
+  		{% with 'bilateral both' as list %}
+  		{% if session.config.condition_messaging in list.split %}
+      		    <script type="text/javascript" src={% static "global/messenger.js" %}></script>
+        {% endif %}
+        {% endwith %}
+
+
+<script type="text/javascript" src={% static "global/vis.min.js" %}></script>
+<script type="text/javascript" src={% static "global/send_message.js" %}></script>
+<script type="text/javascript" src={% static "global/chat_channels.js" %}></script>
+<script type="text/javascript" src={% static "global/intro.min.js" %}></script>
+
+<script type="text/javascript" >
+  var playerProfile = document.getElementById('playerLabel');
+  playerProfile.onclick = function() {
+    chat.setActiveChannel(nodeId);
+	wall.changeId(nodeId);
+	chat.infoChannel.send(JSON.stringify({
+	  'type': 'list',
+	  'content': {'playerId': nodeId, 'sentBy': nodeId},				
+	}));
+  }
+
+  for (var i = 0; i < network_nodes.length; i++) {
+      var x = 100*Math.cos(i*2*Math.PI/network_nodes.length) + 100;
+      var y = 100*Math.sin(i*2*Math.PI/network_nodes.length) + 100;
+      network_nodes[i]['x'] = x;
+      network_nodes[i]['y'] = y;
+  }
+
+  // create an array with nodes
+  var nodes = new vis.DataSet(network_nodes);
+
+  // create an array with edges
+  var edges = new vis.DataSet(network_edges);
+
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {
+        physics: {
+            enabled: false,
+        },
+  		interaction:{
+    	dragNodes:false,
+    	dragView: false,
+    	hideEdgesOnDrag: false,
+    	hideNodesOnDrag: false,
+    	hover: true,
+    	hoverConnectedEdges: true,
+    	keyboard: {
+      	enabled: false,
+      	speed: {x: 10, y: 10, zoom: 0.02},
+      	bindToWindow: true
+    	},
+    	multiselect: false,
+    	navigationButtons: false,
+    	selectable: true,
+    	selectConnectedEdges: true,
+    	tooltipDelay: 300,
+    	zoomView: false,
+  		},
+  		nodes:{
+  		    mass: 1,
+  		    borderWidth: 2,
+            color: '#ffffff',
+            fixed: false,
+            font: '16px arial black',
+            font: {
+                multi: 'html',
+                size: 18,
+                align: 'left',
+                vadjust: -15,
+            },
+            scaling: {
+                label: true
+            },
+            shadow: true,
+            size: 40,
+        },
+        edges:{
+            width: 6,
+            length: 150,
+            smooth: {'enabled': false},
+        },
+
+	}
+
+  var network = new vis.Network(container, data, options);
+  $('a[data-toggle="tab"][href="#network"]').on('shown.bs.tab', function (e) {
+    network.fit();  		
+  });
+  
+  network.on("afterDrawing", function (event) {
+  	network.fit();
+  	network.off("afterDrawing");
+  });
+  window.onresize = function() {network.fit();}
+  
+  var steps = [
+      {
+        element: document.querySelectorAll('#playerList')[0],
+        intro: "Click here to see your friend(s)'s wall and post on it."
+      }, 
+      {
+        element: document.querySelectorAll('#playerLabel')[0],
+        intro: "Click here to see your own wall and what your friend(s) posted on there."
+      },
+      {
+        element: document.querySelectorAll('#mynetwork')[0],
+        intro: "Network of friends.  Lines connecting two players mean that those players are friends."
+      },
+      {
+        element: document.querySelectorAll('.dropdown-toggle')[0],
+        intro: "Click here to choose a message to send..."
+      },
+      {
+        element: document.querySelectorAll('.send-message')[0],
+        intro: "...and click here to post that message to the current wall."
+      },
+      {
+        element: document.querySelectorAll('.pull-right')[1],
+        intro: "Click here to review the quiz of the instructions."
+      },
+      {
+        element: document.querySelectorAll('.pull-right')[2],
+        intro: "Click here to review the instructions for this game."
+      },
+      {
+        element: document.querySelectorAll('.pull-right')[3],
+        intro: "Click here if you want to see this tour during the game."
+      },
+      {
+        element: document.querySelectorAll('.otree-btn-next')[0],
+        intro: "When you are done messaging for the current round, click this button.  For this page only, click this button when you are done with the tour and ready to start the game."
+      },
+  ]
+  
+  function initialIntro() {
+    var intro = introJs();
+    intro.addSteps([{intro: "This is a tour to show you how to navigate the messaging system before we start the game."}]);
+    intro.addSteps(steps);
+  }
+  initialIntro();
+  
+  function startIntro() {
+    var intro = introJs();
+    intro.addSteps(steps);
+    intro.start();
+  }
+
+{% with 'wall none' as list %}
+    {% if session.config.condition_messaging in list.split %}    
+        $('.message-icon').hide();
+    {% endif %}
+{% endwith %}
+
+{% with 'bilateral none' as list %}
+    {% if session.config.condition_messaging in list.split %}    
+        $('.linking-button').off("click");
+        $('.linking-button').each(function () {
+            this.onclick = undefined;
+            });
+    {% endif %}
+{% endwith %}
+
+$('[data-toggle="tooltip"]').tooltip({
+    trigger: 'hover'
+});
+
+</script>
+
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href={% static "global/jquery-ui.min.css" %}>
+<link rel="stylesheet" href={% static "global/wall.css" %}>
+<link rel="stylesheet" href={% static "global/messenger.css" %}>
+<link rel="stylesheet" href={% static "global/player_list.css" %}>
+<link rel="stylesheet" href={% static "global/vis.min.css" %}>
+<link rel="stylesheet" href={% static "global/introjs.min.css" %}>
+
+
+<style type="text/css">
+    .clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+
+    .nav-tabs .no-hover a:hover{
+        background-color: transparent;
+        border: 1px solid transparent;
+        text-decoration: underline;   
+    }
+
+    .container-fluid .main{
+        background-color: #ffffff;   
+    }
+
+    .page-header {
+        padding: 0;    
+        margin: 0;
+        margin-left: -15px;
+        margin-right: -15px;
+        border-bottom: 1px solid black;
+    }
+    
+    .page-header h2 {
+        padding: 0;
+        margin: 10px;
+        margin-left: 0px;
+    }
+
+    #playerLabel:hover {
+        cursor: pointer;
+        background-color: #f5f5f5;
+    }
+    
+    .buttons * {
+        display: inline-block;
+    }
+</style>
+
+{% endblock %}
