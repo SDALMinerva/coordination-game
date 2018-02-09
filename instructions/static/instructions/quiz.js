@@ -15,7 +15,7 @@ $("#quiz select").change(function () {
 	} else {
 	   $(this).siblings('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-remove');
 	   var qName = $(this).attr('name');
-	   $('#quiz .question-message.'+qName).css('visibility','hidden');
+	   $('#quiz .question-message.'+qName).css('visibility','visible');
 	}
 });
 

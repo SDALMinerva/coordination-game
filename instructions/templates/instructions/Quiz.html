@@ -7,6 +7,10 @@
 
 {% block content %}
 
+    {% if session.is_demo %}
+        <a href="#" onclick="complete()">DEMO: Click here to fill vals.</a>
+    {% endif %}
+
 <div id="quiz">
 {% include "instructions/quiz-main.html" %}
 </div>
