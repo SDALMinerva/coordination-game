@@ -4,19 +4,19 @@
 {% block title %}
     Round {{subsession.round_number}}: 
     {% if messageRound > Constants.num_messaging_rounds %}
-        Will you participate?
+        Decision Part
     {% else %}    
-        Message Exchange ({{messageRound}} of {{Constants.num_messaging_rounds}})
+        Messaging Part
     {% endif %}
 {% endblock %}
 
 
 {% block content %}
 
+{% include "main/instructions_modal.html" %}
+{% include "main/quiz_modal.html" %}
+
 <div class="container-fluid" style="position: relative;">
-    {% if messageRound > Constants.num_messaging_rounds %}
-    <p>Look through your messages and then make your decision below.</p>
-    {% endif %}
     <div id="cover" style="position: absolute; visibility: hidden; z-index: 100; background-color: #ffffff; pointer-events: none; opacity: .4; height: 100%; left: -20px; right: -20px;">
     </div>
     <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
@@ -54,31 +54,39 @@
   			</li>
 		{% endif %}
 		
-        
+          	<li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="" data-toggle="modal" data-target="#QuizModal">Quiz</a>
+  			</li>
   		    <li class="no-hover nav-item pull-right">
-    			<a class="nav-link" href="">Instructions</a>
+    			<a class="nav-link" href="" data-toggle="modal" data-target="#InstructionsModal">Instructions</a>
   			</li>
   			{% if messageRound <= Constants.num_messaging_rounds %}
   			<li class="no-hover nav-item pull-right">
     			<a class="nav-link" href="javascript:void(0);" onclick="startIntro();">Tour</a>
   			</li>
   			{% endif %}
-  			<li class="no-hover nav-item pull-right">
-    			<a class="nav-link" href="">Quiz</a>
-  			</li>
 		</ul>
 
 		<!-- Tab panes -->
 		<div class="tab-content"  style="position: relative; margin-top: 5px; min-height: 550px; padding: 10px; background-color: #f5f5f5">
-            <div class="tab-pane active" id="wall" role="tabpanel"></div>
+        {% with 'wall both' as list %}
+            {% if session.config.condition_messaging in list.split %}
+                <div class="tab-pane active" id="wall" role="tabpanel"></div>
+          	{% endif %}
+  		{% endwith %}
+  		{% if session.config.condition_messaging == 'bilateral' %}
+      		<div class="tab-pane active" id="messenger" role="tabpanel"></div>
+        {% endif %}
+  		{% if session.config.condition_messaging == 'both' %}
       		<div class="tab-pane" id="messenger" role="tabpanel"></div>
+        {% endif %}
 		</div>
 
 
         </div>
         
         <div class="col-sm-4 col-lg-4" style="padding:5px;">
-            <h4>{{networkDisplay}} Network:</h4>
+            <h4 id="network-title">{{networkDisplay}} Network:</h4>
             <div id="mynetwork" style="height: 300px; width: 100%; border-left: 1px solid #ddd;"></div>
             <div class="row">
                 <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;"><strong>Possible Earnings:</strong></p>
@@ -117,7 +125,9 @@ var messageList = [];
 {% endfor %}
 
 var messageRound = {{messageRound}};
+var nMessagingRound = {{Constants.num_messaging_rounds}};
 var playerId = {{player.id}};
+var nodeId = {{player.node.id}};
 var neighbor_net = {{neighbor_net|safe}};
 var neighbors = {{neighbors|safe}};
 var thresholds = {{thresholds|safe}};
@@ -130,18 +140,29 @@ var network_edges = JSON.parse('{{edges|safe}}');
 
     {% if messageRound > Constants.num_messaging_rounds %}
         var output = false;
-        $("#cover").css("visibility", "visible");
+//        $("#cover").css("visibility", "visible");
     {% else %}    
         var output = true;
     {% endif %}
 
 
 </script>
-
+<script type="text/javascript" src={% static "global/hash.js" %}></script>
 <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
 <script type="text/javascript" src={% static "global/player_list.js" %}></script>
-<script type="text/javascript" src={% static "global/wall.js" %}></script>
-<script type="text/javascript" src={% static "global/messenger.js" %}></script>
+
+        {% with 'wall both' as list %}
+            {% if session.config.condition_messaging in list.split %}
+                <script type="text/javascript" src={% static "global/wall.js" %}></script>
+          	{% endif %}
+  		{% endwith %}
+  		{% with 'bilateral both' as list %}
+  		{% if session.config.condition_messaging in list.split %}
+      		    <script type="text/javascript" src={% static "global/messenger.js" %}></script>
+        {% endif %}
+        {% endwith %}
+
+
 <script type="text/javascript" src={% static "global/vis.min.js" %}></script>
 <script type="text/javascript" src={% static "global/send_message.js" %}></script>
 <script type="text/javascript" src={% static "global/chat_channels.js" %}></script>
@@ -150,12 +171,19 @@ var network_edges = JSON.parse('{{edges|safe}}');
 <script type="text/javascript" >
   var playerProfile = document.getElementById('playerLabel');
   playerProfile.onclick = function() {
-    chat.setActiveChannel(playerId);
-	wall.changeId(playerId);
+    chat.setActiveChannel(nodeId);
+	wall.changeId(nodeId);
 	chat.infoChannel.send(JSON.stringify({
 	  'type': 'list',
-	  'content': {'playerId': playerId},				
+	  'content': {'playerId': nodeId, 'sentBy': nodeId},				
 	}));
+  }
+
+  for (var i = 0; i < network_nodes.length; i++) {
+      var x = 100*Math.cos(i*2*Math.PI/network_nodes.length) + 100;
+      var y = 100*Math.sin(i*2*Math.PI/network_nodes.length) + 100;
+      network_nodes[i]['x'] = x;
+      network_nodes[i]['y'] = y;
   }
 
   // create an array with nodes
@@ -172,7 +200,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
   };
   var options = {
         physics: {
-            enabled: true,
+            enabled: false,
         },
   		interaction:{
     	dragNodes:false,
@@ -194,6 +222,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
     	zoomView: false,
   		},
   		nodes:{
+  		    mass: 1,
   		    borderWidth: 2,
             color: '#ffffff',
             fixed: false,
@@ -212,6 +241,8 @@ var network_edges = JSON.parse('{{edges|safe}}');
         },
         edges:{
             width: 6,
+            length: 150,
+            smooth: {'enabled': false},
         },
 
 	}
@@ -239,12 +270,8 @@ var network_edges = JSON.parse('{{edges|safe}}');
         intro: "Click here to see your own wall and what your friend(s) posted on there."
       },
       {
-        element: document.querySelectorAll('#main-tabs .nav-item')[1],
-        intro: "Click here to see the network of friends and who's friends with who.  Lines connecting two players mean that those players are friends."
-      },
-      {
-        element: document.querySelectorAll('#main-tabs .nav-item')[0],
-        intro: "Click here to go back to the last wall you were looking at."
+        element: document.querySelectorAll('#mynetwork')[0],
+        intro: "Network of friends.  Lines connecting two players mean that those players are friends."
       },
       {
         element: document.querySelectorAll('.dropdown-toggle')[0],
@@ -272,6 +299,10 @@ var network_edges = JSON.parse('{{edges|safe}}');
             });
     {% endif %}
 {% endwith %}
+
+$('[data-toggle="tooltip"]').tooltip({
+    trigger: 'hover'
+});
 
 </script>
 

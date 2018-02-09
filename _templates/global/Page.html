@@ -9,8 +9,19 @@
     {% extends "global/Page.html" %}
 {% endcomment %}
 
+{% block body_main %}
+{{block.super}}
+<p style="width: 100%; text-align: center; font-size: 8pt;">
+&copy 2018&nbsp;&nbsp;|&nbsp;&nbsp;
+Developed by: Ethan Vu, Brian J. Goode using <a target="_blank" href="http://www.otree.org/">OTree</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+Avatar Credits: <a target="_blank" href="http://www.iconarchive.com/show/square-animal-icons-by-martin-berube.html" >Source</a>
+</p>
+{% endblock %}
 
 {% block global_styles  %}
+<style type="text/css">
+.otree-body {min-height: 100vh;}
+</style>
 {% endblock %}
 
 {% block global_scripts  %}

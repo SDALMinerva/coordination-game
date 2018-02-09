@@ -1,5 +1,5 @@
 var wall = new Wall();
-wall.init(playerId, entries, output);
+wall.init(nodeId, entries, output);
 
 function Wall() {
 	
@@ -122,10 +122,14 @@ function Wall() {
 		this.Parent.appendChild(this.wallMain);
 		this.changeId(id);
 
-		this.parseExistingEntries(entries);		
-		
+		this.parseExistingEntries(entries);				
 		return
 	};
+
+    this.removeEntry = function(entryItem){
+        $(entryItem).hide();
+        entryItem.parentNode.removeChild(entryItem);
+    };	
 	
 	this.addEntry = function(entry) {
 	    var newEntry = entry.Entry();
@@ -146,7 +150,7 @@ function Wall() {
 	};
 	
 	this.parseAddEntry = function(input) {
-		this.addEntry(parseEntryData(input));
+	   this.addEntry(parseEntryData(input));		
 	};
 	
 	this.changeId = function(id) {
@@ -166,7 +170,6 @@ function Wall() {
 		this.wallimg.src = '/static/avatar/' + avatars[id];
 		$(this.wall).empty();
 		
-		this.wall.innerHTML = '<h5 id="wallMessage"> Use the post tool above to put a message on the wall.</h5>';
 	}.bind(this);
 	
 	this.loadFromPost = function(){
@@ -174,6 +177,10 @@ function Wall() {
 	};
 	
 	this.parseExistingEntries = function(entries){
+	    if ((entries.length == 0) && (messageRound <= nMessagingRound) ){
+            this.wall.innerHTML = '<p style="font-size: 10pt; line-height: 100%;" id="wallMessage"> Use the tool above to post a message on the wall. The posts will appear once you and everyone else is done with sending messages and proceed to the decision part by clicking "Next" below.</p>';		
+		}
+
 		for (i = 0, len = entries.length; i<len; i++){
 			this.parseAddEntry(entries[i]);		
 		}
@@ -183,12 +190,22 @@ function Wall() {
 $("#wall .send-message").click(function(event){
   if ($(".message-text").val() == ''){
   		return false;
-  }
+  }  
+  
+  var currentDate = new Date();
+  var key = currentDate.toString();
+  key += wall.Id;
+  key += nodeId;
+  key += messageRound;
+  key = key.hashCode();
+
+  $('#wallMessage').html('');
   var message = {
   	 wallId: wall.Id,
-    createdBy: playerId,
+    createdBy: nodeId,
     text: $("#wall .message-text").val(),
     messageRound: messageRound,
+    key: key,
   }
 
 // Button Behavior After Clicking - Depends on interaction type.
@@ -206,7 +223,7 @@ if (messageRound == -1){
 //        $(wall.send_button).prop("disabled",true);
 //        $("#wall .highlight").removeClass("highlight");
 //    });
-    wall.addEntry(new NewlyAddedEntry(playerId,2018,$("#wall .message-text").val()));
+    wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#wall .message-text").val(), key));
     $("#wall .message-text").val('');
 }  
 
@@ -219,13 +236,28 @@ if (messageRound == -1){
   return false;
 });
 
+$("#wall").on('click', '.removeEntry', function(event){
+    var entry = $(this).parents(".newly-added")[0];
+    var key = $(entry).children(".key").html();
+    var message = {
+  	    wallId: wall.Id,
+        key: key,
+    }
+    var toSend = JSON.stringify({
+  		'type': 'wall-delete',
+  		'content': message,
+  	});
+    console.log(toSend);
+    chat.activeChannel.send(toSend);
+    wall.removeEntry(entry);
+});
 
 $("#wall .message-option").click(function(event){
 	var text = $(this).html();
 	$("#wall .message-text").val(text);
 });
 
-// enable clicking on text input
+// To-do. enable clicking on text input
 $('#wall input[type="text"]:disabled').click(function(e){
 //	alert('hey');
   // Kill click event:
@@ -240,11 +272,16 @@ function parseEntryData(input){
 	this.sendId = parseInt(input.author.split(" ")[1]);
 	this.timestamp = input.timestamp;
 	this.content = input.content;
+	this.key = input.key;
 	
-	return new Entry(this.sendId, this.timestamp, this.content)
+	if (input.messageRound == messageRound) {
+	   return new NewlyAddedEntry(this.sendId, this.timestamp, this.content, this.key)
+	} else {
+	   return new Entry(this.sendId, this.timestamp, this.content, this.key)
+    }
 };
 
-function Entry(id,timestamp,content) {
+function Entry(id,timestamp,content,key) {
 	this.id = id;
 	this.timestamp = timestamp;
 	this.content = content;
@@ -270,17 +307,25 @@ function Entry(id,timestamp,content) {
    	listHeading.className = 'media-heading';
    	listItem.appendChild(listHeading);
    	
-   	listP.innerHTML= 'Post by: ' + userNames[id];// + '       ' 
+   	var nameAdd = ((id == wall.ownId) ? " (You)" : '');
+   	listP.style = "font-size: 9pt;";
+   	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd;// + '       ' 
 //   						+ '[' + this.timestamp + ']';
    	listP.className = 'media-body';
    	listItem.appendChild(listP);
+   	
+   	var keyDiv = document.createElement('div');
+   	keyDiv.innerHTML = key;
+    keyDiv.style = 'visibility: hidden; width: 0; height: 0; margin:0; padding:0;';
+    keyDiv.className = 'key';
+    listItem.appendChild(keyDiv);   	
    	
    	return listItem;
 	};
 };
 
 
-function NewlyAddedEntry(id,timestamp,content) {
+function NewlyAddedEntry(id,timestamp,content, key) {
 	this.id = id;
 	this.timestamp = timestamp;
 	this.content = content;
@@ -293,6 +338,15 @@ function NewlyAddedEntry(id,timestamp,content) {
 		listItem.backgroundColor = '#ddd';
 		listItem.className = 'newly-added list-group-item media message-item';
 		
+		var closebutton = document.createElement('button');
+   	    closebutton.innerHTML = "<span style='font-size: 13pt; color: #000;' class='glyphicon glyphicon-trash'></span>";
+   	    closebutton.className = "close pull-left removeEntry";
+   	    closebutton.style = "display: inline-block; margin-left: -10px; margin-top: 12px; padding: 0px;";
+   	    closebutton.type = "button";
+   	    closebutton.setAttribute('data-toggle','tooltip'); 
+   	    closebutton.setAttribute('data-placement','tooltip');
+   	    closebutton.title='Delete Message';
+   	    listItem.appendChild(closebutton);
 
 		var img_src = '/static/avatar/' + avatars[id];
 
@@ -307,11 +361,19 @@ function NewlyAddedEntry(id,timestamp,content) {
    	listHeading.className = 'media-heading';
    	listItem.appendChild(listHeading);
    	
-   	listP.innerHTML= 'Post by: ' + userNames[id] + '       <em>(to appear)</em>'; 
+   	var nameAdd = ((id == wall.ownId) ? " (You)" : '');
+   	listP.style = "font-size: 9pt;";
+   	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd; 
 //   						+ '[' + this.timestamp + ']';
    	listP.className = 'media-body';
    	listItem.appendChild(listP);
    	
+   	var keyDiv = document.createElement('div');
+   	keyDiv.innerHTML = key;
+   	keyDiv.className = 'key';
+    keyDiv.style = 'visibility: hidden; width: 0; height: 0; margin:0; padding:0;';
+    listItem.appendChild(keyDiv);  
+    
    	return listItem;
 	};
 };

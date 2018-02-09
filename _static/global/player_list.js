@@ -30,7 +30,7 @@ function PlayerList() {
 		
 		this.updateCount = function(id,count) {
 			//Change when decide what to do with player counts...
-			if (id != playerId){			
+			if (id != nodeId){			
 				if (count > 0){
 					this.counts[id].innerHTML = count;
 				} else {
@@ -112,7 +112,7 @@ function PlayerButton(id, link) {
 				wall.changeId(id);
 				chat.infoChannel.send(JSON.stringify({
 					'type': 'list',
-					'content': {'playerId': id},				
+					'content': {'playerId': id, 'sentBy': nodeId},				
 				}));
 			};
 		} else {

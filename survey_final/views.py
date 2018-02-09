@@ -4,22 +4,13 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class MyPage(Page):
-    pass
-
-
-class ResultsWaitPage(WaitPage):
-
-    def after_all_players_arrive(self):
-        pass
-
-
 class Results(Page):
-    pass
+    def vars_for_template(self):
+        return {
+            'payoff_currency': self.participant.payoff.to_real_world_currency(self.session),
+        }
 
 
 page_sequence = [
-    MyPage,
-    ResultsWaitPage,
     Results
 ]

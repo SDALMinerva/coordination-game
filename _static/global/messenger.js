@@ -1,5 +1,5 @@
 var messenger = new Messenger();
-messenger.init(playerId, privateEntries, output);
+messenger.init(nodeId, privateEntries, output);
 
 function Messenger() {
 	
@@ -75,7 +75,6 @@ function Messenger() {
 		messageListBox.className = "dropdown-menu";
 		messageListBox.id = 'recipient-box';
 
-		var tempId = neighbors[i];
 		var newRow = document.createElement('li');
 		var newMessage = document.createElement('a');
 		newMessage.className = 'recipient-option';
@@ -247,7 +246,7 @@ $("#messenger .send-message").click(function(event){
   
   var message = {
   	recipientId: messenger.Id,
-    createdBy: playerId,
+    createdBy: nodeId,
     text: $("#messenger .private-message-text").val(),
     messageRound: messageRound,
   }

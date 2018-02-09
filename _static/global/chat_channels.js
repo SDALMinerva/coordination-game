@@ -13,12 +13,12 @@ function nonActiveFunction(data){
 };
 
 chat = new Chat(neighbors, activeFunction, nonActiveFunction);
-chat.setActiveChannel(playerId);
+chat.setActiveChannel(nodeId);
 
 function Chat(idList, activeFunction, nonActiveFunction) {
 
-	if (!(idList.indexOf(playerId))>-1){
-		idList.push(playerId);
+	if (!(idList.indexOf(nodeId))>-1){
+		idList.push(nodeId);
 	}
 
 	var channels = {};
@@ -26,9 +26,9 @@ function Chat(idList, activeFunction, nonActiveFunction) {
 		var id = idList[i];
 		channels[id] = new Channel(id,activeFunction, nonActiveFunction);
 	};
-	this.infoChannel = new Channel('comm-'+playerId,activeFunction,nonActiveFunction);
+	this.infoChannel = new Channel('comm-'+nodeId,activeFunction,nonActiveFunction);
 	this.infoChannel.active = true;
-    this.privateChannel = new Channel('private-'+playerId,activeFunction,nonActiveFunction);
+    this.privateChannel = new Channel('private-'+nodeId,activeFunction,nonActiveFunction);
 	this.privateChannel.active = true;
 	this.channels = channels;
 
@@ -78,6 +78,5 @@ function Channel(id, activeFunc, nonActiveFunction){
 function urlTemplate(id){
 	var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
 	var url = ws_scheme + '://' + window.location.host + "/chat/" + id;
-
 	return url
 };

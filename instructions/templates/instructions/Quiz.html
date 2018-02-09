@@ -2,14 +2,29 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Page title
+    Instructions Quiz
 {% endblock %}
 
 {% block content %}
 
+    {% if session.is_demo %}
+        <a href="#" onclick="complete()">DEMO: Click here to fill vals.</a>
+    {% endif %}
+
+<div id="quiz">
+{% include "instructions/quiz-main.html" %}
+</div>
+
 <br>
-<p><strong>Click 'Next' to submit.</strong></p>
+<p><strong>Click 'Next' to proceed.</strong></p>
+
     {% next_button %}
 {% endblock %}
 
+{% block scripts %}
+    <script type="text/javascript" src={% static "instructions/quiz.js" %} ></script>
+{% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href={% static "instructions/quiz.css" %}>
+{% endblock %}

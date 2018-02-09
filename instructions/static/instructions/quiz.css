@@ -1,0 +1,29 @@
+    .glyphicon-ok{
+        color: green;    
+    }
+    
+    .glyphicon-remove{
+        color: red;    
+    }
+    
+    .question-explain{
+        font-size: 9pt;
+        font-weight: bold;   
+    }
+    
+    .question-message{
+        visibility: hidden;
+        display: inline-block;   
+    }
+    
+    .question-icon{
+        visibility: hidden;    
+    }
+    
+    .thin-text{
+        line-height: 1em;
+    }
+    
+    .in-line-select{
+        padding-bottom: 20px;
+    }
