@@ -1,0 +1,368 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+
+{% block content %}
+
+    {% block help-options %}
+        {% include "main/instructions_modal.html" %}
+        {% include "main/quiz_modal.html" %}
+    {% endblock %}
+
+<div class="container-fluid" style="position: relative;">
+    <div id="cover" style="position: absolute; visibility: hidden; z-index: 100; background-color: #ffffff; pointer-events: none; opacity: .4; height: 100%; left: -20px; right: -20px;">
+    </div>
+    <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
+        
+        <div class="col-sm-2 col-lg-2" style="min-width: 160px; max-width: 260px; padding:5px;">
+        <h4 style="text-align: left; padding-left: 0px">Your Profile:</h4>
+            <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
+                <br>
+	        	   <img src={% static "avatar/"|add:avatar %} alt="Error: No Avatar Available" style="display: block; border-bottom: black 1px solid; margin: auto; width:90px">
+                   <p style="text-align: left; font-size: 13pt; margin: 0; margin-top: 5px; margin-left: 15px;">{{player.user_name}} (You)</p>	        	   
+	        	   <p style="text-align: left; font-size: 9pt; margin: 0; margin-top: 0px; margin-left: 15px;"><strong>Your Threshold: {{player.node.threshold_text}}</strong> </p>
+      	    </div>
+      	    <h4>Your Friends:</h4>
+            <div id="playerList" class="clearfix" ></div>        
+        </div>
+
+        <div class="col-sm-6 col-lg-6" style="padding: 5px;">
+
+        {% block interaction %}
+        <ul id="main-tabs" class="nav nav-tabs" role="tablist">
+        {% with 'wall both' as list %}
+            {% if session.config.condition_messaging in list.split %}
+  		    <li class="nav-item active">
+    			<a class="nav-link active" data-toggle="tab" href="#wall" role="tab">Wall Posts</a>
+  			</li>
+  			{% endif %}
+  		{% endwith %}
+  		{% if session.config.condition_messaging == 'bilateral' %}
+  			<li class="nav-item active">
+    			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
+  			</li>
+		{% endif %}
+		{% if session.config.condition_messaging == 'both' %}
+  			<li class="nav-item">
+    			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
+  			</li>
+		{% endif %}
+		
+          	<li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="" data-toggle="modal" data-target="#QuizModal">Quiz</a>
+  			</li>
+  		    <li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="" data-toggle="modal" data-target="#InstructionsModal">Instructions</a>
+  			</li>
+  			{% if messageRound <= Constants.num_messaging_rounds %}
+  			<li class="no-hover nav-item pull-right">
+    			<a class="nav-link" href="javascript:void(0);" onclick="startIntro();">Tour</a>
+  			</li>
+  			{% endif %}
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content"  style="position: relative; margin-top: 5px; min-height: 550px; padding: 10px; background-color: #f5f5f5">
+        {% with 'wall both' as list %}
+            {% if session.config.condition_messaging in list.split %}
+                <div class="tab-pane active" id="wall" role="tabpanel"></div>
+          	{% endif %}
+  		{% endwith %}
+  		{% if session.config.condition_messaging == 'bilateral' %}
+      		<div class="tab-pane active" id="messenger" role="tabpanel"></div>
+        {% endif %}
+  		{% if session.config.condition_messaging == 'both' %}
+      		<div class="tab-pane" id="messenger" role="tabpanel"></div>
+        {% endif %}
+		</div>
+        {% endblock %}		
+		
+        </div>
+        
+        <div class="col-sm-4 col-lg-4" style="padding:5px;">
+        {% block network %}
+            {% include "main/network.html" %}
+        {% endblock %}
+        </div>
+    </div>
+</div>
+
+<br>
+
+{% if messageRound > Constants.num_messaging_rounds %}
+    {% for field in form %}
+    
+        {% formfield field %}
+
+    {% endfor %}
+{% endif %}
+
+<p>Click <strong>Next</strong> to continue.</p>
+<br>
+<div class="buttons" id="nextButton">
+    {% next_button %}
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+// Load Variables from View.
+var messageList = [];
+{% for mId, mValue in messages.items %}
+	messageList.push('{{mValue}}');
+{% endfor %}
+
+var messageRound = {{messageRound}};
+var nMessagingRound = {{Constants.num_messaging_rounds}};
+var playerId = {{player.id}};
+var nodeId = {{player.node.id}};
+var neighbor_net = {{neighbor_net|safe}};
+var neighbors = {{neighbors|safe}};
+var thresholds = {{thresholds|safe}};
+var userNames = {{user_names|safe}};
+var avatars = {{avatars|safe}};
+var entries = JSON.parse('{{wall|safe}}');
+var privateEntries = JSON.parse('{{privateMessages|safe}}');
+var network_nodes = JSON.parse('{{nodes|escapejs}}');
+var network_edges = JSON.parse('{{edges|safe}}');
+
+var output = true;
+{% if messageRound > Constants.num_messaging_rounds %}
+    output = false;
+{% endif %}
+
+</script>
+<script type="text/javascript" src={% static "global/hash.js" %}></script>
+<script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
+<script type="text/javascript" src={% static "global/player_list.js" %}></script>
+
+        {% with 'wall both' as list %}
+            {% if session.config.condition_messaging in list.split %}
+                <script type="text/javascript" src={% static "global/wall.js" %}></script>
+          	{% endif %}
+  		{% endwith %}
+  		{% with 'bilateral both' as list %}
+  		{% if session.config.condition_messaging in list.split %}
+      		    <script type="text/javascript" src={% static "global/messenger.js" %}></script>
+        {% endif %}
+        {% endwith %}
+
+
+<script type="text/javascript" src={% static "global/vis.min.js" %}></script>
+<script type="text/javascript" src={% static "global/send_message.js" %}></script>
+<script type="text/javascript" src={% static "global/chat_channels.js" %}></script>
+<script type="text/javascript" src={% static "global/intro.min.js" %}></script>
+
+<script type="text/javascript" src={% static "main/network.js" %}></script>
+<script type="text/javascript" src={% static "main/tutorial.js" %}></script>
+
+<script type="text/javascript" >
+  var playerProfile = document.getElementById('playerLabel');
+  playerProfile.onclick = function() {
+    chat.setActiveChannel(nodeId);
+	wall.changeId(nodeId);
+	chat.infoChannel.send(JSON.stringify({
+	  'type': 'list',
+	  'content': {'playerId': nodeId, 'sentBy': nodeId},				
+	}));
+  }
+  
+  
+
+{% with 'wall none' as list %}
+    {% if session.config.condition_messaging in list.split %}    
+        $('.message-icon').hide();
+    {% endif %}
+{% endwith %}
+
+{% with 'bilateral none' as list %}
+    {% if session.config.condition_messaging in list.split %}    
+        $('.linking-button').off("click");
+        $('.linking-button').each(function () {
+            this.onclick = undefined;
+            });
+    {% endif %}
+{% endwith %}
+
+$('[data-toggle="tooltip"]').tooltip({
+    trigger: 'hover'
+});
+
+</script>
+
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href={% static "global/jquery-ui.min.css" %}>
+<link rel="stylesheet" href={% static "global/wall.css" %}>
+<link rel="stylesheet" href={% static "global/messenger.css" %}>
+<link rel="stylesheet" href={% static "global/player_list.css" %}>
+<link rel="stylesheet" href={% static "global/vis.min.css" %}>
+<link rel="stylesheet" href={% static "global/introjs.min.css" %}>
+
+
+<style type="text/css">
+    .clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+
+    .nav-tabs .no-hover a:hover{
+        background-color: transparent;
+        border: 1px solid transparent;
+        text-decoration: underline;   
+    }
+
+    .container-fluid .main{
+        background-color: #ffffff;   
+    }
+
+    .page-header {
+        padding: 0;    
+        margin: 0;
+        margin-left: -15px;
+        margin-right: -15px;
+        border-bottom: 1px solid black;
+    }
+    
+    .page-header h2 {
+        padding: 0;
+        margin: 10px;
+        margin-left: 0px;
+    }
+
+    #playerLabel:hover {
+        cursor: pointer;
+        background-color: #f5f5f5;
+    }
+    
+    .buttons * {
+        display: inline-block;
+    }
+</style>
+
+{% endblock %}
+
+
+
+
+{% comment %}
+{% block title %}
+    Tour
+{% endblock %}
+
+{% block scripts %}
+
+    {% block pageScripts %}
+        <script type="text/javascript" >
+            var output = true;
+        </script>
+    {% endblock %}
+
+    <script type="text/javascript">
+        var messageList = [
+            'I will participate.',
+            'I will not participate.',        
+        ];
+        var messageRound = 1;
+        var nMessagingRound = 1;
+        var playerId = 1;
+        var nodeId = 1;
+        var neighbor_net = {
+            1: [2,3,4,5], 
+            2: [1],
+            3: [1], 
+            4: [1],
+            5: [1],
+            };
+        var neighbors = [1,2,3,4,5];
+        var thresholds = {
+            1: '1', 
+            2: '3',
+            3: '3', 
+            4: '1',
+            5: '1',
+            };
+        var userNames = {
+            1: 'Cow', 
+            2: 'Turtle',
+            3: 'Cat', 
+            4: 'Swan',
+            5: 'Eagle',
+            };
+        var avatars = {
+            1: 'Cow-icon.png', 
+            2: 'Turtle-icon.png',
+            3: 'Cat-icon.png', 
+            4: 'Swan-icon.png',
+            5: 'Eagle-icon.png',
+            };
+            
+        var entries = [];
+        var privateEntries = [];
+        var network_nodes = [
+            {'label': 'Cow (You)', 'shape': 'circularImage', 'image': '/static/avatar/Cow-icon.png', 'id': 1},
+            {'label': 'Turtle', 'shape': 'circularImage', 'image': '/static/avatar/Turtle-icon.png', 'id': 2},
+            {'label': 'Cat', 'shape': 'circularImage', 'image': '/static/avatar/Cat-icon.png', 'id': 3},
+            {'label': 'Swan', 'shape': 'circularImage', 'image': '/static/avatar/Swan-icon.png', 'id': 4},
+            {'label': 'Eagle', 'shape': 'circularImage', 'image': '/static/avatar/Eagle-icon.png', 'id': 5},
+            ]
+        var network_edges = [
+            {"to": 1, "from": 2},
+            {"to": 1, "from": 3},
+            {"to": 1, "from": 4},
+            {"to": 1, "from": 5},
+            ];
+        
+    </script>
+
+    <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
+    <script type="text/javascript" src={% static "global/player_list.js" %}></script>
+    
+            {% with 'wall both' as list %}
+                {% if session.config.condition_messaging in list.split %}
+                    <script type="text/javascript" src={% static "global/wall.js" %}></script>
+              	{% endif %}
+      		{% endwith %}
+      		{% with 'bilateral both' as list %}
+      		{% if session.config.condition_messaging in list.split %}
+          		    <script type="text/javascript" src={% static "global/messenger.js" %}></script>
+            {% endif %}
+            {% endwith %}
+    
+    
+    <script type="text/javascript" src={% static "global/vis.min.js" %}></script>
+    <script type="text/javascript" src={% static "global/intro.min.js" %}></script>
+    <script type="text/javascript" src={% static "main/network.js" %}></script>
+    <script type="text/javascript" src={% static "main/tutorial.js" %}></script>
+    
+    <script type="text/javascript" >
+      var playerProfile = document.getElementById('playerLabel');
+      playerProfile.onclick = function() {
+    	wall.changeId(nodeId);
+      }
+      
+      
+    
+    {% with 'wall none' as list %}
+        {% if session.config.condition_messaging in list.split %}    
+            $('.message-icon').hide();
+        {% endif %}
+    {% endwith %}
+    
+    {% with 'bilateral none' as list %}
+        {% if session.config.condition_messaging in list.split %}    
+            $('.linking-button').off("click");
+            $('.linking-button').each(function () {
+                this.onclick = undefined;
+                });
+        {% endif %}
+    {% endwith %}
+    
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger: 'hover'
+    });
+    
+    </script>
+
+{% endblock %}
+{% endcomment %}

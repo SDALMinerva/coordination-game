@@ -2,12 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Round {{subsession.round_number}}: 
-    {% if messageRound > Constants.num_messaging_rounds %}
-        Decision Part
-    {% else %}    
-        Messaging Part
-    {% endif %}
+    Round {{subsession.round_number}}: Messaging Part
 {% endblock %}
 
 
@@ -22,12 +17,12 @@
     <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
         
         <div class="col-sm-2 col-lg-2" style="min-width: 160px; max-width: 260px; padding:5px;">
-        <h4 style="text-align: left; padding-left: 0px">Your Profile:</h4>
+        <h4 style="text-align: left; padding-left: 0px;">Your Profile:</h4>
             <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
                 <br>
-	        	   <img src={% static "avatar/"|add:avatar %} alt="Error: No Avatar Available" style="display: block; border-bottom: black 1px solid; margin: auto; width:90px">
-                   <p style="text-align: left; font-size: 13pt; margin: 0; margin-top: 5px; margin-left: 15px;">{{player.user_name}} (You)</p>	        	   
-	        	   <p style="text-align: left; font-size: 9pt; margin: 0; margin-top: 0px; margin-left: 15px;"><strong>Your Threshold: {{player.node.threshold_text}}</strong> </p>
+	        	   <img src={% block avatar %}{% static "avatar/"|add:avatar %}{% endblock %} alt="Error: No Avatar Available" style="display: block; border-bottom: black 1px solid; margin: auto; width:90px">
+                   <p style="text-align: left; font-size: 13pt; margin: 0; margin-top: 5px; margin-left: 15px;">{% block userName %}{{player.user_name}}{% endblock %} (You)</p>	        	   
+	        	   <p style="text-align: left; font-size: 9pt; margin: 0; margin-top: 0px; margin-left: 15px;"><strong>Your Threshold: {% block threshold %}{{player.node.threshold_text}}{% endblock %}</strong> </p>
       	    </div>
       	    <h4>Your Friends:</h4>
             <div id="playerList" class="clearfix" ></div>        
@@ -54,17 +49,17 @@
   			</li>
 		{% endif %}
 		
+		    {% block helpSection %}
           	<li class="no-hover nav-item pull-right">
     			<a class="nav-link" href="" data-toggle="modal" data-target="#QuizModal">Quiz</a>
   			</li>
   		    <li class="no-hover nav-item pull-right">
     			<a class="nav-link" href="" data-toggle="modal" data-target="#InstructionsModal">Instructions</a>
   			</li>
-  			{% if messageRound <= Constants.num_messaging_rounds %}
   			<li class="no-hover nav-item pull-right">
     			<a class="nav-link" href="javascript:void(0);" onclick="startIntro();">Tour</a>
   			</li>
-  			{% endif %}
+  			{% endblock %}
 		</ul>
 
 		<!-- Tab panes -->
@@ -81,32 +76,18 @@
       		<div class="tab-pane" id="messenger" role="tabpanel"></div>
         {% endif %}
 		</div>
-
-
         </div>
         
         <div class="col-sm-4 col-lg-4" style="padding:5px;">
-            <h4 id="network-title">{{networkDisplay}} Network:</h4>
-            <div id="mynetwork" style="height: 300px; width: 100%; border-left: 1px solid #ddd;"></div>
-            <div class="row">
-                <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;"><strong>Possible Earnings:</strong></p>
-                <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;">If you do not participate:<strong> {{session.config.payoff_no_participate | c}}</strong> </p>
-	            <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more <strong>do not</strong> participate: <strong>{{session.config.payoff_below_threshold | c}}</strong> </p>
-	            <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more participate: <strong>{{session.config.payoff_above_threshold | c}}</strong> </p>
-            </div>
+            {% include "main/network.html" %}
         </div>
     </div>
 </div>
 
 <br>
 
-{% if messageRound > Constants.num_messaging_rounds %}
-    {% for field in form %}
-    
-        {% formfield field %}
-
-    {% endfor %}
-{% endif %}
+{% block participate %}
+{% endblock %}
 
 <p>Click <strong>Next</strong> to continue.</p>
 <br>
@@ -118,7 +99,15 @@
 {% endblock %}
 
 {% block scripts %}
+
+    {% block pageScripts %}
+        <script type="text/javascript" >
+            var output = true;
+        </script>
+    {% endblock %}
+
 <script type="text/javascript">
+// Load Variables from View.
 var messageList = [];
 {% for mId, mValue in messages.items %}
 	messageList.push('{{mValue}}');
@@ -137,15 +126,6 @@ var entries = JSON.parse('{{wall|safe}}');
 var privateEntries = JSON.parse('{{privateMessages|safe}}');
 var network_nodes = JSON.parse('{{nodes|escapejs}}');
 var network_edges = JSON.parse('{{edges|safe}}');
-
-    {% if messageRound > Constants.num_messaging_rounds %}
-        var output = false;
-//        $("#cover").css("visibility", "visible");
-    {% else %}    
-        var output = true;
-    {% endif %}
-
-
 </script>
 <script type="text/javascript" src={% static "global/hash.js" %}></script>
 <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
@@ -164,9 +144,11 @@ var network_edges = JSON.parse('{{edges|safe}}');
 
 
 <script type="text/javascript" src={% static "global/vis.min.js" %}></script>
-<script type="text/javascript" src={% static "global/send_message.js" %}></script>
 <script type="text/javascript" src={% static "global/chat_channels.js" %}></script>
 <script type="text/javascript" src={% static "global/intro.min.js" %}></script>
+
+<script type="text/javascript" src={% static "main/network.js" %}></script>
+<script type="text/javascript" src={% static "main/tutorial.js" %}></script>
 
 <script type="text/javascript" >
   var playerProfile = document.getElementById('playerLabel');
@@ -178,112 +160,8 @@ var network_edges = JSON.parse('{{edges|safe}}');
 	  'content': {'playerId': nodeId, 'sentBy': nodeId},				
 	}));
   }
-
-  for (var i = 0; i < network_nodes.length; i++) {
-      var x = 100*Math.cos(i*2*Math.PI/network_nodes.length) + 100;
-      var y = 100*Math.sin(i*2*Math.PI/network_nodes.length) + 100;
-      network_nodes[i]['x'] = x;
-      network_nodes[i]['y'] = y;
-  }
-
-  // create an array with nodes
-  var nodes = new vis.DataSet(network_nodes);
-
-  // create an array with edges
-  var edges = new vis.DataSet(network_edges);
-
-  // create a network
-  var container = document.getElementById('mynetwork');
-  var data = {
-    nodes: nodes,
-    edges: edges
-  };
-  var options = {
-        physics: {
-            enabled: false,
-        },
-  		interaction:{
-    	dragNodes:false,
-    	dragView: false,
-    	hideEdgesOnDrag: false,
-    	hideNodesOnDrag: false,
-    	hover: true,
-    	hoverConnectedEdges: true,
-    	keyboard: {
-      	enabled: false,
-      	speed: {x: 10, y: 10, zoom: 0.02},
-      	bindToWindow: true
-    	},
-    	multiselect: false,
-    	navigationButtons: false,
-    	selectable: true,
-    	selectConnectedEdges: true,
-    	tooltipDelay: 300,
-    	zoomView: false,
-  		},
-  		nodes:{
-  		    mass: 1,
-  		    borderWidth: 2,
-            color: '#ffffff',
-            fixed: false,
-            font: '16px arial black',
-            font: {
-                multi: 'html',
-                size: 18,
-                align: 'left',
-                vadjust: -15,
-            },
-            scaling: {
-                label: true
-            },
-            shadow: true,
-            size: 40,
-        },
-        edges:{
-            width: 6,
-            length: 150,
-            smooth: {'enabled': false},
-        },
-
-	}
-
-  var network = new vis.Network(container, data, options);
-  $('a[data-toggle="tab"][href="#network"]').on('shown.bs.tab', function (e) {
-    network.fit();  		
-  });
   
-  network.on("afterDrawing", function (event) {
-  	network.fit();
-  	network.off("afterDrawing");
-  });
-  window.onresize = function() {network.fit();}
   
-  function startIntro() {
-    var intro = introJs()
-    intro.addSteps([
-      {
-        element: document.querySelectorAll('#playerList')[0],
-        intro: "Click here to see your friend(s)'s wall and post on it."
-      }, 
-      {
-        element: document.querySelectorAll('#playerLabel')[0],
-        intro: "Click here to see your own wall and what your friend(s) posted on there."
-      },
-      {
-        element: document.querySelectorAll('#mynetwork')[0],
-        intro: "Network of friends.  Lines connecting two players mean that those players are friends."
-      },
-      {
-        element: document.querySelectorAll('.dropdown-toggle')[0],
-        intro: "Click here to choose a message to send..."
-      },
-      {
-        element: document.querySelectorAll('.send-message')[0],
-        intro: "...and click here to post that message to the current wall."
-      }
-    ]);
-    intro.start();
-  }
 
 {% with 'wall none' as list %}
     {% if session.config.condition_messaging in list.split %}    

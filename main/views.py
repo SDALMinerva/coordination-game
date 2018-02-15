@@ -122,13 +122,13 @@ class EndWaitPage(WaitPage):
 
 class Decide(Discuss):
     
-    template_name = 'main/Discuss.html'
+    template_name = 'main/Decide.html'
     
     form_model = models.Player
     form_fields = [
         'participate'
     ]
-    pass
+
 
 messaging_apps = [x for i in range(Constants.num_messaging_rounds) for x in [Discuss, IntermediateWaitPage]]
 seq = [AssignAvatar, BeginWaitPage]

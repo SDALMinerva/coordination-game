@@ -47,6 +47,7 @@ function Wall() {
 		
 		// Input Form.
 		this.messages = document.createElement('div');
+		this.messages.id = "container-messages";
 		this.messages.className = 'input-group message-group highlight';
 		this.addon = document.createElement('span');
 		this.addon.className = 'input-group-addon';
@@ -179,6 +180,8 @@ function Wall() {
 	this.parseExistingEntries = function(entries){
 	    if ((entries.length == 0) && (messageRound <= nMessagingRound) ){
             this.wall.innerHTML = '<p style="font-size: 10pt; line-height: 100%;" id="wallMessage"> Use the tool above to post a message on the wall. The posts will appear once you and everyone else is done with sending messages and proceed to the decision part by clicking "Next" below.</p>';		
+		} else if (entries.length == 0) {
+            this.wall.innerHTML = '<p style="font-size: 10pt; line-height: 100%;" id="wallMessage"> No messages to display.</p>';
 		}
 
 		for (i = 0, len = entries.length; i<len; i++){
