@@ -279,15 +279,15 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
 
-    lastName = models.CharField(
+    lastName = models.StringField(
         verbose_name = "Last Name",
     )
     
-    firstName = models.CharField(
+    firstName = models.StringField(
         verbose_name = "First Name",
     )
     
-    middleInitial = models.CharField(
+    middleInitial = models.StringField(
         verbose_name = "Middle Initial",
         max_length = 1,
     )
@@ -296,7 +296,7 @@ class Player(BasePlayer):
         verbose_name = "What is your age (years)?",
     )
 
-    sexBirth = models.CharField(
+    sexBirth = models.StringField(
         verbose_name = "ASSIGNED SEX AT BIRTH: What sex were you assigned at birth (on your original birth certificate)?",
         choices = [
             "Male",
@@ -305,7 +305,7 @@ class Player(BasePlayer):
         widget = widgets.RadioSelect,
     )
     
-    sexCurrent = models.CharField(
+    sexCurrent = models.StringField(
         verbose_name = "CURRENT GENDER IDENTITY:  How do you describe yourself? (check one)?",
         choices = [
             "Male",
@@ -316,7 +316,7 @@ class Player(BasePlayer):
         widget = widgets.RadioSelect,
     )
 
-    ethnicity = models.CharField(
+    ethnicity = models.StringField(
         verbose_name = "Enter your ethnic group, if you identify with one.",
     )
     
@@ -343,22 +343,22 @@ class Player(BasePlayer):
         widget = widgets.RadioSelect,
     )
     
-    tribe = models.CharField(
+    tribe = models.StringField(
         verbose_name = "(print names of enrolled or principle tribe)",
         blank = True,
     )
     
-    otherAsian = models.CharField(
+    otherAsian = models.StringField(
         verbose_name = "(print race)",
         blank = True,
     )
     
-    otherPacificIslander = models.CharField(
+    otherPacificIslander = models.StringField(
         verbose_name = "(print race)",
         blank = True,
     )
     
-    otherRace = models.CharField(
+    otherRace = models.StringField(
         verbose_name = "(print race)",
         blank = True,
     )
@@ -375,23 +375,23 @@ class Player(BasePlayer):
         widget = widgets.RadioSelect,
     )
     
-    country_born = models.CharField(
+    country_born = models.StringField(
         verbose_name = "In which country were you born?",
         choices = Constants.countries,
     )
 
     # What is your current residence?
-    country_reside = models.CharField(
+    country_reside = models.StringField(
         verbose_name = "Country",
         choices = Constants.countries,
     )
     
-    province_reside = models.CharField(
+    province_reside = models.StringField(
         verbose_name = "State/Province",
         blank = True,
     )
     
-    city_reside = models.CharField(
+    city_reside = models.StringField(
         verbose_name = "City",
     )
     # end residence questions
@@ -525,7 +525,7 @@ class Player(BasePlayer):
         widget = widgets.CheckboxInput(),
     )
     
-    otherWorkSpecify = models.CharField(
+    otherWorkSpecify = models.StringField(
         verbose_name = "(print other)",
         blank = True,
     )
@@ -562,13 +562,13 @@ class Player(BasePlayer):
         widget = widgets.CheckboxInput(),
     )
     
-    otherFreeTimeSpecify = models.CharField(
+    otherFreeTimeSpecify = models.StringField(
         verbose_name = "(print other)",
         blank = True,
     )
     # end free time questions
     
-    occupation = models.CharField(
+    occupation = models.StringField(
         verbose_name = "What is your occupation, if applicable?",
     )
     

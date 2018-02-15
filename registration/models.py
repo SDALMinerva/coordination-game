@@ -20,7 +20,7 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    def before_session_starts(self):
+    def creating_session(self):
         rand_avatars = Avatar.randAvatars()
         for p in self.get_players():
             p.avatar = next(rand_avatars)
@@ -35,6 +35,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    user_name = models.CharField(default = 'Not Assigned')
+    user_name = models.StringField(default = 'Not Assigned')
     avatar = models.ForeignKey(Avatar, default = 1)
     pass

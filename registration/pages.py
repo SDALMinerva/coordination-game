@@ -5,7 +5,7 @@ from .models import Constants
 from avatar.models import Avatar
 
 class Registration(Page):
-    form_model = models.Player;
+    form_model = 'player';
     form_fields = ['user_name', 'avatar']
     
     def avatar_error_message(self, value):
