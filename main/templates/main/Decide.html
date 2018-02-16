@@ -1,20 +1,31 @@
-{% extends "global/Page.html" %}
+{% extends "main/Discuss.html" %}
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Will you participate?
+    Round {{subsession.round_number}}: Decision Part
 {% endblock %}
 
-{% block content %}
+{% block participate %}
 
     {% for field in form %}
     
         {% formfield field %}
 
     {% endfor %}
-    
-    {% next_button %}
 
 {% endblock %}
 
+{% block helpSection %}
+    <li class="no-hover nav-item pull-right">
+        <a class="nav-link" href="" data-toggle="modal" data-target="#QuizModal">Quiz</a>
+    </li>
+    <li class="no-hover nav-item pull-right">
+        <a class="nav-link" href="" data-toggle="modal" data-target="#InstructionsModal">Instructions</a>
+    </li>
+{% endblock %}
 
+{% block pageScripts %}
+    <script type="text/javascript" >
+        var output = false;
+    </script>
+{% endblock %}

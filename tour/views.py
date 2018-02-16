@@ -5,21 +5,18 @@ from .models import Constants
 
 
 class Tour(Page):
-    pass
-
-
-class ResultsWaitPage(WaitPage):
-
-    def after_all_players_arrive(self):
-        pass
-
-
-class Results(Page):
-    pass
+    template_name = 'tour/Tour.html'
+    def vars_for_template(self):            
+        if self.session.config['condition_network_knowledge'] == 'global':
+            networkDisplay = 'The'
+        elif self.session.config['condition_network_knowledge'] == 'local':
+            networkDisplay = 'Your' 
+        
+        return {
+            'networkDisplay': networkDisplay,
+        }
 
 
 page_sequence = [
     Tour,
-    ResultsWaitPage,
-    Results
 ]
