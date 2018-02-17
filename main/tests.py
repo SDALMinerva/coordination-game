@@ -1,5 +1,5 @@
 from otree.api import Currency as c, currency_range
-from . import views
+from . import pages
 from ._builtin import Bot
 from .models import Constants
 
@@ -10,24 +10,24 @@ class PlayerBot(Bot):
             "fifteen_players_all_yes",
             "fifteen_players_mix",]
     def play_round(self):
-        yield (views.AssignAvatar)
+        yield (pages.AssignAvatar)
         for d in range(Constants.num_messaging_rounds):
-            yield (views.Discuss)
+            yield (pages.Discuss)
         if self.session.num_participants == 1:
             if self.case == "one_player_all_no":
-                yield (views.Decide, {"participate": False})
+                yield (pages.Decide, {"participate": False})
                 assert self.player.round_payoff == 50
             elif self.case == "one_player_all_yes":
-                yield (views.Decide, {"participate": True})
+                yield (pages.Decide, {"participate": True})
                 assert self.player.round_payoff != 50
             else:
-                yield (views.Decide, {"participate": True})
+                yield (pages.Decide, {"participate": True})
         elif self.session.num_participants == 15:
             if self.case == "fifteen_players_all_no":
-                yield (views.Decide, {"participate": False})
+                yield (pages.Decide, {"participate": False})
                 assert self.player.round_payoff == 50
             elif self.case == "fifteen_players_all_yes":
-                yield (views.Decide, {"participate": True})
+                yield (pages.Decide, {"participate": True})
                 assert self.player.round_payoff == 100
             elif self.case == "fifteen_players_mix":
                 if (self.participant.id_in_session == 1 or
@@ -38,7 +38,7 @@ class PlayerBot(Bot):
                         self.participant.id_in_session == 11 or
                         self.participant.id_in_session == 13 or
                         self.participant.id_in_session == 15):
-                    yield (views.Decide, {"participate": True})
+                    yield (pages.Decide, {"participate": True})
                 elif (self.participant.id_in_session == 2 or
                         self.participant.id_in_session == 4 or
                         self.participant.id_in_session == 6 or
@@ -46,7 +46,7 @@ class PlayerBot(Bot):
                         self.participant.id_in_session == 10 or
                         self.participant.id_in_session == 12 or
                         self.participant.id_in_session == 14):
-                    yield (views.Decide, {"participate": False})
+                    yield (pages.Decide, {"participate": False})
                 if self.subsession.round_number == 1:
                     if self.participant.id_in_session == 1:
                         assert self.player.round_payoff == 100
@@ -358,5 +358,5 @@ class PlayerBot(Bot):
                     if self.participant.id_in_session == 15:
                         assert self.player.round_payoff == 0
             else:
-                yield (views.Decide, {"participate": True})
+                yield (pages.Decide, {"participate": True})
                     

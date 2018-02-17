@@ -1,5 +1,5 @@
 from otree.api import Currency as c, currency_range, SubmissionMustFail
-from . import views
+from . import pages
 from ._builtin import Bot
 from .models import Constants
 
@@ -85,40 +85,40 @@ class PlayerBot(Bot):
             "activityPartTimeWork": 1,
         }
         if self.case == "no_specify":
-            yield (views.SocioDemographic, ans)
-            yield (views.Results)
+            yield (pages.SocioDemographic, ans)
+            yield (pages.Results)
 
 # Check these if statements...            
 """
         elif self.case == "tribe":
             ans["race"] = 3
-            yield SubmissionMustFail (views.SocioDemographic, ans)
+            yield SubmissionMustFail (pages.SocioDemographic, ans)
             ans["tribe"] = "Cherokee"
-            yield (views.SocioDemographic, ans)
+            yield (pages.SocioDemographic, ans)
         elif self.case == "other_asian":
             ans["race"] = 13
-            yield SubmissionMustFail (views.SocioDemographic, ans)
+            yield SubmissionMustFail (pages.SocioDemographic, ans)
             ans["otherAsian"] = "Cambodian"
-            yield (views.SocioDemographic, ans)
+            yield (pages.SocioDemographic, ans)
         elif self.case == "other_islander":
             ans["race"] = 14
-            yield SubmissionMustFail (views.SocioDemographic, ans)
+            yield SubmissionMustFail (pages.SocioDemographic, ans)
             ans["otherPacificIslander"] = "Indonesian"
-            yield (views.SocioDemographic, ans)
+            yield (pages.SocioDemographic, ans)
         elif self.case == "other_race":
             ans["race"] = 15
-            yield SubmissionMustFail (views.SocioDemographic, ans)
+            yield SubmissionMustFail (pages.SocioDemographic, ans)
             ans["otherRace"] = "Afghan"
-            yield (views.SocioDemographic, ans)
+            yield (pages.SocioDemographic, ans)
         elif self.case == "other_work":
             ans["otherWork"] = True
-            yield SubmissionMustFail (views.SocioDemographic, ans)
+            yield SubmissionMustFail (pages.SocioDemographic, ans)
             ans["otherWorkSpecify"] = "Public Office"
-            yield (views.SocioDemographic, ans)
+            yield (pages.SocioDemographic, ans)
         elif self.case == "other_freetime":
             ans["otherFreeTime"] = True
-            yield SubmissionMustFail (views.SocioDemographic, ans)
+            yield SubmissionMustFail (pages.SocioDemographic, ans)
             ans["otherFreeTimeSpecify"] = "Ride horses"
-            yield (views.SocioDemographic, ans)
-        yield (views.Results)
+            yield (pages.SocioDemographic, ans)
+        yield (pages.Results)
 """

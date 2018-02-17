@@ -124,7 +124,7 @@ class Decide(Discuss):
     
     template_name = 'main/Decide.html'
     
-    form_model = models.Player
+    form_model = 'player'
     form_fields = [
         'participate'
     ]

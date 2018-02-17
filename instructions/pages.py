@@ -8,7 +8,7 @@ class InstructionsPage(Page):
     pass
 
 class Quiz(Page):
-    form_model = models.Player
+    form_model = 'player'
     def get_form_fields(self):
         questions = [
         'qa1',

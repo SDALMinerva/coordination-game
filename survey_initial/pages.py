@@ -4,7 +4,7 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 class SocioDemographic(Page):
-    form_model = models.Player
+    form_model = 'player'
     def get_form_fields(self):
         questions = [
             "lastName",
@@ -84,7 +84,7 @@ class SocioDemographic(Page):
 
 
 class Behavioral1(Page):
-    form_model = models.Player
+    form_model = 'player'
     form_fields = [
         "daringness",
         "selflessness",
@@ -95,7 +95,7 @@ class Behavioral1(Page):
 
 
 class Behavioral2(Page):
-    form_model = models.Player
+    form_model = 'player'
     form_fields = ['timeScenerio_{}'.format(i) for i in range(1, 26)]
     
     def vars_for_template(self):
@@ -130,7 +130,7 @@ class Behavioral2(Page):
 
 
 class Behavioral3(Page):
-    form_model = models.Player
+    form_model = 'player'
     form_fields = ['coinScenerio_{}'.format(i) for i in range(1, 32)]
     
     def vars_for_template(self):
