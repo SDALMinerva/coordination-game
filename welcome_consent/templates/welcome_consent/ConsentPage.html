@@ -1,22 +1,6 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree %}
 
-{% block app_styles %}
-    <style type="text/css">
-        #university, h4 {
-            text-align: center;
-        }
-        
-        h4, ._otree-content > p, .blk {
-            margin-bottom: 30px;
-        }
-        
-        .subtitle {
-            color: gray;
-        }
-    </style>
-{% endblock %}
-
 {% block title %}
     Consent Agreement
 {% endblock %}
@@ -68,8 +52,32 @@
 
 <p>The VT Institutional Review Board (IRB) has approved this project. The VT Institutional Review Board (IRB) has approved this project. Should you have any questions or concerns about the study's conduct or your rights as a research subject, or need to report a research-related injury or event, you may contact the VT IRB Chair, Dr. David M. Moore at moored@vt.edu or (540) 231-4991.</p></div>
 
-<div class='blk'><b>Consent:</b> {% formfield player.consent label="By checking here, you indicate that: you are at least 18 years of age, the research has been explained to you, your questions have been fully answered, and you freely and voluntarily choose to participate in this research project. " %} </div>
+<div class='blk'><b>Consent:</b> {% formfield player.consent label="By checking here, you indicate that: you are at least 18 years of age, the research has been explained to you, your questions have been fully answered, and you freely and voluntarily choose to participate in this research project." %} </div>
 
 {% next_button %}
 
+{% endblock %}
+
+{% block app_styles %}
+    <style type="text/css">
+        #university, h4 {
+            text-align: center;
+        }
+        
+        h4, ._otree-content > p, .blk {
+            margin-bottom: 30px;
+        }
+        
+        .blk > p {
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: gray;
+        }
+        
+        input[type=checkbox] {
+            margin-left: -20px;
+        }
+    </style>
 {% endblock %}
