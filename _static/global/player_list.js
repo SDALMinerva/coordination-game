@@ -48,7 +48,7 @@ function PlayerList() {
 	    
 	    if (link){
 	       var privateMessage = document.createElement('button');
-		   privateMessage.className = "glyphicon glyphicon-envelope message-icon pull-right";
+		   privateMessage.className = "glyphicon glyphicon-envelope message-icon float-right";
 		   row.appendChild(privateMessage);
         }		
 		
@@ -64,7 +64,7 @@ function createMediaObject(img_src, heading, content){
 	media.className = "media";
 	
 	var media_object = document.createElement('img');
-	media_object.className = "media-object pull-left media-center";
+	media_object.className = "media-object float-left media-center";
 	media_object.src = img_src;
 	media_object.alt = "not found";
 	media_object.width = 30;
@@ -106,7 +106,7 @@ function PlayerButton(id, link) {
 		if (link){
 		    var element = document.createElement('a');
 		    element.href = "#" + id;
-		    element.className = "list-group-item player-button linking-button";
+		    element.className = "list-group-item list-group-item-action player-button linking-button";
 		    element.onclick = function () {
 				chat.setActiveChannel(id);
 				wall.changeId(id);
@@ -117,7 +117,7 @@ function PlayerButton(id, link) {
 			};
 		} else {
 		    var element = document.createElement('div');
-		    element.className = "list-group-item player-button";
+		    element.className = "list-group-item list-group-item-action player-button";
 		}
 		
 		element.appendChild(media);
