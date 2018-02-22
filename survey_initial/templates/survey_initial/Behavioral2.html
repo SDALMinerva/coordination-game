@@ -10,18 +10,19 @@
         <a href="#" onclick="setVals()">DEMO: Click here to fill vals.</a>
     {% endif %}
     <h4>Following are the hypothetical scenarios and ask you to imagine that you had to choose between a payment that you would receive in three months and a payment that you would receive in six months from now. The payment in 3 months will be the same in each scenario, the payment in 6 months will differ from scenario to scenario. For each of these scenarios we want to know how you would decide. You will now see an overview over all choices you will have to make.</h4>
-
+    
     <table class="table">
-    <tr>
-        <th>Scenario</th><th>In 3 months you get</th><th>In 6 months you get</th>
-    </tr>
-    {% for offer in sixMonthOffers %}
-    <tr>
-        <td>{{ offer.num }}</td>
-        <td><input type="radio" name="timeScenerio_{{ offer.num }}" value="1" required> $100.00</td>
-        <td><input type="radio" name="timeScenerio_{{ offer.num }}" value="2" required> ${{ offer.amt|floatformat:2 }}</td>
-    </tr>
-    {% endfor %}
+        <tr>
+            <th>Scenario</th><th>In 3 months you get</th><th>In 6 months you get</th>
+        </tr>
+        {% for field in form %}
+            <tr>
+                <td>{{ field.label }}</td>
+                {% for choice in field %}
+                    <td>{{ choice }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
     </table>
     
 

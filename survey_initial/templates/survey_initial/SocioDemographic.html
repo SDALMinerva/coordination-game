@@ -20,6 +20,7 @@
 			<div class="subquestion">
         {% elif field.html_name == "partTime" %}
             <label>What is your employment status?  Please check all that apply.</label>
+			<div class="subquestion">
         {% elif field.html_name == "sports" %}
             <label>How do you spend your free time?  Please check all that apply.</label>
 			<div class="subquestion">
@@ -56,16 +57,16 @@
         {% endif %}    
     
         {% if session.config.student_survey %}
-            var major = document.querySelectorAll("[for=\"id_major\"]")[0];
+            var major = document.querySelectorAll("[for=\"id_major_0\"]")[0];
             major.innerHTML = "What is your major?";
         {% endif %}
-    
+        
         var tribe1 = document.querySelectorAll("[for=\"id_tribe\"]")[0];
         tribe1.style.display = "inline-block";
         var tribe2 = document.getElementsByClassName("field-tribe")[0];
         tribe2.style.display = "inline-block";
         var tribeSpecify = tribe1.parentNode;
-        var tribe = document.querySelectorAll("[for=\"id_race_3\"]")[0].parentNode;
+        var tribe = document.querySelectorAll("[for=\"id_race_2\"]")[0].parentNode;
         tribe.appendChild(tribeSpecify);
         tribeSpecify.style.display = "inline-block";
         tribeSpecify.style.marginLeft = "5px";
@@ -76,7 +77,7 @@
         var otherAsian2 = document.getElementsByClassName("field-otherAsian")[0];
         otherAsian2.style.display = "inline-block";
         var otherAsianSpecify = otherAsian1.parentNode;
-        var otherAsian = document.querySelectorAll("[for=\"id_race_13\"]")[0].parentNode;
+        var otherAsian = document.querySelectorAll("[for=\"id_race_12\"]")[0].parentNode;
         otherAsian.appendChild(otherAsianSpecify);
         otherAsianSpecify.style.display = "inline-block";
         otherAsianSpecify.style.marginLeft = "5px";
@@ -87,7 +88,7 @@
         var otherPacificIslander2 = document.getElementsByClassName("field-otherPacificIslander")[0];
         otherPacificIslander2.style.display = "inline-block";
         var otherPacificIslanderSpecify = otherPacificIslander1.parentNode;
-        var otherPacificIslander = document.querySelectorAll("[for=\"id_race_14\"]")[0].parentNode;
+        var otherPacificIslander = document.querySelectorAll("[for=\"id_race_13\"]")[0].parentNode;
         otherPacificIslander.appendChild(otherPacificIslanderSpecify);
         otherPacificIslanderSpecify.style.display = "inline-block";
         otherPacificIslanderSpecify.style.marginLeft = "5px";
@@ -98,7 +99,7 @@
         var otherRace2 = document.getElementsByClassName("field-otherRace")[0];
         otherRace2.style.display = "inline-block";
         var otherRaceSpecify = otherRace1.parentNode;
-        var otherRace = document.querySelectorAll("[for=\"id_race_15\"]")[0].parentNode;
+        var otherRace = document.querySelectorAll("[for=\"id_race_14\"]")[0].parentNode;
         otherRace.appendChild(otherRaceSpecify);
         otherRaceSpecify.style.display = "inline-block";
         otherRaceSpecify.style.marginLeft = "5px";
@@ -128,6 +129,10 @@
 
 {% block app_styles %}
     <style type="text/css">
+        label {
+            font-weight: bold;
+        }
+        
         .subquestion label, li label {
             font-weight: normal;
         }

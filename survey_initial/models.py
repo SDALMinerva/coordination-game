@@ -280,24 +280,24 @@ class Group(BaseGroup):
 class Player(BasePlayer):
 
     lastName = models.StringField(
-        verbose_name = "Last Name",
+        label = "Last Name",
     )
     
     firstName = models.StringField(
-        verbose_name = "First Name",
+        label = "First Name",
     )
     
     middleInitial = models.StringField(
-        verbose_name = "Middle Initial",
+        label = "Middle Initial",
         max_length = 1,
     )
     
     age = models.PositiveIntegerField(
-        verbose_name = "What is your age (years)?",
+        label = "What is your age (years)?",
     )
 
     sexBirth = models.StringField(
-        verbose_name = "ASSIGNED SEX AT BIRTH: What sex were you assigned at birth (on your original birth certificate)?",
+        label = "ASSIGNED SEX AT BIRTH: What sex were you assigned at birth (on your original birth certificate)?",
         choices = [
             "Male",
             "Female",
@@ -306,7 +306,7 @@ class Player(BasePlayer):
     )
     
     sexCurrent = models.StringField(
-        verbose_name = "CURRENT GENDER IDENTITY:  How do you describe yourself? (check one)?",
+        label = "CURRENT GENDER IDENTITY:  How do you describe yourself? (check one)?",
         choices = [
             "Male",
             "Female",
@@ -317,12 +317,12 @@ class Player(BasePlayer):
     )
 
     ethnicity = models.StringField(
-        verbose_name = "Enter your ethnic group, if you identify with one.",
+        label = "Enter your ethnic group, if you identify with one.",
     )
     
     # TODO: Modify "Please specify" options s.t. if choice selected, must fill out please specify
     race = models.PositiveIntegerField(
-        verbose_name = "What is your race?",
+        label = "What is your race?",
         choices = [
             [1, "White"],
             [2, "Black or African American"],
@@ -344,27 +344,27 @@ class Player(BasePlayer):
     )
     
     tribe = models.StringField(
-        verbose_name = "(print names of enrolled or principle tribe)",
+        label = "(print names of enrolled or principle tribe)",
         blank = True,
     )
     
     otherAsian = models.StringField(
-        verbose_name = "(print race)",
+        label = "(print race)",
         blank = True,
     )
     
     otherPacificIslander = models.StringField(
-        verbose_name = "(print race)",
+        label = "(print race)",
         blank = True,
     )
     
     otherRace = models.StringField(
-        verbose_name = "(print race)",
+        label = "(print race)",
         blank = True,
     )
     
     maritalStatus = models.PositiveIntegerField(
-        verbose_name = "What is your marital status?",
+        label = "What is your marital status?",
         choices = [
             [1, "Single"],
             [2, "Married"],
@@ -376,36 +376,36 @@ class Player(BasePlayer):
     )
     
     country_born = models.StringField(
-        verbose_name = "In which country were you born?",
+        label = "In which country were you born?",
         choices = Constants.countries,
     )
 
     # What is your current residence?
     country_reside = models.StringField(
-        verbose_name = "Country",
+        label = "Country",
         choices = Constants.countries,
     )
     
     province_reside = models.StringField(
-        verbose_name = "State/Province",
+        label = "State/Province",
         blank = True,
     )
     
     city_reside = models.StringField(
-        verbose_name = "City",
+        label = "City",
     )
     # end residence questions
     
     reside_len = models.PositiveIntegerField(
-        verbose_name = "How long have you been at your current residence?",
+        label = "How long have you been at your current residence?",
     )
     
     socialContact = models.PositiveIntegerField(
-        verbose_name = "Not including family members or co-workers, how many of your friends do you see weekly? ",
+        label = "Not including family members or co-workers, how many of your friends do you see weekly? ",
     )
     
     degree = models.PositiveIntegerField(
-        verbose_name = "What is your highest degree?",
+        label = "What is your highest degree?",
         choices = [
             [1, "High School Graduate"],
             [2, "Some College (no degree)"],
@@ -419,7 +419,7 @@ class Player(BasePlayer):
     )
     
     major = models.PositiveIntegerField(
-        verbose_name = "If you are a college graduate what was your major?",
+        label = "If you are a college graduate what was your major?",
         choices = [
             [1, "Economics"],
             [2, "Engineering"],
@@ -444,137 +444,137 @@ class Player(BasePlayer):
     
     # "Have you taken college-level courses in the following subjects?
     subject_econ = models.BooleanField(
-        verbose_name = "Economics",
+        label = "Economics",
         widget = widgets.RadioSelectHorizontal()
     )
     
     subject_finance = models.BooleanField(
-        verbose_name = "Finance",
+        label = "Finance",
         widget = widgets.RadioSelectHorizontal()
     )
     
     subject_stat = models.BooleanField(
-        verbose_name = "Statistics",
+        label = "Statistics",
         widget = widgets.RadioSelectHorizontal()
     )
     # end college courses questions
     
     # What is your employment status? Please check all that apply.
     partTime = models.BooleanField(
-        verbose_name = "Part-time paid employment outside the home",
+        label = "Part-time paid employment outside the home",
         widget = widgets.CheckboxInput(),
     )
     
     fullTime = models.BooleanField(
-        verbose_name = "Full-time paid employment outside the home",
+        label = "Full-time paid employment outside the home",
         widget = widgets.CheckboxInput(),
     )
     
     homeEmployed = models.BooleanField(
-        verbose_name = "Part- or full-time paid employment in the home",
+        label = "Part- or full-time paid employment in the home",
         widget = widgets.CheckboxInput(),
     )
     
     homemaker = models.BooleanField(
-        verbose_name = "Homemaker or other unpaid work in the home",
+        label = "Homemaker or other unpaid work in the home",
         widget = widgets.CheckboxInput(),
     )
     
     fullTimeStudent = models.BooleanField(
-        verbose_name = "Going to school full-time",
+        label = "Going to school full-time",
         widget = widgets.CheckboxInput(),
     )
     
     partTimeStudent = models.BooleanField(
-        verbose_name = "Going to school part-time",
+        label = "Going to school part-time",
         widget = widgets.CheckboxInput(),
     )
     
     selfEmployed = models.BooleanField(
-        verbose_name = "Self-employed",
+        label = "Self-employed",
         widget = widgets.CheckboxInput(),
     )
     
     lookingWork = models.BooleanField(
-        verbose_name = "Out of work and looking for work",
+        label = "Out of work and looking for work",
         widget = widgets.CheckboxInput(),
     )
     
     notLookingWork = models.BooleanField(
-        verbose_name = "Out of work but not currently looking for work",
+        label = "Out of work but not currently looking for work",
         widget = widgets.CheckboxInput(),
     )
     
     military = models.BooleanField(
-        verbose_name = "Military",
+        label = "Military",
         widget = widgets.CheckboxInput(),
     )
     
     retired = models.BooleanField(
-        verbose_name = "Retired",
+        label = "Retired",
         widget = widgets.CheckboxInput(),
     )
     
     unableWork = models.BooleanField(
-        verbose_name = "Unable to work",
+        label = "Unable to work",
         widget = widgets.CheckboxInput(),
     )
     
     otherWork = models.BooleanField(
-        verbose_name = "Other",
+        label = "Other",
         widget = widgets.CheckboxInput(),
     )
     
     otherWorkSpecify = models.StringField(
-        verbose_name = "(print other)",
+        label = "(print other)",
         blank = True,
     )
     # end employment questions
     
     # How do you spend your free time?  Please check all that apply.
     sports = models.BooleanField(
-        verbose_name = "Play on sports team/club, such as for soccer, football, hockey, basketball, baseball",
+        label = "Play on sports team/club, such as for soccer, football, hockey, basketball, baseball",
         widget = widgets.CheckboxInput(),
     )
     
     performingArts = models.BooleanField(
-        verbose_name = "Part of a performing arts group such as singing, dancing",
+        label = "Part of a performing arts group such as singing, dancing",
         widget = widgets.CheckboxInput(),
     )
     
     music = models.BooleanField(
-        verbose_name = "Play a musical instrument in a band or take lessons",
+        label = "Play a musical instrument in a band or take lessons",
         widget = widgets.CheckboxInput(),
     )
     
     volunteer = models.BooleanField(
-        verbose_name ="Do volunteer work such as work in homeless shelter or package food for the hungry",
+        label ="Do volunteer work such as work in homeless shelter or package food for the hungry",
         widget = widgets.CheckboxInput(),
     )
     
     hobby = models.BooleanField(
-        verbose_name = "I have hobbies such as book reading or collecting, drawing, stamp collecting, photography, hiking, bike riding, etc.",
+        label = "I have hobbies such as book reading or collecting, drawing, stamp collecting, photography, hiking, bike riding, etc.",
         widget = widgets.CheckboxInput(),
     )
     
     otherFreeTime = models.BooleanField(
-        verbose_name = "Other",
+        label = "Other",
         widget = widgets.CheckboxInput(),
     )
     
     otherFreeTimeSpecify = models.StringField(
-        verbose_name = "(print other)",
+        label = "(print other)",
         blank = True,
     )
     # end free time questions
     
     occupation = models.StringField(
-        verbose_name = "What is your occupation, if applicable?",
+        label = "What is your occupation, if applicable?",
     )
     
     # Household Information
     income = models.PositiveIntegerField(
-        verbose_name = "What is your annual household income, in U.S. dollars?",
+        label = "What is your annual household income, in U.S. dollars?",
         choices = [
             [1, "Less than $25,000"],
             [2, "$25,000 - $49,999"],
@@ -586,77 +586,77 @@ class Player(BasePlayer):
     )
 
     numRoommates = models.PositiveIntegerField(
-        verbose_name = "How many people live in your residence?",
+        label = "How many people live in your residence?",
     )
     
     # How many of the people living in your residence are in each of the following age categories?
     residents0to6 = models.PositiveIntegerField(
-        verbose_name = "Less than equal to 6 years?",
+        label = "Less than equal to 6 years?",
     )
     
     residents7to12 = models.PositiveIntegerField(
-        verbose_name = "7 to 12 years?",
+        label = "7 to 12 years?",
     )
     
     residents13to18 = models.PositiveIntegerField(
-        verbose_name = "13 to 18 years?",
+        label = "13 to 18 years?",
     )
     
     residents19to65 = models.PositiveIntegerField(
-        verbose_name = "19 to 65 years?",
+        label = "19 to 65 years?",
     )
     
     residents65up = models.PositiveIntegerField(
-        verbose_name = "Over 65 years?",
+        label = "Over 65 years?",
     )
     # end residents age questions
     
     # Of the people living in your residence, how many ...
     activitySchool = models.PositiveIntegerField(
-        verbose_name = "Attend day care, school, or college?",
+        label = "Attend day care, school, or college?",
     )
     
     activityAfterSchool = models.PositiveIntegerField(
-        verbose_name = "Participate in after-school group activities?",
+        label = "Participate in after-school group activities?",
     )
     
     activityGroup = models.PositiveIntegerField(
-        verbose_name = "Participate in weekend group activities?",
+        label = "Participate in weekend group activities?",
     )
     
     activitySports = models.PositiveIntegerField(
-        verbose_name = "Play on organized sports team(s)?",
+        label = "Play on organized sports team(s)?",
     )
     
     activityFlu = models.PositiveIntegerField(
-        verbose_name = "Have taken this year’s flu vaccine?",
+        label = "Have taken this year’s flu vaccine?",
     )
     
     activityWork = models.PositiveIntegerField(
-        verbose_name = "Work outside the home for wages?",
+        label = "Work outside the home for wages?",
     )
     
     activityPubTrans = models.PositiveIntegerField(
-        verbose_name = "Use public transportation?",
+        label = "Use public transportation?",
     )
     
     activityEvening = models.PositiveIntegerField(
-        verbose_name = "Participate in evening or weekend group activities?",
+        label = "Participate in evening or weekend group activities?",
     )
     
     activityCollegeClubs = models.PositiveIntegerField(
-        verbose_name = "Participate in college clubs and organizations?"
+        label = "Participate in college clubs and organizations?"
     )
     
     activityPartTimeWork = models.PositiveIntegerField(
-        verbose_name = "Have a part-time job?"
+        label = "Have a part-time job?"
     )
     # end activity questions
     
     # start behavioral questions
     # start preference elicitation
     daringness = models.PositiveIntegerField(
-        verbose_name = "How do you see yourself? Are you a person who is generally willing to take risks, or do you try to avoid taking risks? Please indicate your answer on a scale from 0 to 10, where a 0 means \"not at all willing to take risks\", and a 10 means \"very willing to take risks\". You can also use the values in between to indicate where you fall on the scale.",
+        label = "How do you see yourself? Are you a person who is generally willing to take risks, or do you try to avoid taking risks? Please indicate your answer on a scale from 0 to 10, where a 0 means \"not at all willing to take risks\", and a 10 means \"very willing to take risks\". You can also use the values in between to indicate where you fall on the scale.",
         choices = [
             [1, "1"],
             [2, "2"],
@@ -673,7 +673,7 @@ class Player(BasePlayer):
     )
     
     selflessness = models.PositiveIntegerField(
-        verbose_name = "How do you see yourself? In comparison to others are you a person who is generally willing to give up something today in order to benefit from that in the future, or are you not willing to do so in comparison to others? Please indicate your answer on a scale from 0 to 10, where a 0 means \"not at all willing to give up something\", and a 10 means \"very willing to give up something\". You can use the values in between to indicate where you fall on the scale.",
+        label = "How do you see yourself? In comparison to others are you a person who is generally willing to give up something today in order to benefit from that in the future, or are you not willing to do so in comparison to others? Please indicate your answer on a scale from 0 to 10, where a 0 means \"not at all willing to give up something\", and a 10 means \"very willing to give up something\". You can use the values in between to indicate where you fall on the scale.",
         choices = [
             [1, "1"],
             [2, "2"],
@@ -690,7 +690,7 @@ class Player(BasePlayer):
     )
     
     trustingness = models.PositiveIntegerField(
-        verbose_name = "How well does the following statement describe you as a person? As long as I am not convinced otherwise, I assume that people have only the best intentions. Please indicate your answer on a scale from 0 to 10. A 0 means \"does not describe me at all\", a 10 means \"describes me very well\". You can use the values in between to indicate where you fall on the scale.",
+        label = "How well does the following statement describe you as a person? As long as I am not convinced otherwise, I assume that people have only the best intentions. Please indicate your answer on a scale from 0 to 10. A 0 means \"does not describe me at all\", a 10 means \"describes me very well\". You can use the values in between to indicate where you fall on the scale.",
         choices = [
             [1, "1"],
             [2, "2"],
@@ -707,12 +707,12 @@ class Player(BasePlayer):
     )
     
     donation = models.PositiveIntegerField(
-        verbose_name = "Imagine the following situation: you won 1,000 Euro in a lottery. Considering your current situation, how much would you donate to charity?",
+        label = "Imagine the following situation: you won 1,000 Euro in a lottery. Considering your current situation, how much would you donate to charity?",
         max = 1000,
     )
     
     punishInclination = models.PositiveIntegerField(
-        verbose_name = "How do you see yourself? Are you a person who is generally willing to punish unfair behavior even if it is costly? Please indicate your answer on a scale from 0 to 10. A 0 means “not at all willing to punish”, a 10 means “very willing to punish”. You can use the values in between to indicate where you fall on the scale.",
+        label = "How do you see yourself? Are you a person who is generally willing to punish unfair behavior even if it is costly? Please indicate your answer on a scale from 0 to 10. A 0 means “not at all willing to punish”, a 10 means “very willing to punish”. You can use the values in between to indicate where you fall on the scale.",
         choices = [
             [1, "1"],
             [2, "2"],
@@ -731,6 +731,7 @@ class Player(BasePlayer):
     
     # start preference module i
     timeScenerio_1 = models.PositiveIntegerField(
+        label = "1",
         choices = [
             [1, "100$"],
             [2, "100$"],
@@ -739,6 +740,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_2 = models.PositiveIntegerField(
+        label = "2",
         choices = [
             [1, "100$"],
             [2, "103$"],
@@ -747,6 +749,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_3 = models.PositiveIntegerField(
+        label = "3",
         choices = [
             [1, "100$"],
             [2, "106.10$"],
@@ -755,6 +758,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_4 = models.PositiveIntegerField(
+        label = "4",
         choices = [
             [1, "100$"],
             [2, "109.20$"],
@@ -763,6 +767,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_5 = models.PositiveIntegerField(
+        label = "5",
         choices = [
             [1, "100$"],
             [2, "112.40$"],
@@ -771,6 +776,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_6 = models.PositiveIntegerField(
+        label = "6",
         choices = [
             [1, "100$"],
             [2, "115.60$"],
@@ -779,6 +785,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_7 = models.PositiveIntegerField(
+        label = "7",
         choices = [
             [1, "100$"],
             [2, "118.80$"],
@@ -787,6 +794,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_8 = models.PositiveIntegerField(
+        label = "8",
         choices = [
             [1, "100$"],
             [2, "122.10$"],
@@ -795,6 +803,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_9 = models.PositiveIntegerField(
+        label = "9",
         choices = [
             [1, "100$"],
             [2, "125.40$"],
@@ -803,6 +812,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_10 = models.PositiveIntegerField(
+        label = "10",
         choices = [
             [1, "100$"],
             [2, "128.80$"],
@@ -811,6 +821,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_11 = models.PositiveIntegerField(
+        label = "11",
         choices = [
             [1, "100$"],
             [2, "132.30$"],
@@ -819,6 +830,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_12 = models.PositiveIntegerField(
+        label = "12",
         choices = [
             [1, "100$"],
             [2, "135.70$"],
@@ -827,6 +839,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_13 = models.PositiveIntegerField(
+        label = "13",
         choices = [
             [1, "100$"],
             [2, "139.20$"],
@@ -835,6 +848,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_14 = models.PositiveIntegerField(
+        label = "14",
         choices = [
             [1, "100$"],
             [2, "142.80$"],
@@ -843,6 +857,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_15 = models.PositiveIntegerField(
+        label = "15",
         choices = [
             [1, "100$"],
             [2, "146.40$"],
@@ -851,6 +866,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_16 = models.PositiveIntegerField(
+        label = "16",
         choices = [
             [1, "100$"],
             [2, "150.10$"],
@@ -859,6 +875,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_17 = models.PositiveIntegerField(
+        label = "17",
         choices = [
             [1, "100$"],
             [2, "153.80$"],
@@ -867,6 +884,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_18 = models.PositiveIntegerField(
+        label = "18",
         choices = [
             [1, "100$"],
             [2, "157.50$"],
@@ -875,6 +893,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_19 = models.PositiveIntegerField(
+        label = "19",
         choices = [
             [1, "100$"],
             [2, "161.30$"],
@@ -883,6 +902,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_20 = models.PositiveIntegerField(
+        label = "20",
         choices = [
             [1, "100$"],
             [2, "165.10$"],
@@ -891,6 +911,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_21 = models.PositiveIntegerField(
+        label = "21",
         choices = [
             [1, "100$"],
             [2, "169.00$"],
@@ -899,6 +920,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_22 = models.PositiveIntegerField(
+        label = "22",
         choices = [
             [1, "100$"],
             [2, "172.90$"],
@@ -907,6 +929,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_23 = models.PositiveIntegerField(
+        label = "23",
         choices = [
             [1, "100$"],
             [2, "176.90$"],
@@ -915,6 +938,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_24 = models.PositiveIntegerField(
+        label = "24",
         choices = [
             [1, "100$"],
             [2, "180.90$"],
@@ -923,6 +947,7 @@ class Player(BasePlayer):
     )
     
     timeScenerio_25 = models.PositiveIntegerField(
+        label = "25",
         choices = [
             [1, "100$"],
             [2, "185.00$"],
@@ -933,6 +958,7 @@ class Player(BasePlayer):
     
     # start preference module ii
     coinScenerio_1 = models.PositiveIntegerField(
+        label = "1",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "0$"],
@@ -941,6 +967,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_2 = models.PositiveIntegerField(
+        label = "2",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "10$"],
@@ -949,6 +976,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_3 = models.PositiveIntegerField(
+        label = "3",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "20$"],
@@ -957,6 +985,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_4 = models.PositiveIntegerField(
+        label = "4",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "30$"],
@@ -965,6 +994,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_5 = models.PositiveIntegerField(
+        label = "5",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "40$"],
@@ -973,6 +1003,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_6 = models.PositiveIntegerField(
+        label = "6",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "50$"],
@@ -981,6 +1012,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_7 = models.PositiveIntegerField(
+        label = "7",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "60$"],
@@ -989,6 +1021,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_8 = models.PositiveIntegerField(
+        label = "8",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "70$"],
@@ -997,6 +1030,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_9 = models.PositiveIntegerField(
+        label = "9",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "80$"],
@@ -1005,6 +1039,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_10 = models.PositiveIntegerField(
+        label = "10",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "90$"],
@@ -1013,6 +1048,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_11 = models.PositiveIntegerField(
+        label = "11",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "100$"],
@@ -1021,6 +1057,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_12 = models.PositiveIntegerField(
+        label = "12",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "110$"],
@@ -1029,6 +1066,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_13 = models.PositiveIntegerField(
+        label = "13",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "120$"],
@@ -1037,6 +1075,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_14 = models.PositiveIntegerField(
+        label = "14",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "130$"],
@@ -1045,6 +1084,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_15 = models.PositiveIntegerField(
+        label = "15",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "140$"],
@@ -1053,6 +1093,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_16 = models.PositiveIntegerField(
+        label = "16",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "150$"],
@@ -1061,6 +1102,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_17 = models.PositiveIntegerField(
+        label = "17",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "160$"],
@@ -1069,6 +1111,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_18 = models.PositiveIntegerField(
+        label = "18",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "170$"],
@@ -1077,6 +1120,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_19 = models.PositiveIntegerField(
+        label = "19",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "180$"],
@@ -1085,6 +1129,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_20 = models.PositiveIntegerField(
+        label = "20",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "190$"],
@@ -1093,6 +1138,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_21 = models.PositiveIntegerField(
+        label = "21",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "200$"],
@@ -1101,6 +1147,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_22 = models.PositiveIntegerField(
+        label = "22",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "210$"],
@@ -1109,6 +1156,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_23 = models.PositiveIntegerField(
+        label = "23",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "220$"],
@@ -1117,6 +1165,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_24 = models.PositiveIntegerField(
+        label = "24",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "230$"],
@@ -1125,6 +1174,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_25 = models.PositiveIntegerField(
+        label = "25",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "240$"],
@@ -1133,6 +1183,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_26 = models.PositiveIntegerField(
+        label = "26",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "250$"],
@@ -1141,6 +1192,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_27 = models.PositiveIntegerField(
+        label = "27",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "260$"],
@@ -1149,6 +1201,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_28 = models.PositiveIntegerField(
+        label = "28",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "270$"],
@@ -1157,6 +1210,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_29 = models.PositiveIntegerField(
+        label = "29",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "280$"],
@@ -1165,6 +1219,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_30 = models.PositiveIntegerField(
+        label = "30",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "290$"],
@@ -1173,6 +1228,7 @@ class Player(BasePlayer):
     )
 
     coinScenerio_31 = models.PositiveIntegerField(
+        label = "31",
         choices = [
             [1, "Tail = 300$    Head = 0$"],
             [2, "300$"],
