@@ -16,7 +16,7 @@ If Cat chooses <strong>participate</strong> and <strong>2 other players</strong>
 </p>
 
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
         <div class="form-group required">
             <div class="controls  field-qa1 tf">
                 <ul>
@@ -54,7 +54,7 @@ If Cat chooses <strong>participate</strong> and <strong>2 other players</strong>
 Suppose Tiger has a threshold <strong>T=3</strong> in a round. If Tiger chooses <strong>not participate</strong>, her earnings are 0 points in that round. 
 </p>
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
         <div class="form-group required">
             <div class="controls  field-qa2 tf">
                 <ul>
@@ -90,7 +90,7 @@ Suppose Elephant has a threshold <strong>T=1</strong> in a round, her earning fo
 equal to 100 points in that round.
 </p>
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
         <div class="form-group required">
             <div class="controls  field-qa3 tf">
                 <ul>
@@ -139,7 +139,7 @@ Each player’s choices for the round are shown by colors for three different sc
 </p>
 
 <div class="row">
-<div class="col-xs-4">
+<div class="col-sm-4">
 <h4>Scenario A</h4>
 <img style="max-height: 250px" class="img img-responsive" src={% static "instructions/qb1a.png" %} alt="">
 <div class="form-group required">
@@ -155,13 +155,13 @@ Each player’s choices for the round are shown by colors for three different sc
     </div><!--- .controls -->
 </div><!--- .form-group -->
 
-<div class="col-xs-10 question-message thin-text qb1a"> 
+<div class="col-sm-10 question-message thin-text qb1a"> 
     <span class="question-explain ">Duck has chosen participate and 2 other players have chosen participate. Therefore, Duck earns the maximum payment of 100 points.</span>
 </div>
 </div>
 
 
-<div style = "border-left: 1px solid gray; border-right: 1px solid gray;" class="col-xs-4">
+<div style = "border-left: 1px solid gray; border-right: 1px solid gray;" class="col-sm-4">
 <h4>Scenario B</h4>
 <img style="max-height: 250px" class="img img-responsive" src={% static "instructions/qb1b.png" %} alt="">
 <div class="form-group required">
@@ -177,13 +177,13 @@ Each player’s choices for the round are shown by colors for three different sc
     </div><!--- .controls -->
 </div><!--- .form-group -->
 
-<div class="col-xs-10 question-message thin-text qb1b"> 
+<div class="col-sm-10 question-message thin-text qb1b"> 
     <span class="question-explain ">Duck has chosen participate and 1 other player has chosen participate. Therefore, Duck earns the maximum payment of 100 points.</span>
 </div>
 </div>
 
 
-<div class="col-xs-4">
+<div class="col-sm-4">
 <h4>Scenario C</h4>
 <img style="max-height: 250px" class="img img-responsive" src={% static "instructions/qb1c.png" %} alt="">
 <div class="form-group required">
@@ -199,7 +199,7 @@ Each player’s choices for the round are shown by colors for three different sc
     </div><!--- .controls -->
 </div><!--- .form-group -->
 
-<div class="col-xs-10 question-message thin-text qb1c"> 
+<div class="col-sm-10 question-message thin-text qb1c"> 
     <span class="question-explain">Duck has chosen participate but no one else has chosen participate. Therefore, he earns the smallest payment of 0 points.</span>
 </div>
 </div>
@@ -218,16 +218,16 @@ chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle 
 </p>
 
 <div class="row">
-<div class="col-xs-4">
+<div class="col-sm-4">
 <img class="img img-responsive" src={% static "instructions/qb2.png" %} alt="">
 </div>
-<div class="col-xs-8">
+<div class="col-sm-8">
 
 <div class="row in-line-select">
 <div class="form-group required" >
     <label class="control-label" for="id_qb2a">Bull's earnings are:</label>
     <div class="controls  field-qb2a">
-        <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-4" style="display: inline-block; min-width: 205px;">
         <select name="qb2a" required id="id_qb2a" class="form-control" style="display: inline-block">
 	       <option value="">---------</option>
 	       <option class="ok" value="100 points">100 points</option>
@@ -236,7 +236,7 @@ chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle 
         </select>
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
-        <div class="col-xs-8 thin-text question-message qb2a" style="display: inline-block;">
+        <div class="col-sm-8 thin-text question-message qb2a" style="display: inline-block;">
             <span class="question-explain">Bull’s threshold is T=1: He has chosen participate and 1 other player (Chicken) has chosen participate, his earning in this round is 100 points. </span>
         </div>
     </div><!--- .controls -->
@@ -248,7 +248,7 @@ chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle 
 <div class="form-group required" >
     <label class="control-label" for="id_qb2b">Chicken's earnings are:</label>
     <div class="controls  field-qb2b">
-        <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-4" style="display: inline-block; min-width: 205px;">
         <select name="qb2b" required id="id_qb2b" class="form-control" style="display: inline-block">
 	       <option value="">---------</option>
 	       <option class="ok" value="100 points">100 points</option>
@@ -257,7 +257,7 @@ chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle 
         </select>
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
-        <div class="col-xs-8 thin-text question-message qb2b" style="display: inline-block;">
+        <div class="col-sm-8 thin-text question-message qb2b" style="display: inline-block;">
             <span class="question-explain">Chicken’s threshold is T=1: She has chosen participate and 1 other player (Bull) has chosen participate, her earning in this round is 100 points.</span>
         </div>
     </div><!--- .controls -->
@@ -269,7 +269,7 @@ chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle 
 <div class="form-group required" >
     <label class="control-label" for="id_qb2c">Eagle's earnings are:</label>
     <div class="controls  field-qb2c">
-        <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-4" style="display: inline-block; min-width: 205px;">
         <select name="qb2c" required id="id_qb2c" class="form-control" style="display: inline-block">
 	       <option value="">---------</option>
 	       <option value="100 points">100 points</option>
@@ -278,7 +278,7 @@ chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle 
         </select>
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
-        <div class="col-xs-8 thin-text question-message qb2c" style="display: inline-block;">
+        <div class="col-sm-8 thin-text question-message qb2c" style="display: inline-block;">
             <span class="question-explain">Eagle has chosen not participate, she earns 50 points regardless of what other players do.</span>
         </div>
     </div><!--- .controls -->
@@ -290,7 +290,7 @@ chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle 
 <div class="form-group required">
     <label class="control-label" for="id_qb2d">If Eagle had chosen to participate, her earnings would be:</label>
     <div class="controls  field-qb2d">
-        <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-4" style="display: inline-block; min-width: 205px;">
         <select name="qb2d" required id="id_qb2d" class="form-control" style="display: inline-block">
 	       <option value="">---------</option>
 	       <option class="ok" value="100 points">100 points</option>
@@ -299,7 +299,7 @@ chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle 
         </select>
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
-        <div class="col-xs-8 thin-text question-message qb2d" style="display: inline-block;">
+        <div class="col-sm-8 thin-text question-message qb2d" style="display: inline-block;">
             <span class="question-explain">Eagle’s threshold is T=1: If Eagle choses participate, she needs at least 1 other player to participate to earn 100 points. Since 2 other players (Chicken and Bull) have chosen participate, she would earn 100 points.</span>
         </div>
     </div><!--- .controls -->
@@ -318,16 +318,16 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
 </p>
 
 <div class="row">
-<div class="col-xs-5">
+<div class="col-sm-5">
 <img class="img img-responsive" src={% static "instructions/qb3.png" %} alt="">
 </div>
-<div class="col-xs-7">
+<div class="col-sm-7">
 
 <div class="row in-line-select">
 <div class="form-group required">
     <label class="control-label" for="id_qb3a">Cat's earnings are:</label>
     <div class="controls  field-qb3a">
-        <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-4" style="display: inline-block; min-width: 205px;">
         <select name="qb3a" required id="id_qb3a" class="form-control" style="display: inline-block">
 	       <option value="">---------</option>
 	       <option class="ok" value="100 points">100 points</option>
@@ -336,7 +336,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
         </select>
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
-        <div class="col-xs-8 thin-text question-message qb3a" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-8 thin-text question-message qb3a" style="display: inline-block; min-width: 205px;">
             <span class="question-explain">Cat’s threshold is T=1: He has chosen participate and 1 other player (Giraffe) has chosen participate, his earning in this round is 100 points.</span>
         </div>
     </div><!--- .controls -->
@@ -348,7 +348,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
 <div class="form-group required ''">
     <label class="control-label" for="id_qb3b">Giraffe's earnings are:</label>
     <div class="controls  field-qb3b">
-        <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-4" style="display: inline-block; min-width: 205px;">
         <select name="qb3b" required id="id_qb3b" class="form-control" style="display: inline-block">
 	       <option value="">---------</option>
 	       <option class="ok" value="100 points">100 points</option>
@@ -357,7 +357,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
         </select>
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
-        <div class="col-xs-8 thin-text question-message qb3b" style="display: inline-block;">
+        <div class="col-sm-8 thin-text question-message qb3b" style="display: inline-block;">
             <span class="question-explain">Giraffe’s threshold is T=1: She has chosen participate and 1 other player (Cat) has chosen participate, her earning in this round is 100 points.</span>
         </div>
     </div><!--- .controls -->
@@ -368,7 +368,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
 <div class="form-group required" >
     <label class="control-label" for="id_qb3c">Beaver's earnings are:</label>
     <div class="controls  field-qb3c">
-        <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-4" style="display: inline-block; min-width: 205px;">
         <select name="qb3c" required id="id_qb3c" class="form-control" style="display: inline-block">
 	       <option value="">---------</option>
 	       <option value="100 points">100 points</option>
@@ -377,7 +377,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
         </select>
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
-        <div class="col-xs-8 thin-text question-message qb3c" style="display: inline-block;">
+        <div class="col-sm-8 thin-text question-message qb3c" style="display: inline-block;">
             <span class="question-explain">Beaver has chosen not participate, she earns 50 points regardless of what other players do.</span>
         </div>
     </div><!--- .controls -->
@@ -388,7 +388,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
 <div class="form-group required" >
     <label class="control-label" for="id_qb3d">Fish's earnings are:</label>
     <div class="controls  field-qb3d">
-        <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-4" style="display: inline-block; min-width: 205px;">
         <select name="qb3d" required id="id_qb3d" class="form-control" style="display: inline-block">
 	       <option value="">---------</option>
 	       <option value="100 points">100 points</option>
@@ -397,7 +397,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
         </select>
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
-        <div class="col-xs-8 thin-text question-message qb3d" style="display: inline-block;">
+        <div class="col-sm-8 thin-text question-message qb3d" style="display: inline-block;">
             <span class="question-explain">Fish has chosen not participate, she earns 50 points regardless of what other players do.</span>
         </div>
     </div><!--- .controls -->
@@ -408,7 +408,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
 <div class="form-group required ''">
     <label class="control-label" for="id_qb3e">If Beaver had chosen to participate, her earnings would be:</label>
     <div class="controls  field-qb3e">
-        <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-4" style="display: inline-block; min-width: 205px;">
         <select name="qb3e" required id="id_qb3e" class="form-control" style="display: inline-block">
 	       <option value="">---------</option>
 	       <option value="100 points">100 points</option>
@@ -417,7 +417,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
         </select>
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
-        <div class="col-xs-8 thin-text question-message qb3e" style="display: inline-block;">
+        <div class="col-sm-8 thin-text question-message qb3e" style="display: inline-block;">
             <span class="question-explain">Beaver’s threshold is T=3: If Beaver choses participate, she needs at least 3 other players to participate to earn 100 points. Since only 2 other players (Giraffe and Cat) have chosen participate, she would earn 0 points.</span>
         </div>
     </div><!--- .controls -->
@@ -428,7 +428,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
 <div class="form-group required ''">
     <label class="control-label" for="id_qb3f">If Beaver and Fish had chosen to participate, their earnings would be:</label>
     <div class="controls  field-qb3f">
-        <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
+        <div class="col-sm-4" style="display: inline-block; min-width: 205px;">
         <select name="qb3f" required id="id_qb3f" class="form-control" style="display: inline-block">
 	       <option value="">---------</option>
 	       <option class="ok" value="100 points">100 points</option>
@@ -437,7 +437,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
         </select>
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
-        <div class="col-xs-8 thin-text question-message qb3f" style="display: inline-block;">
+        <div class="col-sm-8 thin-text question-message qb3f" style="display: inline-block;">
             <span class="question-explain">Beaver’s threshold is T=3: If Beaver choses participate, she needs at least 3 other players to participate to earn 100 points. Since 3 other players (Giraffe, Cat and Fish) would have chosen participate in this scenario, she would earn 100 points.</span>
         </div>
     </div><!--- .controls -->
