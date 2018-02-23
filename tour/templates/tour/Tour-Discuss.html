@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-Tour
+Round 1: Messaging Part
 {% endblock %}
 
 {% block avatar %}
@@ -17,8 +17,7 @@ Tour
     1
 {% endblock %}
 
-{% block content %}
-{{block.super}}
+{% block beginModal %}
 <div class="modal fade" id="tourModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -32,23 +31,49 @@ Tour
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="startIntro()">Begin Tour</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="startDiscussIntro()">Begin Tour</button>
       </div>
     </div>
   </div>
 </div>
 {% endblock %}
 
+{% block checkSubmission %}
+<p>Click <strong>Next</strong> to continue.</p>
+<br>
+
+    <div class="modal-content" id="stopModal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Are you sure?</h4>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Your Post Summary</h4>
+        <h6 class="card-subtitle mb-2 text-muted">
+            This is a summary of your posts for this round.
+            A check appears if one or more posts were sent by you to the player shown.
+            Click 'Continue' to continue to the decision page or 'Edit' to make changes to your posts.
+        </h6>
+    <div id="resultTable"></div>
+    </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button class="otree-btn-next btn btn-primary next-button otree-next-button">Continue</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" disabled>Edit</button>
+      </div>
+    </div>
+
+<div class="buttons">
+    <p id="stopButton"> 
+    <button type="button" class="btn btn-primary" onclick="$('#stopModal').modal('show')">Next</button>
+    </p>
+</div>
+{% endblock %}
+
+
 {% block participate %}
- <div class="form-group" id="participate-group">
-    <label class="control-label" for="id_participate">Will you participate?</label>
-    <div class="controls  field-participate">
-        <ul>
-	       <li><label for="id_participate_1"><input type="radio" id="id_participate_1" value="True"> Yes</label></li>
-	       <li><label for="id_participate_2"><input type="radio" id="id_participate_2" value="False"> No</label></li>
-        </ul>
-    </div><!--- .controls -->
-</div><!--- .form-group -->
 {% endblock %}
 
 {% block scripts %}
@@ -56,6 +81,7 @@ Tour
     {% block pageScripts %}
         <script type="text/javascript" >
             var output = true;
+            $('#stopModal-content').css('display', 'none');
         </script>
     {% endblock %}
 
@@ -118,16 +144,17 @@ Tour
             {"to": 1, "from": 4},
             {"to": 1, "from": 5},
             ];
-        
+            
+        var network_display = '{{networkDisplay|safe}}';
     </script>
-
+    <script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
     <script type="text/javascript" src={% static "global/hash.js" %}></script>
     <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
     <script type="text/javascript" src={% static "global/player_list.js" %}></script>
     
             {% with 'wall both' as list %}
                 {% if session.config.condition_messaging in list.split %}
-                    <script type="text/javascript" src={% static "global/wall.js" %}></script>
+                    <script type="text/javascript" src={% static "global/wall-separate.js" %}></script>
               	{% endif %}
       		{% endwith %}
       		{% with 'bilateral both' as list %}
@@ -140,7 +167,7 @@ Tour
     <script type="text/javascript" src={% static "global/vis.min.js" %}></script>
     <script type="text/javascript" src={% static "global/intro.min.js" %}></script>
     <script type="text/javascript" src={% static "main/network.js" %}></script>
-    <script type="text/javascript" src={% static "main/tutorial.js" %}></script>
+    <script type="text/javascript" src={% static "tour/tutorial.js" %}></script>
     
     <script type="text/javascript" >
       var playerProfile = document.getElementById('playerLabel');
@@ -170,5 +197,10 @@ Tour
     });
     
     </script>
+<script type="text/javascript" src={% static "main/resultTable.js" %}></script>
+{% endblock %}
 
+{% block styles %}
+    {{block.super}}
+    <link rel="stylesheet" href={% static "tour/tutorial.css" %}>
 {% endblock %}

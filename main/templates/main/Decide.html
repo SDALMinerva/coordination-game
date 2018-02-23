@@ -5,6 +5,9 @@
     Round {{subsession.round_number}}: Decision Part
 {% endblock %}
 
+{% block beginModal %}
+{% endblock %}
+
 {% block participate %}
 
     {% for field in form %}
@@ -15,13 +18,11 @@
 
 {% endblock %}
 
+
+{% block messageTool %}
+{% endblock %}
+
 {% block helpSection %}
-    <li class="no-hover nav-item pull-right">
-        <a class="nav-link" href="" data-toggle="modal" data-target="#QuizModal">Quiz</a>
-    </li>
-    <li class="no-hover nav-item pull-right">
-        <a class="nav-link" href="" data-toggle="modal" data-target="#InstructionsModal">Instructions</a>
-    </li>
 {% endblock %}
 
 {% block pageScripts %}
@@ -29,3 +30,13 @@
         var output = false;
     </script>
 {% endblock %}
+
+{% block checkSubmission %}
+<p>Click <strong>Next</strong> to continue.</p>
+<br>
+<div class="buttons">
+    
+    {% next_button %}
+</div>
+{% endblock %}
+

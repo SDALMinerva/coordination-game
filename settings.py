@@ -120,6 +120,7 @@ SESSION_CONFIG_DEFAULTS = {
     # Narrative Configs
     'thresholds': '1,3',
     'show_network_threshold': 'False',
+    'messages': 'I will participate./I will not participate.',
 
     # Payoff Configs
     'payoff_no_participate': '50',

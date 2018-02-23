@@ -105,6 +105,7 @@ function PlayerButton(id, link) {
 		
 		if (link){
 		    var element = document.createElement('a');
+		    element.id = "player-button" + id;
 		    element.href = "#" + id;
 		    element.className = "list-group-item player-button linking-button";
 		    element.onclick = function () {
@@ -114,6 +115,9 @@ function PlayerButton(id, link) {
 					'type': 'list',
 					'content': {'playerId': id, 'sentBy': nodeId},				
 				}));
+				$('.recipient-text').val('');
+				$('.user-display').empty();
+	            $('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');
 			};
 		} else {
 		    var element = document.createElement('div');
@@ -132,5 +136,4 @@ $('.linking-button').click(function (e) {
     $('.linking-button').removeClass('active');
     var $this = $(this);
     $this.addClass('active');
-    
 });

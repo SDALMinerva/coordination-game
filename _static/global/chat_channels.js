@@ -5,6 +5,10 @@ function activeFunction(data){
         messenger.parseAddEntry(data.content);	    
 	} else if (data.type == 'list') {
 		wall.parseExistingEntries(data.content);		
+	} else if (data.type == 'entry-table'){
+	    console.log(data);
+	    resultTable.update(data.content);
+	    
 	}
 };
 
@@ -16,12 +20,12 @@ chat = new Chat(neighbors, activeFunction, nonActiveFunction);
 chat.setActiveChannel(nodeId);
 
 function Chat(idList, activeFunction, nonActiveFunction) {
-
+    var channels = {};
+    
 	if (!(idList.indexOf(nodeId))>-1){
-		idList.push(nodeId);
+		channels[nodeId] = new Channel(nodeId,activeFunction, nonActiveFunction);
 	}
-
-	var channels = {};
+    
 	for (i = 0, len = idList.length; i < len; i++) {
 		var id = idList[i];
 		channels[id] = new Channel(id,activeFunction, nonActiveFunction);

@@ -39,7 +39,7 @@ Likewise, if the threshold assigned to you in a round is <strong>T=3</strong>, i
 to participate in the event.
 </p>
 
-<p> <strong>Earnings in a round:</strong>
+<h4>Earnings in a round:</h4>
 
 <p>Your earnings in a round depend on <span style="text-decoration: underline;">your threshold</span>, <span style="text-decoration: underline;">your participation decision</span> and <span style="text-decoration: underline;">the decisions of other players:</span></p>
 
@@ -78,9 +78,8 @@ If you do <strong>not participate</strong>, your earnings in the round will be <
 regardless of what others do.
 </p>
 
-
-<p> 
-<strong>Experimental Earnings:</strong> 
+<h4>Experimental Earnings:</h4>
+<p>  
 You will be paid $3.00 for completing all the rounds.
 In addition, after completing all the rounds, we will choose ONE random round to add to your earnings.
 1 experimental point is equivalent to 0.03 US dollars. 
@@ -91,7 +90,19 @@ or $3 + $3 = <strong>$6.00</strong>
 depending on the outcome of the randomly chosen round.
 </p>
 
+<h4>Platform Tour</h4>
+<p>
+We will now introduce you to the platform that you will be using to play the game. 
+We will show you an interactive tour of all of the components. 
+After the tour, you will have the chance to play trial rounds to become familiar with the platform. 
+You can practice for as many rounds as you need before proceeding to the actual experiment.
+</p>
+<br/>
+<p>
+Click <strong>Next</strong> to begin the tour.
+</p>
 
+{% comment %}
 <h4>Avatar:</h4>
 
 <p>
@@ -114,10 +125,6 @@ You will also see your threshold, T=3 in this example above, and the summary of 
 Note that, in each round, everyone will be assigned a new avatar and a new threshold.
 </p>
 
-
-{% comment %}
-DOES NOT INCLUDE BOTH CONDITION!
-{% endcomment %}
 
 {% if session.config.condition_messaging == 'bilateral'%}
     {% if session.config.condition_network_knowledge == 'global'%}
@@ -149,3 +156,4 @@ DOES NOT INCLUDE BOTH CONDITION!
     {% include "instructions/no-message.html" %}
 {% endif %}
 
+{% endcomment %}

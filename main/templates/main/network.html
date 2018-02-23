@@ -1,8 +1,9 @@
 {% load staticfiles otree_tags %}
-
+<div class="container-network">
 <h4 id="network-title">{{networkDisplay}} Network:</h4>
-<div id="mynetwork" style="height: 300px; width: 100%; border-left: 1px solid #ddd;"></div>
-<div class="row">
+<div id="mynetwork" style="height: 300px; width: 100%;"></div>
+</div>
+<div id="reward-summary" class="row">
     <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;"><strong>Possible Earnings:</strong></p>
     <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;">If you do not participate:<strong> {{session.config.payoff_no_participate | c}}</strong> </p>
     <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px;">If you participate and at least {{player.threshold}} more <strong>do not</strong> participate: <strong>{{session.config.payoff_below_threshold | c}}</strong> </p>

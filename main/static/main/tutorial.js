@@ -39,8 +39,14 @@ function startIntro() {
         intro: "At the bottom of the page you will then choose whether or not you want to participate.",
       },
       {
-        element: document.querySelectorAll('.next-button')[0],
+        element: document.querySelectorAll('#stopButton')[0],
         intro: "Click next to exit the tour and continue to the game.",
+        disableInteraction: true,
+      },
+      {
+        element: document.querySelectorAll('#stopModal')[0],
+        intro: "Click next to exit the tour and continue to the game.",
+        disableInteraction: true,
       },
     ]);
     
