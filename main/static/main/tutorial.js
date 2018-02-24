@@ -16,7 +16,7 @@ function startIntro() {
         position: "top",
       },
       {
-        element: document.querySelectorAll('.well')[0],
+        element: document.querySelectorAll('.card')[0],
         intro: "Messages that you post will appear here, but they won't be visible until you move to the next screen. Until then you can delete any messages by clicking on the trash icon.",
         position: "top",
       },
@@ -25,12 +25,12 @@ function startIntro() {
         intro: "Here, you can see your friend connections.",
       },
       {
-        element: document.querySelectorAll('.next-button')[0],
+        element: document.querySelectorAll('.otree-btn-next')[0],
         intro: "When finished posting messages, click next to continue.",
         disableInteraction: true,
       },
       {
-        element: document.querySelectorAll('.well')[0],
+        element: document.querySelectorAll('.card')[0],
         intro: "On the next screen, you will be able to view all of the messages from the other players, but you will not be able to send or receive any more messages. Now is your chance to review what your friends have told you before you make a decision below.",
         position: "top",
       },
@@ -39,7 +39,7 @@ function startIntro() {
         intro: "At the bottom of the page you will then choose whether or not you want to participate.",
       },
       {
-        element: document.querySelectorAll('.next-button')[0],
+        element: document.querySelectorAll('.otree-btn-next')[0],
         intro: "Click next to exit the tour and continue to the game.",
       },
     ]);
