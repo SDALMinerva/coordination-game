@@ -298,7 +298,7 @@ function Entry(id,timestamp,content,key) {
 
 		var img_src = '/static/avatar/' + avatars[id];
 
-      media_object = document.createElement('img');
+        media_object = document.createElement('img');
 		media_object.className = "media-object pull-left media-center";
 		media_object.src = img_src;
 		media_object.alt = "not found";
@@ -306,23 +306,23 @@ function Entry(id,timestamp,content,key) {
 		listItem.appendChild(media_object)	
 		
 		listHeading.innerHTML = this.content;
-   	listHeading.className = 'media-heading';
-   	listItem.appendChild(listHeading);
+   	    listHeading.className = 'media-heading';
+    	listItem.appendChild(listHeading);
    	
-   	var nameAdd = ((id == wall.ownId) ? " (You)" : '');
-   	listP.style = "font-size: 9pt;";
-   	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd;// + '       ' 
-//   						+ '[' + this.timestamp + ']';
-   	listP.className = 'media-body';
-   	listItem.appendChild(listP);
-   	
-   	var keyDiv = document.createElement('div');
-   	keyDiv.innerHTML = key;
-    keyDiv.style = 'visibility: hidden; width: 0; height: 0; margin:0; padding:0;';
-    keyDiv.className = 'key';
-    listItem.appendChild(keyDiv);   	
-   	
-   	return listItem;
+        var nameAdd = ((id == wall.ownId) ? " (You)" : '');
+        listP.style = "font-size: 9pt;";
+        listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd;// + '       ' 
+        //   						+ '[' + this.timestamp + ']';
+        listP.className = 'media-body';
+        listItem.appendChild(listP);
+        
+        var keyDiv = document.createElement('div');
+        keyDiv.innerHTML = key;
+        keyDiv.style = 'visibility: hidden; width: 0; height: 0; margin:0; padding:0;';
+        keyDiv.className = 'key';
+        listItem.appendChild(keyDiv);   	
+        
+        return listItem;
 	};
 };
 
@@ -334,15 +334,15 @@ function NewlyAddedEntry(id,timestamp,content, key) {
 	
 	this.Entry = function () {
 		var listItem = document.createElement('li');
-		var listHeading = document.createElement('h4');
+		var listHeading = document.createElement('h6');
 		var listP = document.createElement('p');
 		
 		listItem.backgroundColor = '#ddd';
 		listItem.className = 'newly-added list-group-item media message-item';
 		
 		var closebutton = document.createElement('button');
-   	    closebutton.innerHTML = "<span style='font-size: 13pt; color: #000;' class='glyphicon glyphicon-trash'></span>";
-   	    closebutton.className = "close pull-left removeEntry";
+   	    closebutton.innerHTML = "<span style='font-size: 13pt; color: #000;' class='oi oi-trash'></span>";
+   	    closebutton.className = "close float-left removeEntry";
    	    closebutton.style = "display: inline-block; margin-left: -10px; margin-top: 12px; padding: 0px;";
    	    closebutton.type = "button";
    	    closebutton.setAttribute('data-toggle','tooltip'); 
@@ -352,30 +352,30 @@ function NewlyAddedEntry(id,timestamp,content, key) {
 
 		var img_src = '/static/avatar/' + avatars[id];
 
-      media_object = document.createElement('img');
-		media_object.className = "media-object pull-left media-center";
+        media_object = document.createElement('img');
+		media_object.className = "media-object float-left media-center";
 		media_object.src = img_src;
 		media_object.alt = "not found";
 		media_object.width = 48;	
 		listItem.appendChild(media_object)	
 		
 		listHeading.innerHTML = this.content;
-   	listHeading.className = 'media-heading';
-   	listItem.appendChild(listHeading);
-   	
-   	var nameAdd = ((id == wall.ownId) ? " (You)" : '');
-   	listP.style = "font-size: 9pt;";
-   	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd; 
-//   						+ '[' + this.timestamp + ']';
-   	listP.className = 'media-body';
-   	listItem.appendChild(listP);
-   	
-   	var keyDiv = document.createElement('div');
-   	keyDiv.innerHTML = key;
-   	keyDiv.className = 'key';
-    keyDiv.style = 'visibility: hidden; width: 0; height: 0; margin:0; padding:0;';
-    listItem.appendChild(keyDiv);  
-    
-   	return listItem;
+        listHeading.className = 'media-heading';
+        listItem.appendChild(listHeading);
+        
+        var nameAdd = ((id == wall.ownId) ? " (You)" : '');
+        listP.style = "font-size: 9pt;";
+        listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd; 
+        //   						+ '[' + this.timestamp + ']';
+        listP.className = 'media-body';
+        listItem.appendChild(listP);
+        
+        var keyDiv = document.createElement('div');
+        keyDiv.innerHTML = key;
+        keyDiv.className = 'key';
+        keyDiv.style = 'visibility: hidden; width: 0; height: 0; margin:0; padding:0;';
+        listItem.appendChild(keyDiv);  
+        
+        return listItem;
 	};
 };
