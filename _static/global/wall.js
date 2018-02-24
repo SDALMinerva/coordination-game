@@ -14,11 +14,11 @@ function Wall() {
 		this.Parent.appendChild(this.topRow);
 		
 		this.topRowImg = document.createElement('div');
-		this.topRowImg.className = "col-xs-2";
+		this.topRowImg.className = "col-sm-2";
 		this.topRowImg.id = "wallImgContainer";
 		this.topRow.appendChild(this.topRowImg);
 		this.topRowHeader = document.createElement('div');
-		this.topRowHeader.className = "col-xs-4 titleContainer";
+		this.topRowHeader.className = "col-sm-4 titleContainer";
 		this.topRow.appendChild(this.topRowHeader);
 		
 		this.wallimg = document.createElement('img');
@@ -34,7 +34,7 @@ function Wall() {
         this.Parent.appendChild(this.postBlock);
 
         this.messageBlock = document.createElement('div');
-        this.messageBlock.className = "col-xs-12";
+        this.messageBlock.className = "col-sm-12";
         
         if (output){
             this.postBlock.appendChild(this.messageBlock);
@@ -48,10 +48,11 @@ function Wall() {
 		// Input Form.
 		this.messages = document.createElement('div');
 		this.messages.id = "container-messages";
-		this.messages.className = 'input-group message-group highlight';
+		this.messages.className = 'input-group message-group';
+        this.messages.style.maxWidth = '500px';
 		this.addon = document.createElement('span');
-		this.addon.className = 'input-group-addon';
-		this.addon.innerHTML = '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>';
+		this.addon.className = 'input-group-prepend';
+		this.addon.innerHTML = '<span class="input-group-text oi oi-pencil" title="pencil" aria-hidden="true"></span>';
 		this.messages.appendChild(this.addon);
 		
 		this.input = document.createElement('input');
@@ -62,15 +63,12 @@ function Wall() {
 		this.messages.appendChild(this.input);
 		
 		this.dropdown = document.createElement('span');
-		this.dropdown.className = "input-group-btn";
+		this.dropdown.className = "input-group-append";
 		this.dropdown_button = document.createElement('button');
-		this.dropdown_button.className = "btn btn-default dropdown-toggle";
+		this.dropdown_button.className = "btn btn-light dropdown-toggle";
 		this.dropdown_button.setAttribute("data-toggle", "dropdown");
-		this.caret = document.createElement('span');
-		this.caret.className = "caret";
 		this.toggle = document.createElement('span');
 		this.toggle.className = "sr-only";
-		this.dropdown_button.appendChild(this.caret);
 		this.dropdown_button.appendChild(this.toggle);
 		this.messageList = document.createElement('ul');
 		this.messageList.className = "dropdown-menu";
@@ -78,6 +76,7 @@ function Wall() {
 		
 		for (i=0, len = messageList.length; i < len; i++){
 			var newRow = document.createElement('li');
+            newRow.className = "dropdown-item";
 			var newMessage = document.createElement('a');
 			newMessage.className = 'message-option';
 			newMessage.innerHTML = messageList[i];			
@@ -87,7 +86,7 @@ function Wall() {
 		};
 		
 		this.send_button = document.createElement('button');
-		this.send_button.className = "btn btn-default send-message";
+		this.send_button.className = "btn btn-light send-message";
 		this.send_button.innerHTML = "Post Message";
 		
 		this.dropdown.appendChild(this.dropdown_button);
@@ -100,9 +99,9 @@ function Wall() {
         this.wallMain = document.createElement('div');
         this.wallMain.className = 'row';
         this.wallOne = document.createElement('div');
-        this.wallOne.className = 'col-xs-8';
+        this.wallOne.className = 'col-sm-8';
         this.wallTwo = document.createElement('div');
-        this.wallTwo.className = 'col-xs-4 shiftleft';
+        this.wallTwo.className = 'col-sm-4 shiftleft';
         this.wallMain.appendChild(this.wallOne);
         this.wallMain.appendChild(this.wallTwo);
 
@@ -117,7 +116,7 @@ function Wall() {
 		this.wallTwo.appendChild(this.friendWall);			
 		
 		this.wall = document.createElement('div');
-		this.wall.className = 'list-group wall well';
+		this.wall.className = 'list-group wall card';
 		this.wallOne.appendChild(this.wall);
 
 		this.Parent.appendChild(this.wallMain);

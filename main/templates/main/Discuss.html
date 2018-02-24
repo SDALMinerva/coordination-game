@@ -193,10 +193,12 @@ $('[data-toggle="tooltip"]').tooltip({
 <link rel="stylesheet" href={% static "global/player_list.css" %}>
 <link rel="stylesheet" href={% static "global/vis.min.css" %}>
 <link rel="stylesheet" href={% static "global/introjs.min.css" %}>
+<link rel="stylesheet" href={% static "global/open-iconic-master/font/css/open-iconic-bootstrap.css" %}>
+
 
 
 <style type="text/css">
-    h4 {
+    h4, h5 {
         margin-top: 10px;
     }
     
@@ -207,10 +209,15 @@ $('[data-toggle="tooltip"]').tooltip({
         min-width: 0px;
     }
 
-    .nav-tabs .no-hover a:hover{
+    .nav-tabs .no-hover a:hover {
         background-color: transparent;
         border: 1px solid transparent;
         text-decoration: underline;   
+    }
+    
+    .nav > li {
+        position: relative;
+        display: block;
     }
     
     .container-fluid {
@@ -242,6 +249,20 @@ $('[data-toggle="tooltip"]').tooltip({
     
     .buttons * {
         display: inline-block;
+    }
+    
+    .input-group-text.oi {
+        padding: .55rem .75rem;
+        top: 0px;
+    }
+    
+    .btn-light {
+        background-color: #e9ecef;
+        border: 1px solid #ced4da;
+    }
+    
+    .btn-light:focus {
+      box-shadow: 0 0 0 0rem rgba(0, 0, 0, 0);
     }
 </style>
 

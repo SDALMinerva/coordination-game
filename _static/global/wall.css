@@ -22,12 +22,6 @@
     padding-bottom: 4px;
 }
 
-.highlight{
-    border: 1px solid rgba(81, 203, 238, 1);
-    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-    border-radius: 5px;
-}
-
 .message-list{
 	width: 300px;
 	cursor: pointer;
