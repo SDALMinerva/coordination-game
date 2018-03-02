@@ -22,7 +22,7 @@ def ws_receive(message):
         messageRound = data['messageRound']
         message = Message(createdBy=createdBy, message=data['text'], messageRound=messageRound, key=data['key'])
         wall = node.wall_set.first()
-        wall.message_set.add(message)
+        wall.message_set.add(message, bulk=False)
 
         if wall.subsession.session.config['instant_messaging'] == 'True':
             toSend = {
