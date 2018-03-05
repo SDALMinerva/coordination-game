@@ -1,6 +1,7 @@
 {% load staticfiles otree_tags %}
 {% load staticfiles %}
 
+{% block message %}
 <h4>Posting Messages:</h4>
 
 	<p>
@@ -48,7 +49,7 @@
 
 
     <img src={% static "instructions/participation.png" %} width="200"/>
-    
+{% endblock %}    
     
     <h4>Summary of the Instructions:</h4>
 

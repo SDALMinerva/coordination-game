@@ -1,6 +1,7 @@
 {% load staticfiles otree_tags %}
 {% load staticfiles %}
 
+{% block message %}
 <h4>Messaging:</h4>
 
 	<p>
@@ -50,9 +51,9 @@
 
 
     <img src={% static "instructions/participation.png" %} width="200"/>
+{% endblock%}
     
-    
-    <h4>Summary of the Instructions:</h4>
+<h4>Summary of the Instructions:</h4>
 
 <p>- There are 48 rounds in the experiment.</p>
 

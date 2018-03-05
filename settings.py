@@ -298,7 +298,7 @@ SESSION_CONFIGS = [
          'app_sequence': [
                           'instructions', 
                          ],
-         'condition_messaging': 'bilateral',
+         'condition_messaging': 'wall',
          'condition_network_knowledge': 'local',
      },
      {
@@ -316,18 +316,6 @@ SESSION_CONFIGS = [
          'app_sequence': [ 
                           'survey_initial',
                          ],
-     },
-     {
-         'name': 'test_tour',
-         'display_name': 'Test: Tour',
-         'num_demo_participants': 1,
-         'app_sequence': [ 
-                          'tour',
-                         ],
-          
-          # Treatment Configs
-          'condition_messaging': 'wall',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'global',      #local, global
      },
      {
          'name': 'test_main',

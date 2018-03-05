@@ -1,6 +1,9 @@
 var d = [
-    {'name': 'Cow', 'icon': 'Cow-icon.png', 'participate': true, 'noParticipate': false},
-    {'name': 'Chicken', 'icon': 'Chicken-icon.png', 'participate': true, 'noParticipate': false},
+    {'name': 'Cow', 'icon': 'Cow-icon.png', '0': true, '1': false},
+    {'name': 'Turtle', 'icon': 'Turtle-icon.png', '0': true, '1': false},
+    {'name': 'Cat', 'icon': 'Cat-icon.png', '0': false, '1': true},
+    {'name': 'Swan', 'icon': 'Swan-icon.png', '0': true, '1': true},
+    {'name': 'Eagle', 'icon': 'Eagle-icon.png', '0': false, '1': false},
 ];
 
 if (output){
