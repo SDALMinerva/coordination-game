@@ -81,6 +81,6 @@ function Channel(id, activeFunc, nonActiveFunction){
 
 function urlTemplate(id){
 	var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-	var url = ws_scheme + '://' + window.location.host + "/chat/" + id;
+	var url = ws_scheme + '://' + window.location.host + "/" + chat_name + "/" + id;
 	return url
 };

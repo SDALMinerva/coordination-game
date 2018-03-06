@@ -5,27 +5,27 @@ from otree.api import (
 
 from avatar.models import Avatar
 
-from network.models import Network, Edge, Node
+from practice_network.models import Network, Edge, Node
 from random import randint
 import json
 
 author = 'Brian J. Goode, Ethan Vu'
 
 doc = """
-Main Coordination Game
+Main Coordination Game - Practice
 """
 
 
 # Open Round Specification
-with open('./main/round_specs/seq-48rounds.json') as oFile:
+with open('./practice/round_specs/seq-48rounds.json') as oFile:
     round_specs = json.load(oFile)
 
 
 class Constants(BaseConstants):
-    name_in_url = 'main'
-    chat_name = 'chat'
+    name_in_url = 'practice'
+    chat_name = 'practice-chat'
     players_per_group = None               #EDIT: Make flexible with number of players.
-    num_rounds = 10                      #EDIT: Make adjustable from session config.
+    num_rounds = 1                     #EDIT: Make adjustable from session config.
     num_messaging_rounds = 1            #EDIT: Make adjustable from session config.
     messages = {
             1: 'I will participate.',
@@ -52,6 +52,10 @@ class Subsession(BaseSubsession):
         player_assignments = round_specs[str(self.round_number)]['positions']
         group_matrix_full = [player_assignments[i*5:i*5+5] for i in range(3)]  #hard-coded group size and #!
         group_matrix = [[p for p in player_assignments[i*5:i*5+5] if p <= n_players] for i in range(3)] #hard-coded group size and number!
+
+        # For Practice Round, Give Each Player They're Own Group:
+        group_matrix_full = [group_matrix_full[i] for i in range(len(group_matrix)) for j in range(len(group_matrix[i]))]
+        group_matrix = [[entry] for row in group_matrix for entry in row]
 
         self.set_group_matrix(group_matrix)
 
@@ -184,13 +188,13 @@ class Player(BasePlayer):
     def get_user_name(self):
         return self.user_name
 
-    node = models.ForeignKey(Node, db_column = 'node', default = 1)
+    node = models.ForeignKey(Node, default = 1)
     threshold = models.IntegerField()
     participate = models.BooleanField(verbose_name="Will you participate?")
     
     # Avatar Portions
     user_name = models.CharField(default = 'Not Assigned')
-    avatar = models.ForeignKey(Avatar, db_column = 'avatar', default = 1, related_name = 'avatar_seq')
+    avatar = models.ForeignKey(Avatar, default = 1, related_name = 'practice_avatar_seq')
     
     # Round_Payoff
     round_payoff = models.CurrencyField();
