@@ -3,7 +3,12 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-
+class Intro(Page):
+    template_name = 'instructions/intro.html'
+    
+class QuizIntro(Page):
+    template_name = 'instructions/QuizIntro.html'
+    
 class InstructionsPage(Page):
     pass
 
@@ -58,9 +63,11 @@ class Summary(Page):
     template_name = 'instructions/Summary.html'
 
 page_sequence = [
+    Intro,
     InstructionsPage,
     TourDiscuss,
     TourDecide,
+    QuizIntro,
     Quiz,
     Summary,
 ]

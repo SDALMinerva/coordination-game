@@ -1,0 +1,20 @@
+{% extends "welcome_consent/WelcomePage.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Instructions and Tour
+{% endblock %}
+
+{% block contentH3 %}
+{% endblock %}
+
+{% block contentH5 %}
+Next, you will see on page with instructions followed by a tour of the experiment interface.
+Please read the instructions carefully and make sure you understand your options during the tour.
+{% endblock %}
+
+{% block contentP %}
+Please click <strong>Next</strong> to go to the instructions page.
+{% endblock %}
+
+{% block onpage %}instructions, #tour{% endblock %}

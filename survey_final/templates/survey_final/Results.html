@@ -1,20 +1,25 @@
-{% extends "global/Page.html" %}
+{% extends "welcome_consent/WelcomePage.html" %}
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Experiment Complete!
+    Complete!
 {% endblock %}
 
-{% block content %}
+{% block belowDiagram %}
 
-<h3>Thank you for participating in our experiment. Your earnings for this experiment are:</h3>
+<h3>Your earnings for this experiment are:</h3>
 <p>Participation Earnings: {{session.config.participation_fee}}</p>
 <p>Experiment Earnings: {{payoff_currency}}</p>
 <p><strong>Total Earnings:</strong> {{participant.payoff_plus_participation_fee}}</p>
 
 <p>Click <strong>Next</strong> to finish.</p>
-
-    {% next_button %}
 {% endblock %}
 
 
+{% block onpage %}complete{% endblock %}
+
+{% block contentH3 %}Thank you for participating in our experiment.
+{% endblock %}
+
+{% block contentH5 %}
+{% endblock %}

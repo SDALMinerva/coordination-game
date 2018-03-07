@@ -129,9 +129,15 @@ class Decide(Discuss):
         'participate'
     ]
 
+class Intro(Page):
+    template_name = 'main/intro.html'
+    
+    def is_displayed(self):
+        return self.subsession.round_number == 1
+
 
 messaging_apps = [x for i in range(Constants.num_messaging_rounds) for x in [Discuss, IntermediateWaitPage]]
-seq = [AssignAvatar, BeginWaitPage]
+seq = [Intro, AssignAvatar, BeginWaitPage]
 seq.extend(messaging_apps)
 seq.extend([Decide, EndWaitPage])
 
