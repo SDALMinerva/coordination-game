@@ -17,7 +17,7 @@ Main Coordination Game - Practice
 
 
 # Open Round Specification
-with open('./practice/round_specs/seq-48rounds.json') as oFile:
+with open('./practice/round_specs/seq-48rounds-practice.json') as oFile:
     round_specs = json.load(oFile)
 
 
@@ -54,6 +54,8 @@ class Subsession(BaseSubsession):
         group_matrix = [[p for p in player_assignments[i*5:i*5+5] if p <= n_players] for i in range(3)] #hard-coded group size and number!
 
         # For Practice Round, Give Each Player They're Own Group:
+            
+        ## SEPARATE IDENTITIES:
         group_matrix_full = [group_matrix_full[i] for i in range(len(group_matrix)) for j in range(len(group_matrix[i]))]
         group_matrix = [[entry] for row in group_matrix for entry in row]
 
