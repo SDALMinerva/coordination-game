@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'otree',
     'avatar',
     'network',
+    'practice_network',
     'django_extensions',
 ]
 
@@ -121,6 +122,7 @@ SESSION_CONFIG_DEFAULTS = {
     # Narrative Configs
     'thresholds': '1,3',
     'show_network_threshold': 'False',
+    'messages': 'I will participate./I will not participate.',
 
     # Payoff Configs
     'payoff_no_participate': '50',
@@ -255,6 +257,7 @@ SESSION_CONFIGS = [
                           'welcome_consent', 
                           'survey_initial',
                           'instructions',
+                          'practice',
                           'main',
                           'survey_final',
                          ],
@@ -273,6 +276,7 @@ SESSION_CONFIGS = [
                           'welcome_consent', 
                           'survey_initial',
                           'instructions',
+                          'practice',
                           'main',
                           'survey_final',
                          ],
@@ -298,16 +302,18 @@ SESSION_CONFIGS = [
          'app_sequence': [
                           'instructions', 
                          ],
-         'condition_messaging': 'bilateral',
+         'condition_messaging': 'wall',
          'condition_network_knowledge': 'local',
      },
      {
-         'name': 'test_registration',
-         'display_name': 'Test: Experiment Registration',
-         'num_demo_participants': 1,
+         'name': 'test_practice',
+         'display_name': 'Test: Practice',
+         'num_demo_participants': 5,
          'app_sequence': [
-                          'registration',
+                          'practice', 
                          ],
+         'condition_messaging': 'wall',
+         'condition_network_knowledge': 'global',
      },
      {
          'name': 'test_survey_initial',
@@ -316,18 +322,6 @@ SESSION_CONFIGS = [
          'app_sequence': [ 
                           'survey_initial',
                          ],
-     },
-     {
-         'name': 'test_tour',
-         'display_name': 'Test: Tour',
-         'num_demo_participants': 1,
-         'app_sequence': [ 
-                          'tour',
-                         ],
-          
-          # Treatment Configs
-          'condition_messaging': 'wall',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'global',      #local, global
      },
      {
          'name': 'test_main',
@@ -355,7 +349,7 @@ SESSION_CONFIGS = [
           
           # Treatment Configs
           'condition_messaging': 'wall',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'global',      #local, global
+          'condition_network_knowledge': 'local',      #local, global
      },
      {
          'name': 'test_survey_final',
@@ -370,7 +364,7 @@ SESSION_CONFIGS = [
 if DEBUG:
     SESSION_CONFIGS += DEV_CONFIGS
 
-CHANNEL_ROUTING = 'main.routing.channel_routing'
+CHANNEL_ROUTING = 'routing.channel_routing'
 
 # anything you put after the below line will override
 # oTree's default settings. Use with caution.

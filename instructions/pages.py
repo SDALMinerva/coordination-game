@@ -3,9 +3,38 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-
+class Intro(Page):
+    template_name = 'instructions/intro.html'
+    
+class QuizIntro(Page):
+    template_name = 'instructions/QuizIntro.html'
+    
 class InstructionsPage(Page):
     pass
+
+class TourDiscuss(Page):
+    template_name = 'tour/Tour-Discuss.html'
+    def vars_for_template(self):            
+        if self.session.config['condition_network_knowledge'] == 'global':
+            networkDisplay = 'The'
+        elif self.session.config['condition_network_knowledge'] == 'local':
+            networkDisplay = 'Your' 
+        
+        return {
+            'networkDisplay': networkDisplay,
+        }
+        
+class TourDecide(Page):
+    template_name = 'tour/Tour-Decide.html'
+    def vars_for_template(self):            
+        if self.session.config['condition_network_knowledge'] == 'global':
+            networkDisplay = 'The'
+        elif self.session.config['condition_network_knowledge'] == 'local':
+            networkDisplay = 'Your' 
+        
+        return {
+            'networkDisplay': networkDisplay,
+        }
 
 class Quiz(Page):
     form_model = 'player'
@@ -30,8 +59,15 @@ class Quiz(Page):
         ]
         return questions
 
+class Summary(Page):
+    template_name = 'instructions/Summary.html'
 
 page_sequence = [
+    Intro,
     InstructionsPage,
+    TourDiscuss,
+    TourDecide,
+    QuizIntro,
     Quiz,
+    Summary,
 ]

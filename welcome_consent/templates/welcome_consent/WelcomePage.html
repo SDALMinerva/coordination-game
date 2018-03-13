@@ -7,13 +7,87 @@
 
 {% block content %}
 
-	<h3>Thank you for your interest in participating in our experiment!</h3>
-
-	<p>
+	<h3>{% block contentH3 %}Thank you for your interest in participating in the experiment!{% endblock %}</h3>
+	<br>
+	<h5>{% block contentH5 %}These are the steps you will take to complete the experiment:{% endblock %}</h5>
+	<br>
+    <div id="consent" class="pointer" style="z-index: 10;"><h4>Consent Form</h4></div>
+    <div id="survey" class="pointer" style="z-index: 9;"><h4>Survey</h4></div>
+    <div id="instructions" class="pointer" style="z-index: 8;"><h4>Instructions</h4></div>
+    <div id="tour" class="pointer" style="z-index: 7;"><h4>Take Tour</h4></div>
+    <div id="quiz" class="pointer" style="z-index: 5;"><h4>Take Quiz</h4></div>
+    <div id="practice" class="pointer" style="z-index: 4;"><h4>Practice Rounds</h4></div>
+    <div id="payment" class="pointer" style="z-index: 3;"><h4>Payment Rounds</h4></div>
+    <div id="complete" class="pointer" style="z-index: 2;"><h4>Complete!</h4></div>
+    <br><br><br>
+    
+    {% block belowDiagram %}
+	<p>{% block contentP %}
 		We will first ask that you complete a voluntary consent form before you proceed with the study.
 	   Please click <strong>next</strong> to view the consent form in order to participate in the study.
+	   {% endblock %}
 	</p>
+	{% endblock %}
+	
     <br>
-{% next_button %}
-
+    {% next_button %}
 {% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" >
+$('#{% block onpage %}consent{% endblock %}').addClass('onPage');
+</script>
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+
+    .pointer.onPage {
+        background: green;   
+    }
+    
+    .pointer.onPage:before {
+        border-left: 20px solid green;    
+    }
+
+    h4 {
+        color: white;
+        margin-left: 30px;
+        margin-top: .3rem;
+    }
+    
+    .pointer {
+        display: inline-block; 
+        /*width: 200px;*/ 
+        height: 40px; 
+        position: relative; 
+        background: #3070a7; 
+        margin-bottom: 5px;
+        } 
+        
+    .pointer:after { 
+        content: ""; 
+        position: absolute; 
+        left: 0; 
+        bottom: 0; 
+        width: 0; 
+        height: 0; 
+        border-left: 20px solid white; 
+        border-top: 20px solid transparent; 
+        border-bottom: 20px solid transparent; 
+        }
+         
+    .pointer:before { 
+        content: ""; 
+        position: absolute; 
+        right: -20px; 
+        bottom: 0; 
+        width: 0; 
+        height: 0; 
+        border-left: 20px solid #3070a7; 
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent; 
+        }
+
+</style>
+ {% endblock %}

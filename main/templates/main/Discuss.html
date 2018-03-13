@@ -11,12 +11,40 @@
 {% include "main/instructions_modal.html" %}
 {% include "main/quiz_modal.html" %}
 
+{% block beginModal %}
+{% if subsession.round_number == 1 %}
+<div class="modal fade" id="startModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Coordination Game</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+            You are now playing the coordination game. Click the button to continue.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Begin Playing</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" >
+$(window).on('load',function(){
+        $('#startModal').modal('show');
+    });
+</script>
+{% endif %}
+{% endblock %}
+
 <div class="container-fluid" style="position: relative;">
     <div id="cover" style="position: absolute; visibility: hidden; z-index: 100; background-color: #ffffff; pointer-events: none; opacity: .4; height: 100%; left: -20px; right: -20px;">
     </div>
     <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
         
         <div class="col-sm-2 col-lg-2" style="min-width: 160px; max-width: 260px; padding:5px;">
+        <div id="playerDiv">        
         <h4 style="text-align: left; padding-left: 0px;">Your Profile:</h4>
             <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
                 <br>
@@ -24,8 +52,11 @@
                    <p style="text-align: left; font-size: 13pt; margin: 0; margin-top: 5px; margin-left: 15px;">{% block userName %}{{player.user_name}}{% endblock %} (You)</p>	        	   
 	        	   <p style="text-align: left; font-size: 9pt; margin: 0; margin-top: 0px; margin-left: 15px;"><strong>Your Threshold: {% block threshold %}{{player.node.threshold_text}}{% endblock %}</strong> </p>
       	    </div>
+      	 </div>
+      	 <div id="friendsDiv">
       	    <h4>Your Friends:</h4>
-            <div id="playerList" class="clearfix" ></div>        
+            <div id="playerList" class="clearfix" ></div>
+         </div>        
         </div>
 
         <div class="col-sm-6 col-lg-6" style="padding: 5px;">
@@ -49,6 +80,7 @@
   			</li>
 		{% endif %}
 		
+		{% comment %}
 		    {% block helpSection %}
           	<li class="no-hover nav-item pull-right">
     			<a class="nav-link" href="" data-toggle="modal" data-target="#QuizModal">Quiz</a>
@@ -60,13 +92,36 @@
     			<a class="nav-link" href="javascript:void(0);" onclick="startIntro();">Tour</a>
   			</li>
   			{% endblock %}
+  		{% endcomment %}
 		</ul>
 
 		<!-- Tab panes -->
-		<div class="tab-content"  style="position: relative; margin-top: 5px; min-height: 550px; padding: 10px; background-color: #f5f5f5">
+        <div class="tab-content"  style="position: relative; margin-top: 0px; min-height: 475px; padding: 10px; border-right: 1px solid #ddd; border-left: 1px solid #ddd; background-color: #fff;">
         {% with 'wall both' as list %}
             {% if session.config.condition_messaging in list.split %}
-                <div class="tab-pane active" id="wall" role="tabpanel"></div>
+                
+                <div class="tab-pane active" id="wall" role="tabpanel">
+                
+                {% block messageTool %}
+                <div id="message-tool" class="card message-tool">
+                    <div class="card-body">
+                        <h4 class="card-title">Wall Messaging Tool</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Post messages to your wall or your friends' walls.</h6>
+                        <div class="message-tool-content"></div>
+                    </div>
+                    <div id="selector-alert" class="alert alert-warning alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
+                        <strong>Message not sent!</strong> Make sure both fields are selected.
+                        <button type="button" class="close" onclick="$('#selector-alert').hide()" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                {% endblock %}
+                <div id="wall-card" class="card wall-card">
+                    <div id="wall-card-body" class="card-body">
+                    </div>
+                </div>              
+                </div>
           	{% endif %}
   		{% endwith %}
   		{% if session.config.condition_messaging == 'bilateral' %}
@@ -89,11 +144,42 @@
 {% block participate %}
 {% endblock %}
 
+{% block checkSubmission %}
 <p>Click <strong>Next</strong> to continue.</p>
 <br>
-<div class="buttons">
-    {% next_button %}
+<div class="modal fade" id="stopModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" id="stopModal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Are you sure?</h4>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Your Post Summary</h4>
+        <h6 class="card-subtitle mb-2 text-muted">
+            This is a summary of your posts for this round.
+            A check appears if one or more posts were sent by you to the player shown.
+            Click 'Continue' to continue to the decision page or 'Edit' to make changes to your posts.
+        </h6>
+    <div id="resultTable"></div>
+    </div>
 </div>
+      </div>
+      <div class="modal-footer">
+        <button class="otree-btn-next btn btn-primary next-button otree-next-button">Continue</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="buttons">
+    <p id="stopButton"> 
+    <button type="button" class="btn btn-primary" onclick="resultTable.getInfo();$('#stopModal').modal('show')">Next</button>
+    </p>
+</div>
+{% endblock %}
 
 
 {% endblock %}
@@ -126,14 +212,18 @@ var entries = JSON.parse('{{wall|safe}}');
 var privateEntries = JSON.parse('{{privateMessages|safe}}');
 var network_nodes = JSON.parse('{{nodes|escapejs}}');
 var network_edges = JSON.parse('{{edges|safe}}');
+var chat_name = '{{Constants.chat_name}}';
 </script>
+
+<script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
 <script type="text/javascript" src={% static "global/hash.js" %}></script>
 <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
 <script type="text/javascript" src={% static "global/player_list.js" %}></script>
 
+
         {% with 'wall both' as list %}
             {% if session.config.condition_messaging in list.split %}
-                <script type="text/javascript" src={% static "global/wall.js" %}></script>
+                <script type="text/javascript" src={% static "global/wall-separate.js" %}></script>
           	{% endif %}
   		{% endwith %}
   		{% with 'bilateral both' as list %}
@@ -146,6 +236,7 @@ var network_edges = JSON.parse('{{edges|safe}}');
 <script type="text/javascript" src={% static "global/vis.min.js" %}></script>
 <script type="text/javascript" src={% static "global/chat_channels.js" %}></script>
 <script type="text/javascript" src={% static "global/intro.min.js" %}></script>
+
 
 <script type="text/javascript" src={% static "main/network.js" %}></script>
 <script type="text/javascript" src={% static "main/tutorial.js" %}></script>
@@ -183,12 +274,12 @@ $('[data-toggle="tooltip"]').tooltip({
 });
 
 </script>
-
+<script type="text/javascript" src={% static "main/resultTable.js" %}></script>
 {% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href={% static "global/jquery-ui.min.css" %}>
-<link rel="stylesheet" href={% static "global/wall.css" %}>
+<link rel="stylesheet" href={% static "global/wall-separate.css" %}>
 <link rel="stylesheet" href={% static "global/messenger.css" %}>
 <link rel="stylesheet" href={% static "global/player_list.css" %}>
 <link rel="stylesheet" href={% static "global/vis.min.css" %}>
@@ -201,7 +292,12 @@ $('[data-toggle="tooltip"]').tooltip({
     h4, h5 {
         margin-top: 10px;
     }
-    
+
+    .close {
+        opacity: .34;
+        line-height: .5;  
+    }
+
     .clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
     
     .media > .float-left {
@@ -240,6 +336,10 @@ $('[data-toggle="tooltip"]').tooltip({
         padding: 0;
         margin: 10px;
         margin-left: 0px;
+    }
+    
+    .page-header ul {
+        margin-top: -40px;
     }
 
     #playerLabel:hover {

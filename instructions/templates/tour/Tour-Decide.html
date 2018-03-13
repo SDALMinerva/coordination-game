@@ -1,8 +1,8 @@
-{% extends "main/Discuss.html" %}
+{% extends "main/Decide.html" %}
 {% load staticfiles otree %}
 
 {% block title %}
-Tour
+    Round 1: Decision Part
 {% endblock %}
 
 {% block avatar %}
@@ -103,7 +103,11 @@ Tour
             5: 'Eagle-icon.png',
             };
             
-        var entries = [];
+        var entries = [
+        {'id': 1, 'content': 'I will not participate', 'author': 'Player 2'},
+        {'id': 1, 'content': 'I will participate', 'author': 'Player 4'},
+        {'id': 1, 'content': 'I will not participate', 'author': 'Player 3'},
+        ];
         var privateEntries = [];
         var network_nodes = [
             {'label': 'Cow (You)', 'shape': 'circularImage', 'image': '/static/avatar/Cow-icon.png', 'id': 1},
@@ -118,16 +122,17 @@ Tour
             {"to": 1, "from": 4},
             {"to": 1, "from": 5},
             ];
-        
+            
+        var network_display = '{{networkDisplay|safe}}';
     </script>
-
+    <script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
     <script type="text/javascript" src={% static "global/hash.js" %}></script>
     <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
     <script type="text/javascript" src={% static "global/player_list.js" %}></script>
     
             {% with 'wall both' as list %}
                 {% if session.config.condition_messaging in list.split %}
-                    <script type="text/javascript" src={% static "global/wall.js" %}></script>
+                    <script type="text/javascript" src={% static "global/wall-separate.js" %}></script>
               	{% endif %}
       		{% endwith %}
       		{% with 'bilateral both' as list %}
@@ -140,13 +145,18 @@ Tour
     <script type="text/javascript" src={% static "global/vis.min.js" %}></script>
     <script type="text/javascript" src={% static "global/intro.min.js" %}></script>
     <script type="text/javascript" src={% static "main/network.js" %}></script>
-    <script type="text/javascript" src={% static "main/tutorial.js" %}></script>
+    <script type="text/javascript" src={% static "tour/tutorial.js" %}></script>
     
     <script type="text/javascript" >
-      var playerProfile = document.getElementById('playerLabel');
-      playerProfile.onclick = function() {
-    	wall.changeId(nodeId);
-      }
+var playerProfile = document.getElementById('playerLabel');
+  playerProfile.onclick = function() {
+    chat.setActiveChannel(nodeId);
+	wall.changeId(nodeId);
+	chat.infoChannel.send(JSON.stringify({
+	  'type': 'list',
+	  'content': {'playerId': nodeId, 'sentBy': nodeId},				
+	}));
+  }
       
       
     
@@ -168,7 +178,12 @@ Tour
     $('[data-toggle="tooltip"]').tooltip({
         trigger: 'hover'
     });
-    
+    startDecideIntro();
     </script>
 
+{% endblock %}
+
+{% block styles %}
+    {{block.super}}
+    <link rel="stylesheet" href={% static "tour/tutorial.css" %}>
 {% endblock %}

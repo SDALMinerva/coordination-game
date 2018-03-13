@@ -3,6 +3,9 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 
+class Intro(Page):
+    template_name = "survey_initial/intro.html"
+    
 class SocioDemographic(Page):
     form_model = 'player'
     def get_form_fields(self):
@@ -117,6 +120,7 @@ class Results(Page):
 
 
 page_sequence = [
+    Intro,
     SocioDemographic,
     Behavioral1,
     Behavioral2,

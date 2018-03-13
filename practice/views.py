@@ -7,10 +7,12 @@ import json
 
 
 class AssignAvatar(Page):
-   
+    template_name = 'main/AssignAvatar.html'
     pass
 
 class Discuss(Page):
+
+    template_name = 'main/Discuss.html'
 
     def vars_for_template(self):
         group_players = self.group.get_players()
@@ -114,7 +116,7 @@ class EndWaitPage(WaitPage):
             else:
                 node.participate = node.player_set.first().participate        
         
-        self.group.set_payoffs()
+#        self.group.set_payoffs() #Not needed in practice round.
         group_players = self.group.get_players()
         group_players[0].participant.vars['message_round'] = 1        
         
@@ -124,17 +126,16 @@ class Decide(Discuss):
     
     template_name = 'main/Decide.html'
     
-    form_model = 'player'
+    form_model = models.Player
     form_fields = [
         'participate'
     ]
 
 class Intro(Page):
-    template_name = 'main/intro.html'
+    template_name = 'practice/intro.html'
     
     def is_displayed(self):
         return self.subsession.round_number == 1
-
 
 messaging_apps = [x for i in range(Constants.num_messaging_rounds) for x in [Discuss, IntermediateWaitPage]]
 seq = [Intro, AssignAvatar, BeginWaitPage]

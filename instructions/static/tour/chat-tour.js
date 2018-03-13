@@ -1,4 +1,26 @@
 // Simulated Messaging
+
+var someEntries = {
+    1:  [
+        {'id': 1, 'content': 'I will not participate', 'author': 'Player 2'},
+        {'id': 1, 'content': 'I will participate', 'author': 'Player 4'},
+        {'id': 1, 'content': 'I will not participate', 'author': 'Player 3'},
+        ],
+    2:  [
+        {'id': 1, 'content': 'I will participate', 'author': 'Player 1'},
+        {'id': 1, 'content': 'I will not participate', 'author': 'Player 2'},
+        ],
+    3:  [
+        {'id': 1, 'content': 'I will not participate', 'author': 'Player 1'},
+        ],
+    4:  [
+        {'id': 1, 'content': 'I will participate', 'author': 'Player 4'},
+        ],
+    5:  [
+        {'id': 1, 'content': 'I will not participate', 'author': 'Player 1'},
+        {'id': 1, 'content': 'I will not participate', 'author': 'Player 5'},
+        ],};
+
 function activeFunction(data){
 	if (data.type == 'send') {	
 		wall.parseAddEntry(data.content);
@@ -27,9 +49,9 @@ function Chat(idList, activeFunction, nonActiveFunction) {
 		var id = idList[i];
 		channels[id] = new Channel(id,activeFunction, nonActiveFunction);
 	};
-	this.infoChannel = new Channel('comm-'+nodeId,activeFunction,nonActiveFunction);
+	this.infoChannel = new Channel('pseudo-comm-'+nodeId,activeFunction,nonActiveFunction);
 	this.infoChannel.active = true;
-    this.privateChannel = new Channel('private-'+nodeId,activeFunction,nonActiveFunction);
+    this.privateChannel = new Channel('pseudo-private-'+nodeId,activeFunction,nonActiveFunction);
 	this.privateChannel.active = true;
 	this.channels = channels;
 
@@ -53,6 +75,7 @@ function Channel(id, activeFunc, nonActiveFunction){
 	this.count = 0;
 	
 	this.send = function(data){
-		console.log('Sending '+id);
+		console.log('PseudoSending '+id);
+		wall.parseExistingEntries(someEntries[chat.activeChannel.id]);
 	};
 };

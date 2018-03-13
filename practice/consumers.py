@@ -1,7 +1,7 @@
 from channels import Group
 from channels.sessions import channel_session
 from .models import Player, Wall, Message, PrivateMessage, PrivateMessageBoard
-from network.models import Node
+from practice_network.models import Node
 import json
 
 @channel_session
@@ -13,6 +13,7 @@ def ws_connect(message):
 
 @channel_session
 def ws_receive(message):
+    print('Received')
     label = message.channel_session['room']
     ws_data = json.loads(message['text'])
     if ws_data['type'] == 'send':
@@ -22,7 +23,7 @@ def ws_receive(message):
         messageRound = data['messageRound']
         message = Message(createdBy=createdBy, message=data['text'], messageRound=messageRound, key=data['key'])
         wall = node.wall_set.first()
-        wall.message_set.add(message, bulk=False)
+        wall.message_set.add(message)
 
         if wall.subsession.session.config['instant_messaging'] == 'True':
             toSend = {
