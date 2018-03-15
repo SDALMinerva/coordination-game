@@ -117,7 +117,7 @@ function PlayerButton(id, link) {
 				}));
 				$('.recipient-text').val('');
 				$('.user-display').empty();
-	            $('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');
+	            $('.user-display').html('<span class="oi oi-person" title="person" aria-hidden="true"></span>');
 			};
 		} else {
 		    var element = document.createElement('div');

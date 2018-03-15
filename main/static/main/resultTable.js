@@ -65,7 +65,7 @@ function ResultTable() {
     }    
     this.tfspan = function (x) {
         if (x){
-            return "<span class='glyphicon glyphicon-ok'></span>"        
+            return "<span class='oi oi-check' title='check' style='color: green;' aria-hidden='true'></span>"        
         }
         return "";
     };

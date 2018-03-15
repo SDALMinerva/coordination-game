@@ -20,8 +20,8 @@ function WallMessenger() {
 		this.sendTo = document.createElement('div');
 		this.sendTo.className = 'input-group message-group';//highlight
 		var addon = document.createElement('span');
-		addon.className = 'input-group-addon user-display';
-		addon.innerHTML = '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>';
+		addon.className = 'input-group-prepend user-display input-group-text';
+		addon.innerHTML = '<span class="oi oi-person" title="person" aria-hidden="true"></span>';
 		this.sendTo.appendChild(addon);
 		
 		var input = document.createElement('input');
@@ -34,13 +34,10 @@ function WallMessenger() {
 		var dropdown = document.createElement('span');
 		dropdown.className = "input-group-btn";
 		dropdown_button = document.createElement('button');
-		dropdown_button.className = "btn btn-default dropdown-toggle";
+		dropdown_button.className = "btn btn-light dropdown-toggle";
 		dropdown_button.setAttribute("data-toggle", "dropdown");
-		var caret = document.createElement('span');
-		caret.className = "caret";
 		var toggle = document.createElement('span');
 		toggle.className = "sr-only";
-		dropdown_button.appendChild(caret);
 		dropdown_button.appendChild(toggle);
 		var messageListBox = document.createElement('ul');
 		messageListBox.className = "dropdown-menu";
@@ -49,8 +46,9 @@ function WallMessenger() {
 		var newRow = document.createElement('li');
 		var newMessage = document.createElement('a');
 		newMessage.className = 'recipient-option';
-		newMessage.innerHTML = "<span class='img-recipient glyphicon glyphicon-bullhorn'></span><span class='recipient-name pull-right'>All Friends</span>" + "<span id='ID' style='visibility: hidden;'>all</span>";			
-		newRow.appendChild(newMessage)			
+		newMessage.innerHTML = "<span class='img-recipient oi oi-bullhorn' title='bullhorn' aria-hidden='true'></span><span class='recipient-name float-right'>All Friends</span>" + "<span id='ID' style='visibility: hidden;'>all</span>";
+		newRow.appendChild(newMessage);
+        newRow.className = "dropdown-item";
 		messageListBox.appendChild(newRow);
 		
 		for (i=0, len = neighbors.length; i < len; i++){
@@ -59,8 +57,9 @@ function WallMessenger() {
 			var newMessage = document.createElement('a');
 			newMessage.className = 'recipient-option';
 			newMessage.innerHTML = "<img class='img-recipient' src='/static/avatar/" + avatars[tempId] + 
-			"'><span class='recipient-name pull-right'>" + userNames[tempId] + "</span>" + "<span id='ID' style='visibility: hidden;'>"+tempId+"</span>";			
-			newRow.appendChild(newMessage)			
+			"'><span class='recipient-name float-right'>" + userNames[tempId] + "</span>" + "<span id='ID' style='visibility: hidden;'>"+tempId+"</span>";
+			newRow.appendChild(newMessage);
+            newRow.className = "dropdown-item";
 			messageListBox.appendChild(newRow);	
 		};
 		
@@ -68,9 +67,9 @@ function WallMessenger() {
 		var newMessage = document.createElement('a');
 		newMessage.className = 'recipient-option';
 		newMessage.innerHTML = "<img class='img-recipient' src='/static/avatar/" + avatars[nodeId] + 
-			"'><span class='recipient-name pull-right'>" + userNames[nodeId] + " (You)</span>" + "<span id='ID' style='visibility: hidden;'>"+nodeId+"</span>";			
-	
-		newRow.appendChild(newMessage)			
+		"'><span class='recipient-name float-right'>" + userNames[nodeId] + " (You)</span>" + "<span id='ID' style='visibility: hidden;'>"+nodeId+"</span>";
+		newRow.appendChild(newMessage);
+        newRow.className = "dropdown-item";
 		messageListBox.appendChild(newRow);
 		
 //		var send_button = document.createElement('button');
@@ -89,8 +88,8 @@ function WallMessenger() {
 		this.messages = document.createElement('div');
 		this.messages.className = 'input-group message-group'; //highlight
 		this.addon = document.createElement('span');
-		this.addon.className = 'input-group-addon';
-		this.addon.innerHTML = '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>';
+		this.addon.className = 'input-group-prepend';
+		this.addon.innerHTML = '<span class="input-group-text oi oi-pencil" title="pencil" aria-hidden="true"></span>';
 		this.messages.appendChild(this.addon);
 		
 		this.input = document.createElement('input');
@@ -103,7 +102,7 @@ function WallMessenger() {
 		this.dropdown = document.createElement('span');
 		this.dropdown.className = "input-group-btn";
 		this.dropdown_button = document.createElement('button');
-		this.dropdown_button.className = "btn btn-default dropdown-toggle";
+		this.dropdown_button.className = "btn btn-light dropdown-toggle";
 		this.dropdown_button.setAttribute("data-toggle", "dropdown");
 		this.caret = document.createElement('span');
 		this.caret.className = "caret";
@@ -120,13 +119,14 @@ function WallMessenger() {
 			var newMessage = document.createElement('a');
 			newMessage.className = 'message-option';
 			newMessage.innerHTML = messageList[i];			
-			newRow.appendChild(newMessage)			
+			newRow.appendChild(newMessage);
+            newRow.className = "dropdown-item";            
 			this.messageList.appendChild(newRow);
 			
 		};
 		
 		this.send_button = document.createElement('button');
-		this.send_button.className = "btn btn-default send-message";
+		this.send_button.className = "btn btn-light send-message";
 		this.send_button.innerHTML = "Send Message";
 		
 		this.dropdown.appendChild(this.dropdown_button);
@@ -151,11 +151,11 @@ function Wall() {
 		this.Parent.appendChild(this.topRow);
 		
 		this.topRowImg = document.createElement('div');
-		this.topRowImg.className = "col-xs-2";
+		this.topRowImg.className = "col-sm-2";
 		this.topRowImg.id = "wallImgContainer";
 		this.topRow.appendChild(this.topRowImg);
 		this.topRowHeader = document.createElement('div');
-		this.topRowHeader.className = "col-xs-10 titleContainer";
+		this.topRowHeader.className = "col-sm-10 titleContainer";
 		this.topRow.appendChild(this.topRowHeader);
 		
 		this.wallimg = document.createElement('img');
@@ -180,9 +180,9 @@ function Wall() {
         this.wallMain = document.createElement('div');
         this.wallMain.className = 'row';
         this.wallOne = document.createElement('div');
-        this.wallOne.className = 'col-xs-8';
+        this.wallOne.className = 'col-sm-8';
         this.wallTwo = document.createElement('div');
-        this.wallTwo.className = 'col-xs-4 shiftleft';
+        this.wallTwo.className = 'col-sm-4 shiftleft';
         this.wallMain.appendChild(this.wallOne);
         this.wallMain.appendChild(this.wallTwo);
 
@@ -197,7 +197,7 @@ function Wall() {
 		this.wallTwo.appendChild(this.friendWall);			
 		
 		this.wall = document.createElement('div');
-		this.wall.className = 'list-group wall well';
+		this.wall.className = 'list-group wall card';
 		this.wallOne.appendChild(this.wall);
 
 		this.Parent.appendChild(this.wallMain);
@@ -351,7 +351,7 @@ if (messageRound == -1){
     $("#wall .message-text").val('');
     $("#wall .recipient-text").val('');
     $('.user-display').empty();
-	$('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');  
+	$('.user-display').html('<span class="oi oi-person" title="person" aria-hidden="true"></span>');  
 
   return false;
 });
@@ -384,7 +384,7 @@ $("#wall .recipient-option").click(function(event){
 	$('.user-display').html($(this).find('.img-recipient').clone());
 	var id = $(this).find('#ID').html();
 	if(id != 'all'){
-	   chat.setActiveChannel(id);
+	    chat.setActiveChannel(id);
 		wall.changeId(id);
 		chat.infoChannel.send(JSON.stringify({
 		  'type': 'list',
@@ -433,7 +433,7 @@ function Entry(id,timestamp,content,key) {
 	
 	this.Entry = function () {
 		var listItem = document.createElement('li');
-		var listHeading = document.createElement('h4');
+		var listHeading = document.createElement('h6');
 		var listP = document.createElement('p');
 		
 		listItem.backgroundColor = '#fff';
@@ -442,10 +442,10 @@ function Entry(id,timestamp,content,key) {
 		var img_src = '/static/avatar/' + avatars[id];
 
       media_object = document.createElement('img');
-		media_object.className = "media-object pull-left media-center";
+		media_object.className = "media-object float-left media-center";
 		media_object.src = img_src;
 		media_object.alt = "not found";
-		media_object.width = 48;	
+		media_object.width = 48;
 		listItem.appendChild(media_object)	
 		
 		listHeading.innerHTML = this.content;
@@ -477,15 +477,15 @@ function NewlyAddedEntry(id,timestamp,content, key) {
 	
 	this.Entry = function () {
 		var listItem = document.createElement('li');
-		var listHeading = document.createElement('h4');
+		var listHeading = document.createElement('h6');
 		var listP = document.createElement('p');
 		
 		listItem.backgroundColor = '#f2f2f2';
 		listItem.className = 'newly-added list-group-item media message-item';
 		
 		var closebutton = document.createElement('button');
-   	    closebutton.innerHTML = "<span style='font-size: 13pt; color: #000;' class='glyphicon glyphicon-trash'></span>";
-   	    closebutton.className = "close pull-left removeEntry";
+   	    closebutton.innerHTML = "<span style='font-size: 13pt; color: #000;' class='oi oi-trash'></span>";
+   	    closebutton.className = "close float-left removeEntry";
    	    closebutton.style = "display: inline-block; margin-left: -10px; margin-top: 12px; padding: 0px;";
    	    closebutton.type = "button";
    	    closebutton.setAttribute('data-toggle','tooltip'); 
@@ -496,7 +496,7 @@ function NewlyAddedEntry(id,timestamp,content, key) {
 		var img_src = '/static/avatar/' + avatars[id];
 
       media_object = document.createElement('img');
-		media_object.className = "media-object pull-left media-center";
+		media_object.className = "media-object float-left media-center";
 		media_object.src = img_src;
 		media_object.alt = "not found";
 		media_object.width = 48;	

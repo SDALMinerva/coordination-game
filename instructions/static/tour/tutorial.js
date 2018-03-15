@@ -114,7 +114,7 @@ function startDiscussIntro() {
         intro: "Here you can see the earnings structure for the game.",
       },
       {
-        element: document.querySelectorAll('.next-button')[0],
+        element: document.querySelectorAll('.otree-btn-next')[0],
         intro: "Next, you will take a short quiz, play test rounds, and when you are ready, begin the game. <br/><br/><h5><em><strong>Click 'Next' to continue.</strong></em><h5/>",
       },
     ]);

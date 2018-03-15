@@ -79,20 +79,6 @@ $(window).on('load',function(){
     			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
   			</li>
 		{% endif %}
-		
-		{% comment %}
-		    {% block helpSection %}
-          	<li class="no-hover nav-item pull-right">
-    			<a class="nav-link" href="" data-toggle="modal" data-target="#QuizModal">Quiz</a>
-  			</li>
-  		    <li class="no-hover nav-item pull-right">
-    			<a class="nav-link" href="" data-toggle="modal" data-target="#InstructionsModal">Instructions</a>
-  			</li>
-  			<li class="no-hover nav-item pull-right">
-    			<a class="nav-link" href="javascript:void(0);" onclick="startIntro();">Tour</a>
-  			</li>
-  			{% endblock %}
-  		{% endcomment %}
 		</ul>
 
 		<!-- Tab panes -->
@@ -154,7 +140,7 @@ $(window).on('load',function(){
         <h4 class="modal-title">Are you sure?</h4>
       </div>
       <div class="modal-body">
-        <div class="card">
+        <div class="card" style="border: 0px;">
     <div class="card-body">
         <h4 class="card-title">Your Post Summary</h4>
         <h6 class="card-subtitle mb-2 text-muted">
@@ -295,7 +281,7 @@ $('[data-toggle="tooltip"]').tooltip({
 
     .close {
         opacity: .34;
-        line-height: .5;  
+        line-height: 1;  
     }
 
     .clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
@@ -351,14 +337,27 @@ $('[data-toggle="tooltip"]').tooltip({
         display: inline-block;
     }
     
+    #message-tool, #wall-card {
+        border: 0px;
+    }
+    
+    .card-body {
+        padding: 0px;
+    }
+    
     .input-group-text.oi {
         padding: .55rem .75rem;
         top: 0px;
     }
     
-    .btn-light {
+    .btn-light, .btn-light:disabled {
         background-color: #e9ecef;
         border: 1px solid #ced4da;
+    }
+    
+    .btn-light:disabled {
+        background-color: #f4f5f7;
+        border: 1px solid #e6e9ec;
     }
     
     .btn-light:focus {

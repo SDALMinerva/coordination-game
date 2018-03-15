@@ -17,26 +17,10 @@
     1
 {% endblock %}
 
-{% block content %}
-{{block.super}}
-<div class="modal fade" id="tourModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Tour</h4>
-      </div>
-      <div class="modal-body">
-        <p>
-            Before we begin the game, we will demonstrate how the platform works with an interactive tour. 
-            As you proceed, you can interact with the interface and then click next to advance the tour.
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="startIntro()">Begin Tour</button>
-      </div>
-    </div>
-  </div>
-</div>
+{% block beginModal %}
+{% endblock %}
+
+{% block messageTool %}
 {% endblock %}
 
 {% block participate %}
