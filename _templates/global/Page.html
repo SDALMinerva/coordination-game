@@ -1,5 +1,6 @@
 {% extends "otree/FormPage.html" %}
 {% load staticfiles otree_tags %}
+{% load clicktracking %}
 
 {% comment %}
     this file used to be called Base.html
@@ -10,6 +11,7 @@
 {% endcomment %}
 
 {% block body_main %}
+{% clicktrack %}
 {{block.super}}
 <p style="width: 100%; text-align: center; font-size: 8pt;">
 &copy 2018&nbsp;&nbsp;|&nbsp;&nbsp;

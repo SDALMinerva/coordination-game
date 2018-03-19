@@ -13,7 +13,6 @@ def ws_connect(message):
 
 @channel_session
 def ws_receive(message):
-    print('Received')
     label = message.channel_session['room']
     ws_data = json.loads(message['text'])
     if ws_data['type'] == 'send':

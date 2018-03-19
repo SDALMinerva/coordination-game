@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'avatar',
     'network',
     'practice_network',
+    'clicktracking',
     'django_extensions',
 ]
 

@@ -1,0 +1,50 @@
+<script>
+$(function () {
+
+    var varsFromDjango = {{ vars_for_clicktracking }};
+
+    if (!('channel' in varsFromDjango)) {
+        return;
+    }
+
+    var channel = varsFromDjango.channel;
+    var participantCode = varsFromDjango.participant_code;
+
+    var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+    var ws_path = ws_scheme + '://' + window.location.host + "/clicks/" + channel + "/";
+    console.log("Connecting to " + ws_path);
+    var socket = new ReconnectingWebSocket(ws_path);
+
+    socket.onopen = function () {
+        console.log("Connected to clicktrack socket");
+    };
+
+    socket.onclose = function () {
+        console.log("Disconnected from clicktrack socket");
+    };
+
+    function clickListener(e) {
+        var clickedElement;
+        if(e == null) {
+            clickedElement = event.srcElement;
+        } else {
+            clickedElement = e.target;
+        }
+        if (clickedElement.id) {
+            console.log(clickedElement.id);
+
+            var data = {
+                'element': clickedElement.id,
+                'participant_code': participantCode,
+                'timestamp': (new Date).getTime(),
+                'page': window.location.href,
+                'session_code': '{{session.code}}',
+            };
+            socket.send(JSON.stringify(data));
+        }
+    }
+
+    document.onclick = clickListener;
+
+});
+</script>
