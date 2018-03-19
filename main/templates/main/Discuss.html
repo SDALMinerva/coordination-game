@@ -44,7 +44,7 @@ $(window).on('load',function(){
     <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
         
         <div class="col-sm-2 col-lg-2" style="min-width: 160px; max-width: 260px; padding:5px;">
-        <div id="playerDiv">        
+        <div id="playerDiv" class="clicktrack">        
         <h4 style="text-align: left; padding-left: 0px;">Your Profile:</h4>
             <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
                 <br>
@@ -65,18 +65,18 @@ $(window).on('load',function(){
         {% with 'wall both' as list %}
             {% if session.config.condition_messaging in list.split %}
   		    <li class="nav-item active">
-    			<a class="nav-link active" data-toggle="tab" href="#wall" role="tab">Wall Posts</a>
+    			<a id="wall_post_nav" class="nav-link active clicktrack" data-toggle="tab" href="#wall" role="tab">Wall Posts</a>
   			</li>
   			{% endif %}
   		{% endwith %}
   		{% if session.config.condition_messaging == 'bilateral' %}
   			<li class="nav-item active">
-    			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
+    			<a id="bilateral_post_nav" class="nav-link clicktrack" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
   			</li>
 		{% endif %}
 		{% if session.config.condition_messaging == 'both' %}
   			<li class="nav-item">
-    			<a class="nav-link" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
+    			<a id="bilateral_post_nav" class="nav-link clicktrack" data-toggle="tab" href="#messenger" role="tab">Private Messages</a>
   			</li>
 		{% endif %}
 		
@@ -167,8 +167,8 @@ $(window).on('load',function(){
 </div>
       </div>
       <div class="modal-footer">
-        <button class="otree-btn-next btn btn-primary next-button otree-next-button">Continue</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Edit</button>
+        <button id="btn-discuss-continue" class="otree-btn-next btn btn-primary next-button otree-next-button clicktrack">Continue</button>
+        <button id="btn-discuss-edit" type="button" class="btn btn-primary clicktrack" data-dismiss="modal">Edit</button>
       </div>
     </div>
   </div>
@@ -176,7 +176,7 @@ $(window).on('load',function(){
 
 <div class="buttons">
     <p id="stopButton"> 
-    <button type="button" class="btn btn-primary" onclick="resultTable.getInfo();$('#stopModal').modal('show')">Next</button>
+    <button id="btn-discuss-next" type="button" class="btn btn-primary clicktrack" onclick="resultTable.getInfo();$('#stopModal').modal('show')">Next</button>
     </p>
 </div>
 {% endblock %}
@@ -251,7 +251,6 @@ var chat_name = '{{Constants.chat_name}}';
 	  'content': {'playerId': nodeId, 'sentBy': nodeId},				
 	}));
   }
-  
   
 
 {% with 'wall none' as list %}

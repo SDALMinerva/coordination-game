@@ -34,7 +34,7 @@ function WallMessenger() {
 		var dropdown = document.createElement('span');
 		dropdown.className = "input-group-btn";
 		dropdown_button = document.createElement('button');
-		dropdown_button.className = "btn btn-default dropdown-toggle";
+		dropdown_button.className = "btn btn-default dropdown-toggle clicktrack";
 		dropdown_button.setAttribute("data-toggle", "dropdown");
 		var caret = document.createElement('span');
 		caret.className = "caret";
@@ -42,14 +42,16 @@ function WallMessenger() {
 		toggle.className = "sr-only";
 		dropdown_button.appendChild(caret);
 		dropdown_button.appendChild(toggle);
+		dropdown_button.id = "recipient-dropdown";
 		var messageListBox = document.createElement('ul');
 		messageListBox.className = "dropdown-menu";
 		messageListBox.id = 'recipient-box';
 
 		var newRow = document.createElement('li');
 		var newMessage = document.createElement('a');
-		newMessage.className = 'recipient-option';
+		newMessage.className = 'recipient-option clicktrack';
 		newMessage.innerHTML = "<span class='img-recipient glyphicon glyphicon-bullhorn'></span><span class='recipient-name pull-right'>All Friends</span>" + "<span id='ID' style='visibility: hidden;'>all</span>";			
+        newMessage.id = 'recipient-option-all';		
 		newRow.appendChild(newMessage)			
 		messageListBox.appendChild(newRow);
 		
@@ -57,7 +59,8 @@ function WallMessenger() {
 		    var tempId = neighbors[i];
 			var newRow = document.createElement('li');
 			var newMessage = document.createElement('a');
-			newMessage.className = 'recipient-option';
+			newMessage.className = 'recipient-option clicktrack';
+			newMessage.id = 'recipient-option-' + tempId;
 			newMessage.innerHTML = "<img class='img-recipient' src='/static/avatar/" + avatars[tempId] + 
 			"'><span class='recipient-name pull-right'>" + userNames[tempId] + "</span>" + "<span id='ID' style='visibility: hidden;'>"+tempId+"</span>";			
 			newRow.appendChild(newMessage)			
@@ -66,7 +69,8 @@ function WallMessenger() {
 		
 		var newRow = document.createElement('li');
 		var newMessage = document.createElement('a');
-		newMessage.className = 'recipient-option';
+		newMessage.className = 'recipient-option clicktrack';
+		newMessage.id = 'recipient-option-self';
 		newMessage.innerHTML = "<img class='img-recipient' src='/static/avatar/" + avatars[nodeId] + 
 			"'><span class='recipient-name pull-right'>" + userNames[nodeId] + " (You)</span>" + "<span id='ID' style='visibility: hidden;'>"+nodeId+"</span>";			
 	
@@ -103,7 +107,8 @@ function WallMessenger() {
 		this.dropdown = document.createElement('span');
 		this.dropdown.className = "input-group-btn";
 		this.dropdown_button = document.createElement('button');
-		this.dropdown_button.className = "btn btn-default dropdown-toggle";
+		this.dropdown_button.className = "btn btn-default dropdown-toggle clicktrack";
+		this.dropdown_button.id = "message-list-dropdown";
 		this.dropdown_button.setAttribute("data-toggle", "dropdown");
 		this.caret = document.createElement('span');
 		this.caret.className = "caret";
@@ -118,7 +123,8 @@ function WallMessenger() {
 		for (i=0, len = messageList.length; i < len; i++){
 			var newRow = document.createElement('li');
 			var newMessage = document.createElement('a');
-			newMessage.className = 'message-option';
+			newMessage.className = 'message-option clicktrack';
+			newMessage.id = 'message-option-' + i;
 			newMessage.innerHTML = messageList[i];			
 			newRow.appendChild(newMessage)			
 			this.messageList.appendChild(newRow);
@@ -126,7 +132,9 @@ function WallMessenger() {
 		};
 		
 		this.send_button = document.createElement('button');
-		this.send_button.className = "btn btn-default send-message";
+		this.send_button.className = "btn btn-default send-message clicktrack";
+		this.send_button.type = 'button';
+		this.send_button.id = "send-message-button";
 		this.send_button.innerHTML = "Send Message";
 		
 		this.dropdown.appendChild(this.dropdown_button);
@@ -269,15 +277,16 @@ function Wall() {
 	};
 };
 
-$("#wall .send-message").click(function(event){
+$("#wall").on("click", ".send-message", function(event){
+
   if ($(".message-text").val() == ''){
         $('#selector-alert').fadeIn();
-  		return false;
+  		return;
   }
   
   if ($(".recipient-text").val() == ''){
         $('#selector-alert').fadeIn();
-        return false;  
+        return;  
   }  
   
 
@@ -335,6 +344,7 @@ if (recipient == 'All Friends'){
   	});
   console.log(toSend);
   chat.activeChannel.send(toSend);
+
 }
 /////////////////////////////////////
 /////////////////////////////////////
@@ -353,7 +363,9 @@ if (messageRound == -1){
     $('.user-display').empty();
 	$('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');  
 
-  return false;
+  return;
+  
+
 });
 
 $("#wall").on('click', '.removeEntry', function(event){
@@ -481,16 +493,17 @@ function NewlyAddedEntry(id,timestamp,content, key) {
 		var listP = document.createElement('p');
 		
 		listItem.backgroundColor = '#f2f2f2';
-		listItem.className = 'newly-added list-group-item media message-item';
+		listItem.className = 'newly-added list-group-item media message-item ';
 		
 		var closebutton = document.createElement('button');
    	    closebutton.innerHTML = "<span style='font-size: 13pt; color: #000;' class='glyphicon glyphicon-trash'></span>";
-   	    closebutton.className = "close pull-left removeEntry";
+   	    closebutton.className = "close pull-left removeEntry clicktrack";
    	    closebutton.style = "display: inline-block; margin-left: -10px; margin-top: 12px; padding: 0px;";
    	    closebutton.type = "button";
    	    closebutton.setAttribute('data-toggle','tooltip'); 
    	    closebutton.setAttribute('data-placement','tooltip');
    	    closebutton.title='Delete Message';
+   	    closebutton.id = 'message-delete-' + key;
    	    listItem.appendChild(closebutton);
 
 		var img_src = '/static/avatar/' + avatars[id];

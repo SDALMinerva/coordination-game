@@ -28,13 +28,15 @@
 {% block pageScripts %}
     <script type="text/javascript" >
         var output = false;
+        
+        $('input').addClass('clicktrack');
     </script>
 {% endblock %}
 
 {% block checkSubmission %}
 <p>Click <strong>Next</strong> to continue.</p>
 <br>
-<div class="buttons">
+<div id="btn-decide-next" class="buttons clicktrack">
     
     {% next_button %}
 </div>
