@@ -12,6 +12,7 @@
 {% include "main/quiz_modal.html" %}
 
 {% block beginModal %}
+{% comment %}
 {% if subsession.round_number == 1 %}
 <div class="modal fade" id="startModal">
   <div class="modal-dialog" role="document">
@@ -36,6 +37,7 @@ $(window).on('load',function(){
     });
 </script>
 {% endif %}
+{% endcomment %}
 {% endblock %}
 
 <div class="container-fluid" style="position: relative;">
