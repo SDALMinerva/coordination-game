@@ -25,7 +25,7 @@ class Constants(BaseConstants):
     name_in_url = 'practice'
     chat_name = 'practice-chat'
     players_per_group = None               #EDIT: Make flexible with number of players.
-    num_rounds = 1                     #EDIT: Make adjustable from session config.
+    num_rounds = 10                     #EDIT: Make adjustable from session config.
     num_messaging_rounds = 1            #EDIT: Make adjustable from session config.
     messages = {
             1: 'I will participate.',
@@ -67,6 +67,7 @@ class Subsession(BaseSubsession):
         for p in self.get_players():
             p.avatar = Avatar.objects.get(src = next(avatar_assignments))
             p.user_name = p.avatar.name.split('-')[0]
+            p.participant.vars['practice-continue'] = True
             
 
         # Set up network (every group in subsession)
@@ -200,6 +201,15 @@ class Player(BasePlayer):
     
     # Round_Payoff
     round_payoff = models.CurrencyField();
+    
+    continue_practice = models.BooleanField(
+        verbose_name="Would you like to continue with practice rounds?",
+        blank = True,
+        initial = True,
+        choices = [
+            [True, "Yes, I would like to continue practicing."],
+            [False,"No, I understand the game and would like to advance to the next step."],        
+        ]);
 
 
 class Wall(models.Model):

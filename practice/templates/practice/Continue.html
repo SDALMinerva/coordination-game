@@ -1,0 +1,53 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Continue with Practice Rounds?
+{% endblock %}
+
+{% block content %}
+
+<h4>
+You have completed {{subsession.round_number}} of {{Constants.num_rounds}} available practice rounds.
+You may choose to continue practicing, or move on to the paid experiments.
+</h4>
+
+<div class="card">
+  <div class="card-block">
+    {% formfield player.continue_practice %}
+  </div>
+</div>
+
+<div id="sure" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Are you sure?</h3>
+      </div>
+      <div class="modal-body">
+        <h4>If you select 'No', you will not have any more practice rounds before the payment rounds.</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<br>
+<p>Please click <strong>Next</strong> when you have decided.</p>
+<br>
+{% next_button %}
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" >
+    $('h4').addClass('card-title');
+    $('#id_continue_practice_2').click(function () {
+    console.log('Clicked');
+    	$('#sure').modal();
+    });
+</script>
+
+{% endblock %}

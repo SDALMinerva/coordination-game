@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Practice Rounds Finished
+{% endblock %}
+
+{% block content %}
+
+<h4>
+You have completed {{subsession.round_number}} of {{Constants.num_rounds}} available practice rounds.
+You will now move on to the paid experiments.
+</h4>
+
+<br><br><br>
+<p>Please click <strong>Next</strong> when you have decided.</p>
+<br>
+{% next_button %}
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" >
+    $('h4').addClass('card-title');
+</script>
+
+{% endblock %}
