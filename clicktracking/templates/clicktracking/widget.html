@@ -37,6 +37,8 @@ $(function () {
         } else if ($(clickedElement).hasClass("clicktrack")) {
         	clickedId = $(clickedElement).attr('id');
         }
+
+        var currentPage = window.location.pathname;        
         
         if (clickedId) {
         	console.log(clickedId);
@@ -44,7 +46,7 @@ $(function () {
                 'element': clickedId,
                 'participant_code': participantCode,
                 'timestamp': (new Date).getTime(),
-                'page': window.location.href,
+                'page': currentPage + '-{{subsession.round_number}}',
                 'session_code': '{{session.code}}',
             };
             socket.send(JSON.stringify(data));

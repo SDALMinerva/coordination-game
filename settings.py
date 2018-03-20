@@ -361,6 +361,14 @@ SESSION_CONFIGS = [
      },
 ]
 
+ROOMS = [
+    {
+        'name': 'lab',
+        'display_name': 'In-Person Room (15 Participants)',
+        'participant_label_file': '15Participants.txt',
+    },
+]
+
 if DEBUG:
     SESSION_CONFIGS += DEV_CONFIGS
 
