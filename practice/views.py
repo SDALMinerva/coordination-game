@@ -7,7 +7,7 @@ import json
 
 
 class AssignAvatar(Page):
-    template_name = 'main/AssignAvatar.html'
+    template_name = 'practice/AssignAvatar.html'
     
     def is_displayed(self):
         return self.participant.vars['practice-continue']
@@ -16,7 +16,7 @@ class AssignAvatar(Page):
 
 class Discuss(Page):
 
-    template_name = 'main/Discuss.html'
+    template_name = 'practice/Discuss.html'
 
     def is_displayed(self):
         return self.participant.vars['practice-continue']
@@ -140,7 +140,7 @@ class EndWaitPage(WaitPage):
 
 class Decide(Discuss):
     
-    template_name = 'main/Decide.html'
+    template_name = 'practice/Decide.html'
 
     def is_displayed(self):
         return self.participant.vars['practice-continue']    
