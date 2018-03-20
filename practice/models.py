@@ -195,7 +195,7 @@ class Player(BasePlayer):
     participate = models.BooleanField(verbose_name="Will you participate?")
     
     # Avatar Portions
-    user_name = models.CharField(default = 'Not Assigned')
+    user_name = models.StringField(default = 'Not Assigned')
     avatar = models.ForeignKey(Avatar, default = 1, related_name = 'practice_avatar_seq')
     
     # Round_Payoff
@@ -211,10 +211,10 @@ class Message(models.Model):
     wall = models.ForeignKey(Wall)
     createdBy = models.ForeignKey(Node)
     datetime = models.DateTimeField(auto_now=True)
-    message = models.CharField()
+    message = models.StringField()
     messageRound = models.IntegerField()
     deleted = models.BooleanField(initial=False)
-    key = models.CharField()
+    key = models.StringField()
 
     def to_dict(self):
         return {
@@ -236,10 +236,10 @@ class PrivateMessage(models.Model):
     wall = models.ForeignKey(PrivateMessageBoard)
     createdBy = models.ForeignKey(Node)
     datetime = models.DateTimeField(auto_now=True)
-    message = models.CharField()
+    message = models.StringField()
     messageRound = models.IntegerField()
     deleted = models.BooleanField(initial=False)
-    key = models.CharField()
+    key = models.StringField()
 
     def to_dict(self):
         return {

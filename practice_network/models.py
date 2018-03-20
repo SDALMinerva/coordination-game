@@ -34,8 +34,8 @@ class Player(BasePlayer):
 
 class Network(models.Model):
     n_nodes = models.IntegerField(default = -1)
-    description = models.CharField()
-    nType = models.CharField()
+    description = models.StringField()
+    nType = models.StringField()
 
     def __str__(self):
         return 'Id: {}\n{}'.format(self.id, self.description)
@@ -160,7 +160,7 @@ class Node(models.Model):
     position = models.IntegerField()
     network = models.ForeignKey(Network)
     threshold = models.FloatField(default = -1)
-    threshold_text = models.CharField()
+    threshold_text = models.StringField()
     participate = models.BooleanField()
 
     def get_neighbors(self):
