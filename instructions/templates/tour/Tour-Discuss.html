@@ -31,7 +31,7 @@ Round 1: Messaging Part
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="startDiscussIntro()">Begin Tour</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="startDiscussInstructions()">Begin Tour</button>
       </div>
     </div>
   </div>
@@ -147,7 +147,6 @@ Round 1: Messaging Part
             
         var network_display = '{{networkDisplay|safe}}';
     </script>
-    <script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
     <script type="text/javascript" src={% static "global/hash.js" %}></script>
     <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
     <script type="text/javascript" src={% static "global/player_list.js" %}></script>
@@ -167,7 +166,8 @@ Round 1: Messaging Part
     <script type="text/javascript" src={% static "global/vis.min.js" %}></script>
     <script type="text/javascript" src={% static "global/intro.min.js" %}></script>
     <script type="text/javascript" src={% static "main/network.js" %}></script>
-    <script type="text/javascript" src={% static "tour/tutorial.js" %}></script>
+    <script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
+    <script type="text/javascript" src={% static "main/tutorial.js" %}></script>
     
     <script type="text/javascript" >
       var playerProfile = document.getElementById('playerLabel');
@@ -205,5 +205,5 @@ Round 1: Messaging Part
 
 {% block styles %}
     {{block.super}}
-    <link rel="stylesheet" href={% static "tour/tutorial.css" %}>
+    <link rel="stylesheet" href={% static "main/tutorial.css" %}>
 {% endblock %}

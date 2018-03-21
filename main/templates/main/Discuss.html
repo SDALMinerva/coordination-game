@@ -199,9 +199,9 @@ var privateEntries = JSON.parse('{{privateMessages|safe}}');
 var network_nodes = JSON.parse('{{nodes|escapejs}}');
 var network_edges = JSON.parse('{{edges|safe}}');
 var chat_name = '{{Constants.chat_name}}';
+var network_display = '{{networkDisplay|safe}}';
 </script>
 
-<script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
 <script type="text/javascript" src={% static "global/hash.js" %}></script>
 <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
 <script type="text/javascript" src={% static "global/player_list.js" %}></script>
@@ -225,6 +225,7 @@ var chat_name = '{{Constants.chat_name}}';
 
 
 <script type="text/javascript" src={% static "main/network.js" %}></script>
+<script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
 <script type="text/javascript" src={% static "main/tutorial.js" %}></script>
 
 <script type="text/javascript" >
@@ -271,6 +272,7 @@ $('[data-toggle="tooltip"]').tooltip({
 <link rel="stylesheet" href={% static "global/vis.min.css" %}>
 <link rel="stylesheet" href={% static "global/introjs.min.css" %}>
 <link rel="stylesheet" href={% static "global/open-iconic-master/font/css/open-iconic-bootstrap.css" %}>
+<link rel="stylesheet" href={% static "main/tutorial.css" %}>
 
 
 
