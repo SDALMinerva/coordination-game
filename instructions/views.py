@@ -10,7 +10,13 @@ class QuizIntro(Page):
     template_name = 'instructions/QuizIntro.html'
     
 class InstructionsPage(Page):
-    pass
+    def vars_for_template(self):
+        screenImage = 'instructions/screenshot-wall-global.png'
+        if self.session.config['condition_network_knowledge'] == 'local':
+            screenImage = 'instructions/screenshot-wall-local.png'
+        return {
+            'screenImage': screenImage
+        }
 
 class TourDiscuss(Page):
     template_name = 'tour/Tour-Discuss.html'
@@ -63,11 +69,11 @@ class Summary(Page):
     template_name = 'instructions/Summary.html'
 
 page_sequence = [
-    Intro,
+#    Intro,
     InstructionsPage,
     TourDiscuss,
     TourDecide,
-    QuizIntro,
+#    QuizIntro,
     Quiz,
     Summary,
 ]

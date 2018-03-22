@@ -1,25 +1,39 @@
-{% extends "global/Page.html" %}
+{% extends "welcome_consent/WelcomePage.html" %}
 {% load staticfiles otree_tags %}
-{% load staticfiles %}
 
 {% block app_styles %}
 <style>
-    h4{
+    #instructions-div h4{
+        margin-left: 0;
         margin-top: 2em; 
-        font-weight:bold;   
+        font-weight:bold; 
+        color: black;  
     }
 </style>
+{% endblock %}
+
+{% block onpage %}instructions{% endblock %}
+
+{% block contentH3 %}
+{% endblock %}
+
+{% block contentH5 %}
+Below, you will see the instructions followed by a demo of the experiment interface.
+Please read the instructions carefully and make sure you understand your options during the demo.
+{% endblock %}
+
+{% block contentP %}
 {% endblock %}
 
 {% block title %}
     Instructions
 {% endblock %}
 
-{% block content %}
-
+{% block page_specific %}
+<div id="instructions-div">
 {% include "instructions/main.html" %}
-
-
-{% next_button %}
+</div>
 
 {% endblock %}
+
+

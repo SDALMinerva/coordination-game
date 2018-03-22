@@ -1,11 +1,24 @@
-{% extends "global/Page.html" %}
+{% extends "welcome_consent/WelcomePage.html" %}
 {% load staticfiles otree_tags %}
 
 {% block title %}
     Survey
 {% endblock %}
 
-{% block content %}
+{% block contentH3 %}
+{% endblock %}
+
+{% block contentH5 %}
+You will now be asked to complete a short survey.
+Please answer the questions on the following pages as accurately as you can.
+{% endblock %}
+
+{% block contentP %}
+{% endblock %}
+
+{% block onpage %}survey{% endblock %}
+
+{% block page_specific %}
     {% if session.is_demo %}
         <a href="#" onclick="setVals()">DEMO: Click here to fill vals.</a>
     {% endif %}
@@ -37,13 +50,11 @@
 			</div>
         {% endif %}
     {% endfor %}
-    
-
-    {% next_button %}
 
 {% endblock %}
 
 {% block scripts %}
+    {{block.super}}
     <script type="text/javascript">
 
         {% if session.is_demo %}
