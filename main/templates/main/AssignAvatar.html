@@ -7,14 +7,14 @@
 
 {% block content %}
 
-<h3><strong>Round {{subsession.round_number}}</strong></h3>
+<h3><strong>{% block practice %}{% endblock %}Round {{subsession.round_number}}</strong></h3>
 
 <h4>Your user name: <font size="+2"><strong><em>{{player.user_name}}</em></strong></font></h4>	
 <h4 style="text-align: center;"></h4>	
 <h4>Your profile image:</h4>
 <div style="background: linear-gradient(white,#dddddd); padding: 10px; padding-top: 0px">
 		{% with 'avatar/'|add:player.avatar.src as image_static %}
-  			<img src='{% static image_static %}'  alt="" class=".img-responsive mx-auto">
+  			<img src='{% static image_static %}'  alt="" class=".img-responsive center-block">
 		{% endwith %}
 </div>
 <br>		
@@ -23,16 +23,13 @@ This is your randomly assigned profile for Round {{subsession.round_number}}. No
 Click <strong>next</strong> to proceed to the game.
 </p>
     {% next_button %}
+    
 {% endblock %}
 
 {% block app_styles %}
     <style type="text/css">
         .card {
             margin-bottom: 20px;
-        }
-        
-        .mx-auto {
-            display: block;
         }
     </style>
 {% endblock %}

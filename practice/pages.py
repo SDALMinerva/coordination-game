@@ -7,12 +7,19 @@ import json
 
 
 class AssignAvatar(Page):
-    template_name = 'main/AssignAvatar.html'
+    template_name = 'practice/AssignAvatar.html'
+    
+    def is_displayed(self):
+        return self.participant.vars['practice-continue']
+        
     pass
 
 class Discuss(Page):
 
-    template_name = 'main/Discuss.html'
+    template_name = 'practice/Discuss.html'
+
+    def is_displayed(self):
+        return self.participant.vars['practice-continue']
 
     def vars_for_template(self):
         group_players = self.group.get_players()
@@ -66,6 +73,9 @@ class BeginWaitPage(WaitPage):
 
     template_name = 'main/wait_page.html'
 
+    def is_displayed(self):
+        return self.participant.vars['practice-continue']
+
     def after_all_players_arrive(self):
         pass
         
@@ -73,6 +83,9 @@ class BeginWaitPage(WaitPage):
 class IntermediateWaitPage(WaitPage):
 
     template_name = 'main/wait_page.html'
+
+    def is_displayed(self):
+        return self.participant.vars['practice-continue']
 
     def after_all_players_arrive(self):
         group_players = self.group.get_players()
@@ -108,6 +121,9 @@ class EndWaitPage(WaitPage):
 
     template_name = 'main/wait_page.html'
 
+    def is_displayed(self):
+        return self.participant.vars['practice-continue']
+
     def after_all_players_arrive(self):
 
         for node in self.group.network.node_set.all():
@@ -124,12 +140,34 @@ class EndWaitPage(WaitPage):
 
 class Decide(Discuss):
     
-    template_name = 'main/Decide.html'
+    template_name = 'practice/Decide.html'
+
+    def is_displayed(self):
+        return self.participant.vars['practice-continue']    
     
     form_model = 'player'
     form_fields = [
         'participate'
     ]
+
+
+class Continue(Page):
+
+    def is_displayed(self):
+        if self.player.subsession.round_number == Constants.num_rounds:
+            self.template_name = 'practice/PracticeEnd.html'
+        else:
+            self.template_name = 'practice/Continue.html'
+        return self.participant.vars['practice-continue']
+
+    def before_next_page(self):
+        self.participant.vars['practice-continue'] = self.player.continue_practice
+        
+    form_model = models.Player
+    form_fields = [
+        'continue_practice'
+    ]
+      
 
 class Intro(Page):
     template_name = 'practice/intro.html'
@@ -140,6 +178,6 @@ class Intro(Page):
 messaging_apps = [x for i in range(Constants.num_messaging_rounds) for x in [Discuss, IntermediateWaitPage]]
 seq = [Intro, AssignAvatar, BeginWaitPage]
 seq.extend(messaging_apps)
-seq.extend([Decide, EndWaitPage])
+seq.extend([Decide, EndWaitPage, Continue])
 
 page_sequence = seq

@@ -2,7 +2,7 @@
 {% load staticfiles otree %}
 
 {% block title %}
-    Round {{subsession.round_number}}: Decision Part
+    {% block practice %}{% endblock %}Round {{subsession.round_number}}: Decision Part
 {% endblock %}
 
 {% block beginModal %}
@@ -26,16 +26,25 @@
 {% block helpSection %}
 {% endblock %}
 
+
+{% block messageTool %}
+{% endblock %}
+
+{% block helpSection %}
+{% endblock %}
+
 {% block pageScripts %}
     <script type="text/javascript" >
         var output = false;
+        
+        $('input').addClass('clicktrack');
     </script>
 {% endblock %}
 
 {% block checkSubmission %}
 <p>Click <strong>Next</strong> to continue.</p>
 <br>
-<div class="buttons">
+<div id="btn-decide-next" class="buttons clicktrack">
     
     {% next_button %}
 </div>

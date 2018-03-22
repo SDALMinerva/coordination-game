@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     'avatar',
     'network',
     'practice_network',
+    'clicktracking',
     'django_extensions',
 ]
 
@@ -359,6 +360,14 @@ SESSION_CONFIGS = [
                           'survey_final',
                          ],
      },
+]
+
+ROOMS = [
+    {
+        'name': 'lab',
+        'display_name': 'In-Person Room (15 Participants)',
+        'participant_label_file': '15Participants.txt',
+    },
 ]
 
 if DEBUG:

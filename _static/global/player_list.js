@@ -107,7 +107,7 @@ function PlayerButton(id, link) {
 		    var element = document.createElement('a');
 		    element.id = "player-button" + id;
 		    element.href = "#" + id;
-		    element.className = "list-group-item list-group-item-action player-button linking-button";
+		    element.className = "list-group-item list-group-item-action player-button linking-button clicktrack";
 		    element.onclick = function () {
 				chat.setActiveChannel(id);
 				wall.changeId(id);

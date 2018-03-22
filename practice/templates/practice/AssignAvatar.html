@@ -1,0 +1,20 @@
+{% extends "main/AssignAvatar.html" %}
+{% load staticfiles otree_tags %}
+
+{% block practice %}Practice {% endblock %}
+
+{% block styles %}
+{{block.super}}
+<style type="text/css">
+    body{
+        background-image: url("{% static 'practice/img/practice-background.png' %}");   
+        background-color: gray; 
+    }
+    
+    .otree-body{
+        background-color: #ffffff;
+        border-left: 1px solid gray;
+        border-right: 1px solid gray;
+    }
+</style>
+{% endblock %}

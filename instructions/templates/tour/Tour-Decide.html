@@ -35,6 +35,17 @@
 </div><!--- .form-group -->
 {% endblock %}
 
+{% block checkSubmission %}
+<p>Click <strong>Next</strong> to continue.</p>
+<br>
+
+<div class="buttons">
+    <p id="stopButton"> 
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Continue</button>
+    </p>
+</div>
+{% endblock %}
+
 {% block scripts %}
 
     {% block pageScripts %}
@@ -126,10 +137,38 @@
     
     <script type="text/javascript" src={% static "tour/chat-tour.js" %}></script>
     <script type="text/javascript" src={% static "global/vis.min.js" %}></script>
+<<<<<<< HEAD
     <script type="text/javascript" src={% static "global/intro.min.js" %}></script>
     <script type="text/javascript" src={% static "main/network.js" %}></script>
     <script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
-    <script type="text/javascript" src={% static "main/tutorial.js" %}></script>
+    {% if session.config.condition_messaging == 'bilateral'%}
+    {% if session.config.condition_network_knowledge == 'global'%}
+        <script type="text/javascript" src={% static "tour/tutorial-bilateral-global.js" %}></script>
+    {% endif %}
+    {% if session.config.condition_network_knowledge == 'local'%}
+        <script type="text/javascript" src={% static "tour/tutorial-bilateral-local.js" %}></script>
+    {% endif %}
+{% endif %}
+
+{% if session.config.condition_messaging == 'wall'%}
+    {% if session.config.condition_network_knowledge == 'global'%}
+        <script type="text/javascript" src={% static "tour/tutorial-wall-global.js" %}></script>
+    {% endif %}
+    {% if session.config.condition_network_knowledge == 'local'%}
+        <script type="text/javascript" src={% static "tour/tutorial-wall-local.js" %}></script>
+    {% endif %}
+{% endif %}
+ 
+{% comment %}    
+{% if session.config.condition_messaging == 'none'%}
+    {% if session.config.condition_network_knowledge == 'global'%}
+        <script type="text/javascript" src={% static "tour/tutorial.js" %}></script>
+    {% endif %}
+    {% if session.config.condition_network_knowledge == 'local'%}
+        <script type="text/javascript" src={% static "tour/tutorial.js" %}></script>
+    {% endif %}
+{% endif %}
+{% endcomment %}
     
     <script type="text/javascript" >
 var playerProfile = document.getElementById('playerLabel');
