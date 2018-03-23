@@ -13,8 +13,8 @@ $('.page-header').append(
 );
 
 if ($('.otree-title').html().indexOf('Messaging') >= 0) {
-    $('#help-nav > .nav-item:first-child > a').attr('onclick', 'startDiscussTour()');
+    $('#help-nav > .nav-item:first-child > a').attr('onclick', 'startDiscussIntro()');
 }
 else if ($('.otree-title').html().indexOf('Decision') >= 0) {
-    $('#help-nav > .nav-item:first-child > a').attr('onclick', 'startDecideTour()');
+    $('#help-nav > .nav-item:first-child > a').attr('onclick', 'startDecideIntro()');
 }

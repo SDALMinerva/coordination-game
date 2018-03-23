@@ -48,6 +48,7 @@ function startDiscussIntro() {
         element: document.querySelectorAll('.wall-card')[0],
         intro: "Every player has a 'wall', which is a place where messages can be posted and these messages can be viewed by friends. " +
                "Below is an example of a wall (Swan’s wall in this case). " +
+               "You can remove any message you make on a wall by clicking the trashcan icon in the message you sent. " +
                "You will view the posts on your wall and on your friends' walls in the decision part.",
         //position: "top",
       },
