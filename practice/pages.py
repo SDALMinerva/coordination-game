@@ -163,7 +163,7 @@ class Continue(Page):
     def before_next_page(self):
         self.participant.vars['practice-continue'] = self.player.continue_practice
         
-    form_model = models.Player
+    form_model = 'player'
     form_fields = [
         'continue_practice'
     ]
