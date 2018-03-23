@@ -54,19 +54,6 @@ Please answer the questions on the following pages as accurately as you can.
 
 {% endblock %}
 
-<<<<<<< HEAD
-{% block scripts %}
-    <script type="text/javascript">
-
-        {% if session.is_demo %}
-        var setVals = function (){
-            $(":text").val('X');
-           	$('input[type="number"]').val('999');
-           	$('input:radio').prop('checked', true);
-           	$('select option').prop('selected', true);
-        }
-        {% endif %}    
-=======
 {% block scripts %}
     {{block.super}}
     <script type="text/javascript">
@@ -78,8 +65,7 @@ Please answer the questions on the following pages as accurately as you can.
            	$('input:radio').prop('checked', true);
            	$('select option').prop('selected', true);
         }
-        {% endif %}    
->>>>>>> master
+        {% endif %}
     
         {% if session.config.student_survey %}
             var major = document.querySelectorAll("[for=\"id_major_0\"]")[0];
