@@ -102,7 +102,7 @@ class IntermediateWaitPage(WaitPage):
                             Message(createdBy=node,
                             messageRound = message_round, 
                             message=Constants.messages[randint(1,2)]
-                            )
+                            ), bulk=False
                         )
                     
                     if int(round(random())) and (self.session.config['condition_messaging'] in ['bilateral','both']):    
@@ -111,7 +111,7 @@ class IntermediateWaitPage(WaitPage):
                         PrivateMessage(createdBy=node,
                             messageRound = message_round, 
                             message=Constants.messages[randint(1,2)]
-                            )
+                            ), bulk=False
                         )        
         
         group_players[0].participant.vars['message_round'] += 1
