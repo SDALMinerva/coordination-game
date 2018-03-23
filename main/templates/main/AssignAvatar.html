@@ -14,7 +14,7 @@
 <h4>Your profile image:</h4>
 <div style="background: linear-gradient(white,#dddddd); padding: 10px; padding-top: 0px">
 		{% with 'avatar/'|add:player.avatar.src as image_static %}
-  			<img src='{% static image_static %}'  alt="" class=".img-responsive center-block">
+  			<img src='{% static image_static %}'  alt="" class=".img-responsive mx-auto">
 		{% endwith %}
 </div>
 <br>		
@@ -28,8 +28,8 @@ Click <strong>next</strong> to proceed to the game.
 
 {% block app_styles %}
     <style type="text/css">
-        .card {
-            margin-bottom: 20px;
+        .mx-auto {
+            display: block;
         }
     </style>
 {% endblock %}
