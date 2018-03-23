@@ -41,7 +41,7 @@ function WallMessenger() {
 		dropdown_button.appendChild(toggle);
 		dropdown_button.id = "recipient-dropdown";
 		var messageListBox = document.createElement('ul');
-		messageListBox.className = "dropdown-menu";
+		messageListBox.className = "dropdown-menu dropdown-menu-right";
 		messageListBox.id = 'recipient-box';
 
 		var newRow = document.createElement('li');
@@ -116,7 +116,7 @@ function WallMessenger() {
 		this.dropdown_button.appendChild(this.caret);
 		this.dropdown_button.appendChild(this.toggle);
 		this.messageList = document.createElement('ul');
-		this.messageList.className = "dropdown-menu";
+		this.messageList.className = "dropdown-menu dropdown-menu-right";
 		this.messageList.id = 'message-box';
 		
 		for (i=0, len = messageList.length; i < len; i++){

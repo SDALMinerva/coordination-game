@@ -186,7 +186,9 @@ class Player(BasePlayer):
 
     node = models.ForeignKey(Node, db_column = 'node', default = 1)
     threshold = models.IntegerField()
-    participate = models.BooleanField(verbose_name="Will you participate?")
+    participate = models.BooleanField(
+        verbose_name = "Will you participate?",
+        widget = widgets.RadioSelect,)
     
     # Avatar Portions
     user_name = models.StringField(default = 'Not Assigned')
