@@ -120,7 +120,7 @@ class Results(Page):
 
 
 page_sequence = [
-    Intro,
+#    Intro,
     SocioDemographic,
     Behavioral1,
     Behavioral2,

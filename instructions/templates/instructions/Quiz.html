@@ -1,11 +1,25 @@
-{% extends "global/Page.html" %}
+{% extends "welcome_consent/WelcomePage.html" %}
 {% load staticfiles otree %}
 
 {% block title %}
     Instructions Quiz
 {% endblock %}
 
-{% block content %}
+{% block contentH3 %}
+{% endblock %}
+
+{% block contentH5 %}
+We will now conduct a quiz to test your understanding of the game.
+Please try to answer the questions on the next page as best as you can.
+You will be given multiple opportunities to answer the questions and you will be given immediate feedback.
+{% endblock %}
+
+{% block contentP %}
+{% endblock %}
+
+{% block onpage %}quiz{% endblock %}
+
+{% block page_specific %}
 
     {% if session.is_demo %}
         <a href="#" onclick="complete()">DEMO: Click here to fill vals.</a>
@@ -18,13 +32,14 @@
 <br>
 <p><strong>Click 'Next' to proceed.</strong></p>
 
-    {% next_button %}
 {% endblock %}
 
 {% block scripts %}
+    {{block.super}}
     <script type="text/javascript" src={% static "instructions/quiz.js" %} ></script>
 {% endblock %}
 
 {% block styles %}
+    {{block.super}}
     <link rel="stylesheet" href={% static "instructions/quiz.css" %}>
 {% endblock %}
