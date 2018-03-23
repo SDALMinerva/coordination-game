@@ -48,7 +48,8 @@ function PlayerList() {
 	    
 	    if (link){
 	       var privateMessage = document.createElement('button');
-		   privateMessage.className = "glyphicon glyphicon-envelope message-icon float-right";
+		   privateMessage.className = "message-icon float-right";
+                   privateMessage.innerhtml = '<span class="oi oi-envelope-closed" title="envelope closed" aria-hidden="true"></span>';
 		   row.appendChild(privateMessage);
         }		
 		

@@ -22,8 +22,9 @@ function Messenger() {
 		this.topRow.appendChild(this.topRowHeader);
 		
 		this.wallimg = document.createElement('span');
-		this.wallimg.className = "wallimg glyphicon glyphicon-envelope center-block";
+		this.wallimg.className = "wallimg mx-auto";
 		this.wallimg.alt = "not found";
+                this.wallimg.innerhtml = '<span class="oi oi-envelope-closed" title="evelope closed" aria-hidden="true"></span>'
 		this.topRowImg.appendChild(this.wallimg);
 		
 		this.label = document.createElement('h2');
@@ -50,7 +51,7 @@ function Messenger() {
 		this.sendTo.className = 'input-group message-group highlight';
 		var addon = document.createElement('span');
 		addon.className = 'input-group-addon user-display';
-		addon.innerHTML = '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>';
+		addon.innerHTML = '<span class="oi oi-person" title="person" aria-hidden="true"></span>';
 		this.sendTo.appendChild(addon);
 		
 		var input = document.createElement('input');
@@ -78,7 +79,7 @@ function Messenger() {
 		var newRow = document.createElement('li');
 		var newMessage = document.createElement('a');
 		newMessage.className = 'recipient-option';
-		newMessage.innerHTML = "<span class='img-recipient glyphicon glyphicon-bullhorn'></span><span class='recipient-name pull-right'>Everyone</span>" + "<span id='ID' style='visibility: hidden;'>all</span>";			
+		newMessage.innerHTML = "<span class='img-recipient oi oi-bullhorn' title='bullhorn' aria-hidden='true'></span><span class='recipient-name pull-right'>Everyone</span>" + "<span id='ID' style='visibility: hidden;'>all</span>";
 		newRow.appendChild(newMessage)			
 		messageListBox.appendChild(newRow);
 		
@@ -110,7 +111,7 @@ function Messenger() {
 		this.messages.className = 'input-group message-group highlight';
 		this.addon = document.createElement('span');
 		this.addon.className = 'input-group-addon';
-		this.addon.innerHTML = '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>';
+		this.addon.innerHTML = '<span class="oi oi-pencil" title="pencil" aria-hidden="true"></span>';
 		this.messages.appendChild(this.addon);
 		
 		this.input = document.createElement('input');

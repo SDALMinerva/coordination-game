@@ -6,14 +6,14 @@ var highlightQuizMessage = function () {
 $("#quiz .tf label").click(highlightQuizMessage);
 
 $("#quiz select").change(function () {
-    $(this).siblings('.glyphicon').css('visibility','visible');
+    $(this).siblings('.oi').css('visibility','visible');
     
 	if ($(this).find(':selected').hasClass('ok')){
-	   $(this).siblings('.glyphicon').removeClass('glyphicon-remove').addClass('glyphicon-ok');
+	   $(this).siblings('.oi').removeClass('oi-x').addClass('ioi-check');
 	   var qName = $(this).attr('name');
 	   $('#quiz .question-message.'+qName).css('visibility','visible');
 	} else {
-	   $(this).siblings('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-remove');
+	   $(this).siblings('.oi').removeClass('oi-check').addClass('oi-x');
 	   var qName = $(this).attr('name');
 	   $('#quiz .question-message.'+qName).css('visibility','visible');
 	}
