@@ -76,10 +76,14 @@
     width: 120px;
 }
 
+#wall .card-subtitle{
+    font-size: 8pt;
+}
+
 #wall .titleContainer{
     padding: 0;
     padding-left: 10px;
-    max-width: 350px;
+    max-width: 330px;
 }
 .shiftleft {
     padding-left: 0px;
