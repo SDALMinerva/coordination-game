@@ -7,6 +7,7 @@
 
 {% block belowDiagram %}
 
+
 <h3>Your earnings for this experiment are:</h3>
 <p>Participation Earnings: {{session.config.participation_fee}}</p>
 <p>Experiment Earnings: {{payoff_currency}}</p>
@@ -18,7 +19,9 @@
 
 {% block onpage %}complete{% endblock %}
 
-{% block contentH3 %}Thank you for participating in our experiment.
+{% block contentH3 %}
+Thank you for your participation. The experiment has been completed. 
+Please raise your hand and an experimenter will direct you to the payment booth in an orderly manner.
 {% endblock %}
 
 {% block contentH5 %}

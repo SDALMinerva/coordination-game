@@ -2,43 +2,67 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Survey
+    Survey (continued)
 {% endblock %}
 
 {% block content %}
     {% if session.is_demo %}
         <a href="#" onclick="setVals()">DEMO: Click here to fill vals.</a>
     {% endif %}
-    <h4>This survey is designed to collect personal and household information.</h4>
-
-    {% for field in form %}
-        {% if field.html_name == "country_reside" %}
-            <label>What is your current residence?</label>
-			<div class="subquestion">
-        {% elif field.html_name == "subject_econ" %}
-            <label>Have you taken college-level courses in the following subjects?</label>
-			<div class="subquestion">
-        {% elif field.html_name == "partTime" %}
-            <label>What is your employment status?  Please check all that apply.</label>
-        {% elif field.html_name == "sports" %}
-            <label>How do you spend your free time?  Please check all that apply.</label>
-			<div class="subquestion">
-        {% elif field.html_name == "residents0to6" %}
-            <label>How many of the people living in your residence are in each of the following age categories?</label>
-			<div class="subquestion">
-        {% elif field.html_name == "activitySchool" or field.html_name == "activityCollegeClubs" %}
-            <label>Of the people living in your residence (including yourself), how many ...</label>
-			<div class="subquestion">
-        {% endif %}
-		
-        {% formfield field %}
-		
-		{% if field.html_name == "city_reside" or field.html_name == "subject_stat" or field.html_name == "otherWork" or field.html_name == "otherFreeTime" or field.html_name == "residents65up" or field.html_name == "activityEvening" or field.html_name == "activityFlu" and  player.isStudent %}
-			</div>
-        {% endif %}
-    {% endfor %}
     
+    <p class="qMarker"><strong>1. How do you see yourself?</strong><br> 
+    Are you a person who is generally willing to take risks, or do you try to avoid taking risks? 
+    Please indicate your answer on a scale from 0 to 10, where a 0 means “not at all willing to take risks”, and a 10 means “very willing to take risks”. 
+    </p>
+    {% formfield player.daringness label="" %}
+    
+    <p class="qMarker"><strong>2. Consider this hypothetical scenario.</strong><br> 
+    Suppose you have $200 that you can choose to keep or invest in a risky project.
+    </p>
+    <ol>
+        <li>Money that is not invested in the risky project is yours to keep.</li> 
+        <li>The risky project has a 40% chance of success. If the project is successful, you will receive 3 times the amount you chose to invest.</li> 
+        <li>If the project is unsuccessful, you will lose the amount invested.</li>    
+    </ol>
+    <p>Please choose a number that you feel comfortable with investing in the risky project.<br>
+             ***Note that you can pick any number between 0 and 200, including 0 or 200.</p>
+    {% formfield player.risky_project label="" %}
+    
+    
+    <p class="qMarker">
+    <strong>3. You will be given hypothetical coin toss scenarios in the table below.</strong><br> 
+    <em>For each of these scenarios, you must decide whether you want the coin toss or not.</em>  
+    If you choose to toss the coin <strong>(YES Coin Toss)</strong>, you would get $300 if heads or $0 if tails. 
+    If you choose not to toss the coin <strong>(NO Coin Toss)</strong>, you would receive a sure payment amount listed 
+    in the column <strong>(NO Coin Toss)</strong> for each scenario. The amount for NO Coin Toss is different in each scenario. 
+    Please indicate your coin toss choice (YES or NO) for each of the scenarios.
+    </p>
 
+    <table class="table table-condensed" style="max-width: 500px; font-size: 10pt;">
+    <tr>
+        <th>Scenario</th><th>YES Coin Toss</th><th>NO Coin Toss</th>
+    </tr>
+    {% for offer in coinOffers %}
+    <tr>
+        <td>{{ offer.num }}</td>
+        <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="1" required>  Tail = $300    Head = $0</td>
+        <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="2" required>  ${{ offer.amt }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
+    <p class="qMarker"><strong>4. Consider this hypothetical scenario.</strong><br> 
+    Suppose you have $200 that you can choose to keep or invest in <em><strong>another</strong></em> risky project if you would like.
+    </p>
+    <ol>
+        <li>Money that is not invested in the risky project is yours to keep.</li> 
+        <li>The risky project has a 50% chance of success. If the project is successful, you will receive 2.5 times the amount you chose to invest.</li> 
+        <li>If the project is unsuccessful, you will lose the amount invested.</li>    
+    </ol>
+    <p>Please choose a number that you feel comfortable with investing in the risky project.<br>
+             ***Note that you can pick any number between 0 and 200, including 0 or 200.</p>
+    {% formfield player.risky_project_2 label="" %}
+    
     {% next_button %}
 
 {% endblock %}
@@ -54,75 +78,25 @@
            	$('select option').prop('selected', true);
         }
         {% endif %}    
+
+        $(".coin").change(function (e) {
+            var results = $(this).parent()
+                                 .parent()
+                                 .prevAll();
+            for (i=0; i < results.length - 1; i++)
+            {
+                $(results[i]).children().children().first().prop('checked', true);
+            }
+            var results = $(this).parent()
+                                 .parent()
+                                 .nextAll();
+            for (i=0; i < results.length - 1; i++)
+            {
+                $(results[i]).children().children().last().prop('checked', true);
+            }
+        	
+        });    
     
-        {% if session.config.student_survey %}
-            var major = document.querySelectorAll("[for=\"id_major\"]")[0];
-            major.innerHTML = "What is your major?";
-        {% endif %}
-    
-        var tribe1 = document.querySelectorAll("[for=\"id_tribe\"]")[0];
-        tribe1.style.display = "inline-block";
-        var tribe2 = document.getElementsByClassName("field-tribe")[0];
-        tribe2.style.display = "inline-block";
-        var tribeSpecify = tribe1.parentNode;
-        var tribe = document.querySelectorAll("[for=\"id_race_3\"]")[0].parentNode;
-        tribe.appendChild(tribeSpecify);
-        tribeSpecify.style.display = "inline-block";
-        tribeSpecify.style.marginLeft = "5px";
-        tribeSpecify.style.marginBottom = "1px";
-        
-        var otherAsian1 = document.querySelectorAll("[for=\"id_otherAsian\"]")[0];
-        otherAsian1.style.display = "inline-block";
-        var otherAsian2 = document.getElementsByClassName("field-otherAsian")[0];
-        otherAsian2.style.display = "inline-block";
-        var otherAsianSpecify = otherAsian1.parentNode;
-        var otherAsian = document.querySelectorAll("[for=\"id_race_13\"]")[0].parentNode;
-        otherAsian.appendChild(otherAsianSpecify);
-        otherAsianSpecify.style.display = "inline-block";
-        otherAsianSpecify.style.marginLeft = "5px";
-        otherAsianSpecify.style.marginBottom = "1px";
-        
-        var otherPacificIslander1 = document.querySelectorAll("[for=\"id_otherPacificIslander\"]")[0];
-        otherPacificIslander1.style.display = "inline-block";
-        var otherPacificIslander2 = document.getElementsByClassName("field-otherPacificIslander")[0];
-        otherPacificIslander2.style.display = "inline-block";
-        var otherPacificIslanderSpecify = otherPacificIslander1.parentNode;
-        var otherPacificIslander = document.querySelectorAll("[for=\"id_race_14\"]")[0].parentNode;
-        otherPacificIslander.appendChild(otherPacificIslanderSpecify);
-        otherPacificIslanderSpecify.style.display = "inline-block";
-        otherPacificIslanderSpecify.style.marginLeft = "5px";
-        otherPacificIslanderSpecify.style.marginBottom = "1px";
-        
-        var otherRace1 = document.querySelectorAll("[for=\"id_otherRace\"]")[0];
-        otherRace1.style.display = "inline-block";
-        var otherRace2 = document.getElementsByClassName("field-otherRace")[0];
-        otherRace2.style.display = "inline-block";
-        var otherRaceSpecify = otherRace1.parentNode;
-        var otherRace = document.querySelectorAll("[for=\"id_race_15\"]")[0].parentNode;
-        otherRace.appendChild(otherRaceSpecify);
-        otherRaceSpecify.style.display = "inline-block";
-        otherRaceSpecify.style.marginLeft = "5px";
-        otherRaceSpecify.style.marginBottom = "1px";
-        
-        var otherWork1 = document.querySelectorAll("[for=\"id_otherWorkSpecify\"]")[0];
-        otherWork1.style.display = "inline-block";
-        var otherWork2 = document.getElementsByClassName("field-otherWorkSpecify")[0];
-        otherWork2.style.display = "inline-block";
-        var otherWorkSpecify = otherWork1.parentNode;
-        var otherWork = document.querySelectorAll("[for=\"id_otherWork\"]")[0].parentNode;
-        otherWork.appendChild(otherWorkSpecify);
-        otherWorkSpecify.style.display = "inline";
-        otherWork.marginTop = "10px";
-        
-        var otherFreeTime1 = document.querySelectorAll("[for=\"id_otherFreeTimeSpecify\"]")[0];
-        otherFreeTime1.style.display = "inline-block";
-        var otherFreeTime2 = document.getElementsByClassName("field-otherFreeTimeSpecify")[0];
-        otherFreeTime2.style.display = "inline-block";
-        var otherFreeTimeSpecify = otherFreeTime1.parentNode;
-        var otherFreeTime = document.querySelectorAll("[for=\"id_otherFreeTime\"]")[0].parentNode;
-        otherFreeTime.appendChild(otherFreeTimeSpecify);
-        otherFreeTimeSpecify.style.display = "inline";
-        otherFreeTime.marginTop = "10px";
     </script>
 {% endblock %}
 
@@ -139,5 +113,18 @@
         #id_otherWork, #id_otherFreeTime {
             margin-top: 10px;
         }
+        
+        .qualifier{
+    font-size: 8pt;
+    font-weight: bold;
+    padding-left: 20px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.qMarker{
+    font-size: 11pt;
+    margin-top: 60px;
+}
     </style>
 {% endblock %}

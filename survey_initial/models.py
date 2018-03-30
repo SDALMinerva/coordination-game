@@ -15,7 +15,9 @@ class Constants(BaseConstants):
     name_in_url = "survey_initial"
     players_per_group = None
     num_rounds = 1
+    years = list(range(2018,1900))
     countries = [
+        "US - United States",
         "AD - Andorra",
         "AE - United Arab Emirates",
         "AF - Afghanistan",
@@ -248,7 +250,6 @@ class Constants(BaseConstants):
         "UG - Uganda",
         "UM - United States Minor Outlying Islands",
         "UK - United Kingdom",
-        "US - United States",
         "UY - Uruguay",
         "UZ - Uzbekistan",
         "VA - Holy See (Vatican City)",
@@ -278,380 +279,578 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-
-    lastName = models.CharField(
-        verbose_name = "Last Name",
-    )
-    
-    firstName = models.CharField(
-        verbose_name = "First Name",
-    )
-    
-    middleInitial = models.CharField(
-        verbose_name = "Middle Initial",
-        max_length = 1,
-    )
-    
-    age = models.PositiveIntegerField(
-        verbose_name = "What is your age (years)?",
+    # Question 1
+    q1_birthYear = models.IntegerField(
+        verbose_name = "1. Birth year",
+        choices = list(range(2018,1900,-1)),
     )
 
-    sexBirth = models.CharField(
-        verbose_name = "ASSIGNED SEX AT BIRTH: What sex were you assigned at birth (on your original birth certificate)?",
-        choices = [
-            "Male",
-            "Female",
-        ],
-        widget = widgets.RadioSelect,
+    # Question 2
+    q2a_placeOfBirth_country = models.CharField(
+        verbose_name = "Country",
+        choices = Constants.countries,    
     )
     
-    sexCurrent = models.CharField(
-        verbose_name = "CURRENT GENDER IDENTITY:  How do you describe yourself? (check one)?",
+    q2b_placeOfBirth_state = models.CharField(
+        verbose_name = "State/Province, if applicable",
+        blank = True,
+    )
+    
+    q2c_placeOfBirth_city = models.CharField(
+        verbose_name = "City",    
+    )
+    
+    # Question 3
+    q3a_permanentHome_country = models.CharField(
+        verbose_name = "Country",
+        choices = Constants.countries,    
+    )
+    
+    q3b_permanentHome_state = models.CharField(
+        verbose_name = "State/Province, if applicable",
+        blank = True,
+    )
+    
+    q3c_permanentHome_city = models.CharField(
+        verbose_name = "City",    
+    )
+
+    # Question 4
+    q4_ethnicity = models.CharField(
+        verbose_name = "Ethinic Groups (one or more)",
+    )
+
+    # Question 5
+    q5a_race_Asian = models.BooleanField(
+        blank = True,
+        widget = widgets.CheckboxInput,
+        )
+    a5b_race_Black = models.BooleanField(
+        blank = True,
+        widget = widgets.CheckboxInput,
+    )
+    q5c_race_AmericanIndian = models.BooleanField(
+        blank = True,
+        widget = widgets.CheckboxInput,    
+    )
+    q5d_race_NativeHawaiian = models.BooleanField(
+        blank = True,
+        widget = widgets.CheckboxInput,    
+    )
+    q5e_race_White = models.BooleanField(
+        blank = True,
+        widget = widgets.CheckboxInput,    
+    )
+    q5f_race_Other = models.BooleanField(
+        blank = True,
+        widget = widgets.CheckboxInput,
+    )
+    q5g_race_OtherPrint = models.CharField(
+        verbose_name = "If other, please specify:",
+        blank = True,
+    )
+
+    # Question 6
+    q6a_sexGender = models.CharField(
+        verbose_name = "Sex/Gender",
         choices = [
             "Male",
             "Female",
             "Transgender",
-            "Do not identify as female, male, or transgender",
+            "Other",
+            "Prefer not to answer",
         ],
         widget = widgets.RadioSelect,
+    )
+    
+    q6b_sexGender_other = models.CharField(
+        verbose_name = "If other, please print",
+        blank = True,    
+    )
+    
+    # Question 7
+    q7_maritalStatus = models.CharField(
+        verbose_name = "Marital status",
+        choices = [
+            "Single, never married",
+            "Married",
+            "Divorced",
+            "Separated",
+            "Widowed",
+        ],
+        widget = widgets.RadioSelect,
+    )    
+
+    # Question 8    
+    q8a_education_overview = models.CharField(
+        verbose_name = "Education status",
+        choices = [
+            'Undergraduate Student',
+            'Graduate Student',
+            'Post-graduate Student',
+            'Faculty',
+            'Other',
+        ],
+        widget = widgets.RadioSelect,    
+    )
+    q8b_education_other = models.CharField(
+        verbose_name = "If other, please specify",
+        blank = True,    
+    )
+    q8c_education_freshman = models.BooleanField(
+        verbose_name = "Freshman",
+        blank = True,
+        widget = widgets.CheckboxInput,    
+    )
+    q8d_education_sophomore = models.BooleanField(
+        verbose_name = "Sophomore",
+        blank = True,
+        widget = widgets.CheckboxInput,    
+    )
+    q8e_education_junior = models.BooleanField(
+        verbose_name = "Junior",
+        blank = True,
+        widget = widgets.CheckboxInput,    
+    )
+    q8f_education_senior = models.BooleanField(
+        verbose_name = "Senior",
+        blank = True,
+        widget = widgets.CheckboxInput,    
+    )
+    q8g_education_masters = models.BooleanField(
+        verbose_name = "Masters",
+        blank = True,
+        widget = widgets.CheckboxInput,    
+    )
+    q8h_education_phD = models.BooleanField(
+        verbose_name = "PhD",
+        blank = True,
+        widget = widgets.CheckboxInput,    
+    )
+    q8i_education_eds = models.BooleanField(
+        verbose_name = "Ed.S",
+        blank = True,
+        widget = widgets.CheckboxInput,    
+    )
+    q8j_education_edd = models.BooleanField(
+        verbose_name = "Ed.D",
+        blank = True,
+        widget = widgets.CheckboxInput,    
     )
 
-    ethnicity = models.CharField(
-        verbose_name = "Enter your ethnic group, if you identify with one.",
-    )
     
-    # TODO: Modify "Please specify" options s.t. if choice selected, must fill out please specify
-    race = models.PositiveIntegerField(
-        verbose_name = "What is your race?",
-        choices = [
-            [1, "White"],
-            [2, "Black or African American"],
-            [3, "American Indian or Alaska Native"],
-            [4, "Asian Indian"],
-            [5, "Japanese"],
-            [6, "Native Hawaiian"],
-            [7, "Chinese"],
-            [8, "Korean"],
-            [9, "Guaminian or Chamorro"],
-            [10, "Filipino"],
-            [11, "Vietnamese"],
-            [12, "Samoan"],
-            [13, "Other Asian"],
-            [14, "Other Pacific Islander"],
-            [15, "Some other race"],
-        ],
-        widget = widgets.RadioSelect,
+    # Question 9
+    q9_major = models.CharField(
+        verbose_name = "What is your major?",
+        choices = sorted([
+            "Arts (Performing or Visual)",
+            "History",
+            "Business",
+            "Languages and literature",
+            "Philosophy",
+            "Theology",
+            "Anthropology",
+            "Economics",
+            "Finance",
+            "Education"
+            "Agriculture",
+            "Geography",
+            "Law",
+            "Political science",
+            "Psychology",
+            "Sociology",
+            "Biology",
+            "Chemistry",
+            "Earth sciences",
+            "Space sciences",
+            "Physics",
+            "Computer Science",
+            "Mathematics",
+            "Statistics",
+            "Engineering and technology",
+            "Medicine and health",            
+            ]) + ["Other"],
     )
-    
-    tribe = models.CharField(
-        verbose_name = "(print names of enrolled or principle tribe)",
+    q9_majorOther = models.CharField(
+        verbose_name = "If other, please specify",
         blank = True,
-    )
-    
-    otherAsian = models.CharField(
-        verbose_name = "(print race)",
-        blank = True,
-    )
-    
-    otherPacificIslander = models.CharField(
-        verbose_name = "(print race)",
-        blank = True,
-    )
-    
-    otherRace = models.CharField(
-        verbose_name = "(print race)",
-        blank = True,
-    )
-    
-    maritalStatus = models.PositiveIntegerField(
-        verbose_name = "What is your marital status?",
-        choices = [
-            [1, "Single"],
-            [2, "Married"],
-            [3, "Divorced"],
-            [4, "Separated"],
-            [5, "Widowed"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    country_born = models.CharField(
-        verbose_name = "In which country were you born?",
-        choices = Constants.countries,
-    )
+        )
 
-    # What is your current residence?
-    country_reside = models.CharField(
-        verbose_name = "Country",
-        choices = Constants.countries,
-    )
-    
-    province_reside = models.CharField(
-        verbose_name = "State/Province",
-        blank = True,
-    )
-    
-    city_reside = models.CharField(
-        verbose_name = "City",
-    )
-    # end residence questions
-    
-    reside_len = models.PositiveIntegerField(
-        verbose_name = "How long have you been at your current residence?",
-    )
-    
-    socialContact = models.PositiveIntegerField(
-        verbose_name = "Not including family members or co-workers, how many of your friends do you see weekly? ",
-    )
-    
-    degree = models.PositiveIntegerField(
-        verbose_name = "What is your highest degree?",
-        choices = [
-            [1, "High School Graduate"],
-            [2, "Some College (no degree)"],
-            [3, "Associate Degree"],
-            [4, "BA/BS"],
-            [5, "JD/MA/MS/MBA/MD"],
-            [6, "PhD/Postdoc"],
-            [7, "Skip this question"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    major = models.PositiveIntegerField(
-        verbose_name = "If you are a college graduate what was your major?",
-        choices = [
-            [1, "Economics"],
-            [2, "Engineering"],
-            [3, "History"],
-            [4, "Mathematics"],
-            [5, "Literature"],
-            [6, "Foreign Language"],
-            [7, "Arts"],
-            [8, "Psychology"],
-            [9, "Natural Sciences (Biology, Chemistry, Physics)"],
-            [10, "Agriculture"],
-            [11, "Business"],
-            [12, "Education"],
-            [13, "Health Sciences"],
-            [14, "Medicine"],
-            [15, "Law"],
-            [16, "Other liberal arts"],
-            [17, "Other"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    # "Have you taken college-level courses in the following subjects?
-    subject_econ = models.BooleanField(
+    # Question 10
+    q10a_subject_econ = models.BooleanField(
         verbose_name = "Economics",
         widget = widgets.RadioSelectHorizontal()
     )
     
-    subject_finance = models.BooleanField(
+    q10b_subject_finance = models.BooleanField(
         verbose_name = "Finance",
         widget = widgets.RadioSelectHorizontal()
     )
     
-    subject_stat = models.BooleanField(
+    q10c_subject_stat = models.BooleanField(
         verbose_name = "Statistics",
         widget = widgets.RadioSelectHorizontal()
-    )
-    # end college courses questions
+    )    
     
-    # What is your employment status? Please check all that apply.
-    partTime = models.BooleanField(
-        verbose_name = "Part-time paid employment outside the home",
-        widget = widgets.CheckboxInput(),
-    )
+    # Question 11
+    q11_military_service = models.BooleanField(
+        verbose_name = "Do you currently serve or have you ever served in the military? (e.g., ROTC, cadet, or midshipman at a service academy; In the Reserves or National Guard; A discharged veteran)",
+        widget = widgets.RadioSelectHorizontal()
+    )    
     
-    fullTime = models.BooleanField(
-        verbose_name = "Full-time paid employment outside the home",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    homeEmployed = models.BooleanField(
-        verbose_name = "Part- or full-time paid employment in the home",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    homemaker = models.BooleanField(
-        verbose_name = "Homemaker or other unpaid work in the home",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    fullTimeStudent = models.BooleanField(
-        verbose_name = "Going to school full-time",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    partTimeStudent = models.BooleanField(
-        verbose_name = "Going to school part-time",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    selfEmployed = models.BooleanField(
-        verbose_name = "Self-employed",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    lookingWork = models.BooleanField(
-        verbose_name = "Out of work and looking for work",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    notLookingWork = models.BooleanField(
-        verbose_name = "Out of work but not currently looking for work",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    military = models.BooleanField(
-        verbose_name = "Military",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    retired = models.BooleanField(
-        verbose_name = "Retired",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    unableWork = models.BooleanField(
-        verbose_name = "Unable to work",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    otherWork = models.BooleanField(
-        verbose_name = "Other",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    otherWorkSpecify = models.CharField(
-        verbose_name = "(print other)",
-        blank = True,
-    )
-    # end employment questions
-    
-    # How do you spend your free time?  Please check all that apply.
-    sports = models.BooleanField(
-        verbose_name = "Play on sports team/club, such as for soccer, football, hockey, basketball, baseball",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    performingArts = models.BooleanField(
-        verbose_name = "Part of a performing arts group such as singing, dancing",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    music = models.BooleanField(
-        verbose_name = "Play a musical instrument in a band or take lessons",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    volunteer = models.BooleanField(
-        verbose_name ="Do volunteer work such as work in homeless shelter or package food for the hungry",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    hobby = models.BooleanField(
-        verbose_name = "I have hobbies such as book reading or collecting, drawing, stamp collecting, photography, hiking, bike riding, etc.",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    otherFreeTime = models.BooleanField(
-        verbose_name = "Other",
-        widget = widgets.CheckboxInput(),
-    )
-    
-    otherFreeTimeSpecify = models.CharField(
-        verbose_name = "(print other)",
-        blank = True,
-    )
-    # end free time questions
-    
-    occupation = models.CharField(
-        verbose_name = "What is your occupation, if applicable?",
-    )
-    
-    # Household Information
-    income = models.PositiveIntegerField(
-        verbose_name = "What is your annual household income, in U.S. dollars?",
+    # Question 12
+    q12a_activities_academic = models.CharField(
+        verbose_name = "Academic / school activities (classes, homework, studying)",
         choices = [
-            [1, "Less than $25,000"],
-            [2, "$25,000 - $49,999"],
-            [3, "$50,000 - $89,999"],
-            [4, "$90,000 - $149,999"],
-            [5, "Greater than $150,000"],
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
         ],
-        widget = widgets.RadioSelect,
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q12b_activities_exercise = models.CharField(
+        verbose_name = "Exercise or individual sports",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),   
+    )
+    q12c_activities_sports = models.CharField(
+        verbose_name = "Playing on a sports team/club, such as for soccer, football, hockey, basketball, baseball",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q12d_activities_performing = models.CharField(
+        verbose_name = "Performing in an arts group such as choir, dance troop, band, orchestra",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),
+    )
+    q12e_activites_religious = models.CharField(
+        verbose_name = "Attending religious services/activities",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),
+    )
+    q12f_activites_membership = models.CharField(
+        verbose_name = "Membership activities (e.g., student clubs/groups)",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q12g_activities_leading = models.CharField(
+        verbose_name = "Leading groups/clubs/organizations",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q12h_activities_socializing = models.CharField(
+        verbose_name = "Socializing with friends in person",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),
+    )
+    q12i_activities_socialNetworks = models.CharField(
+        verbose_name = "Online social networks (Facebook, Twitter, etc.)",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q12j_activities_onlineGames = models.CharField(
+        verbose_name = "Online games",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q12k_activities_partying = models.CharField(
+        verbose_name = "Partying",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q12l_activities_working = models.CharField(
+        verbose_name = "Working (for pay)",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q12m_activities_household = models.CharField(
+        verbose_name = "Household duties",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q12n_activities_other = models.CharField(
+        verbose_name = "Other",
+        choices = [
+            'None',
+            'Less than 1 hour',
+            '1-5',
+            '6-10',
+            '11-20',
+            'Over 20',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q12o_activities_otherPrint = models.CharField(
+        verbose_name = "If other, please print",
+        blank = True, 
+    ) 
+    
+    # Question 13
+    q13a_transportation = models.CharField(
+        verbose_name = "Used public transportation",
+        choices = [
+            'Never',
+            'Once a year',
+            'A few times a month',
+            '1-2 times a week',
+            'A couple of times a week',
+            'Once a day',
+            'More than once a day',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q13b_volunteer = models.CharField(
+        verbose_name = "Performed volunteer work",
+        choices = [
+            'Never',
+            'Once a year',
+            'A few times a month',
+            '1-2 times a week',
+            'A couple of times a week',
+            'Once a day',
+            'More than once a day',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q13c_donations = models.CharField(
+        verbose_name = "Helped raise donations (e.g., money, books) for a cause or campaign",
+        choices = [
+            'Never',
+            'Once a year',
+            'A few times a month',
+            '1-2 times a week',
+            'A couple of times a week',
+            'Once a day',
+            'More than once a day',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q13d_discussPolitics = models.CharField(
+        verbose_name = "Discussed politics",
+        choices = [
+            'Never',
+            'Once a year',
+            'A few times a month',
+            '1-2 times a week',
+            'A couple of times a week',
+            'Once a day',
+            'More than once a day',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),
+    )
+    q13e_communicate = models.CharField(
+        verbose_name = "Publicly communicated your opinion about a cause (e.g., blog, email, petition)",
+        choices = [
+            'Never',
+            'Once a year',
+            'A few times a month',
+            '1-2 times a week',
+            'A couple of times a week',
+            'Once a day',
+            'More than once a day',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),            
+    )
+    q13f_demonstrate = models.CharField(
+        verbose_name = "Demonstrated for a cause (e.g., boycott, rally, protest)",
+        choices = [
+            'Never',
+            'Once a year',
+            'A few times a month',
+            '1-2 times a week',
+            'A couple of times a week',
+            'Once a day',
+            'More than once a day',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q13g_elections = models.CharField(
+        verbose_name = "Voted in elections",
+        choices = [
+            'Never',
+            'Once a year',
+            'A few times a month',
+            '1-2 times a week',
+            'A couple of times a week',
+            'Once a day',
+            'More than once a day',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    q13h_risk = models.CharField(
+        verbose_name = "Taken a risk because you feel you have more to gain",
+        choices = [
+            'Never',
+            'Once a year',
+            'A few times a month',
+            '1-2 times a week',
+            'A couple of times a week',
+            'Once a day',
+            'More than once a day',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),    
+    )
+    
+    # Question 14
+    ## Added Programmatically Below.
+    q14_l_networking_otherPrint = models.CharField(
+        blank = True    
     )
 
-    numRoommates = models.PositiveIntegerField(
-        verbose_name = "How many people live in your residence?",
+    # Question 15
+    q15a_ethics_wealth = models.CharField(
+        verbose_name = "Wealthy people should pay a larger share of taxes than they do now",
+        choices = [
+            'Srongly Disagree',
+            'Disagree Somewhat',
+            'Indifferent',
+            'Agree Somewhat',
+            'Strongly Agree',
+            'No Opinion',
+            'Prefer not to answer',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),
     )
-    
-    # How many of the people living in your residence are in each of the following age categories?
-    residents0to6 = models.PositiveIntegerField(
-        verbose_name = "Less than equal to 6 years?",
+    q15b_ethics_climate = models.CharField(
+        verbose_name = "Addressing global climate change should be a federal priority",
+        choices = [
+            'Srongly Disagree',
+            'Disagree Somewhat',
+            'Indifferent',
+            'Agree Somewhat',
+            'Strongly Agree',
+            'No Opinion',
+            'Prefer not to answer',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),
     )
-    
-    residents7to12 = models.PositiveIntegerField(
-        verbose_name = "7 to 12 years?",
+    q15c_ethics_gunControl = models.CharField(
+        verbose_name = "The federal government should have stricter gun control laws",
+        choices = [
+            'Srongly Disagree',
+            'Disagree Somewhat',
+            'Indifferent',
+            'Agree Somewhat',
+            'Strongly Agree',
+            'No Opinion',
+            'Prefer not to answer',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),
     )
-    
-    residents13to18 = models.PositiveIntegerField(
-        verbose_name = "13 to 18 years?",
+    q15d_ethics_admissions = models.CharField(
+        verbose_name = "Affirmative action in college admissions should be abolished",
+        choices = [
+            'Srongly Disagree',
+            'Disagree Somewhat',
+            'Indifferent',
+            'Agree Somewhat',
+            'Strongly Agree',
+            'No Opinion',
+            'Prefer not to answer',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),
     )
-    
-    residents19to65 = models.PositiveIntegerField(
-        verbose_name = "19 to 65 years?",
+    q15e_ethics_taxes = models.CharField(
+        verbose_name = "The federal government should raise taxes to reduce the deficit",
+        choices = [
+            'Srongly Disagree',
+            'Disagree Somewhat',
+            'Indifferent',
+            'Agree Somewhat',
+            'Strongly Agree',
+            'No Opinion',
+            'Prefer not to answer',        
+        ],
+        widget = widgets.RadioSelectHorizontal(),
     )
-    
-    residents65up = models.PositiveIntegerField(
-        verbose_name = "Over 65 years?",
-    )
-    # end residents age questions
-    
-    # Of the people living in your residence, how many ...
-    activitySchool = models.PositiveIntegerField(
-        verbose_name = "Attend day care, school, or college?",
-    )
-    
-    activityAfterSchool = models.PositiveIntegerField(
-        verbose_name = "Participate in after-school group activities?",
-    )
-    
-    activityGroup = models.PositiveIntegerField(
-        verbose_name = "Participate in weekend group activities?",
-    )
-    
-    activitySports = models.PositiveIntegerField(
-        verbose_name = "Play on organized sports team(s)?",
-    )
-    
-    activityFlu = models.PositiveIntegerField(
-        verbose_name = "Have taken this year’s flu vaccine?",
-    )
-    
-    activityWork = models.PositiveIntegerField(
-        verbose_name = "Work outside the home for wages?",
-    )
-    
-    activityPubTrans = models.PositiveIntegerField(
-        verbose_name = "Use public transportation?",
-    )
-    
-    activityEvening = models.PositiveIntegerField(
-        verbose_name = "Participate in evening or weekend group activities?",
-    )
-    
-    activityCollegeClubs = models.PositiveIntegerField(
-        verbose_name = "Participate in college clubs and organizations?"
-    )
-    
-    activityPartTimeWork = models.PositiveIntegerField(
-        verbose_name = "Have a part-time job?"
-    )
-    # end activity questions
+   
     
     # start behavioral questions
     # start preference elicitation
@@ -672,264 +871,18 @@ class Player(BasePlayer):
         widget = widgets.RadioSelectHorizontal,
     )
     
-    selflessness = models.PositiveIntegerField(
+    risky_project = models.PositiveIntegerField(
         verbose_name = "How do you see yourself? In comparison to others are you a person who is generally willing to give up something today in order to benefit from that in the future, or are you not willing to do so in comparison to others? Please indicate your answer on a scale from 0 to 10, where a 0 means \"not at all willing to give up something\", and a 10 means \"very willing to give up something\". You can use the values in between to indicate where you fall on the scale.",
-        choices = [
-            [1, "1"],
-            [2, "2"],
-            [3, "3"],
-            [4, "4"],
-            [5, "5"],
-            [6, "6"],
-            [7, "7"],
-            [8, "8"],
-            [9, "9"],
-            [10, "10"],
-        ],
-        widget = widgets.RadioSelectHorizontal,
+        min=0, 
+        max=200,
     )
     
-    trustingness = models.PositiveIntegerField(
-        verbose_name = "How well does the following statement describe you as a person? As long as I am not convinced otherwise, I assume that people have only the best intentions. Please indicate your answer on a scale from 0 to 10. A 0 means \"does not describe me at all\", a 10 means \"describes me very well\". You can use the values in between to indicate where you fall on the scale.",
-        choices = [
-            [1, "1"],
-            [2, "2"],
-            [3, "3"],
-            [4, "4"],
-            [5, "5"],
-            [6, "6"],
-            [7, "7"],
-            [8, "8"],
-            [9, "9"],
-            [10, "10"],
-        ],
-        widget = widgets.RadioSelectHorizontal,
-    )
-    
-    donation = models.PositiveIntegerField(
-        verbose_name = "Imagine the following situation: you won 1,000 Euro in a lottery. Considering your current situation, how much would you donate to charity?",
-        max = 1000,
-    )
-    
-    punishInclination = models.PositiveIntegerField(
-        verbose_name = "How do you see yourself? Are you a person who is generally willing to punish unfair behavior even if it is costly? Please indicate your answer on a scale from 0 to 10. A 0 means “not at all willing to punish”, a 10 means “very willing to punish”. You can use the values in between to indicate where you fall on the scale.",
-        choices = [
-            [1, "1"],
-            [2, "2"],
-            [3, "3"],
-            [4, "4"],
-            [5, "5"],
-            [6, "6"],
-            [7, "7"],
-            [8, "8"],
-            [9, "9"],
-            [10, "10"],
-        ],
-        widget = widgets.RadioSelectHorizontal,
+    risky_project_2 = models.PositiveIntegerField(
+        verbose_name = "How do you see yourself? In comparison to others are you a person who is generally willing to give up something today in order to benefit from that in the future, or are you not willing to do so in comparison to others? Please indicate your answer on a scale from 0 to 10, where a 0 means \"not at all willing to give up something\", and a 10 means \"very willing to give up something\". You can use the values in between to indicate where you fall on the scale.",
+        min=0, 
+        max=200,
     )
     # end preference elicitation
-    
-    # start preference module i
-    timeScenerio_1 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "100$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_2 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "103$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_3 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "106.10$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_4 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "109.20$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_5 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "112.40$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_6 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "115.60$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_7 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "118.80$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_8 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "122.10$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_9 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "125.40$"],
-        ],
-        widget = widgets.RadioSelectHorizontal,
-    )
-    
-    timeScenerio_10 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "128.80$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_11 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "132.30$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_12 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "135.70$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_13 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "139.20$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_14 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "142.80$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_15 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "146.40$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_16 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "150.10$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_17 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "153.80$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_18 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "157.50$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_19 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "161.30$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_20 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "165.10$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_21 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "169.00$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_22 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "172.90$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_23 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "176.90$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_24 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "180.90$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    
-    timeScenerio_25 = models.PositiveIntegerField(
-        choices = [
-            [1, "100$"],
-            [2, "185.00$"],
-        ],
-        widget = widgets.RadioSelect,
-    )
-    # end preference module i
     
     # start preference module ii
     coinScenerio_1 = models.PositiveIntegerField(
@@ -1180,3 +1133,44 @@ class Player(BasePlayer):
         widget = widgets.RadioSelect,
     )
     # end preference module ii
+
+
+columns = [
+            'Facebook',
+            'Twitter',
+            'LinkedIn',
+            'Instagram',
+            'Reddit',
+            'WhatsApp',
+            'Meetup',
+            'Nextdoor',
+            'Snapchat',
+            'Weibo',        
+        ]
+        
+rows = [
+    ("prof_network", "Professional networking"),
+    ("soc_network", "Social networking"),
+    ("xchng_info", "Exchange of information with peers and family"),
+    ("soc_events","Organize and/or attend social events"),
+    ("pol_events","Organize and/or attend political events"),
+    ("news_info", "News and Information about people and places"),
+    ("job", "Job seeking"),
+    ("money", "To make money"),
+    ("games", "To play games"),
+    ("research", "Research"),
+    ("other", "Other"),
+    ("dont_use","I don’t use this social networking site"),
+]
+
+i = 0
+for r in rows:
+    for c in columns:
+        i += 1
+        field_name = 'q14_{}_{}X{}'.format(i, r[0], c)    
+        Player.add_to_class(field_name, models.BooleanField(
+            verbose_name = r[1],
+            widget = widgets.CheckboxInput(),
+        ))
+        
+        

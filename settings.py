@@ -137,18 +137,21 @@ SESSION_CONFIG_DEFAULTS = {
     'instant_messaging': 'False',               #True, False
 }
 
+sequence = [
+    'welcome_consent', 
+    'instructions',
+    'practice',
+    'main',
+    'survey_initial',
+    'survey_final',
+]
+
 DEV_CONFIGS = [
      {
          'name': 'run_group3_treatment1',
          'display_name': '[1] Run: Groups, 3; Messaging, none; Network Knowledge, local',
          'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                          'survey_initial',
-                          'instructions',
-                          'main',
-                          'survey_final',
-                         ],
+         'app_sequence': sequence,
           # Rounds
           'round_seq_file': 'seq-48rounds.json',
           
@@ -160,13 +163,7 @@ DEV_CONFIGS = [
          'name': 'run_group3_treatment3',
          'display_name': '[3] Run: Groups, 3; Messaging, bilateral; Network Knowledge, local',
          'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                          'survey_initial',
-                          'instructions',
-                          'main',
-                          'survey_final',
-                         ],
+         'app_sequence': sequence,
           # Rounds
           'round_seq_file': 'seq-48rounds.json',
           
@@ -178,13 +175,7 @@ DEV_CONFIGS = [
          'name': 'run_group3_treatment4',
          'display_name': '[4] Run: Groups, 3; Messaging, both; Network Knowledge, local',
          'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                          'survey_initial',
-                          'instructions',
-                          'main',
-                          'survey_final',
-                         ],
+         'app_sequence': sequence,
           # Rounds
           'round_seq_file': 'seq-48rounds.json',
           
@@ -196,13 +187,7 @@ DEV_CONFIGS = [
          'name': 'run_group3_treatment5',
          'display_name': '[5] Run: Groups, 3; Messaging, none; Network Knowledge, global',
          'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                          'survey_initial',
-                          'instructions',
-                          'main',
-                          'survey_final',
-                         ],
+         'app_sequence': sequence,
           # Rounds
           'round_seq_file': 'seq-48rounds.json',
           
@@ -214,13 +199,7 @@ DEV_CONFIGS = [
          'name': 'run_group3_treatment7',
          'display_name': '[7] Run: Groups, 3; Messaging, bilateral; Network Knowledge, global',
          'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                          'survey_initial',
-                          'instructions',
-                          'main',
-                          'survey_final',
-                         ],
+         'app_sequence': sequence,
           # Rounds
           'round_seq_file': 'seq-48rounds.json',
           
@@ -232,13 +211,7 @@ DEV_CONFIGS = [
          'name': 'run_group3_treatment8',
          'display_name': '[8] Run: Groups, 3; Messaging, both; Network Knowledge, global',
          'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                          'survey_initial',
-                          'instructions',
-                          'main',
-                          'survey_final',
-                         ],
+         'app_sequence': sequence,
           # Rounds
           'round_seq_file': 'seq-48rounds.json',
           
@@ -253,14 +226,7 @@ SESSION_CONFIGS = [
          'name': 'run_group3_treatment2',
          'display_name': '[2] Run: Groups, 3; Messaging, wall; Network Knowledge, local',
          'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                          'survey_initial',
-                          'instructions',
-                          'practice',
-                          'main',
-                          'survey_final',
-                         ],
+         'app_sequence': sequence,
           # Rounds
           'round_seq_file': 'seq-48rounds.json',
           
@@ -272,14 +238,7 @@ SESSION_CONFIGS = [
          'name': 'run_group3_treatment6',
          'display_name': '[6] Run: Groups, 3; Messaging, wall; Network Knowledge, global',
          'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                          'survey_initial',
-                          'instructions',
-                          'practice',
-                          'main',
-                          'survey_final',
-                         ],
+         'app_sequence': sequence,
           # Rounds
           'round_seq_file': 'seq-48rounds.json',
           
