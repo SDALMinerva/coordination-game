@@ -586,11 +586,11 @@ function NewlyAddedEntry(id,timestamp,content, key) {
    	
    	var nameAdd = ((id == wall.ownId) ? " (You)" : '');
    	listP.style = "font-size: 9pt;";
-   	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd 
+   	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd; 
 //   						+ '[' + this.timestamp + ']' 
-        + '<br><span class="sent-message">(submitted - visible next round)</span>';
    	listP.className = 'media-body';
    	listItem.appendChild(listP);
+   	listItem.innerHTML += '<p class="sent-message">only you can see this message - it will be received in the decision part</p>';
    	
    	var keyDiv = document.createElement('div');
    	keyDiv.innerHTML = key;
