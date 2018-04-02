@@ -100,6 +100,9 @@ class IntermediateWaitPage(WaitPage):
                         )        
         
         group_players[0].participant.vars['message_round'] += 1
+        
+        for gPlayer in group_players:
+            gPlayer.participant.vars['discuss_participate'] = False
 
 
 class EndWaitPage(WaitPage):

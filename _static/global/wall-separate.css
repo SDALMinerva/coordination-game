@@ -38,6 +38,20 @@
     z-index: 5;
 }
 
+.message-item h4{
+    font-size: 12pt;
+}
+
+.sent-message{
+    font-size: 7pt;
+    font-weight: bold;
+    color: #c22;
+}
+
+.message-item p {
+    margin: 0;
+}
+
 #message-box{
 	right: 90px;
 	left: auto;

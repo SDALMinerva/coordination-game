@@ -24,6 +24,10 @@ def ws_receive(message):
         wall = node.wall_set.first()
         wall.message_set.add(message)
 
+        participant = createdBy.player_set.first().participant
+        participant.vars['discuss_participate'] = True
+        participant.save()
+
         if wall.subsession.session.config['instant_messaging'] == 'True':
             toSend = {
                 'type': ws_data['type'],
@@ -45,6 +49,10 @@ def ws_receive(message):
         data = ws_data['content']
         createdBy = Node.objects.get(id = data['createdBy'])
         messageRound = data['messageRound']
+
+        participant = createdBy.player_set.first().participant
+        participant.vars['discuss_participate'] = True
+        participant.save()
 
         if data['recipientId'] != "all":        
             node = Node.objects.get(id = data['recipientId'])
@@ -133,6 +141,13 @@ def ws_receive(message):
             'content': list(table.values()),
             }
         Group('chat-' + label).send({'text': json.dumps(toSend)})#
+        
+    elif ws_data['type'] == 'participate_flag':
+        data = ws_data['content']
+        player_node = Node.objects.get(id = data['createdBy'])
+        participant = player_node.player_set.first().participant
+        participant.vars['discuss_participate'] = True
+        participant.save()
         
 
 @channel_session
