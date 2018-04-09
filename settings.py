@@ -293,7 +293,7 @@ SESSION_CONFIGS = [
           'round_seq_file': 'seq-48rounds.json',
           
           # Treatment Configs
-          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
           'condition_network_knowledge': 'global',      #local, global
      },
      {
@@ -307,7 +307,7 @@ SESSION_CONFIGS = [
           'round_seq_file': 'seq-48rounds.json',
           
           # Treatment Configs
-          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
           'condition_network_knowledge': 'local',      #local, global
      },
      {
