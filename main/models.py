@@ -169,7 +169,12 @@ class Player(BasePlayer):
         else:
             p = self.group.get_player_by_id(1)
             messageRound = p.participant.vars['message_round']
-            private_messages = pmb.privatemessage_set.filter(messageRound__lt = messageRound)
+            past_wall_messages = pmb.privatemessage_set.filter(messageRound__lt = messageRound)
+            past_wall_messages = past_wall_messages.exclude(deleted = True)
+            posted_wall_messages = pmb.privatemessage_set.filter(createdBy = self.node)
+            posted_wall_messages = posted_wall_messages.exclude(deleted = True)
+            
+            private_messages = past_wall_messages | posted_wall_messages
 
         pmb_out = [m.to_dict() for m in private_messages]
         return pmb_out

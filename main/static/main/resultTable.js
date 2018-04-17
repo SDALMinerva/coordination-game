@@ -11,11 +11,16 @@ if (output){
     resultTable.init(d);
 }
 
+var checkprivate = 'private-entry-table';
+if (isWall){
+    checkprivate = 'entry-table';
+}
+
 function ResultTable() {
 
     this.getInfo = function(){
         chat.infoChannel.send(JSON.stringify({
-					'type': 'entry-table',
+					'type': checkprivate,
 					'content': {'sentBy': nodeId},				
 				}));    
     }

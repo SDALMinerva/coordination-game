@@ -174,7 +174,40 @@ $(window).on('load',function(){
           	{% endif %}
   		{% endwith %}
   		{% if session.config.condition_messaging == 'bilateral' %}
-      		<div class="tab-pane active" id="messenger" role="tabpanel"></div>
+      		<div class="tab-pane active" id="messenger" role="tabpanel">
+      		
+                {% block messageTool_private %}
+                <div id="message-tool" class="card message-tool">
+                    <div class="card-body">
+                        <h4 class="card-title">Private Messaging Tool</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Send messages to your friends.</h6>
+                        <div class="message-tool-content"></div>
+                    </div>
+                    <div id="selector-alert" class="alert alert-warning alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
+                        <strong>Message not sent!</strong> Make sure both fields are selected.
+                        <button type="button" class="close" onclick="$('#selector-alert').hide()" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="selector-success" class="alert alert-success alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
+                        <strong>Message sent!</strong> You can send more messages or delete this one until the decision part.
+                        <button type="button" class="close" onclick="$('#selector-success').hide()" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="selector-no-message" class="alert alert-success alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
+                        <strong>You have selected not to send a message.</strong> You can change your mind by choosing a recipient above.
+                        <button type="button" class="close" onclick="$('#selector-no-message').hide()" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                {% endblock %}
+                <div id="message-card" class="card message-card">
+                    <div id="message-card-body" class="card-body">
+                    </div>
+                </div>       		
+      		</div>
         {% endif %}
   		{% if session.config.condition_messaging == 'both' %}
       		<div class="tab-pane" id="messenger" role="tabpanel"></div>
@@ -300,26 +333,55 @@ var displayed = false;
 <script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
 <script type="text/javascript" src={% static "global/hash.js" %}></script>
 <script type="text/javascript" src={% static "global/jquery-ui.min.js" %}></script>
-<script type="text/javascript" src={% static "global/player_list.js" %}></script>
 
 
         {% with 'wall both' as list %}
             {% if session.config.condition_messaging in list.split %}
+                <script type="text/javascript" >
+                    var isWall = true;
+                </script>                
+                
+                <script type="text/javascript" src={% static "global/player_list.js" %}></script>
                 <script type="text/javascript" src={% static "global/wall-separate.js" %}></script>
+                <script type="text/javascript" >
+      		        var playerProfile = document.getElementById('playerLabel');
+                    playerProfile.onclick = function() {
+                    chat.setActiveChannel(nodeId);
+	                wall.changeId(nodeId);
+	                chat.infoChannel.send(JSON.stringify({
+	                   'type': 'list',
+	                   'content': {'playerId': nodeId, 'sentBy': nodeId},				
+	                   }));
+                    }                    
+      		    </script>
           	{% endif %}
   		{% endwith %}
   		{% with 'bilateral both' as list %}
   		{% if session.config.condition_messaging in list.split %}
-      		    <script type="text/javascript" src={% static "global/messenger.js" %}></script>
+  		        <script type="text/javascript" >
+                    var isWall = false;
+                </script>                
+                
+                <script type="text/javascript" src={% static "global/player_list.js" %}></script>
+      		    <script type="text/javascript" src={% static "global/messenger-separate.js" %}></script>
+      		    <script type="text/javascript" >
+      		        var playerProfile = document.getElementById('playerLabel');
+                    playerProfile.onclick = function() {
+                    chat.setActiveChannel(nodeId);
+	                wall.changeId(nodeId);
+	                chat.infoChannel.send(JSON.stringify({
+	                   'type': 'private-list',
+	                   'content': {'playerId': nodeId, 'sentBy': nodeId},				
+	                   }));
+                    }
+      		    </script>
+      		    
         {% endif %}
         {% endwith %}
-
 
 <script type="text/javascript" src={% static "global/vis.min.js" %}></script>
 <script type="text/javascript" src={% static "global/chat_channels.js" %}></script>
 <script type="text/javascript" src={% static "global/intro.min.js" %}></script>
-
-
 <script type="text/javascript" src={% static "main/network.js" %}></script>
 
 {% with 'tour/tutorial-'|add:session.config.condition_messaging|add:'-'|add:session.config.condition_network_knowledge|add:"-game.js" as image_static %}
@@ -343,6 +405,9 @@ var displayed = false;
 		'content': {'createdBy': nodeId},				
 	}));
 	});
+</script>
+
+<script type="text/javascript" > 
 
 {% with 'wall none' as list %}
     {% if session.config.condition_messaging in list.split %}    
@@ -352,10 +417,10 @@ var displayed = false;
 
 {% with 'bilateral none' as list %}
     {% if session.config.condition_messaging in list.split %}    
-        $('.linking-button').off("click");
-        $('.linking-button').each(function () {
-            this.onclick = undefined;
-            });
+    //    $('.linking-button').off("click");
+    //    $('.linking-button').each(function () {
+    //        this.onclick = undefined;
+    //        });
     {% endif %}
 {% endwith %}
 
@@ -370,7 +435,7 @@ $('[data-toggle="tooltip"]').tooltip({
 {% block styles %}
 <link rel="stylesheet" href={% static "global/jquery-ui.min.css" %}>
 <link rel="stylesheet" href={% static "global/wall-separate.css" %}>
-<link rel="stylesheet" href={% static "global/messenger.css" %}>
+<link rel="stylesheet" href={% static "global/messenger-separate.css" %}>
 <link rel="stylesheet" href={% static "global/player_list.css" %}>
 <link rel="stylesheet" href={% static "global/vis.min.css" %}>
 <link rel="stylesheet" href={% static "global/introjs.min.css" %}>

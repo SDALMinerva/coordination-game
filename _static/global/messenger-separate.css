@@ -1,0 +1,153 @@
+.wall{
+	height: 320px;
+	background-color: #fff; 
+	overflow-y: auto;
+	padding: 5px;
+	#border-bottom-style: inset;
+}
+
+#wallMessage{
+    position: absolute;
+    width: 80%; 
+    color: gray; 
+    padding-left: 15px;
+    top: 40px;
+    z-index: 1;
+}
+
+#messenger .topRow{
+    /*background: linear-gradient(#ffffff00, #ffffff00, #99b);*/
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-bottom: 4px;
+}
+
+.highlight{
+    border: 1px solid rgba(81, 203, 238, 1);
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border-radius: 5px;
+}
+
+.message-list{
+	width: 300px;
+	cursor: pointer;
+	z-index: 9;
+}
+
+.message-item{
+    z-index: 5;
+}
+
+.message-item h4{
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.sent-message{
+    font-size: 6pt;
+    font-weight: bold;
+    color: #c22;
+    margin-top: 5px;
+    margin-bottom: 0;
+    margin-left: 20px;
+    line-height: 6pt;
+}
+
+#message-box{
+	right: 90px;
+	left: auto;
+	width: 270px;
+	cursor: pointer;
+	z-index: 6;
+}
+
+.media{
+	margin: 0;
+}
+
+#messenger input[type="text"]:disabled {
+	cursor: pointer;
+	background-color: white;
+	color: black;
+}
+
+.wallimg{
+	width: 80px;
+	margin-top: 10px;
+}
+
+#wallImgContainer{
+    max-width: 100px;
+    min-width: 100px;
+}
+
+#messenger h2{
+    position: relative;
+	margin-bottom: 0;
+	margin-top: 0px;
+}
+
+.send-message{
+    width: 120px;
+}
+
+#messenger .card-subtitle{
+    font-size: 8pt;
+}
+
+#messenger .titleContainer{
+    padding: 0;
+    padding-left: 10px;
+    max-width: 330px;
+}
+.shiftleft {
+    padding-left: 0px;
+}
+
+#messenger .newly-added{
+    background-color: #ddd;
+}
+
+#messenger .message-tool{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#messenger .input-group{
+    padding-bottom: 5px;
+}
+
+#messenger #recipient-box{
+	right: 90px;
+	left: auto;
+	width: 270px;
+	cursor: pointer;
+	z-index: 6;
+}
+
+#messenger .recipient-option img{
+    display: inline;
+    float: left;
+    width: 25px;
+}
+
+#messenger .recipient-option span{
+    display: inline-block;
+    float: left;
+}
+
+#messenger span img{
+    display: inline;
+    float: left;
+    width: 20px;
+}
+
+#messenger a{
+    display: block;
+    cursor: pointer;
+    height: 30px;
+}
+
+#messenger .well {
+    background: white;
+}

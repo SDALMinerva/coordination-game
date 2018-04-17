@@ -1,5 +1,5 @@
 var player_list = new PlayerList();
-player_list.init(neighbors, 'playerList', true);
+player_list.init(neighbors, 'playerList', isWall);
 
 function PlayerList() {
 	
@@ -46,11 +46,11 @@ function PlayerList() {
 	    row.className = "float-left";
 	    row.appendChild(playerButton.Link());
 	    
-	    if (link){
-	       var privateMessage = document.createElement('button');
-		   privateMessage.className = "glyphicon glyphicon-envelope message-icon pull-right";
-		   row.appendChild(privateMessage);
-        }		
+//	    if (link){
+//	       var privateMessage = document.createElement('button');
+//		   privateMessage.className = "glyphicon glyphicon-envelope message-icon pull-right";
+//		   row.appendChild(privateMessage);
+//        }		
 		
 		this.playerList.appendChild(row);
 
@@ -120,8 +120,21 @@ function PlayerButton(id, link) {
 	            $('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');
 			};
 		} else {
-		    var element = document.createElement('div');
-		    element.className = "list-group-item player-button";
+		    var element = document.createElement('a');
+		    element.id = "player-button" + id;
+		    element.href = "#" + id;
+		    element.className = "list-group-item player-button linking-button clicktrack";
+		    element.onclick = function () {
+				chat.setActiveChannel(id);
+				wall.changeId(id);
+				chat.infoChannel.send(JSON.stringify({
+					'type': 'private-list',
+					'content': {'playerId': id, 'sentBy': nodeId},				
+				}));
+				$('.recipient-text').val('');
+				$('.user-display').empty();
+	            $('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');
+			};
 		}
 		
 		element.appendChild(media);
