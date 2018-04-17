@@ -12,3 +12,5 @@ _coverage_results/
 _static_root
 *.bat
 *.ipynb
+*.sql
+*migrations
