@@ -14,6 +14,10 @@ function startDiscussIntro() {
                "<br><br>You can click on your avatar at any time to see your own wall.",
       },
       {
+        element: document.querySelectorAll('#reward-summary')[0],
+        intro: "Here you can see the earnings structure for the game.",
+      },
+      {
         element: document.querySelectorAll('#friendsDiv')[0],
         intro: "In each round, you will be connected to some or all of the other people in your group. " +
                "They will be called Your friends, and will be listed in this box. You will also see the thresholds of your friends here. " +
@@ -113,10 +117,6 @@ function startDiscussIntro() {
       {
         element: document.querySelectorAll('#help-nav')[0],
         intro: "At any time, you can view the instructions, this tour and the quiz.",
-      },
-      {
-        element: document.querySelectorAll('#reward-summary')[0],
-        intro: "Here you can see the earnings structure for the game.",
       },
       {
         element: document.querySelectorAll('.next-button')[0],
