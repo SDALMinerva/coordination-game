@@ -2,6 +2,7 @@ from otree.api import Currency as c, currency_range
 from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
+from numpy.random import binomial
 
 class SocioDemographic(Page):
     form_model = models.Player
@@ -250,15 +251,30 @@ class Behavioral1(Page):
         "daringness",
         "risky_project",
         "risky_project_2",
-    ] + ['coinScenerio_{}'.format(i) for i in range(1, 32)]
+    ] #+ ['coinScenerio_{}'.format(i) for i in range(1, 32)]
     
     def vars_for_template(self):
         return {'coinOffers': [{"num": i, "amt": 10 * (i - 1)} for i in range(1, 32)]}
+        
+    def before_next_page(self):
+        self.player.payoff = 0
+        
+        amtInvested = self.player.risky_project
+        game_outcome = binomial(1,.4)
+        self.player.risky_project_outcome = game_outcome
+        self.player.payoff += (amtInvested * 3.) * game_outcome + (200 - amtInvested)
+        
+        amtInvested = self.player.risky_project_2
+        game_outcome = binomial(1,.5)
+        self.player.risky_project_outcome_2 = game_outcome
+        self.player.payoff += (amtInvested * 2.5) * game_outcome + (200 - amtInvested)
+        
 
 class Results(Page):
     def vars_for_template(self):
         return {
-            'payoff_currency': self.participant.payoff.to_real_world_currency(self.session),
+            'payoff_currency': self.participant.payoff.to_real_world_currency(self.session) - self.player.payoff.to_real_world_currency(self.session),
+            'payoff_risk_assessment': self.player.payoff.to_real_world_currency(self.session),
         }
 
 

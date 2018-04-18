@@ -228,14 +228,19 @@ class Player(BasePlayer):
     risky_project = models.PositiveIntegerField(
         verbose_name = "How do you see yourself? In comparison to others are you a person who is generally willing to give up something today in order to benefit from that in the future, or are you not willing to do so in comparison to others? Please indicate your answer on a scale from 0 to 10, where a 0 means \"not at all willing to give up something\", and a 10 means \"very willing to give up something\". You can use the values in between to indicate where you fall on the scale.",
         min=0, 
-        max=200,
+        max=20,
     )
+    
+    risky_project_outcome = models.BooleanField(blank=True)
     
     risky_project_2 = models.PositiveIntegerField(
         verbose_name = "How do you see yourself? In comparison to others are you a person who is generally willing to give up something today in order to benefit from that in the future, or are you not willing to do so in comparison to others? Please indicate your answer on a scale from 0 to 10, where a 0 means \"not at all willing to give up something\", and a 10 means \"very willing to give up something\". You can use the values in between to indicate where you fall on the scale.",
         min=0, 
-        max=200,
+        max=20,
     )
+    
+    risky_project_outcome_2 = models.BooleanField(blank=True)
+    
     # end preference elicitation
     
     # start preference module ii

@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Survey (continued)
+    Risk Questions
 {% endblock %}
 
 {% block content %}
@@ -15,9 +15,16 @@
     Please indicate your answer on a scale from 1 to 10, where a 1 means “not at all willing to take risks”, and a 10 means “very willing to take risks”. 
     </p>
     {% formfield player.daringness label="" %}
+
+    <h4 class="qMarker" style="font-size: 14pt;">Payment Questions</h4>
+    <h5>
+    The following questions count toward your final payment score. 
+    When you submit answers to these questions, we will evaluate the outcome of the scenario according the probability given. 
+    Your earnings in each scenario will be added to your total earnings in this experiment.
+    </h5>    
     
-    <p class="qMarker"><strong>2. Consider this hypothetical scenario.</strong><br> 
-    Suppose you have $200 that you can choose to keep or invest in a risky project.
+    <p class=""><strong>2. Consider this hypothetical scenario:</strong><br> 
+    Suppose you have 20 points that you can choose to keep or invest in a risky project.
     </p>
     <ol>
         <li>Money that is not invested in the risky project is yours to keep.</li> 
@@ -25,10 +32,10 @@
         <li>If the project is unsuccessful, you will lose the amount invested.</li>    
     </ol>
     <p>Please choose a number that you feel comfortable with investing in the risky project.<br>
-             ***Note that you can pick any number between 0 and 200, including 0 or 200.</p>
+             ***Note that you can pick any number between 0 and 20, including 0 or 20.</p>
     {% formfield player.risky_project label="" %}
     
-    
+    {% comment %}
     <p class="qMarker">
     <strong>3. You will be given hypothetical coin toss scenarios in the table below.</strong><br> 
     <em>For each of these scenarios, you must decide whether you want the coin toss or not.</em>  
@@ -51,8 +58,10 @@
     {% endfor %}
     </table>
 
-    <p class="qMarker"><strong>4. Consider this hypothetical scenario.</strong><br> 
-    Suppose you have $200 that you can choose to keep or invest in <em><strong>another</strong></em> risky project if you would like.
+    {% endcomment %}
+
+    <p class="qMarker"><strong>3. Consider this hypothetical scenario.</strong><br> 
+    Suppose you have 20 points that you can choose to keep or invest in <em><strong>another</strong></em> risky project if you would like.
     </p>
     <ol>
         <li>Money that is not invested in the risky project is yours to keep.</li> 
@@ -60,7 +69,7 @@
         <li>If the project is unsuccessful, you will lose the amount invested.</li>    
     </ol>
     <p>Please choose a number that you feel comfortable with investing in the risky project.<br>
-             ***Note that you can pick any number between 0 and 200, including 0 or 200.</p>
+             ***Note that you can pick any number between 0 and 20, including 0 or 20.</p>
     {% formfield player.risky_project_2 label="" %}
     
     {% next_button %}
