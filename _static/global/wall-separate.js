@@ -84,8 +84,8 @@ function WallMessenger() {
 		var newMessage = document.createElement('a');
 		newMessage.className = 'recipient-option clicktrack';
 		newMessage.id = 'recipient-option-no-send';
-		newMessage.innerHTML = "<span class='img-recipient glyphicon glyphicon-remove'></span><span class='recipient-name pull-right'>" + noSendMessage + "</span>" + "<span id='ID' style='visibility: hidden;'>all</span>";			
-	
+		newMessage.innerHTML = "<span class='img-recipient oi oi-x title='x' aria-hidden='true'></span><span class='recipient-name float-right'>" + noSendMessage + "</span>" + "<span id='ID' style='visibility: hidden;'>all</span>";	
+		newRow.className = "dropdown-item";
 		newRow.appendChild(newMessage)			
 		messageListBox.appendChild(newRow);
 		

@@ -56,7 +56,7 @@
 #message-box{
 	right: 90px;
 	left: auto;
-	width: 270px;
+	width: 240px;
 	cursor: pointer;
 	z-index: 6;
 }
@@ -120,7 +120,7 @@
 #wall #recipient-box{
 	right: 90px;
 	left: auto;
-	width: 270px;
+	width: 360px;
 	cursor: pointer;
 	z-index: 6;
 }
