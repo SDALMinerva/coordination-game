@@ -1,0 +1,117 @@
+{% extends "welcome_consent/WelcomePage.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Post Survey
+{% endblock %}
+
+{% block contentH3 %}
+{% endblock %}
+
+{% block contentH5 %}
+You will now be asked to complete a short post-survey.
+Please answer the questions on the following pages as accurately as you can.
+{% endblock %}
+
+{% block contentP %}
+{% endblock %}
+
+{% block onpage %}survey{% endblock %}
+
+{% block page_specific %}
+    {% if session.is_demo %}
+        <a href="#" onclick="setVals()">DEMO: Click here to fill vals.</a>
+    {% endif %}
+    <h5>
+        This survey is designed to collect information about socio-demographics and preferences.  
+        Please answer the following questions as accurately as you can. 
+        We remind you that the confidentiality of your responses will be protected.
+    </h5>
+<br>
+    
+    <p class="qMarker">Q1. In the past year, how often have you: </p>
+    {{q13Table|safe}}
+    
+    
+    
+
+{% endblock %}
+
+{% block scripts %}
+    {{block.super}}
+    <script type="text/javascript">
+
+        {% if session.is_demo %}
+        var setVals = function (){
+            $(":text").val('X');
+           	$('input[type="number"]').val('999');
+           	$('input:radio').prop('checked', true);
+           	$('select option').prop('selected', true);
+        }
+        {% endif %}    
+    
+            </script>
+{% endblock %}
+
+{% block app_styles %}
+    <style type="text/css">
+        .subquestion label, li label {
+            font-weight: normal;
+        }
+        
+        #id_middleInitial {
+            max-width: 50px;
+        }
+        
+        #id_otherWork, #id_otherFreeTime {
+            margin-top: 10px;
+        }
+
+.qualifier{
+    font-size: 8pt;
+    font-weight: bold;
+    padding-left: 20px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.qMarker{
+    font-size: 11pt;
+    font-weight: bold;
+    margin-top: 60px;
+}
+        
+.verticalTableHeader {
+    text-align:center;
+    white-space:nowrap;
+    transform: rotate(-90deg);
+
+}
+
+col{ max-width: 30px;}
+table.fixed { table-layout:fixed; }
+table.fixed td div{ overflow: hidden;}
+table.fixed th div{width: 100%; height: 100%; margin-left: -80px; vertical-align: middle; line-height: 100%;}
+table.fixed th{max-width: 10px;}
+table.fixed td{max-width: 10px;}
+table.fixed td div .btnRadio{  max-width: 10px;}
+
+thead th{
+    height: 200px;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.verticalTableHeader p{
+    height: 100%;
+    vertical-align: middle;
+    line-height: 189px;
+    display: inline-block;
+    overflow: hidden;
+    margin-bottom: -90px;
+}
+
+    </style>
+{% endblock %}

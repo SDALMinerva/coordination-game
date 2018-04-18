@@ -16,7 +16,7 @@ Please answer the questions on the following pages as accurately as you can.
 {% block contentP %}
 {% endblock %}
 
-{% block onpage %}survey{% endblock %}
+{% block onpage %}presurvey{% endblock %}
 
 {% block page_specific %}
     {% if session.is_demo %}
@@ -40,21 +40,21 @@ Please answer the questions on the following pages as accurately as you can.
         {% formfield player.q2b_placeOfBirth_state %}
         {% formfield player.q2c_placeOfBirth_city %}
     
-
-
+{% comment %}
     <p class="qMarker">3. Permanent/home location</p>
     {% formfield player.q3a_permanentHome_country %}
     {% formfield player.q3b_permanentHome_state %}
     {% formfield player.q3c_permanentHome_city %}
+{% endcomment %}
     
-    <p class="qMarker">4. Please write down your ethnic group/ancestry that you identify with. 
+    <p class="qMarker">3. Please write down your ethnic group/ancestry that you identify with. 
     (For example, Arab, Cuban, Dutch, French Canadian, German, Irish, Italian, Mexican, 
     Norwegian, Polish, Puerto Rican, Russian, Scotch-Irish, etc.)
-    You can write one or more groups. Please separate with a comma: ",".
+    You can write one or more groups. Please separate with a comma: ",". If you prefer not to answer, please leave blank.
     </p>
     {% formfield player.q4_ethnicity label="" %}    
     
-    <p class="qMarker">5. What is your race?  (Choose one or more from the following racial groups)</p>
+    <p class="qMarker">4. What is your race?  (Choose one or more from the following racial groups)</p>
     {% formfield player.q5a_race_Asian label="Asian" %}
     <p class="qualifier">(A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam.)
 </p>
@@ -66,21 +66,22 @@ Please answer the questions on the following pages as accurately as you can.
     <p class="qualifier">(A person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands.)</p>
     {% formfield player.q5e_race_White label="White" %}
     <p class="qualifier">(A person having origins in any of the original peoples of Europe, the Middle East, or North Africa.)</p>
+    {% formfield player.q5h_race_noAnswer label="Prefer not to answer" %}
     {% formfield player.q5f_race_Other label="Other" %}
     <p>If other, please specify:</p>
     {% formfield player.q5g_race_OtherPrint label=""%}
             
-    <p class="qMarker">6. Sex / Gender</p>
+    <p class="qMarker">5. Sex / Gender</p>
     {% formfield player.q6a_sexGender label="" %}
     <p>If other, please specify:</p>
     {% formfield player.q6b_sexGender_other label="" %}
     
     
-    <p class="qMarker">7. Marital status </p>
+    <p class="qMarker">6. Marital status </p>
     {% formfield player.q7_maritalStatus label="" %}
     
     
-    <p class="qMarker">8. Education status</p>
+    <p class="qMarker">7. Education status</p>
     <div class="form-group required">
         <div class="controls  field-q8a_education_overview">
             <ul>
@@ -120,41 +121,27 @@ Please answer the questions on the following pages as accurately as you can.
         
     
     
-    <p class="qMarker">9. What is your major?</p>
+    <p class="qMarker">8. What is your major?</p>
     {% formfield player.q9_major label="" %}
     <p>If other, please specify:</p>
     {% formfield player.q9_majorOther label="" %}     
     
-    <p class="qMarker">10. Have you taken college-level courses in the following subjects?</p>
+    <p class="qMarker">9. Have you taken college-level courses in the following subjects?</p>
     {% formfield player.q10a_subject_econ label="Economics" %}
     {% formfield player.q10b_subject_finance label="Finance" %}
     {% formfield player.q10c_subject_stat label="Statistics" %}    
     
     
-    <p class="qMarker">11. Do you currently serve or have you ever served in the military? 
+    <p class="qMarker">10. Do you currently serve or have you ever served in the military? 
     (e.g., ROTC, cadet, or midshipman at a service academy; In the Reserves or National Guard; A discharged veteran)
     </p>
     {% formfield player.q11_military_service label=""%}    
     
     
-    <p class="qMarker">12. How much time do you spend during a <strong>typical week</strong> doing the following activities?</p>   
+    <p class="qMarker">11. How much time do you spend during a <strong>typical week</strong> doing the following activities?</p>   
     {{q12Table|safe}}
     <p>If other, please specify:</p>
     {% formfield player.q12o_activities_otherPrint label=""%}
-
-    <p class="qMarker">13. In the past year, how often have you: </p>
-    {{q13Table|safe}}
-    
-    <p class="qMarker">14. Indicate why you use social networking sites on each category below. You can choose multiple sites for each category. </p>
-    {{q14Table|safe}}
-    <p>If other, please specify:</p>
-    {% formfield player.q14_l_networking_otherPrint label=""%}
-    
-    <p class="qMarker">15. Mark one in each row:</p>
-    {{q15Table|safe}}
-    
-    
-    
 
 {% endblock %}
 

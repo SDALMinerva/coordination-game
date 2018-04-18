@@ -138,11 +138,11 @@ SESSION_CONFIG_DEFAULTS = {
 }
 
 sequence = [
-    'welcome_consent', 
+    'welcome_consent',
+    'survey_initial', 
     'instructions',
     'practice',
     'main',
-    'survey_initial',
     'survey_final',
 ]
 

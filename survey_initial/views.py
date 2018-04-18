@@ -147,9 +147,9 @@ class SocioDemographic(Page):
             "q2b_placeOfBirth_state",
             "q2c_placeOfBirth_city",
             
-            "q3a_permanentHome_country",
-            "q3b_permanentHome_state",
-            "q3c_permanentHome_city",
+#            "q3a_permanentHome_country",
+#            "q3b_permanentHome_state",
+#            "q3c_permanentHome_city",
             
             "q4_ethnicity",
             
@@ -160,6 +160,7 @@ class SocioDemographic(Page):
             "q5e_race_White",
             "q5f_race_Other",
             "q5g_race_OtherPrint",
+            "q5h_race_noAnswer",
             
             "q6a_sexGender",
             "q6b_sexGender_other",
@@ -201,59 +202,7 @@ class SocioDemographic(Page):
             "q12m_activities_household",
             "q12n_activities_other",
             "q12o_activities_otherPrint",
-            
-            "q13a_transportation",
-            "q13b_volunteer",
-            "q13c_donations",
-            "q13d_discussPolitics",
-            "q13e_communicate",
-            "q13f_demonstrate",
-            "q13g_elections",
-            "q13h_risk",
-
-            "q14_l_networking_otherPrint",            
-            
-            "q15a_ethics_wealth",
-            "q15b_ethics_climate",
-            "q15c_ethics_gunControl",
-            "q15d_ethics_admissions",
-            "q15e_ethics_taxes",
-            
-        ]
-
-        columns = [
-            'Facebook',
-            'Twitter',
-            'LinkedIn',
-            'Instagram',
-            'Reddit',
-            'WhatsApp',
-            'Meetup',
-            'Nextdoor',
-            'Snapchat',
-            'Weibo',        
-        ]
-        
-        rows = [
-            ("prof_network", "Professional networking"),
-            ("soc_network", "Social networking"),
-            ("xchng_info", "Exchange of information with peers and family"),
-            ("soc_events","Organize and/or attend social events"),
-            ("pol_events","Organize and/or attend political events"),
-            ("news_info", "News and Information about people and places"),
-            ("job", "Job seeking"),
-            ("money", "To make money"),
-            ("games", "To play games"),
-            ("research", "Research"),
-            ("other", "Other"),
-            ("dont_use","I don’t use this social networking site"),
-        ]
-        i = 0
-        for r in rows:
-            for c in columns:
-                i += 1
-                field_name = 'q14_{}_{}X{}'.format(i, r[0], c)
-                questions += [field_name]        
+        ]     
         
         return questions
 
@@ -288,10 +237,7 @@ class SocioDemographic(Page):
         ]        
         
         return {
-            'q12Table':  self.makeTable('q12').replace('\n',''),
-            'q13Table':  self.makeTable('q13').replace('\n',''),
-            'q14Table':  self.makeCheckTable('q14', columns, rows),
-            'q15Table':  self.makeTable('q15').replace('\n',''),       
+            'q12Table':  self.makeTable('q12').replace('\n',''),     
         }
 
 
@@ -362,6 +308,5 @@ class Results(Page):
 page_sequence = [
 #    Intro,
     SocioDemographic,
-    Behavioral1,
     Results,
 ]

@@ -1,0 +1,130 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Survey (continued)
+{% endblock %}
+
+{% block content %}
+    {% if session.is_demo %}
+        <a href="#" onclick="setVals()">DEMO: Click here to fill vals.</a>
+    {% endif %}
+    
+    <p class="qMarker"><strong>1. How do you see yourself?</strong><br> 
+    Are you a person who is generally willing to take risks, or do you try to avoid taking risks? 
+    Please indicate your answer on a scale from 1 to 10, where a 1 means “not at all willing to take risks”, and a 10 means “very willing to take risks”. 
+    </p>
+    {% formfield player.daringness label="" %}
+    
+    <p class="qMarker"><strong>2. Consider this hypothetical scenario.</strong><br> 
+    Suppose you have $200 that you can choose to keep or invest in a risky project.
+    </p>
+    <ol>
+        <li>Money that is not invested in the risky project is yours to keep.</li> 
+        <li>The risky project has a 40% chance of success. If the project is successful, you will receive 3 times the amount you chose to invest.</li> 
+        <li>If the project is unsuccessful, you will lose the amount invested.</li>    
+    </ol>
+    <p>Please choose a number that you feel comfortable with investing in the risky project.<br>
+             ***Note that you can pick any number between 0 and 200, including 0 or 200.</p>
+    {% formfield player.risky_project label="" %}
+    
+    
+    <p class="qMarker">
+    <strong>3. You will be given hypothetical coin toss scenarios in the table below.</strong><br> 
+    <em>For each of these scenarios, you must decide whether you want the coin toss or not.</em>  
+    If you choose to toss the coin <strong>(YES Coin Toss)</strong>, you would get $300 if heads or $0 if tails. 
+    If you choose not to toss the coin <strong>(NO Coin Toss)</strong>, you would receive a sure payment amount listed 
+    in the column <strong>(NO Coin Toss)</strong> for each scenario. The amount for NO Coin Toss is different in each scenario. 
+    Please indicate your coin toss choice (YES or NO) for each of the scenarios.
+    </p>
+
+    <table class="table table-condensed" style="max-width: 500px; font-size: 10pt;">
+    <tr>
+        <th>Scenario</th><th>YES Coin Toss</th><th>NO Coin Toss</th>
+    </tr>
+    {% for offer in coinOffers %}
+    <tr>
+        <td>{{ offer.num }}</td>
+        <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="1" required>  Tail = $300    Head = $0</td>
+        <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="2" required>  ${{ offer.amt }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
+    <p class="qMarker"><strong>4. Consider this hypothetical scenario.</strong><br> 
+    Suppose you have $200 that you can choose to keep or invest in <em><strong>another</strong></em> risky project if you would like.
+    </p>
+    <ol>
+        <li>Money that is not invested in the risky project is yours to keep.</li> 
+        <li>The risky project has a 50% chance of success. If the project is successful, you will receive 2.5 times the amount you chose to invest.</li> 
+        <li>If the project is unsuccessful, you will lose the amount invested.</li>    
+    </ol>
+    <p>Please choose a number that you feel comfortable with investing in the risky project.<br>
+             ***Note that you can pick any number between 0 and 200, including 0 or 200.</p>
+    {% formfield player.risky_project_2 label="" %}
+    
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+
+        {% if session.is_demo %}
+        var setVals = function (){
+            $(":text").val('X');
+           	$('input[type="number"]').val('999');
+           	$('input:radio').prop('checked', true);
+           	$('select option').prop('selected', true);
+        }
+        {% endif %}    
+
+        $(".coin").change(function (e) {
+            var results = $(this).parent()
+                                 .parent()
+                                 .prevAll();
+            for (i=0; i < results.length - 1; i++)
+            {
+                $(results[i]).children().children().first().prop('checked', true);
+            }
+            var results = $(this).parent()
+                                 .parent()
+                                 .nextAll();
+            for (i=0; i < results.length; i++)
+            {
+                $(results[i]).children().children().last().prop('checked', true);
+            }
+        	
+        });    
+    
+    </script>
+{% endblock %}
+
+{% block app_styles %}
+    <style type="text/css">
+        .subquestion label, li label {
+            font-weight: normal;
+        }
+        
+        #id_middleInitial {
+            max-width: 50px;
+        }
+        
+        #id_otherWork, #id_otherFreeTime {
+            margin-top: 10px;
+        }
+        
+        .qualifier{
+    font-size: 8pt;
+    font-weight: bold;
+    padding-left: 20px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.qMarker{
+    font-size: 11pt;
+    margin-top: 60px;
+}
+    </style>
+{% endblock %}
