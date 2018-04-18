@@ -7,7 +7,6 @@
 
 
 {% block content %}
-
 {% include "main/instructions_modal.html" %}
 {% include "main/quiz_modal.html" %}
 
@@ -281,7 +280,10 @@ var displayed = false;
 
 
 <script type="text/javascript" src={% static "main/network.js" %}></script>
-<script type="text/javascript" src={% static "main/tutorial.js" %}></script>
+
+{% with 'tour/tutorial-'|add:session.config.condition_messaging|add:'-'|add:session.config.condition_network_knowledge|add:".js" as image_static %}
+<script type="text/javascript" src={% static image_static %}></script>
+{% endwith %}
 
 <script type="text/javascript" >
   var playerProfile = document.getElementById('playerLabel');
