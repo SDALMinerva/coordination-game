@@ -12,6 +12,8 @@ class AssignAvatar(Page):
 
 class Discuss(Page):
 
+    timeout_seconds = 60*10    
+    
     def vars_for_template(self):
         group_players = self.group.get_players()
         message_round = group_players[0].participant.vars['message_round']

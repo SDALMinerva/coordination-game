@@ -138,6 +138,12 @@ $(window).on('load',function(){
                              <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <div id="selector-move-on" class="alert alert-warning alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
+                        <strong>Your friends are waiting.</strong> Please make your decisions and click 'Next' at the bottom of the page.
+                        <button type="button" class="close" onclick="$('#selector-move-on').hide()" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 </div>
                 {% endblock %}
                 <div id="wall-card" class="card wall-card">
@@ -236,6 +242,19 @@ var privateEntries = JSON.parse('{{privateMessages|safe}}');
 var network_nodes = JSON.parse('{{nodes|escapejs}}');
 var network_edges = JSON.parse('{{edges|safe}}');
 var chat_name = '{{Constants.chat_name}}';
+
+
+$(function () {
+var displayed = false;
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+            var show = 60*10 - 90;
+                if ((event.offset.totalSeconds <= show) & !displayed) {
+                    displayed = true;
+                    $("#selector-move-on").show();
+                }
+            });
+        });
+
 </script>
 
 <script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
@@ -309,6 +328,9 @@ $('[data-toggle="tooltip"]').tooltip({
 
 
 <style type="text/css">
+    .otree-timer {
+            display: none;
+    }
 
     .close {
         opacity: .34;
