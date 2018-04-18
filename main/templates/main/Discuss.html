@@ -281,7 +281,7 @@ var displayed = false;
 
 <script type="text/javascript" src={% static "main/network.js" %}></script>
 
-{% with 'tour/tutorial-'|add:session.config.condition_messaging|add:'-'|add:session.config.condition_network_knowledge|add:".js" as image_static %}
+{% with 'tour/tutorial-'|add:session.config.condition_messaging|add:'-'|add:session.config.condition_network_knowledge|add:"-game.js" as image_static %}
 <script type="text/javascript" src={% static image_static %}></script>
 {% endwith %}
 
