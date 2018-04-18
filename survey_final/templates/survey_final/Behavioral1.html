@@ -16,30 +16,13 @@
     </p>
     {% formfield player.daringness label="" %}
 
-    <h4 class="qMarker" style="font-size: 14pt;">Payment Questions</h4>
-    <h5>
-    The following questions count toward your final payment score. 
-    When you submit answers to these questions, we will evaluate the outcome of the scenario according the probability given. 
-    Your earnings in each scenario will be added to your total earnings in this experiment.
-    </h5>    
-    
-    <p class=""><strong>2. Consider this hypothetical scenario:</strong><br> 
-    Suppose you have 20 points that you can choose to keep or invest in a risky project.
-    </p>
-    <ol>
-        <li>Money that is not invested in the risky project is yours to keep.</li> 
-        <li>The risky project has a 40% chance of success. If the project is successful, you will receive 3 times the amount you chose to invest.</li> 
-        <li>If the project is unsuccessful, you will lose the amount invested.</li>    
-    </ol>
-    <p>Please choose a number that you feel comfortable with investing in the risky project.<br>
-             ***Note that you can pick any number between 0 and 20, including 0 or 20.</p>
-    {% formfield player.risky_project label="" %}
-    
-    {% comment %}
+
+
+
     <p class="qMarker">
-    <strong>3. You will be given hypothetical coin toss scenarios in the table below.</strong><br> 
+    <strong>2. You will be given hypothetical coin toss scenarios in the table below.</strong><br> 
     <em>For each of these scenarios, you must decide whether you want the coin toss or not.</em>  
-    If you choose to toss the coin <strong>(YES Coin Toss)</strong>, you would get $300 if heads or $0 if tails. 
+    If you choose to toss the coin <strong>(YES Coin Toss)</strong>, you would get $200 if heads or $0 if tails. 
     If you choose not to toss the coin <strong>(NO Coin Toss)</strong>, you would receive a sure payment amount listed 
     in the column <strong>(NO Coin Toss)</strong> for each scenario. The amount for NO Coin Toss is different in each scenario. 
     Please indicate your coin toss choice (YES or NO) for each of the scenarios.
@@ -52,15 +35,36 @@
     {% for offer in coinOffers %}
     <tr>
         <td>{{ offer.num }}</td>
-        <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="1" required>  Tail = $300    Head = $0</td>
+        <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="1" required>  Tail = $200    Head = $0</td>
         <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="2" required>  ${{ offer.amt }}</td>
     </tr>
     {% endfor %}
     </table>
 
-    {% endcomment %}
 
-    <p class="qMarker"><strong>3. Consider this hypothetical scenario.</strong><br> 
+
+
+    <h4 class="qMarker" style="font-size: 14pt;">Payment Questions</h4>
+    <h5>
+    The following questions count toward your final payment score. 
+    When you submit answers to these questions, we will evaluate the outcome of the scenario according the probability given. 
+    Your earnings in each scenario will be added to your total earnings in this experiment.
+    </h5>    
+    
+    <p class=""><strong>3. Consider this hypothetical scenario:</strong><br> 
+    Suppose you have 20 points that you can choose to keep or invest in a risky project.
+    </p>
+    <ol>
+        <li>Money that is not invested in the risky project is yours to keep.</li> 
+        <li>The risky project has a 40% chance of success. If the project is successful, you will receive 3 times the amount you chose to invest.</li> 
+        <li>If the project is unsuccessful, you will lose the amount invested.</li>    
+    </ol>
+    <p>Please choose a number that you feel comfortable with investing in the risky project.<br>
+             ***Note that you can pick any number between 0 and 20, including 0 or 20.</p>
+    {% formfield player.risky_project label="" %}
+    
+
+    <p class="qMarker"><strong>4. Consider this hypothetical scenario.</strong><br> 
     Suppose you have 20 points that you can choose to keep or invest in <em><strong>another</strong></em> risky project if you would like.
     </p>
     <ol>
@@ -71,6 +75,8 @@
     <p>Please choose a number that you feel comfortable with investing in the risky project.<br>
              ***Note that you can pick any number between 0 and 20, including 0 or 20.</p>
     {% formfield player.risky_project_2 label="" %}
+
+    
     
     {% next_button %}
 

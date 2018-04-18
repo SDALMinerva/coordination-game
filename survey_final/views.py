@@ -251,7 +251,7 @@ class Behavioral1(Page):
         "daringness",
         "risky_project",
         "risky_project_2",
-    ] #+ ['coinScenerio_{}'.format(i) for i in range(1, 32)]
+    ] + ['coinScenerio_{}'.format(i) for i in range(1, 32)]
     
     def vars_for_template(self):
         return {'coinOffers': [{"num": i, "amt": 10 * (i - 1)} for i in range(1, 32)]}
