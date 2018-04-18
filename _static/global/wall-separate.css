@@ -38,6 +38,21 @@
     z-index: 5;
 }
 
+.message-item h4{
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.sent-message{
+    font-size: 6pt;
+    font-weight: bold;
+    color: #c22;
+    margin-top: 5px;
+    margin-bottom: 0;
+    margin-left: 20px;
+    line-height: 6pt;
+}
+
 #message-box{
 	right: 90px;
 	left: auto;
@@ -76,10 +91,14 @@
     width: 120px;
 }
 
+#wall .card-subtitle{
+    font-size: 8pt;
+}
+
 #wall .titleContainer{
     padding: 0;
     padding-left: 10px;
-    max-width: 350px;
+    max-width: 330px;
 }
 .shiftleft {
     padding-left: 0px;

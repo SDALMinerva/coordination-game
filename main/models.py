@@ -97,6 +97,8 @@ class Subsession(BaseSubsession):
         for p in self.get_players():
             if p.id_in_group == 1:
                 p.participant.vars['message_round'] = 1
+            
+            p.participant.vars['discuss_participate'] = False
         
         for group in self.get_groups():
             for node in group.network.node_set.all():       

@@ -1,6 +1,8 @@
 var wall = new Wall();
 wall.init(nodeId, entries, output);
 
+var noSendMessage = 'Send no messages this round';
+
 if (output){
     var wallMessenger = new WallMessenger();
     wallMessenger.init();
@@ -66,6 +68,7 @@ function WallMessenger() {
 			messageListBox.appendChild(newRow);	
 		};
 		
+		// OWN ROW.
 		var newRow = document.createElement('li');
 		var newMessage = document.createElement('a');
 		newMessage.className = 'recipient-option clicktrack';
@@ -74,6 +77,16 @@ function WallMessenger() {
 		"'><span class='recipient-name float-right'>" + userNames[nodeId] + " (You)</span>" + "<span id='ID' style='visibility: hidden;'>"+nodeId+"</span>";
 		newRow.appendChild(newMessage);
         newRow.className = "dropdown-item";
+		messageListBox.appendChild(newRow);
+		
+		// NO SEND.
+		var newRow = document.createElement('li');
+		var newMessage = document.createElement('a');
+		newMessage.className = 'recipient-option clicktrack';
+		newMessage.id = 'recipient-option-no-send';
+		newMessage.innerHTML = "<span class='img-recipient glyphicon glyphicon-remove'></span><span class='recipient-name pull-right'>" + noSendMessage + "</span>" + "<span id='ID' style='visibility: hidden;'>all</span>";			
+	
+		newRow.appendChild(newMessage)			
 		messageListBox.appendChild(newRow);
 		
 //		var send_button = document.createElement('button');
@@ -135,7 +148,7 @@ function WallMessenger() {
 		this.send_button.className = "btn btn-light send-message clicktrack";
 		this.send_button.type = 'button';
 		this.send_button.id = "send-message-button";
-		this.send_button.innerHTML = "Send Message";
+		this.send_button.innerHTML = "Submit";
 		
 		this.dropdown.appendChild(this.dropdown_button);
 		this.dropdown.appendChild(this.messageList);
@@ -277,7 +290,54 @@ function Wall() {
 	};
 };
 
+
+$("#wall").on("click", ".recipient-option", function(event){
+    if ($(".recipient-text").val() == noSendMessage){
+        $('#message-list-dropdown').attr('disabled',true);
+        $('#send-message-button').addClass('btn-primary');
+        $('.message-text').val('');  
+    } else {
+        $('#message-list-dropdown').attr('disabled',false);
+    }
+    
+    if (($(".recipient-text").val() != noSendMessage) && ($(".message-text").val() == '')){
+        $('#send-message-button').removeClass('btn-primary');
+    }
+    
+    if (($(".recipient-text").val() != noSendMessage) && ($(".message-text").val() != '')){
+        $('#send-message-button').addClass('btn-primary');
+    }  
+});
+
+$("#wall").on("click", ".message-option", function(event){    
+    if (($(".recipient-text").val() != '') && ($(".message-text").val() != '')){
+        $('#send-message-button').addClass('btn-primary');
+    }  
+});
+
+
 $("#wall").on("click", ".send-message", function(event){
+
+  if ($(".recipient-text").val() == noSendMessage){
+      $('#btn-discuss-next').attr('disabled', false);
+      $('#send-message-button').removeClass('btn-primary');
+      
+      var message = {
+             createdBy: nodeId,
+             text: $("#wall .message-text").val(),
+             messageRound: messageRound,
+       }
+
+       var toSend = JSON.stringify({
+  		    'type': 'participate_flag',
+  		    'content': message,
+  	   });
+       console.log(toSend);
+       chat.infoChannel.send(toSend);
+       $('#selector-alert').fadeOut();
+       $('#selector-no-message').fadeIn().delay(10000).fadeOut(); 
+       return;  
+  }
 
   if ($(".message-text").val() == ''){
         $('#selector-alert').fadeIn();
@@ -287,10 +347,14 @@ $("#wall").on("click", ".send-message", function(event){
   if ($(".recipient-text").val() == ''){
         $('#selector-alert').fadeIn();
         return;  
-  }  
+  }
   
+  $('#selector-alert').fadeOut();
+  $('#selector-success').fadeIn().delay(5000).fadeOut();  
+  
+  $('#send-message-button').removeClass('btn-primary');
 
-  //$('#wallMessage').html('');
+//$('#wallMessage').html('');
 /////////////////////////////////////
 ///////// Messaging Portion /////////
 /////////////////////////////////////
@@ -319,10 +383,11 @@ if (recipient == 'All Friends'){
   		    'content': message,
   	    });
         console.log(toSend);
-        chat.channels[neighbor].send(toSend);   
+        chat.channels[neighbor].send(toSend);
+        $('#btn-discuss-next').attr('disabled', false);   
     }
-} else {
-
+} else if (recipient != noSendMessage){
+  console.log(recipient);
   var currentDate = new Date();
   var keyString = currentDate.toString();
   keyString += wall.Id;
@@ -344,7 +409,7 @@ if (recipient == 'All Friends'){
   	});
   console.log(toSend);
   chat.activeChannel.send(toSend);
-
+  $('#btn-discuss-next').attr('disabled', false); 
 }
 /////////////////////////////////////
 /////////////////////////////////////
@@ -354,7 +419,7 @@ if (messageRound == -1){
     
 } else if((recipient == 'All Friends') && (wall.Id != nodeId)) {
     wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#wall .message-text").val(), key));
-} else if((recipient != 'All Friends')) {
+} else if((recipient != 'All Friends') && (recipient != noSendMessage)) {
     wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#wall .message-text").val(), key));
 }
 
@@ -522,9 +587,10 @@ function NewlyAddedEntry(id,timestamp,content, key) {
    	var nameAdd = ((id == wall.ownId) ? " (You)" : '');
    	listP.style = "font-size: 9pt;";
    	listP.innerHTML= 'Post by: ' + userNames[id] + nameAdd; 
-//   						+ '[' + this.timestamp + ']';
+//   						+ '[' + this.timestamp + ']' 
    	listP.className = 'media-body';
    	listItem.appendChild(listP);
+   	listItem.innerHTML += '<p class="sent-message">only you can see this message - it will be received in the decision part</p>';
    	
    	var keyDiv = document.createElement('div');
    	keyDiv.innerHTML = key;

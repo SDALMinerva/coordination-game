@@ -45,7 +45,7 @@ $(window).on('load',function(){
     </div>
     <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
         
-        <div class="col-sm-2 col-lg-2" style="min-width: 160px; max-width: 260px; padding:5px;">
+        <div class="col-sm-2 col-lg-2" style="min-width: 180px; max-width: 260px; padding:5px;">
         <div id="playerDiv" class="clicktrack">        
         <h4 style="text-align: left; padding-left: 0px;">Your Profile:</h4>
             <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
@@ -55,13 +55,22 @@ $(window).on('load',function(){
 	        	   <p style="text-align: left; font-size: 9pt; margin: 0; margin-top: 0px; margin-left: 15px;"><strong>Your Threshold: {% block threshold %}{{player.node.threshold_text}}{% endblock %}</strong> </p>
       	    </div>
       	 </div>
+      	 <div id="reward-summary" class="row">
+    <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;"><strong>Possible Earnings:</strong></p>
+    <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;">If you do not participate:<strong> {{session.config.payoff_no_participate}}</strong> </p>
+    <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px;">If you participate: </p>
+    <ul>
+    <li style="text-align: left; font-size: 8pt; margin: 0; margin-left: 0px;"><strong>{{session.config.payoff_above_threshold}}</strong> if at least {{player.threshold}} more participate </li>
+    <li style="text-align: left; font-size: 8pt; margin: 0; margin-left: 0px;"><strong>{{session.config.payoff_below_threshold}}</strong> if less than {{player.threshold}} participate </li>
+    </ul>
+</div>
       	 <div id="friendsDiv">
       	    <h4>Your Friends:</h4>
             <div id="playerList" class="clearfix" ></div>
          </div>        
         </div>
 
-        <div class="col-sm-6 col-lg-6" style="padding: 5px;">
+        <div class="col-sm-6 col-lg-6" style="padding: 5px; max-width: 450px;">
 
         <ul id="main-tabs" class="nav nav-tabs" role="tablist">
         {% with 'wall both' as list %}
@@ -103,6 +112,18 @@ $(window).on('load',function(){
                              <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <div id="selector-success" class="alert alert-success alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
+                        <strong>Message sent!</strong> You can send more messages or delete this one until the decision part.
+                        <button type="button" class="close" onclick="$('#selector-success').hide()" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="selector-no-message" class="alert alert-success alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
+                        <strong>You have selected not to send a message.</strong> You can change your mind by choosing a recipient above.
+                        <button type="button" class="close" onclick="$('#selector-no-message').hide()" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 </div>
                 {% endblock %}
                 <div id="wall-card" class="card wall-card">
@@ -133,7 +154,7 @@ $(window).on('load',function(){
 {% endblock %}
 
 {% block checkSubmission %}
-<p>Click <strong>Next</strong> to continue.</p>
+<p id="exit-message">Click <strong>Next</strong> to continue. You must use the messaging tool one or more times before you can proceed.</p>
 <br>
 <div class="modal fade" id="stopModal">
   <div class="modal-dialog" role="document">
@@ -164,7 +185,7 @@ $(window).on('load',function(){
 
 <div class="buttons">
     <p id="stopButton"> 
-    <button id="btn-discuss-next" type="button" class="btn btn-primary clicktrack" onclick="resultTable.getInfo();$('#stopModal').modal('show')">Next</button>
+    <button {% if not player.participant.vars.discuss_participate %}disabled{% endif %} id="btn-discuss-next" type="button" class="btn btn-primary clicktrack" onclick="resultTable.getInfo();$('#stopModal').modal('show')">Next</button>
     </p>
 </div>
 {% endblock %}
@@ -311,6 +332,7 @@ $('[data-toggle="tooltip"]').tooltip({
     }
 
     .close {
+        padding-top: 0px;
         opacity: .34;
         line-height: 1;  
     }

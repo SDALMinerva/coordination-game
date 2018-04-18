@@ -22,35 +22,139 @@ Please answer the questions on the following pages as accurately as you can.
     {% if session.is_demo %}
         <a href="#" onclick="setVals()">DEMO: Click here to fill vals.</a>
     {% endif %}
-    <h4>This survey is designed to collect personal and household information.</h4>
+    <h5>
+        This survey is designed to collect information about socio-demographics and preferences.  
+        Please answer the following questions as accurately as you can. 
+        We remind you that the confidentiality of your responses will be protected.
+    </h5>
+<br>
+    <div class="form-group required">
+    
+    </div>
+    <p class="qMarker">1. Birth year</p>
+    {% formfield player.q1_birthYear label="" %}    
+    
+    
+    <p class="qMarker">2. Place of Birth</p>
+        {% formfield player.q2a_placeOfBirth_country %}
+        {% formfield player.q2b_placeOfBirth_state %}
+        {% formfield player.q2c_placeOfBirth_city %}
+    
 
-    {% for field in form %}
-        {% if field.html_name == "country_reside" %}
-            <label>What is your current residence?</label>
-			<div class="subquestion">
-        {% elif field.html_name == "subject_econ" %}
-            <label>Have you taken college-level courses in the following subjects?</label>
-			<div class="subquestion">
-        {% elif field.html_name == "partTime" %}
-            <label>What is your employment status?  Please check all that apply.</label>
-			<div class="subquestion">
-        {% elif field.html_name == "sports" %}
-            <label>How do you spend your free time?  Please check all that apply.</label>
-			<div class="subquestion">
-        {% elif field.html_name == "residents0to6" %}
-            <label>How many of the people living in your residence are in each of the following age categories?</label>
-			<div class="subquestion">
-        {% elif field.html_name == "activitySchool" or field.html_name == "activityCollegeClubs" %}
-            <label>Of the people living in your residence (including yourself), how many ...</label>
-			<div class="subquestion">
-        {% endif %}
-		
-        {% formfield field %}
-		
-		{% if field.html_name == "city_reside" or field.html_name == "subject_stat" or field.html_name == "otherWork" or field.html_name == "otherFreeTime" or field.html_name == "residents65up" or field.html_name == "activityEvening" or field.html_name == "activityFlu" and  player.isStudent %}
-			</div>
-        {% endif %}
-    {% endfor %}
+
+    <p class="qMarker">3. Permanent/home location</p>
+    {% formfield player.q3a_permanentHome_country %}
+    {% formfield player.q3b_permanentHome_state %}
+    {% formfield player.q3c_permanentHome_city %}
+    
+    <p class="qMarker">4. Please write down your ethnic group/ancestry that you identify with. 
+    (For example, Arab, Cuban, Dutch, French Canadian, German, Irish, Italian, Mexican, 
+    Norwegian, Polish, Puerto Rican, Russian, Scotch-Irish, etc.)
+    You can write one or more groups. Please separate with a comma: ",".
+    </p>
+    {% formfield player.q4_ethnicity label="" %}    
+    
+    <p class="qMarker">5. What is your race?  (Choose one or more from the following racial groups)</p>
+    {% formfield player.q5a_race_Asian label="Asian" %}
+    <p class="qualifier">(A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam.)
+</p>
+    {% formfield player.a5b_race_Black label="Black or African American" %}
+    <p class="qualifier">(A person having origins in any of the Black racial groups of Africa – includes Caribbean Islanders and other of African origin.) </p>
+    {% formfield player.q5c_race_AmericanIndian label="American Indian or Alaska Native" %}
+    <p class="qualifier">(A person having origins in any of the original peoples of North and South America (including Central America), and who maintains a tribal affiliation or community attachment.)</p>
+    {% formfield player.q5d_race_NativeHawaiian label="Native Hawaiian or Other Pacific Islander" %}
+    <p class="qualifier">(A person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands.)</p>
+    {% formfield player.q5e_race_White label="White" %}
+    <p class="qualifier">(A person having origins in any of the original peoples of Europe, the Middle East, or North Africa.)</p>
+    {% formfield player.q5f_race_Other label="Other" %}
+    <p>If other, please specify:</p>
+    {% formfield player.q5g_race_OtherPrint label=""%}
+            
+    <p class="qMarker">6. Sex / Gender</p>
+    {% formfield player.q6a_sexGender label="" %}
+    <p>If other, please specify:</p>
+    {% formfield player.q6b_sexGender_other label="" %}
+    
+    
+    <p class="qMarker">7. Marital status </p>
+    {% formfield player.q7_maritalStatus label="" %}
+    
+    
+    <p class="qMarker">8. Education status</p>
+    <div class="form-group required">
+        <div class="controls  field-q8a_education_overview">
+            <ul>
+	           <li>
+	           <table summary="" >
+               <tr>
+                    <td><label for="id_q8a_education_overview_1"><input type="radio" id="id_q8a_education_overview_1" value="Undergraduate Student" name="q8a_education_overview" required> Undergraduate Student</label></td>
+                    <td style="padding-left: 20px;">{% formfield player.q8c_education_freshman %}</td>
+                    <td style="padding-left: 20px;">{% formfield player.q8d_education_sophomore %}</td>
+                    <td style="padding-left: 20px;">{% formfield player.q8e_education_junior %}</td>
+                    <td style="padding-left: 20px;">{% formfield player.q8f_education_senior %}</td>
+               </tr>
+               </table>	               
+               </li>
+               <li>
+	           <table summary="" >
+               <tr>
+                    <td><label for="id_q8a_education_overview_2"><input type="radio" id="id_q8a_education_overview_2" value="Graduate Student" name="q8a_education_overview" required> Graduate Student</label></td>
+                    <td style="padding-left: 20px;">{% formfield player.q8g_education_masters %}</td>
+                    <td style="padding-left: 20px;">{% formfield player.q8h_education_phD %}</td>
+                    <td style="padding-left: 20px;">{% formfield player.q8i_education_eds %}</td>
+                    <td style="padding-left: 20px;">{% formfield player.q8j_education_edd %}</td>
+               </tr>
+               </table>	               
+               </li>
+        	   <li></li>
+               <li><label for="id_q8a_education_overview_3"><input type="radio" id="id_q8a_education_overview_3" value="Post-graduate Student" name="q8a_education_overview" required> Post-graduate Student</label></li>
+               <li><label for="id_q8a_education_overview_4"><input type="radio" id="id_q8a_education_overview_4" value="Faculty" name="q8a_education_overview" required> Faculty</label></li>
+               <li><label for="id_q8a_education_overview_5"><input type="radio" id="id_q8a_education_overview_5" value="Other" name="q8a_education_overview" required> Other</label></li>
+            </ul>
+        </div><!--- .controls -->
+</div><!--- .form-group -->
+    
+    <p>If other, please specify:</p>
+    {% formfield player.q8b_education_other label=""%}
+    
+        
+    
+    
+    <p class="qMarker">9. What is your major?</p>
+    {% formfield player.q9_major label="" %}
+    <p>If other, please specify:</p>
+    {% formfield player.q9_majorOther label="" %}     
+    
+    <p class="qMarker">10. Have you taken college-level courses in the following subjects?</p>
+    {% formfield player.q10a_subject_econ label="Economics" %}
+    {% formfield player.q10b_subject_finance label="Finance" %}
+    {% formfield player.q10c_subject_stat label="Statistics" %}    
+    
+    
+    <p class="qMarker">11. Do you currently serve or have you ever served in the military? 
+    (e.g., ROTC, cadet, or midshipman at a service academy; In the Reserves or National Guard; A discharged veteran)
+    </p>
+    {% formfield player.q11_military_service label=""%}    
+    
+    
+    <p class="qMarker">12. How much time do you spend during a <strong>typical week</strong> doing the following activities?</p>   
+    {{q12Table|safe}}
+    <p>If other, please specify:</p>
+    {% formfield player.q12o_activities_otherPrint label=""%}
+
+    <p class="qMarker">13. In the past year, how often have you: </p>
+    {{q13Table|safe}}
+    
+    <p class="qMarker">14. Indicate why you use social networking sites on each category below. You can choose multiple sites for each category. </p>
+    {{q14Table|safe}}
+    <p>If other, please specify:</p>
+    {% formfield player.q14_l_networking_otherPrint label=""%}
+    
+    <p class="qMarker">15. Mark one in each row:</p>
+    {{q15Table|safe}}
+    
+    
+    
 
 {% endblock %}
 
@@ -67,83 +171,11 @@ Please answer the questions on the following pages as accurately as you can.
         }
         {% endif %}
     
-        {% if session.config.student_survey %}
-            var major = document.querySelectorAll("[for=\"id_major_0\"]")[0];
-            major.innerHTML = "What is your major?";
-        {% endif %}
-        
-        var tribe1 = document.querySelectorAll("[for=\"id_tribe\"]")[0];
-        tribe1.style.display = "inline-block";
-        var tribe2 = document.getElementsByClassName("field-tribe")[0];
-        tribe2.style.display = "inline-block";
-        var tribeSpecify = tribe1.parentNode;
-        var tribe = document.querySelectorAll("[for=\"id_race_2\"]")[0].parentNode;
-        tribe.appendChild(tribeSpecify);
-        tribeSpecify.style.display = "inline-block";
-        tribeSpecify.style.marginLeft = "5px";
-        tribeSpecify.style.marginBottom = "1px";
-        
-        var otherAsian1 = document.querySelectorAll("[for=\"id_otherAsian\"]")[0];
-        otherAsian1.style.display = "inline-block";
-        var otherAsian2 = document.getElementsByClassName("field-otherAsian")[0];
-        otherAsian2.style.display = "inline-block";
-        var otherAsianSpecify = otherAsian1.parentNode;
-        var otherAsian = document.querySelectorAll("[for=\"id_race_12\"]")[0].parentNode;
-        otherAsian.appendChild(otherAsianSpecify);
-        otherAsianSpecify.style.display = "inline-block";
-        otherAsianSpecify.style.marginLeft = "5px";
-        otherAsianSpecify.style.marginBottom = "1px";
-        
-        var otherPacificIslander1 = document.querySelectorAll("[for=\"id_otherPacificIslander\"]")[0];
-        otherPacificIslander1.style.display = "inline-block";
-        var otherPacificIslander2 = document.getElementsByClassName("field-otherPacificIslander")[0];
-        otherPacificIslander2.style.display = "inline-block";
-        var otherPacificIslanderSpecify = otherPacificIslander1.parentNode;
-        var otherPacificIslander = document.querySelectorAll("[for=\"id_race_13\"]")[0].parentNode;
-        otherPacificIslander.appendChild(otherPacificIslanderSpecify);
-        otherPacificIslanderSpecify.style.display = "inline-block";
-        otherPacificIslanderSpecify.style.marginLeft = "5px";
-        otherPacificIslanderSpecify.style.marginBottom = "1px";
-        
-        var otherRace1 = document.querySelectorAll("[for=\"id_otherRace\"]")[0];
-        otherRace1.style.display = "inline-block";
-        var otherRace2 = document.getElementsByClassName("field-otherRace")[0];
-        otherRace2.style.display = "inline-block";
-        var otherRaceSpecify = otherRace1.parentNode;
-        var otherRace = document.querySelectorAll("[for=\"id_race_14\"]")[0].parentNode;
-        otherRace.appendChild(otherRaceSpecify);
-        otherRaceSpecify.style.display = "inline-block";
-        otherRaceSpecify.style.marginLeft = "5px";
-        otherRaceSpecify.style.marginBottom = "1px";
-        
-        var otherWork1 = document.querySelectorAll("[for=\"id_otherWorkSpecify\"]")[0];
-        otherWork1.style.display = "inline-block";
-        var otherWork2 = document.getElementsByClassName("field-otherWorkSpecify")[0];
-        otherWork2.style.display = "inline-block";
-        var otherWorkSpecify = otherWork1.parentNode;
-        var otherWork = document.querySelectorAll("[for=\"id_otherWork\"]")[0].parentNode;
-        otherWork.appendChild(otherWorkSpecify);
-        otherWorkSpecify.style.display = "inline";
-        otherWork.marginTop = "10px";
-        
-        var otherFreeTime1 = document.querySelectorAll("[for=\"id_otherFreeTimeSpecify\"]")[0];
-        otherFreeTime1.style.display = "inline-block";
-        var otherFreeTime2 = document.getElementsByClassName("field-otherFreeTimeSpecify")[0];
-        otherFreeTime2.style.display = "inline-block";
-        var otherFreeTimeSpecify = otherFreeTime1.parentNode;
-        var otherFreeTime = document.querySelectorAll("[for=\"id_otherFreeTime\"]")[0].parentNode;
-        otherFreeTime.appendChild(otherFreeTimeSpecify);
-        otherFreeTimeSpecify.style.display = "inline";
-        otherFreeTime.marginTop = "10px";
-    </script>
+            </script>
 {% endblock %}
 
 {% block app_styles %}
     <style type="text/css">
-        label {
-            font-weight: bold;
-        }
-        
         .subquestion label, li label {
             font-weight: normal;
         }
@@ -155,5 +187,52 @@ Please answer the questions on the following pages as accurately as you can.
         #id_otherWork, #id_otherFreeTime {
             margin-top: 10px;
         }
+
+.qualifier{
+    font-size: 8pt;
+    font-weight: bold;
+    padding-left: 20px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.qMarker{
+    font-size: 11pt;
+    font-weight: bold;
+    margin-top: 60px;
+}
+        
+.verticalTableHeader {
+    text-align:center;
+    white-space:nowrap;
+    transform: rotate(-90deg);
+
+}
+
+col{ max-width: 30px;}
+table.fixed { table-layout:fixed; }
+table.fixed td div{ overflow: hidden;}
+table.fixed th div{width: 100%; height: 100%; margin-left: -80px; vertical-align: middle; line-height: 100%;}
+table.fixed th{max-width: 10px;}
+table.fixed td{max-width: 10px;}
+table.fixed td div .btnRadio{  max-width: 10px;}
+
+thead th{
+    height: 200px;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.verticalTableHeader p{
+    height: 100%;
+    vertical-align: middle;
+    line-height: 189px;
+    display: inline-block;
+    overflow: hidden;
+    margin-bottom: -90px;
+}
+
     </style>
 {% endblock %}
