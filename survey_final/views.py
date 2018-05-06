@@ -262,12 +262,12 @@ class Behavioral1(Page):
         amtInvested = self.player.risky_project
         game_outcome = binomial(1,.4)
         self.player.risky_project_outcome = game_outcome
-        self.player.payoff += (amtInvested * 3.) * game_outcome + (20 - amtInvested)
+        self.player.payoff += (3.5 * amtInvested * .01 * 3.) * game_outcome + (3.5 - 3.5 * amtInvested * .01)
         
         amtInvested = self.player.risky_project_2
         game_outcome = binomial(1,.5)
         self.player.risky_project_outcome_2 = game_outcome
-        self.player.payoff += (amtInvested * 2.5) * game_outcome + (20 - amtInvested)
+        self.player.payoff += (3.5 * amtInvested * .01 * 2.5) * game_outcome + (3.5 - 3.5 * amtInvested * .01)
         
 
 class Results(Page):

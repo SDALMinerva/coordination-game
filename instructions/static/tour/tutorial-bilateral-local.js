@@ -71,7 +71,7 @@ function startDiscussIntro() {
         intro: "<h5><em><strong>Please click Continue to move to the decision part.</strong></em><h5>",
       },
     ]);
-    intro.onchange(function(targetElement = false) {   
+    intro.onchange(function(targetElement) {   
         if (targetElement.id == 'stopModal-content') 
             { 
                 $('#stopModal-content').css('display','inline-block');

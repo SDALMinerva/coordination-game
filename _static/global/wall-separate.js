@@ -163,6 +163,8 @@ function Wall() {
 	
 	this.init = function (id,entries, output=true) {
 
+        output = typeof output !== 'undefined' ? output : true;
+
         this.ownId = id;		
 		
 		this.Parent = document.getElementById('wall-card-body');

@@ -308,5 +308,5 @@ class Results(Page):
 page_sequence = [
 #    Intro,
     SocioDemographic,
-    Results,
+#    Results,
 ]

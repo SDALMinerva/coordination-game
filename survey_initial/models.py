@@ -394,6 +394,7 @@ class Player(BasePlayer):
             'Graduate Student',
             'Post-graduate Student',
             'Faculty',
+            'High School or Equivalent',
             'Other',
         ],
         widget = widgets.RadioSelect,    
@@ -670,7 +671,8 @@ class Player(BasePlayer):
             '11-20',
             'Over 20',        
         ],
-        widget = widgets.RadioSelectHorizontal(),    
+        widget = widgets.RadioSelectHorizontal(),
+        blank = True,    
     )
     q12o_activities_otherPrint = models.CharField(
         verbose_name = "If other, please print",

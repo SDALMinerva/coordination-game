@@ -76,7 +76,7 @@ function startDiscussIntro() {
       },
       */
     ]);
-    intro.onchange(function(targetElement = false) {   
+    intro.onchange(function(targetElement) {   
         if (targetElement.id == 'stopModal-content') 
             { 
                 $('#stopModal-content').css('display','inline-block');

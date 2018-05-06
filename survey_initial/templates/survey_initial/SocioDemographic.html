@@ -82,9 +82,11 @@ Please answer the questions on the following pages as accurately as you can.
     
     
     <p class="qMarker">7. Education status</p>
+    <p class="qualifier">Please indicate the highest degree you have completed or your current academic role, if applicable.</p>
     <div class="form-group required">
         <div class="controls  field-q8a_education_overview">
             <ul>
+               <li><label for="id_q8a_education_overview_4"><input type="radio" id="id_q8a_education_overview_4" value="High School or Equivalent" name="q8a_education_overview" required> High School or Equivalent</label></li>
 	           <li>
 	           <table summary="" >
                <tr>
@@ -109,8 +111,8 @@ Please answer the questions on the following pages as accurately as you can.
                </li>
         	   <li></li>
                <li><label for="id_q8a_education_overview_3"><input type="radio" id="id_q8a_education_overview_3" value="Post-graduate Student" name="q8a_education_overview" required> Post-graduate Student</label></li>
-               <li><label for="id_q8a_education_overview_4"><input type="radio" id="id_q8a_education_overview_4" value="Faculty" name="q8a_education_overview" required> Faculty</label></li>
-               <li><label for="id_q8a_education_overview_5"><input type="radio" id="id_q8a_education_overview_5" value="Other" name="q8a_education_overview" required> Other</label></li>
+               <li><label for="id_q8a_education_overview_5"><input type="radio" id="id_q8a_education_overview_5" value="Faculty" name="q8a_education_overview" required> Faculty</label></li>
+               <li><label for="id_q8a_education_overview_6"><input type="radio" id="id_q8a_education_overview_6" value="Other" name="q8a_education_overview" required> Other</label></li>
             </ul>
         </div><!--- .controls -->
 </div><!--- .form-group -->
@@ -129,7 +131,7 @@ Please answer the questions on the following pages as accurately as you can.
     <p class="qMarker">9. Have you taken college-level courses in the following subjects?</p>
     {% formfield player.q10a_subject_econ label="Economics" %}
     {% formfield player.q10b_subject_finance label="Finance" %}
-    {% formfield player.q10c_subject_stat label="Statistics" %}    
+    {% formfield player.q10c_subject_stat label="Probability or Statistics" %}    
     
     
     <p class="qMarker">10. Do you currently serve or have you ever served in the military? 

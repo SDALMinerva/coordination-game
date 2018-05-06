@@ -27,5 +27,5 @@ class Results(Page):
 page_sequence = [
     WelcomePage,
     ConsentPage,
-    Results
+#    Results
 ]
