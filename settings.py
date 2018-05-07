@@ -79,7 +79,6 @@ INSTALLED_APPS = [
     'django_extensions',
 ]
 
-# SENTRY_DSN = ''
 
 DEMO_PAGE_INTRO_TEXT = """
 Available Apps
