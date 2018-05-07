@@ -67,6 +67,7 @@ class Discuss(Page):
         'messageRound': message_round,
         'lastRound': message_round == Constants.num_messaging_rounds,
         'networkDisplay': networkDisplay,
+        'group': dict([(node.avatar.get_name(), node.avatar.src) for node in self.group.network.node_set.all()]),
         }
 
 class BeginWaitPage(WaitPage):

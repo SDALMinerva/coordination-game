@@ -8,7 +8,9 @@ function activeFunction(data){
 	} else if (data.type == 'entry-table'){
 	    console.log(data);
 	    resultTable.update(data.content);
-	    
+	} else if (data.type == 'moved_on'){
+        console.log(data);
+        $('#group-'+data.content).removeClass('hidden');	
 	}
 };
 
@@ -30,6 +32,7 @@ function Chat(idList, activeFunction, nonActiveFunction) {
 		var id = idList[i];
 		channels[id] = new Channel(id,activeFunction, nonActiveFunction);
 	};
+	console.log(nodeId);
 	this.infoChannel = new Channel('comm-'+nodeId,activeFunction,nonActiveFunction);
 	this.infoChannel.active = true;
     this.privateChannel = new Channel('private-'+nodeId,activeFunction,nonActiveFunction);

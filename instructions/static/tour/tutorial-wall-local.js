@@ -34,6 +34,11 @@ function startDiscussIntro() {
                "<br><br>Note that you will be assigned to a new group in each round. The shape of the network may or may not be the same in each round.",
       },
       {
+        element: document.querySelectorAll('.container-groupList')[0],
+        intro: "These are all the members of your group. They may or may not be included in your network. " +
+               "When a player moves on to the next page and is waiting for you, it will be displayed here.  ",
+      },
+      {
         element: document.querySelectorAll('.message-tool')[0],
         intro: "Before making your participation decision, you will be given an opportunity to post messages on your wall " +
                "or on your friends' walls to reveal your intention to participate or not in the group event. " +

@@ -117,14 +117,15 @@ def ws_receive(message):
         entryList = posted_wall_messages
 
         message_list = player_node.wall_set.first().subsession.session.config['messages'].split('/')
-        neighbor_list = set(player_node.get_neighbors())
+        neighbor_list = list(set(player_node.get_neighbors()))
         
         table = {}
-        for n in neighbor_list:
+        for n in neighbor_list + [player_node]:
             table[n.avatar.get_name()] = {'name': n.avatar.get_name(), 'icon': n.avatar.src, '0': False, '1': False}
-        
+
         for entry in entryList:
-            name = entry.wall.node.avatar.get_name()
+            name = entry.wall.node.avatar.get_name()            
+            
             table[name]['0'] = ((entry.message== message_list[0]) or table[name]['0'])
             table[name]['1'] = ((entry.message== message_list[1]) or table[name]['1'])        
             

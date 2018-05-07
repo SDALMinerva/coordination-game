@@ -183,6 +183,21 @@ $(window).on('load',function(){
         
         <div class="col-sm-4 col-lg-4" style="padding:5px;">
             {% include "main/network.html" %}
+            <div class="container-groupList">
+                <h4 id="groupList-title">Your Group:</h4>
+                <div id="groupList" style="height: 300px; width: 100%;">
+                    <ul class="list-unstyled">
+                    {% for key,value in group.items %}
+                      <li style="width: 100%;" class="media">
+                        <img class="mr-3 media-object pull-left media-center" style="width: 30px;" src='{% static "avatar/"|add:value %}' alt="Generic placeholder image">
+                        <div class="media-body">
+                          <h5 class="mt-0 mb-1">{{key}}<span id="group-{{key}}" class="group-indicator hidden"> - <span class="glyphicon glyphicon-ok"></span><strong> waiting for you</strong></span></h5>
+                        </div>
+                      </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -317,6 +332,12 @@ var displayed = false;
 	}));
   }
   
+  $('.otree-next-button').click(function () {
+	chat.infoChannel.send(JSON.stringify({
+		'type': 'moved_on_flag',
+		'content': {'createdBy': nodeId},				
+	}));
+	});
 
 {% with 'wall none' as list %}
     {% if session.config.condition_messaging in list.split %}    

@@ -28,6 +28,13 @@ class TourDiscuss(Page):
         
         return {
             'networkDisplay': networkDisplay,
+            'group': {
+                'Cow': 'Cow-icon.png',
+                'Turtle': 'Turtle-icon.png',
+                'Cat': 'Cat-icon.png',
+                'Swan': 'Swan-icon.png',
+                'Eagle': 'Eagle-icon.png',
+            }
         }
         
 class TourDecide(Page):
@@ -40,6 +47,13 @@ class TourDecide(Page):
         
         return {
             'networkDisplay': networkDisplay,
+            'group': {
+                'Cow': 'Cow-icon.png',
+                'Turtle': 'Turtle-icon.png',
+                'Cat': 'Cat-icon.png',
+                'Swan': 'Swan-icon.png',
+                'Eagle': 'Eagle-icon.png',
+            }
         }
 
 class Quiz(Page):
