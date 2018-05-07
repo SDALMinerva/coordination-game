@@ -12,7 +12,7 @@ class AssignAvatar(Page):
 
 class Discuss(Page):
 
-    timeout_seconds = 60*10    
+    timeout_seconds = 60*10*-1    
     
     def vars_for_template(self):
         group_players = self.group.get_players()
