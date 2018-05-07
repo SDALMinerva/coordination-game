@@ -36,6 +36,7 @@ SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 possible_hosts = env.str('DJANGO_ALLOWED_HOST', None)
 ALLOWED_HOSTS = possible_hosts.split(',') if possible_hosts is not None else []
 
+SENTRY_DSN = 'http://9f3361069ae443dea470f6832c7ed799:10c67778bcea42428cb51b2cff9fd033@sentry.otree.org/317'
 
 DATABASES = {
     'default': dj_database_url.config(

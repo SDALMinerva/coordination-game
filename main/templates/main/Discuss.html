@@ -39,6 +39,26 @@ $(window).on('load',function(){
 {% endcomment %}
 {% endblock %}
 
+{% block hurryUpModal %}
+<div class="modal fade" id="hurryUpModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Your Friends Are Waiting!</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+            Your friends are waiting for you to move to the next page. Please help them by making your decisions and advancing the game! Click the button below to continue.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Continue Playing</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
 <div class="container-fluid" style="position: relative;">
     <div id="cover" style="position: absolute; visibility: hidden; z-index: 100; background-color: #ffffff; pointer-events: none; opacity: .4; height: 100%; left: -20px; right: -20px;">
     </div>
@@ -250,6 +270,7 @@ var displayed = false;
                 if ((event.offset.totalSeconds <= show) & !displayed) {
                     displayed = true;
                     $("#selector-move-on").show();
+                    $('#hurryUpModal').modal('show');
                 }
             });
         });
