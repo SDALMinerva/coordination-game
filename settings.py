@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     'practice_network',
     'clicktracking',
     'django_extensions',
+    'raven.contrib.django.raven_compat',
 ]
 
 
