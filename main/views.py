@@ -42,7 +42,10 @@ class Discuss(Page):
         if self.session.config['show_network_threshold'] == 'False':
             for node in nodes:
                 node['label'] = node['label'].split('\n')[0]
-            
+                
+        group_dict = dict([(node.avatar.get_name(), node.avatar.src) for node in self.group.network.node_set.all()])
+        group_dict[self.player.get_user_name() + ' (you)'] = group_dict[self.player.get_user_name()]
+        del group_dict[self.player.get_user_name()]
         
         return {
         'avatar': self.player.get_avatar(),
@@ -60,7 +63,7 @@ class Discuss(Page):
         'messageRound': message_round,
         'lastRound': message_round == Constants.num_messaging_rounds,
         'networkDisplay': networkDisplay,
-        'group': dict([(node.avatar.get_name(), node.avatar.src) for node in self.group.network.node_set.all()]),
+        'group': group_dict,
         }
 
 class BeginWaitPage(WaitPage):

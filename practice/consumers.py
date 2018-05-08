@@ -120,8 +120,10 @@ def ws_receive(message):
         neighbor_list = list(set(player_node.get_neighbors()))
         
         table = {}
-        for n in neighbor_list + [player_node]:
+        for n in neighbor_list:
             table[n.avatar.get_name()] = {'name': n.avatar.get_name(), 'icon': n.avatar.src, '0': False, '1': False}
+
+        table[player_node.avatar.get_name()] = {'name': player_node.avatar.get_name() + ' (you)', 'icon': player_node.avatar.src, '0': False, '1': False}
 
         for entry in entryList:
             name = entry.wall.node.avatar.get_name()            
