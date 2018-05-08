@@ -1,0 +1,75 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block app_styles %}
+    <style type="text/css">
+        #university, h4 {
+            text-align: center;
+        }
+        
+        h4, ._otree-content > p, .blk {
+            margin-bottom: 30px;
+        }
+        
+        .subtitle {
+            color: gray;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    Consent Agreement
+{% endblock %}
+
+{% block content %}
+
+<h2 id='university'>VIRGINIA POLYTECHNIC INSTITUTE AND STATE UNIVERSITY</h2>
+<h4 class='subtitle'><p>Informed Consent for Participants</p>
+<p>in Research Projects Involving Human Subjects</p></h4>
+
+<p><b>Project Title:</b>  The Dynamics of Common Knowledge on Social Networks: An Experimental Approach</p>
+
+<div class='blk'><p><b>Principal Investigator:</b> </p>
+<p>Gizem Korkmaz, Research Assistant Professor, Biocomplexity Institute of Virginia Tech</p>
+<p>Address: 900 N Glebe Rd Arlington VA 22203; Phone: (571) 858-3113 </p>
+<p>E-mail: gkorkmaz@vt.edu</p></div>
+
+<p><b>Sponsorship:</b> Department of Defense – The Minerva Research Initiative</p>
+
+<p><b><i>Please read this consent agreement carefully, and feel free to ask questions to the researchers before you decide to participate in the study.</i></b></p>
+
+<p><b>Purpose of Research:</b> You are being asked to volunteer for this research study to help us better understand individual and group decision-making. The purpose of the study is to learn about communication mechanisms, networks, and decisions that give rise to collective action. We anticipate that we will recruit approximately 2000 subjects at Claremont Graduate University and Virginia Tech. The researchers are faculty members and students at Virginia Tech (VT) and Claremont Graduate University (CGU).</p>
+
+<p><b>Criteria for The Participation:</b> You must be at least 18 years of age to participate in this study.</p>
+
+<p><b>Procedures:</b> The experiment has two parts: a survey part and an experiment part. Both will be conducted using computer. During the survey and experiment, you will have an identification number with which we will record your decisions. In the survey part, you will be asked to provide demographic and other information as well as answer a set of psychometric questions. In the experiment part, we will test decisions over some simple games. Prior to the game, you will be presented with detailed instructions (a series of screens on the web) and examples that explain the nature of the experimental task and how decisions affect compensation. This will be followed by a quiz to check understanding of the instructions and the compensation structure. You will then make a number of decisions which will determine your compensation. The compensation depends on both your decisions and other participants’ decisions in the experiment. At the end of this decision-making stage, you will participate in a set of experimental tasks and questions that will probe your perceptions of the experiment.</p>
+
+<p><b>Time required:</b> You will spend about 1-2 hours in the session today.  There is no obligation to return for any additional sessions.  However, you may be asked to volunteer again in the future to participate in other experiments.</p>
+
+<p><b>Risks:</b> There are no anticipated risks.</p>
+
+<p><b>Benefits:</b> There will be no direct benefits to you by participating in this study.  However, your participation will help us learn about decision-making. No promise or guarantee of benefits has been made to encourage you to participate.</p>
+
+<p><b>Compensation:</b> The minimum amount you will earn is $5 (including the show-up fee of $2).  Total earnings will differ from person to person, but we can say that your earnings will be between $5 and $30 (including the show-up fee).</p>
+
+<p><b>Right to withdraw from the study:</b> You have the right to withdraw from the study at any time without penalty.</p>
+
+<p><b>How to withdraw from the study:</b> If you want to withdraw from the study, tell the experimenter quietly and leave the room.  There is no penalty for withdrawing, and you will still earn the $2.00 show-up fee.</p>
+
+<p><b>Voluntary Participation:</b> Your participation in the study is completely voluntary. You may stop or withdraw from the study at any time without it being held against you. You are free to decline to answer any particular question you do not wish to answer for any reason. Your decision whether or not to participate will have no effect on your current or future connection with anyone at VT. Refusal to participate will involve no penalty or loss of benefits to which you are otherwise entitled (i.e. your standing in school or in any of your classes will not be affected by your participation in the study).</p>
+
+<div class='blk'><p><b>Anonymity and Confidentiality:</b> Your individual privacy will be protected in all papers, books, talks, posts, or stories resulting from this study. In order to protect the confidentiality of your responses, we will assign you an identification (ID) number, and your decisions and the collected data will be recorded using that number, without a link to your name and other identifiable information. The ID number will be stored separately in a database which can only be accessed by specifically authorized personnel.</p>
+
+<p>Your name will not be used in any report, and we will obtain no information linking your name to the ID number. The results of the study, including laboratory or any other data, may be published for scientific purposes and may be shared with other researchers, but we will not give your name or any identifiable references to you.</p>
+
+<p>At no time will the researchers release identifiable results of the study to anyone other than individuals working on the project without your written consent. The Virginia Tech (VT) Institutional Review Board (IRB) may view the study’s data for auditing purposes. The IRB is responsible for the oversight of the protection of human subjects involved in research. Either DoD personnel or Federal government personnel who oversee the protection of human subjects will have access to research records.</p></div>
+
+<div class='blk'><p><b>Questions or concerns:</b> If you have any questions or would like additional information about this study, please contact Gizem Korkmaz, Biocomplexity Institute of Virginia Tech, phone: (571) 858-3113, e-mail: gkorkmaz@vt.edu; or Kristy Collins, Biocomplexity Institute of Virginia Tech, phone: (540) 231-1389, e-mail: kdivitto@vt.edu.</p>
+
+<p>The VT Institutional Review Board (IRB) has approved this project. The VT Institutional Review Board (IRB) has approved this project. Should you have any questions or concerns about the study's conduct or your rights as a research subject, or need to report a research-related injury or event, you may contact the VT IRB Chair, Dr. David M. Moore at moored@vt.edu or (540) 231-4991.</p></div>
+
+<div class='blk'><b>Consent:</b> {% formfield player.consent with label="By checking here, you indicate that: you are at least 18 years of age, the research has been explained to you, your questions have been fully answered, and you freely and voluntarily choose to participate in this research project. " %} </div>
+
+{% next_button %}
+
+{% endblock %}
