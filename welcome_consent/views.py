@@ -8,6 +8,9 @@ class WelcomePage(Page):
     is_debug = False
     pass
 
+    def before_next_page(self):
+        error = trip
+
 class ConsentPage(Page):
     form_model = models.Player
     form_fields = ['consent']
