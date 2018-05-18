@@ -7,12 +7,30 @@ import json
 
 
 class AssignAvatar(Page):
-   
-    pass
+    def is_displayed(self):
+        return not self.player.node.bot
+        
+    def before_next_page(self):
+        if self.timeout_happened:
+            for player in self.player.participant.get_players():
+                if player.node:
+                    player.node.bot = True
+                    player.node.save()
+
 
 class Discuss(Page):
 
     timeout_seconds = 60*10    
+
+    def before_next_page(self):
+        if self.timeout_happened:
+            for player in self.player.participant.get_players():
+                if player.node:
+                    player.node.bot = True
+                    player.node.save()
+    
+    def is_displayed(self):
+        return not self.player.node.bot    
     
     def vars_for_template(self):
         group_players = self.group.get_players()
@@ -137,6 +155,17 @@ class Decide(Discuss):
     form_fields = [
         'participate'
     ]
+    
+    def before_next_page(self):
+        if self.timeout_happened:
+            for player in self.player.participant.get_players():
+                if player.node:
+                    player.node.bot = True
+                    player.node.save()
+            
+    def is_displayed(self):
+        return not self.player.node.bot
+
 
 class Intro(Page):
     template_name = 'main/intro.html'
