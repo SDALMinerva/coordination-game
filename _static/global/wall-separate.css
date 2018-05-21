@@ -1,3 +1,7 @@
+#otree-body{
+    min-width: 972px;
+}
+
 .wall{
 	height: 320px;
 	background-color: #fff; 

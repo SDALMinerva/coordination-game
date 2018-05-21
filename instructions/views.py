@@ -85,9 +85,9 @@ class Summary(Page):
 page_sequence = [
 #    Intro,
     InstructionsPage,
+    Quiz,
     TourDiscuss,
     TourDecide,
 #    QuizIntro,
-    Quiz,
     Summary,
 ]

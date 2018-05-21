@@ -8,6 +8,19 @@ if (output){
     wallMessenger.init();
 }
 
+function disable_recipients(wall_sent_to){
+    console.log('Disabling...');
+    console.log(wall_sent_to);
+    $('.recipient-option').each(function() {$(this).parent().removeClass('disabled')});
+    console.log(wall_sent_to);
+    for (var key in wall_sent_to){
+        if(wall_sent_to[key] > 0){
+           console.log('Disabling ' + key);
+           $('#recipient-option-'+key).parent().addClass('disabled'); 
+        }
+    }
+};
+
 function WallMessenger() {
 
     this.sentMessages = {};
@@ -62,6 +75,11 @@ function WallMessenger() {
 			var newRow = document.createElement('li');
 			var newMessage = document.createElement('a');
 			newMessage.className = 'recipient-option clicktrack';
+
+//            if (wall_sent_to[tempId] > 0){
+//                newRow.classList.add('disabled');
+//            }			
+			
 			newMessage.id = 'recipient-option-' + tempId;
 			newMessage.innerHTML = "<img class='img-recipient' src='/static/avatar/" + avatars[tempId] + 
 			"'><span class='recipient-name pull-right'>" + userNames[tempId] + "</span>" + "<span id='ID' style='visibility: hidden;'>"+tempId+"</span>";			
@@ -73,7 +91,7 @@ function WallMessenger() {
 		var newRow = document.createElement('li');
 		var newMessage = document.createElement('a');
 		newMessage.className = 'recipient-option clicktrack';
-		newMessage.id = 'recipient-option-self';
+		newMessage.id = 'recipient-option-' + nodeId;
 		newMessage.innerHTML = "<img class='img-recipient' src='/static/avatar/" + avatars[nodeId] + 
 			"'><span class='recipient-name pull-right'>" + userNames[nodeId] + " (You)</span>" + "<span id='ID' style='visibility: hidden;'>"+nodeId+"</span>";			
 	
@@ -156,6 +174,8 @@ function WallMessenger() {
 		
 		this.messages.append(this.dropdown);		
 		this.messageBlock.appendChild(this.messages)
+		
+		disable_recipients(wall_sent_to);
 	}
 };
 
@@ -294,21 +314,23 @@ function Wall() {
 
 
 $("#wall").on("click", ".recipient-option", function(event){
-    if ($(".recipient-text").val() == noSendMessage){
-        $('#message-list-dropdown').attr('disabled',true);
-        $('#send-message-button').addClass('btn-primary');
-        $('.message-text').val('');  
-    } else {
-        $('#message-list-dropdown').attr('disabled',false);
-    }
+    if(!$(this).parent().hasClass('disabled')){
+        if ($(".recipient-text").val() == noSendMessage){
+            $('#message-list-dropdown').attr('disabled',true);
+            $('#send-message-button').addClass('btn-primary');
+            $('.message-text').val('');  
+        } else {
+            $('#message-list-dropdown').attr('disabled',false);
+        }
     
-    if (($(".recipient-text").val() != noSendMessage) && ($(".message-text").val() == '')){
-        $('#send-message-button').removeClass('btn-primary');
-    }
+        if (($(".recipient-text").val() != noSendMessage) && ($(".message-text").val() == '')){
+            $('#send-message-button').removeClass('btn-primary');
+        }
     
-    if (($(".recipient-text").val() != noSendMessage) && ($(".message-text").val() != '')){
-        $('#send-message-button').addClass('btn-primary');
-    }  
+        if (($(".recipient-text").val() != noSendMessage) && ($(".message-text").val() != '')){
+            $('#send-message-button').addClass('btn-primary');
+        }     
+    } 
 });
 
 $("#wall").on("click", ".message-option", function(event){    
@@ -351,8 +373,7 @@ $("#wall").on("click", ".send-message", function(event){
         return;  
   }
   
-  $('#selector-alert').fadeOut();
-  $('#selector-success').fadeIn().delay(5000).fadeOut();  
+  $('#selector-alert').fadeOut(); 
   
   $('#send-message-button').removeClass('btn-primary');
 
@@ -362,9 +383,13 @@ $("#wall").on("click", ".send-message", function(event){
 /////////////////////////////////////
 
 var recipient = $('#wall .recipient-text').val();
+var sent = false;
 if (recipient == 'All Friends'){
     for (var i=0; i < neighbors.length; i++){
         var neighbor = neighbors[i];
+        
+        if (!(wall_sent_to[neighbor] > 0)){
+            console.log(wall_sent_to[neighbor]);
         var currentDate = new Date();
         var keyString = currentDate.toString();
         keyString += neighbor;
@@ -386,7 +411,14 @@ if (recipient == 'All Friends'){
   	    });
         console.log(toSend);
         chat.channels[neighbor].send(toSend);
-        $('#btn-discuss-next').attr('disabled', false);   
+        $('#btn-discuss-next').attr('disabled', false);
+        
+        if(!(wall.Id in wall_sent_to)){wall_sent_to[wall.Id]=0;}
+        wall_sent_to[wall.Id] += 1;
+        disable_recipients(wall_sent_to);
+        if (wall.Id == neighbor){
+        sent = true;}
+    }
     }
 } else if (recipient != noSendMessage){
   console.log(recipient);
@@ -411,7 +443,11 @@ if (recipient == 'All Friends'){
   	});
   console.log(toSend);
   chat.activeChannel.send(toSend);
-  $('#btn-discuss-next').attr('disabled', false); 
+  $('#btn-discuss-next').attr('disabled', false);
+  
+          if(!(wall.Id in wall_sent_to)){wall_sent_to[wall.Id]=0;}
+        wall_sent_to[wall.Id] += 1;
+        disable_recipients(wall_sent_to);  
 }
 /////////////////////////////////////
 /////////////////////////////////////
@@ -419,10 +455,12 @@ if (recipient == 'All Friends'){
 // Button Behavior After Clicking - Depends on interaction type.
 if (messageRound == -1){
     
-} else if((recipient == 'All Friends') && (wall.Id != nodeId)) {
+} else if((recipient == 'All Friends') && (wall.Id != nodeId) && (sent)) {
     wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#wall .message-text").val(), key));
+    $('#selector-success').fadeIn().delay(5000).fadeOut(); 
 } else if((recipient != 'All Friends') && (recipient != noSendMessage)) {
     wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#wall .message-text").val(), key));
+    $('#selector-success').fadeIn().delay(5000).fadeOut(); 
 }
 
     $("#wall .message-text").val('');
@@ -435,9 +473,12 @@ if (messageRound == -1){
 
 });
 
+
+
 $("#wall").on('click', '.removeEntry', function(event){
     var entry = $(this).parents(".newly-added")[0];
     var key = $(entry).children(".key").html();
+    
     var message = {
   	    wallId: wall.Id,
         key: key,
@@ -449,6 +490,8 @@ $("#wall").on('click', '.removeEntry', function(event){
     console.log(toSend);
     chat.activeChannel.send(toSend);
     wall.removeEntry(entry);
+    wall_sent_to[wall.Id] -= 1;
+    disable_recipients(wall_sent_to);
 });
 
 $("#wall .message-option").click(function(event){
@@ -457,6 +500,8 @@ $("#wall .message-option").click(function(event){
 });
 
 $("#wall .recipient-option").click(function(event){
+    if(!$(this).parent().hasClass('disabled')){
+        
 	var text = $(this).find('.recipient-name').html();
 	$("#wall .recipient-text").val(text);
 	$('.user-display').empty();
@@ -473,6 +518,8 @@ $("#wall .recipient-option").click(function(event){
 	
     $('.linking-button').removeClass('active');
     $('#player-button'+id).addClass('active');
+    
+}
 });
 
 

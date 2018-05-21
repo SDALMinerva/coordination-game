@@ -64,7 +64,7 @@ $(window).on('load',function(){
     </div>
     <div class="row main" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
         
-        <div class="col-sm-2 col-lg-2" style="min-width: 180px; max-width: 260px; padding:5px;">
+        <div class="col-xs-2" style="min-width: 180px; max-width: 260px; padding:5px;">
         <div id="playerDiv" class="clicktrack">        
         <h4 style="text-align: left; padding-left: 0px;">Your Profile:</h4>
             <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
@@ -89,7 +89,7 @@ $(window).on('load',function(){
          </div>        
         </div>
 
-        <div class="col-sm-6 col-lg-6" style="padding: 5px; max-width: 450px;">
+        <div class="col-xs-6" style="padding: 5px; max-width: 450px;">
 
         <ul id="main-tabs" class="nav nav-tabs" role="tablist">
         {% with 'wall both' as list %}
@@ -136,7 +136,7 @@ $(window).on('load',function(){
                 <div id="message-tool" class="card message-tool">
                     <div class="card-body">
                         <h4 class="card-title">Wall Messaging Tool</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Post messages to your wall or your friends' walls.</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Post a message to your wall or your friends' walls. Once a message has been sent to a friend, you will have to delete (<span class="glyphicon glyphicon-trash"></span>) it below to send another message to the same friend.</h6>
                         <div class="message-tool-content"></div>
                     </div>
                     <div id="selector-alert" class="alert alert-warning alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
@@ -181,7 +181,7 @@ $(window).on('load',function(){
 		</div>
         </div>
         
-        <div class="col-sm-4 col-lg-4" style="padding:5px;">
+        <div class="col-xs-4" style="padding:5px;">
             {% include "main/network.html" %}
             <div class="container-groupList">
                 <h4 id="groupList-title">Your Group:</h4>
@@ -208,7 +208,7 @@ $(window).on('load',function(){
 {% endblock %}
 
 {% block checkSubmission %}
-<p id="exit-message">Click <strong>Next</strong> to continue. You must use the messaging tool one or more times before you can proceed.</p>
+<p id="exit-message">Click <strong>Next</strong> to continue. <strong>Note: The button is disabled until you make at least one choice using the message tool above. You must use the messaging tool one or more times before you can proceed.</strong></p>
 <br>
 <div class="modal fade" id="stopModal">
   <div class="modal-dialog" role="document">
@@ -276,6 +276,7 @@ var privateEntries = JSON.parse('{{privateMessages|safe}}');
 var network_nodes = JSON.parse('{{nodes|escapejs}}');
 var network_edges = JSON.parse('{{edges|safe}}');
 var chat_name = '{{Constants.chat_name}}';
+var wall_sent_to = {{wall_sent_to | safe}};
 
 
 $(function () {

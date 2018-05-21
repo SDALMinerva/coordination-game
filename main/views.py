@@ -4,6 +4,7 @@ from ._builtin import Page, WaitPage
 from .models import Constants, Message, PrivateMessage
 from random import random, randint
 import json
+from django.db.models import Count
 
 
 class AssignAvatar(Page):
@@ -20,7 +21,7 @@ class AssignAvatar(Page):
 
 class Discuss(Page):
 
-    timeout_seconds = 60*10    
+    #timeout_seconds = 60*10    
 
     def before_next_page(self):
         if self.timeout_happened:
@@ -65,6 +66,17 @@ class Discuss(Page):
         group_dict[self.player.get_user_name() + ' (you)'] = group_dict[self.player.get_user_name()]
         del group_dict[self.player.get_user_name()]
         
+        player_node = self.player.node
+        print('HEY LOOK AT THIS!!!!!')
+        print(player_node)      
+        posted_wall_messages = Message.objects.filter(messageRound = message_round)
+        posted_wall_messages = posted_wall_messages.exclude(deleted = True)
+        print(posted_wall_messages)
+        posted_wall_messages = posted_wall_messages.filter(createdBy = player_node)
+
+        wall_counts = posted_wall_messages.values('wall__node').annotate(count=Count('wall__node'))
+        wall_counts = {r['wall__node']:r['count'] for r in wall_counts}       
+        
         return {
         'avatar': self.player.get_avatar(),
         'user_name': self.player.get_user_name(),
@@ -82,6 +94,8 @@ class Discuss(Page):
         'lastRound': message_round == Constants.num_messaging_rounds,
         'networkDisplay': networkDisplay,
         'group': group_dict,
+        'wall_sent_to': wall_counts,
+#        'pm_sent_to': pm_sent_to,
         }
 
 class BeginWaitPage(WaitPage):
