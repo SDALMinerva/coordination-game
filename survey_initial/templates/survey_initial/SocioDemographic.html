@@ -74,17 +74,17 @@ Please answer the questions on the following pages as accurately as you can.
 
     {% endcomment %}         
             
-    <p class="qMarker">5. Sex / Gender</p>
+    <p class="qMarker">3. Sex / Gender</p>
     {% formfield player.q6a_sexGender label="" %}
     <p>If other, please specify:</p>
     {% formfield player.q6b_sexGender_other label="" %}
     
     
-    <p class="qMarker">6. Marital status </p>
+    <p class="qMarker">4. Marital status </p>
     {% formfield player.q7_maritalStatus label="" %}
     
     
-    <p class="qMarker">7. Education status</p>
+    <p class="qMarker">5. Education status</p>
     <p class="qualifier">Please indicate the highest degree you have completed or your current academic role, if applicable.</p>
     <div class="form-group required">
         <div class="controls  field-q8a_education_overview">
@@ -126,24 +126,24 @@ Please answer the questions on the following pages as accurately as you can.
         
     
     
-    <p class="qMarker">8. What is your major?</p>
+    <p class="qMarker">6. What is your major?</p>
     {% formfield player.q9_major label="" %}
     <p>If other, please specify:</p>
     {% formfield player.q9_majorOther label="" %}     
     
-    <p class="qMarker">9. Have you taken college-level courses in the following subjects?</p>
+    <p class="qMarker">7. Have you taken college-level courses in the following subjects?</p>
     {% formfield player.q10a_subject_econ label="Economics" %}
     {% formfield player.q10b_subject_finance label="Finance" %}
     {% formfield player.q10c_subject_stat label="Probability or Statistics" %}    
     
     
-    <p class="qMarker">10. Do you currently serve or have you ever served in the military? 
+    <p class="qMarker">8. Do you currently serve or have you ever served in the military? 
     (e.g., ROTC, cadet, or midshipman at a service academy; In the Reserves or National Guard; A discharged veteran)
     </p>
     {% formfield player.q11_military_service label=""%}    
     
     
-    <p class="qMarker">11. How much time do you spend during a <strong>typical week</strong> doing the following activities?</p>   
+    <p class="qMarker">9. How much time do you spend during a <strong>typical week</strong> doing the following activities?</p>   
     {{q12Table|safe}}
     <p>If other, please specify:</p>
     {% formfield player.q12o_activities_otherPrint label=""%}
