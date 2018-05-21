@@ -47,6 +47,7 @@ Please answer the questions on the following pages as accurately as you can.
     {% formfield player.q3c_permanentHome_city %}
 {% endcomment %}
     
+    {% comment %}
     <p class="qMarker">3. Please write down your ethnic group/ancestry that you identify with. 
     (For example, Arab, Cuban, Dutch, French Canadian, German, Irish, Italian, Mexican, 
     Norwegian, Polish, Puerto Rican, Russian, Scotch-Irish, etc.)
@@ -70,6 +71,8 @@ Please answer the questions on the following pages as accurately as you can.
     {% formfield player.q5f_race_Other label="Other" %}
     <p>If other, please specify:</p>
     {% formfield player.q5g_race_OtherPrint label=""%}
+
+    {% endcomment %}         
             
     <p class="qMarker">5. Sex / Gender</p>
     {% formfield player.q6a_sexGender label="" %}
