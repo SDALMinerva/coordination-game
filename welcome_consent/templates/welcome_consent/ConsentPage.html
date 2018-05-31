@@ -1,199 +1,253 @@
 {% extends "global/Page.html" %} {% load staticfiles otree_tags %}
 {% block app_styles %} 
 <style type="text/css">
-.lst-kix_list_2-6>li:before{content:"\0025cf  "}.lst-kix_list_2-7>li:before{content:"o  "}ul.lst-kix_list_1-0{list-style-type:none}.lst-kix_list_2-4>li:before{content:"o  "}.lst-kix_list_2-5>li:before{content:"\0025aa  "}.lst-kix_list_2-8>li:before{content:"\0025aa  "}.lst-kix_list_3-0>li:before{content:"\0025cf  "}.lst-kix_list_3-1>li:before{content:"o  "}.lst-kix_list_3-2>li:before{content:"\0025aa  "}ul.lst-kix_list_3-7{list-style-type:none}ul.lst-kix_list_3-8{list-style-type:none}ul.lst-kix_list_1-3{list-style-type:none}ul.lst-kix_list_3-1{list-style-type:none}.lst-kix_list_3-5>li:before{content:"\0025aa  "}ul.lst-kix_list_1-4{list-style-type:none}ul.lst-kix_list_3-2{list-style-type:none}ul.lst-kix_list_1-1{list-style-type:none}.lst-kix_list_3-4>li:before{content:"o  "}ul.lst-kix_list_1-2{list-style-type:none}ul.lst-kix_list_3-0{list-style-type:none}ul.lst-kix_list_1-7{list-style-type:none}.lst-kix_list_3-3>li:before{content:"\0025cf  "}ul.lst-kix_list_3-5{list-style-type:none}ul.lst-kix_list_1-8{list-style-type:none}ul.lst-kix_list_3-6{list-style-type:none}ul.lst-kix_list_1-5{list-style-type:none}ul.lst-kix_list_3-3{list-style-type:none}ul.lst-kix_list_1-6{list-style-type:none}ul.lst-kix_list_3-4{list-style-type:none}.lst-kix_list_3-8>li:before{content:"\0025aa  "}.lst-kix_list_4-0>li:before{content:"\0025cf  "}.lst-kix_list_4-1>li:before{content:"o  "}.lst-kix_list_3-6>li:before{content:"\0025cf  "}.lst-kix_list_3-7>li:before{content:"o  "}.lst-kix_list_4-4>li:before{content:"o  "}.lst-kix_list_4-3>li:before{content:"\0025cf  "}.lst-kix_list_4-5>li:before{content:"\0025aa  "}.lst-kix_list_4-2>li:before{content:"\0025aa  "}.lst-kix_list_4-6>li:before{content:"\0025cf  "}.lst-kix_list_4-8>li:before{content:"\0025aa  "}.lst-kix_list_4-7>li:before{content:"o  "}ul.lst-kix_list_4-8{list-style-type:none}ul.lst-kix_list_4-6{list-style-type:none}ul.lst-kix_list_2-8{list-style-type:none}ul.lst-kix_list_4-7{list-style-type:none}ul.lst-kix_list_4-0{list-style-type:none}ul.lst-kix_list_2-2{list-style-type:none}ul.lst-kix_list_4-1{list-style-type:none}.lst-kix_list_1-0>li:before{content:"  "}ul.lst-kix_list_2-3{list-style-type:none}ul.lst-kix_list_2-0{list-style-type:none}ul.lst-kix_list_2-1{list-style-type:none}ul.lst-kix_list_4-4{list-style-type:none}ul.lst-kix_list_2-6{list-style-type:none}ul.lst-kix_list_4-5{list-style-type:none}.lst-kix_list_1-1>li:before{content:"\0025cf  "}.lst-kix_list_1-2>li:before{content:"o  "}ul.lst-kix_list_2-7{list-style-type:none}ul.lst-kix_list_4-2{list-style-type:none}ul.lst-kix_list_2-4{list-style-type:none}ul.lst-kix_list_4-3{list-style-type:none}ul.lst-kix_list_2-5{list-style-type:none}.lst-kix_list_1-3>li:before{content:"\0025aa  "}.lst-kix_list_1-4>li:before{content:"\0025ab  "}.lst-kix_list_1-7>li:before{content:"\0025aa  "}.lst-kix_list_1-5>li:before{content:"\0025cf  "}.lst-kix_list_1-6>li:before{content:"o  "}.lst-kix_list_2-0>li:before{content:"\0025cf  "}.lst-kix_list_2-1>li:before{content:"o  "}.lst-kix_list_1-8>li:before{content:"\0025ab  "}.lst-kix_list_2-2>li:before{content:"\0025aa  "}.lst-kix_list_2-3>li:before{content:"\0025cf  "}ol{margin:0;padding:0}table td,table th{padding:0}.c11{margin-left:36pt;padding-top:0pt;padding-left:0pt;padding-bottom:0pt;line-height:1.0;orphans:2;widows:2;text-align:left}.c7{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:14pt;font-family:"Times New Roman";font-style:normal}.c6{padding-top:0pt;padding-bottom:0pt;line-height:1.0;orphans:2;widows:2;text-align:right;height:12pt}.c0{padding-top:0pt;padding-bottom:0pt;line-height:1.0;orphans:2;widows:2;text-align:justify;height:12pt}.c1{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:13pt;font-family:"Times New Roman";font-style:normal}.c2{padding-top:0pt;padding-bottom:0pt;line-height:1.0;orphans:2;widows:2;text-align:justify}.c12{padding-top:0pt;padding-bottom:0pt;line-height:1.0;orphans:2;widows:2;text-align:left}.c18{margin-left:-9.3pt;padding-top:0pt;text-indent:9.3pt;padding-bottom:0pt;line-height:1.5;text-align:left}.c28{color:#000000;text-decoration:none;font-size:12pt;font-family:"Times New Roman";font-style:italic}.c5{color:#000000;text-decoration:none;font-size:12pt;font-family:"Times New Roman";font-style:normal}.c21{color:#000000;text-decoration:none;font-size:12pt;font-family:"Arial";font-style:normal}.c9{color:#808080;text-decoration:none;font-size:12pt;font-family:"Arial";font-style:normal}.c27{background-color:#ffffff;-webkit-text-decoration-skip:none;color:#1155cc;text-decoration:underline;text-decoration-skip-ink:none}.c19{padding-top:0pt;padding-bottom:0pt;line-height:1.0;text-align:left}.c20{text-decoration-skip-ink:none;-webkit-text-decoration-skip:none;color:#0000ff;text-decoration:underline}.c4{padding-top:0pt;padding-bottom:0pt;line-height:1.0;text-align:center}.c29{font-size:12pt;font-family:"Times New Roman";font-style:normal}.c16{background-color:#ffffff;max-width:454.5pt;padding:72pt 67.5pt 54pt 90pt}.c22{padding:0;margin:0}.c14{orphans:2;widows:2}.c8{font-weight:400;vertical-align:baseline}.c23{font-family:"Arial";color:#808080}.c3{vertical-align:baseline;font-weight:700}.c25{margin-left:-9pt;text-indent:9pt}.c15{color:inherit;text-decoration:inherit}.c17{background-color:#ffffff;color:#222222}.c24{margin-right:18pt}.c30{font-family:"Arial"}.c13{height:12pt}.c26{font-size:14pt}.c10{vertical-align:baseline}.title{padding-top:24pt;color:#000000;font-weight:700;font-size:36pt;padding-bottom:6pt;font-family:"Times New Roman";line-height:1.0;page-break-after:avoid;orphans:2;widows:2;text-align:left}.subtitle{padding-top:18pt;color:#666666;font-size:24pt;padding-bottom:4pt;font-family:"Georgia";line-height:1.0;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:12pt;font-family:"Times New Roman"}p{margin:0;color:#000000;font-size:12pt;font-family:"Times New Roman"}h1{padding-top:24pt;color:#000000;font-weight:700;font-size:24pt;padding-bottom:6pt;font-family:"Times New Roman";line-height:1.0;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-weight:700;font-size:18pt;padding-bottom:4pt;font-family:"Times New Roman";line-height:1.0;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:14pt;color:#000000;font-weight:700;font-size:14pt;padding-bottom:4pt;font-family:"Times New Roman";line-height:1.0;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:12pt;color:#000000;font-weight:700;font-size:12pt;padding-bottom:2pt;font-family:"Times New Roman";line-height:1.0;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:11pt;color:#000000;font-weight:700;font-size:11pt;padding-bottom:2pt;font-family:"Times New Roman";line-height:1.0;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:10pt;color:#000000;font-weight:700;font-size:10pt;padding-bottom:2pt;font-family:"Times New Roman";line-height:1.0;page-break-after:avoid;orphans:2;widows:2;text-align:left}
+/*<![CDATA[*/
+        @page {  }
+        table { border-collapse:collapse; border-spacing:0; empty-cells:show }
+        td, th { vertical-align:top; font-size:12pt;}
+        h1, h2, h3, h4, h5, h6 { clear:both }
+        ol, ul { margin:0; padding:0;}
+        li { list-style: none; margin:0; padding:0;}
+        <!-- "li span.odfLiEnd" - IE 7 issue-->
+        li span. { clear: both; line-height:0; width:0; height:0; margin:0; padding:0; }
+        span.footnodeNumber { padding-right:1em; }
+        span.annotation_style_by_filter { font-size:95%; font-family:Arial; background-color:#fff000;  margin:0; border:0; padding:0;  }
+        * { margin:0;}
+        .fr1 { font-size:12pt; font-family:Liberation Serif; text-align:right; vertical-align:top; writing-mode:lr-tb; background-color:#ffffff; }
+        .Footer { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; }
+        .P1 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; margin-left:0in; margin-right:0.25in; text-indent:0in; }
+        .P10 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; text-align:justify ! important; font-style:italic; }
+        .P11 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; text-align:justify ! important; }
+        .P12 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; }
+        .P13 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; text-align:center ! important; }
+        .P14 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; text-align:justify ! important; }
+        .P16 { font-size:13pt; font-family:Times New Roman; writing-mode:lr-tb; margin-left:-0.1299in; margin-right:0in; line-height:150%; text-indent:0in; }
+        .P17 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; margin-left:-0.1299in; margin-right:0in; line-height:150%; text-indent:0in; }
+        .P18_borderStart { font-size:13pt; font-family:Times New Roman; writing-mode:lr-tb; margin-left:-0.1299in; margin-right:0in; line-height:150%; text-indent:0in; padding-left:0in; padding-right:0in; padding-top:0in; border-left-style:none; border-right-style:none; border-top-style:none;  border-bottom-style:none; }
+        .P18 { font-size:13pt; font-family:Times New Roman; writing-mode:lr-tb; margin-left:-0.1299in; margin-right:0in; line-height:150%; text-indent:0in; padding-left:0in; padding-right:0in; border-left-style:none; border-right-style:none;  border-top-style:none; border-bottom-style:none; }
+        .P18_borderEnd { font-size:13pt; font-family:Times New Roman; writing-mode:lr-tb; margin-left:-0.1299in; margin-right:0in; line-height:150%; text-indent:0in; padding-left:0in; padding-right:0in; padding-bottom:0.0138in; border-left-style:none; border-right-style:none; border-bottom-width:0.0529cm; border-bottom-style:solid; border-bottom-color:#000000;  border-top-style:none;}
+        .P19_borderStart { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; margin-left:-0.1299in; margin-right:0in; line-height:150%; text-indent:0in; padding-left:0in; padding-right:0in; padding-top:0in; border-left-style:none; border-right-style:none; border-top-style:none;  border-bottom-style:none; }
+        .P19 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; margin-left:-0.1299in; margin-right:0in; line-height:150%; text-indent:0in; padding-left:0in; padding-right:0in; border-left-style:none; border-right-style:none;  border-top-style:none; border-bottom-style:none; }
+        .P19_borderEnd { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; margin-left:-0.1299in; margin-right:0in; line-height:150%; text-indent:0in; padding-left:0in; padding-right:0in; padding-bottom:0.0138in; border-left-style:none; border-right-style:none; border-bottom-width:0.0529cm; border-bottom-style:solid; border-bottom-color:#000000;  border-top-style:none;}
+        .P2 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; }
+        .P20 { font-size:13pt; font-family:Times New Roman; writing-mode:lr-tb; margin-left:-0.1252in; margin-right:0in; text-indent:0in; }
+        .P21 { font-size:12pt; font-family:Arial; writing-mode:lr-tb; text-align:center ! important; font-weight:bold; }
+        .P22 { font-size:12pt; font-weight:bold; font-family:Times New Roman; writing-mode:lr-tb; text-align:justify ! important; }
+        .P23 { font-size:12pt; font-weight:bold; font-family:Times New Roman; writing-mode:lr-tb; text-align:justify ! important; font-style:italic; }
+        .P24 { font-size:12pt; font-weight:normal; font-family:Times New Roman; writing-mode:lr-tb; text-align:justify ! important; }
+        .P25 { font-size:12pt; font-weight:normal; font-family:Times New Roman; writing-mode:lr-tb; text-align:justify ! important; }
+        .P26 { font-size:12pt; font-weight:normal; font-family:Times New Roman; writing-mode:lr-tb; text-align:center ! important; }
+        .P28 { font-size:12pt; margin-bottom:0in; margin-left:0.5in; margin-right:0in; margin-top:0in; text-indent:0in; font-family:Times New Roman; writing-mode:lr-tb; }
+        .P3 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; text-align:justify ! important; font-weight:bold; }
+        .P4 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; font-weight:bold; }
+        .P5 { font-size:12pt; font-family:Arial; writing-mode:lr-tb; text-align:center ! important; color:#808080; font-weight:bold; }
+        .P6 { font-size:14pt; font-family:Arial; writing-mode:lr-tb; text-align:center ! important; color:#808080; font-weight:bold; }
+        .P7 { font-size:14pt; font-family:Times New Roman; writing-mode:lr-tb; text-align:center ! important; font-weight:bold; }
+        .P8 { font-size:14pt; font-family:Times New Roman; writing-mode:lr-tb; text-align:justify ! important; font-weight:bold; }
+        .P9 { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; text-align:justify ! important; }
+        .Standard { font-size:12pt; font-family:Times New Roman; writing-mode:lr-tb; }
+        .Internet_20_link { color:#0000ff; text-decoration:underline; }
+        .T10 { font-weight:normal; }
+        .T11 { color:#222222; background-color:#ffffff; }
+        .T12 { color:#1155cc; background-color:#ffffff; }
+        .T14 { font-size:13pt; }
+        .T2 { font-weight:bold; }
+        .T6 { color:#000000; text-decoration:none ! important; }
+        .T7 { font-style:italic; }
+        .T9 { font-weight:normal; }
+        .WW8Num1z0 { font-family:Symbol; }
+        .WW8Num1z2 { font-family:Courier New; }
+        .WW8Num1z3 { font-family:Wingdings; }
+        .WW8Num2z0 { color:#000000; font-family:Symbol; font-size:12pt; }
+        .WW8Num2z1 { font-family:Courier New; }
+        .WW8Num2z2 { font-family:Wingdings; }
+        .WW8Num2z3 { font-family:Symbol; }
+        .WW8Num3z0 { font-family:Symbol; }
+        .WW8Num3z1 { font-family:Courier New; }
+        .WW8Num3z2 { font-family:Wingdings; }
+        .WW8Num4z0 { font-family:Symbol; }
+        .WW8Num4z1 { font-family:Courier New; }
+        .WW8Num4z2 { font-family:Wingdings; }
+        <!-- ODF styles with no properties representable as CSS -->
+        .Page_20_Number .T4 .T8  { }
+/*]]>*/
 </style>
 {% endblock %} 
 {% block title %} Consent Agreement {% endblock %} 
 {% block content %}
-<p class="c4"><span class="c3 c30">VIRGINIA POLYTECHNIC INSTITUTE
-AND STATE UNIVERSITY</span></p>
-<p class="c4"><span class="c23 c3">Informed Consent for
-Participants</span></p>
-<p class="c4"><span class="c3 c23">in Research Projects Involving
-Human Subjects</span></p>
-<p class="c4 c14 c13"></p>
-<p class="c4 c14"><span class="c3 c26">Laboratory
-Experiments</span></p>
-<p class="c0"></p>
-<p class="c12"><span class="c3">Project Title:</span><span class=
-"c5 c8">&nbsp; The Dynamics of Common Knowledge on Social Networks:
-An Experimental Approach</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c3">Principal Investigator (Virginia
+<p class="P21">VIRGINIA POLYTECHNIC INSTITUTE AND STATE
+UNIVERSITY</p>
+<p class="P5">Informed Consent for Participants</p>
+<p class="P5">in Research Projects Involving Human Subjects</p>
+<p class="P6">&nbsp;</p>
+<p class="P7">Laboratory Experiments</p>
+<p class="P8">&nbsp;</p>
+<p class="Standard"><span class="T2">Project Title:</span>
+&nbsp;The Dynamics of Common Knowledge on Social Networks: An
+Experimental Approach</p>
+<p class="P3">&nbsp;</p>
+<p class="P9"><span class="T2">Principal Investigator (Virginia
 Tech):</span></p>
-<p class="c2"><span class="c5 c8">Gizem Korkmaz, Research Assistant
-Professor, Biocomplexity Institute of Virginia Tech</span></p>
-<p class="c2"><span class="c5 c8">Address: 900 N Glebe Rd Arlington
-VA 22203;&nbsp;Phone: (571) 858-3113</span></p>
-<p class="c12"><span class="c10">E-mail:</span> <span class=
-"c20 c10"><a class="c15" href=
-"mailto:gkorkmaz@bi.vt.edu">gkorkmaz@bi.vt.edu</a></span></p>
-<p class="c12 c13"></p>
-<p class="c12"><span class="c3">Investigator (Claremont Graduate
-University)</span><span class="c5 c8">:</span></p>
-<p class="c12"><span class="c5 c8">C. Monica Capra, Professor of
-Economics, Claremont Graduate University</span></p>
-<p class="c12"><span class="c5 c8">Address: 170 E. 10th St.,
-Claremont, CA 91784; Phone: (909) 607-3372</span></p>
-<p class="c12"><span class="c10">E-mail:</span> <span class=
-"c20 c10"><a class="c15" href=
-"mailto:monica.capra@cgu.edu">monica.capra@cgu.edu</a></span><span class="c5 c8">&nbsp;</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c3">Sponsorship:</span> <span class=
-"c5 c8">Department of Defense – The Minerva Research
-Initiative</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c3 c28">Please read this consent
-agreement carefully, and feel free to ask questions to the
-researchers before you decide to participate in the
-study.</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c3">Purpose of Research:</span>
-<span class="c5 c8">To help better understand individual and group
+<p class="P9">Gizem Korkmaz, Research Assistant Professor,
+Biocomplexity Institute of Virginia Tech</p>
+<p class="P9">Address: 900 N Glebe Rd Arlington VA
+22203;&nbsp;Phone: (571) 858-3113</p>
+<p class="Standard">E-mail: <a href="mailto:gkorkmaz@bi.vt.edu"
+class="Internet_20_link"><span class=
+"Internet_20_link">gkorkmaz@bi.vt.edu</span></a></p>
+<p class="Standard"></p>
+<p class="Standard"><span class="T2">Investigator (Claremont
+Graduate University)</span>:</p>
+<p class="Standard">C. Monica Capra, Professor of Economics,
+Claremont Graduate University</p>
+<p class="Standard">Address: 170 E. 10th St., Claremont, CA 91784;
+Phone: (909) 607-3372</p>
+<p class="Standard">E-mail: <a href="mailto:monica.capra@cgu.edu"
+class="Internet_20_link"><span class=
+"Internet_20_link">monica.capra@cgu.edu</span></a></p>
+<p class="P9"><span class="T2">Sponsorship:</span> Department of
+Defense – The Minerva Research Initiative</p>
+<p class="P22"><span class="T7">Please read this consent agreement
+carefully, and feel free to ask questions to the researchers before
+you decide to participate in the study.</span></p>
+<p class="P9"><span class="T2">Purpose of Research:</span>
+<span class="T8">To help better understand individual and group
 decision-making; to learn about communication mechanisms, networks,
 and decisions that give rise to collective action.</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c5 c8">The researchers are faculty
-members and students at Virginia Tech (VT) and Claremont Graduate
-University (CGU) and we anticipate recruiting approximately 2000
-subjects from these and surrounding universities.</span></p>
-<p class="c0"></p>
-<p class="c12"><span class="c3">Criteria for The
-Participation:</span> <span class="c5 c8">You must be at least 18
-years of age to participate in this study.</span></p>
-<p class="c0"></p>
-<p class="c12"><span class="c3">Procedures:</span> <span class=
-"c5 c8">The experiment has two parts: a survey part and an
-experiment part. Both will be conducted using a computer. In the
-survey part, you will be asked to provide demographic and other
-information. In the experiment part, we will evaluate decisions
-over some simple games. Prior to the game, you will be presented
-with detailed instructions (a series of screens on the web) and
-examples that explain the nature of the experimental task and how
-decisions affect compensation. This will be followed by a quiz to
-check understanding of the instructions and the compensation
-structure. You will then make a number of decisions which will
-determine your compensation. The compensation depends on both your
-decisions and the decisions of the other participants in the
-experiment. At the end of this decision-making stage, you will
-participate in a set of experimental tasks and questions that will
-probe your perceptions of the experiment.</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c5 c3">Time required:</span>
-<span class="c5 c8">You will spend about 1-2 hours in the session
-today. &nbsp;There is no obligation to return for any additional
-sessions. &nbsp;However, you may be asked to volunteer again in the
-future to participate in other experiments.</span></p>
-<p class="c13 c19"></p>
-<p class="c19"><span class="c3">Risks:</span> <span class=
-"c5 c8">There are no anticipated risks.</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c3">Benefits:</span> <span class=
-"c5 c8">There will be no direct benefits to you for participating
-in this study. &nbsp;However, your participation will help us learn
-about decision-making.</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c3">Compensation:</span> <span class=
-"c5 c8">The minimum amount you will earn is $7 (including the
-show-up fee of $7). &nbsp;Total earnings will differ from person to
-person, they will range between $7 and $25 (including the show-up
-fee).</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c3">Right to withdraw from the
-study:</span> <span class="c5 c8">You have the right to withdraw
-from the study at any time without penalty. &nbsp;</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c5 c3">How to withdraw from the
-study:</span> <span class="c5 c8">If you want to withdraw from the
-study, tell the experimenter quietly and leave the room.
-&nbsp;There is no penalty for withdrawing and you will still earn
-the $7.00 show-up fee. &nbsp;</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c5 c3">Voluntary Participation:</span>
-<span class="c5 c8">Your participation in the study is completely
-voluntary. You may stop or withdraw from the study at any time
-without it being held against you. You are free to decline to
-answer any particular question you do not wish to answer for any
-reason. Your decision whether or not to participate will have no
-effect on your current or future connection with anyone at Virginia
-Tech. Refusal to participate will involve no penalty or loss of
-benefits to which you are otherwise entitled (i.e. your standing in
-school or in any of your classes will not be affected by your
-participation in the study).</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c5 c3">Anonymity and
-Confidentiality:</span><span class="c5 c8">&nbsp;Your individual
-privacy will be protected in all papers, books, talks, posts, or
-stories resulting from this study. In order to protect the
-confidentiality of your responses, we will assign you an
+<p class="P9">The researchers are faculty members and students at
+Virginia Tech (VT) and Claremont Graduate University (CGU) and we
+anticipate recruiting approximately 2000 subjects from these and
+surrounding universities.</p>
+<p class="Standard"><span class="T2">C</span><span class=
+"T2">riteria for The Participation:</span> You must be at least 18
+years of age to participate in this study.</p>
+<p class="Standard"><span class="T2">Procedures:</span> The
+experiment has three parts: an initial survey, the experiment, and
+a post-survey about preferences and choices. Both will be conducted
+using a computer. In the initial survey part, you will be asked to
+provide demographic and other information<span class="T4">. In the
+experiment part, we will evaluate decisions over some simple games.
+Prior to the game, you will be presented with detailed instructions
+(a series of screens on the web) and examples that explain the
+nature of the experimental task and how decisions affect
+compensation. This will be followed by a quiz to check
+understanding of the instructions and the compensation structure.
+You will then make a number of decisions which will determine your
+compensation. The compensation depends on both your decisions
+and</span> <span class="T8">the decisions of the other participants
+in the experiment</span><span class="T4">. At the end of this
+decision-making stage, you will participate in a set of
+experimental tasks and questions that will probe your perceptions
+of the experiment.</span></p>
+<p class="P22">Time required: <span class="T9">You will spend about
+1-2 hours in the session today. &nbsp;There is no obligation to
+return for any additional sessions. &nbsp;However, you may be asked
+to volunteer again in the future to participate in other
+experiments.</span></p>
+<p class="P2"><span class="T2">Risks:</span> There are no
+anticipated risks.</p>
+<p class="P9"><span class="T2">Benefits:</span> There will be no
+direct benefits to you for participating in this study.
+&nbsp;However, your participation will help us learn about
+decision-making.</p>
+<p class="P9"><span class="T2">Compensation:</span> The minimum
+amount you will earn is $7 (including the show-up fee of $7).
+&nbsp;Total earnings will differ from person to person, they will
+range between $7 and $25 (including the show-up fee).</p>
+<p class="P9"><span class="T2">Right to withdraw from the
+study:</span> You have the right to withdraw from the study at any
+time without penalty. &nbsp;</p>
+<p class="P22">How to withdraw from the study: <span class="T9">If
+you want to withdraw from the study, tell the experimenter quietly
+and leave the room. &nbsp;There is no penalty for withdrawing and
+you will still earn the $7.00 show-up fee. &nbsp;</span></p>
+<p class="P22">Voluntary Participation: <span class="T9">Your
+participation in the study is completely voluntary. You may stop or
+withdraw from the study at any time without it being held against
+you. You are free to decline to answer any particular question you
+do not wish to answer for any reason. Your decision whether or not
+to participate will have no effect on your current or future
+connection with anyone at Virginia Tech. Refusal to participate
+will involve no penalty or loss of benefits to which you are
+otherwise entitled (i.e. your standing in school or in any of your
+classes will not be affected by your participation in the
+study).</span></p>
+<p class="P22">Anonymity and Confidentiality: <span class="T9">Your
+individual privacy will be protected in all papers, books, talks,
+posts, or stories resulting from this study. In order to protect
+the confidentiality of your responses, we will assign you an
 identification (ID) number, and your decisions and the collected
-data will be recorded using that number without a link to your name
-and other identifiable information. The ID number will be stored in
-a separate database which can only be accessed by specifically
+data will be recorded using that number</span> <span class=
+"T10">without a link to</span> <span class="T9">your</span>
+<span class="T10">name and other identifiable
+information</span><span class="T9">. The ID number will be stored
+in a separate database which can only be accessed by specifically
 authorized personnel.</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c5 c8">Your name will not be used in any
+<p class="P22"><span class="T9">Your name will not be used in any
 report and we will obtain no information linking your name to the
 ID number. The results of the study, including laboratory or any
 other data, may be published for scientific purposes and may be
 shared with other researchers, but we will not give your name or
 any identifiable references to you.</span></p>
-<p class="c0"></p>
-<p class="c2"><span class="c5 c8">At no time will the researchers
+<p class="P22"><span class="T9">At no time will the researchers
 release identifiable results of the study to anyone other than
 individuals working on the project without your written consent.
 The only exceptions are DoD and Federal government personnel and
 the VT Institutional Review Board (IRB) who oversee the protection
 of human subjects and may request to audit the study
 data.</span></p>
-<p class="c4 c14 c13"></p>
-<p class="c2"><span class="c3">Questions or concerns:</span>
-<span class="c10">If you have any questions or would like
-additional information about this study, please contact Gizem
-Korkmaz, Biocomplexity Institute of Virginia Tech, phone: (571)
-858-3113, e-mail:</span> <span class="c20 c10"><a class="c15" href=
-"mailto:gkorkmaz@bi.vt.edu">gkorkmaz@bi.vt.edu</a></span><span class="c10">;
-or Monica Capra, Claremont Graduate University, phone: (909)
-607-3372, e-mail:</span> <span class="c10 c20"><a class="c15" href=
-"mailto:monica.capra@cgu.edu">monica.capra@cgu.edu</a></span><span class="c5 c8">.</span></p>
-<p class="c0"></p>
-<p class="c12"><span class="c10">The VT Institutional Review Board
-(IRB) has approved this project.</span> <span class=
-"c17 c10">Should you have any questions or concerns about the
-study's conduct, your rights as a research subject, or need to
-report a research-related injury or event, you may contact the VT
-IRB Chair, Dr. David M. Moore at&nbsp;</span><span class=
-"c27 c10"><a class="c15" href=
-"mailto:moored@vt.edu">moored@vt.edu</a></span><span class=
-"c10 c17">&nbsp;or&nbsp;</span><span class="c10 c27">(540)
-231-4991</span><span class="c17 c10">.</span></p>
-<p class="c0"></p>
-<p class="c12"><span class="c3">Consent:</span> <span class=
-"c5 c8">By signing below, you indicate that: you indicate
+<p class="P9"><span class="T2">Questions or concerns:</span>
+<span class="T4">If you have any questions or would like additional
+information about this</span> study, please contact Gizem Korkmaz,
+Biocomplexity Institute of Virginia Tech, phone: (571) 858-3113,
+e-mail: <a href="mailto:gkorkmaz@bi.vt.edu" class=
+"Internet_20_link"><span class=
+"Internet_20_link">gkorkmaz@bi.vt.edu</span></a>; or Monica Capra,
+Claremont Graduate University, phone: (909) 607-3372, e-mail:
+<a href="mailto:monica.capra@cgu.edu" class=
+"Internet_20_link"><span class=
+"Internet_20_link">monica.capra@cgu.edu</span></a>.</p>
+<p class="P9">&nbsp;</p>
+<p class="Standard">The VT Institutional Review Board (IRB) has
+approved this project. <span class="T11">Should you have any
+questions or concerns about the study’s conduct or your rights as a
+research participant, or need to report a research-related injury
+or event, you may contact the Virginia Tech Institutional Review
+Board at&nbsp;</span><a href="mailto:irb@vt.edu" class=
+"Internet_20_link"><span class="Internet_20_link"><span class=
+"T12">irb@vt.edu</span></span></a><span class="T11">&nbsp;or (540)
+231-3732.&nbsp;</span></p>
+<p class="P12">&nbsp;</p>
+{% comment %}
+<p class="Standard"><span class="T2">Consent:</span> By signing
+below, you indicate that: <span class="T8">you indicate
 that:</span></p>
-<ul class="c22 lst-kix_list_4-0 start">
-<li class="c11"><span class="c5 c8">you are at least 18 years of
-age,</span></li>
-<li class="c11"><span class="c5 c8">the research has been explained
-to you,</span></li>
-<li class="c11"><span class="c5 c8">your questions have been fully
-answered, and</span></li>
-<li class="c11"><span class="c5 c8">you freely and voluntarily
-choose to participate in this research project.</span></li>
+<ul>
+<li>
+<p class="P28" style="margin-left:1.27cm;"><span class="WW8Num4z0"
+style="display:block;float:left;min-width:0.635cm;">1.</span>you
+are at least 18 years of age, &nbsp;</p>
+</li>
+<li>
+<p class="P28" style="margin-left:1.27cm;"><span class="WW8Num4z0"
+style="display:block;float:left;min-width:0.635cm;">2.</span>the
+research has been explained to you, &nbsp;</p>
+</li>
+<li>
+<p class="P28" style="margin-left:1.27cm;"><span class="WW8Num4z0"
+style="display:block;float:left;min-width:0.635cm;">3.</span>your
+questions have been fully answered, and &nbsp;</p>
+</li>
+<li>
+<p class="P28" style="margin-left:1.27cm;"><span class="WW8Num4z0"
+style="display:block;float:left;min-width:0.635cm;">4.</span>you
+freely and voluntarily choose to participate in this research
+project. &nbsp;</p>
+</li>
 </ul>
-<p class="c0"></p>
-<p class="c0"></p>
-<p class="c18 c14 c13"></p>
-<p class="c4 c14"><span class="c5 c8">&nbsp;</span></p>
-<p class="c12 c13"></p>
-<div>
-<p class="c6"></p>
-<p class="c12 c13 c24"></p>
-</div>
-<div class='blk'><b>Consent:</b> 
+{% endcomment %}
+<div class='blk'><b>Consent:</b>
 {% formfield player.consent with label="By checking here, you indicate that: you are at least 18 years of age, the research has been explained to you, your questions have been fully answered, and you freely and voluntarily choose to participate in this research project. " %}
 </div>
 {% next_button %} 
 {% endblock %}
-

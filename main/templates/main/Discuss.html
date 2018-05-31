@@ -89,6 +89,7 @@ $(window).on('load',function(){
          </div>        
         </div>
 
+        {% if session.config.condition_messaging != 'none' %}
         <div class="col-xs-6" style="padding: 5px; max-width: 450px;">
 
         <ul id="main-tabs" class="nav nav-tabs" role="tablist">
@@ -180,6 +181,9 @@ $(window).on('load',function(){
         {% endif %}
 		</div>
         </div>
+        {% else %}
+        <div class="col-xs-2" style="padding: 5px; max-width: 50px;"></div>
+        {% endif %}
         
         <div class="col-xs-4" style="padding:5px;">
             {% include "main/network.html" %}

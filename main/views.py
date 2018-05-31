@@ -31,7 +31,7 @@ class Discuss(Page):
                     player.node.save()
     
     def is_displayed(self):
-        return not self.player.node.bot    
+        return (not self.player.node.bot) and (self.subsession.session.config['condition_messaging'] != 'none')    
     
     def vars_for_template(self):
         group_players = self.group.get_players()
