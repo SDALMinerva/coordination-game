@@ -1,32 +1,34 @@
-var wall = new Wall();
-wall.init(nodeId, entries, output);
+var wall = new MessageWindow();
+wall.init(nodeId, privateEntries, output);
 
 var noSendMessage = 'Send no messages this round';
 
 if (output){
-    var wallMessenger = new WallMessenger();
-    wallMessenger.init();
+    var messenger = new Messenger();
+    messenger.init();
 }
 
-function disable_recipients(wall_sent_to){
+function disable_recipients(pm_sent_to){
     console.log('Disabling...');
-    console.log(wall_sent_to);
+    console.log(pm_sent_to);
     $('.recipient-option').each(function() {$(this).parent().removeClass('disabled')});
     var nSent = 0
-    for (var key in wall_sent_to){
-        if(wall_sent_to[key] > 0){
+    for (var key in pm_sent_to){
+        if(pm_sent_to[key] > 0){
            console.log('Disabling ' + key);
            $('#recipient-option-'+key).parent().addClass('disabled');
            nSent += 1; 
         }
     }
-    
+    console.log('Results');
+    console.log(pm_sent_to);
     nNeighbors = neighbors.length;
     if (nSent == nNeighbors){$('#recipient-option-all').parent().addClass('disabled');}
     if (nSent > 0){$('#recipient-option-no-send').parent().addClass('disabled');}
+    
 };
 
-function WallMessenger() {
+function Messenger() {
 
     this.sentMessages = {};
     
@@ -80,11 +82,6 @@ function WallMessenger() {
 			var newRow = document.createElement('li');
 			var newMessage = document.createElement('a');
 			newMessage.className = 'recipient-option clicktrack';
-
-//            if (wall_sent_to[tempId] > 0){
-//                newRow.classList.add('disabled');
-//            }			
-			
 			newMessage.id = 'recipient-option-' + tempId;
 			newMessage.innerHTML = "<img class='img-recipient' src='/static/avatar/" + avatars[tempId] + 
 			"'><span class='recipient-name pull-right'>" + userNames[tempId] + "</span>" + "<span id='ID' style='visibility: hidden;'>"+tempId+"</span>";			
@@ -93,15 +90,15 @@ function WallMessenger() {
 		};
 		
 		// OWN ROW.
-		var newRow = document.createElement('li');
-		var newMessage = document.createElement('a');
-		newMessage.className = 'recipient-option clicktrack';
-		newMessage.id = 'recipient-option-' + nodeId;
-		newMessage.innerHTML = "<img class='img-recipient' src='/static/avatar/" + avatars[nodeId] + 
-			"'><span class='recipient-name pull-right'>" + userNames[nodeId] + " (You)</span>" + "<span id='ID' style='visibility: hidden;'>"+nodeId+"</span>";			
-	
-		newRow.appendChild(newMessage)			
-		messageListBox.appendChild(newRow);
+//		var newRow = document.createElement('li');
+//		var newMessage = document.createElement('a');
+//		newMessage.className = 'recipient-option clicktrack';
+//		newMessage.id = 'recipient-option-self';
+//		newMessage.innerHTML = "<img class='img-recipient' src='/static/avatar/" + avatars[nodeId] + 
+//			"'><span class='recipient-name pull-right'>" + userNames[nodeId] + " (You)</span>" + "<span id='ID' style='visibility: hidden;'>"+nodeId+"</span>";			
+//	
+//		newRow.appendChild(newMessage)			
+//		messageListBox.appendChild(newRow);
 		
 		// NO SEND.
 		var newRow = document.createElement('li');
@@ -151,7 +148,8 @@ function WallMessenger() {
 		this.toggle = document.createElement('span');
 		this.toggle.className = "sr-only";
 		this.dropdown_button.appendChild(this.caret);
-		this.dropdown_button.appendChild(this.toggle);
+		this.dropdown_button.appendChild(this.toggle);		
+		
 		this.messageList = document.createElement('ul');
 		this.messageList.className = "dropdown-menu";
 		this.messageList.id = 'message-box';
@@ -180,19 +178,17 @@ function WallMessenger() {
 		this.messages.append(this.dropdown);		
 		this.messageBlock.appendChild(this.messages);
 		
-		disable_recipients(wall_sent_to);
+		disable_recipients(pm_sent_to);
 	}
 };
 
-function Wall() {
+function MessageWindow() {
 	
 	this.init = function (id,entries, output=true) {
 
-        output = typeof output !== 'undefined' ? output : true;
-
         this.ownId = id;		
 		
-		this.Parent = document.getElementById('wall-card-body');
+		this.Parent = document.getElementById('message-card-body');
 
 		this.topRow = document.createElement('div');
 		this.topRow.className = 'row topRow';
@@ -216,9 +212,9 @@ function Wall() {
 		this.labeltext = document.createElement('h6');
 		this.labeltext.className = "card-subtitle mb-2 text-muted";
 		if (output) {
-		this.labeltext.innerHTML = 'Use the tool above to post a message on the wall. Sent posts will be received once you and everyone else is done with sending messages and proceed to the decision part by clicking "Next" below.';
+		this.labeltext.innerHTML = 'Use the tool above to send a message to your friend. Sent messages will be received once you and everyone else is done sending messages and proceeds to the decision part by clicking "Next" below.';
         } else {
-        this.labeltext.innerHTML = "View posts on your wall or your friend's wall.";        
+        this.labeltext.innerHTML = "View messages from your friends or messages you have sent to your friends.";        
         }
 		this.topRowHeader.appendChild(this.label);
 		this.topRowHeader.appendChild(this.labeltext);
@@ -237,12 +233,14 @@ function Wall() {
 		this.wallLabel = document.createElement('h5');
 		this.wallOne.appendChild(this.wallLabel);
 		
+		/*
 		this.friendLabel = document.createElement('h5');
 		this.wallTwo.appendChild(this.friendLabel);
 		
 		this.friendWall = document.createElement('div');
 		this.friendWall.id = "friendWall";
 		this.wallTwo.appendChild(this.friendWall);			
+        */		
 		
 		this.wall = document.createElement('div');
 		this.wall.className = 'list-group wall well';
@@ -285,15 +283,17 @@ function Wall() {
 	this.changeId = function(id) {
 		this.Id = id;
         
-        var uName = ((id == this.ownId) ?  'Your' : userNames[id] + "'s");		
+        var uName = ((id == this.ownId) ?  'Your Inbox (All Messages to You)' : "Messages from you to " + userNames[id]);		
 		
-		this.label.innerHTML = "" + uName + " Wall";
-		this.wallLabel.innerHTML = 'Posts on ' + uName + " wall:";
+		this.label.innerHTML = "";// + uName + " Thread";
+		this.wallLabel.innerHTML = uName;
         
+        /*
         var friendName = ((id == this.ownId) ? '' : uName + " friends:");
         this.friendLabel.innerHTML = friendName;
         this.friend_list = new PlayerList();
         this.friend_list.init(neighbor_net[id], 'friendWall');		
+		*/
 		
 		this.wallimg.src = '/static/avatar/' + avatars[id];
 		$(this.wall).empty();
@@ -318,34 +318,32 @@ function Wall() {
 };
 
 
-$("#wall").on("click", ".recipient-option", function(event){
-    if(!$(this).parent().hasClass('disabled')){
-        if ($(".recipient-text").val() == noSendMessage){
-            $('#message-list-dropdown').attr('disabled',true);
-            $('#send-message-button').addClass('btn-primary');
-            $('.message-text').val('');  
-        } else {
-            $('#message-list-dropdown').attr('disabled',false);
-        }
+$("#messenger").on("click", ".recipient-option", function(event){
+    if ($(".recipient-text").val() == noSendMessage){
+        $('#message-list-dropdown').attr('disabled',true);
+        $('#send-message-button').addClass('btn-primary');
+        $('.message-text').val('');  
+    } else {
+        $('#message-list-dropdown').attr('disabled',false);
+    }
     
-        if (($(".recipient-text").val() != noSendMessage) && ($(".message-text").val() == '')){
-            $('#send-message-button').removeClass('btn-primary');
-        }
+    if (($(".recipient-text").val() != noSendMessage) && ($(".message-text").val() == '')){
+        $('#send-message-button').removeClass('btn-primary');
+    }
     
-        if (($(".recipient-text").val() != noSendMessage) && ($(".message-text").val() != '')){
-            $('#send-message-button').addClass('btn-primary');
-        }     
-    } 
+    if (($(".recipient-text").val() != noSendMessage) && ($(".message-text").val() != '')){
+        $('#send-message-button').addClass('btn-primary');
+    }  
 });
 
-$("#wall").on("click", ".message-option", function(event){    
+$("#messenger").on("click", ".message-option", function(event){    
     if (($(".recipient-text").val() != '') && ($(".message-text").val() != '')){
         $('#send-message-button').addClass('btn-primary');
     }  
 });
 
 
-$("#wall").on("click", ".send-message", function(event){
+$("#messenger").on("click", ".send-message", function(event){
 
   if ($(".recipient-text").val() == noSendMessage){
       $('#btn-discuss-next').attr('disabled', false);
@@ -353,7 +351,7 @@ $("#wall").on("click", ".send-message", function(event){
       
       var message = {
              createdBy: nodeId,
-             text: $("#wall .message-text").val(),
+             text: $("#messenger .message-text").val(),
              messageRound: messageRound,
        }
 
@@ -378,7 +376,8 @@ $("#wall").on("click", ".send-message", function(event){
         return;  
   }
   
-  $('#selector-alert').fadeOut(); 
+  $('#selector-alert').fadeOut();
+  $('#selector-success').fadeIn().delay(5000).fadeOut();  
   
   $('#send-message-button').removeClass('btn-primary');
 
@@ -387,14 +386,14 @@ $("#wall").on("click", ".send-message", function(event){
 ///////// Messaging Portion /////////
 /////////////////////////////////////
 
-var recipient = $('#wall .recipient-text').val();
+var recipient = $('#messenger .recipient-text').val();
 var sent = false;
 if (recipient == 'All Friends'){
     for (var i=0; i < neighbors.length; i++){
         var neighbor = neighbors[i];
         
-        if (!(wall_sent_to[neighbor] > 0)){
-            console.log(wall_sent_to[neighbor]);
+        if (!(pm_sent_to[neighbor] > 0)){
+            console.log(pm_sent_to[neighbor]);
         var currentDate = new Date();
         var keyString = currentDate.toString();
         keyString += neighbor;
@@ -403,27 +402,27 @@ if (recipient == 'All Friends'){
         var key = keyString.hashCode();
         
         var message = {
-  	         wallId: neighbor,
+  	         recipientId: neighbor,
              createdBy: nodeId,
-             text: $("#wall .message-text").val(),
+             text: $("#messenger .message-text").val(),
              messageRound: messageRound,
              key: key,
         }
 
         var toSend = JSON.stringify({
-  		    'type': 'send',
+  		    'type': 'private',
   		    'content': message,
   	    });
         console.log(toSend);
-        chat.channels[neighbor].send(toSend);
+        chat.privateChannel.send(toSend);
         $('#btn-discuss-next').attr('disabled', false);
         
-        if(!(neighbor in wall_sent_to)){wall_sent_to[neighbor]=0;}
-        wall_sent_to[neighbor] += 1;
-        disable_recipients(wall_sent_to);
+        if(!(neighbor in pm_sent_to)){pm_sent_to[neighbor]=0;}
+        pm_sent_to[neighbor] += 1;
+        disable_recipients(pm_sent_to);
         if (wall.Id == neighbor){
         sent = true;}
-    }
+    }   
     }
 } else if (recipient != noSendMessage){
   console.log(recipient);
@@ -435,24 +434,24 @@ if (recipient == 'All Friends'){
   var key = keyString.hashCode();
 
   var message = {
-  	wallId: wall.Id,
+  	recipientId: wall.Id,
     createdBy: nodeId,
-    text: $("#wall .message-text").val(),
+    text: $("#messenger .message-text").val(),
     messageRound: messageRound,
     key: key,
   }
 
   var toSend = JSON.stringify({
-  		'type': 'send',
+  		'type': 'private',
   		'content': message,
   	});
   console.log(toSend);
-  chat.activeChannel.send(toSend);
-  $('#btn-discuss-next').attr('disabled', false);
+  chat.privateChannel.send(toSend);
+  $('#btn-discuss-next').attr('disabled', false); 
   
-          if(!(wall.Id in wall_sent_to)){wall_sent_to[wall.Id]=0;}
-        wall_sent_to[wall.Id] += 1;
-        disable_recipients(wall_sent_to);  
+  if(!(wall.Id in pm_sent_to)){pm_sent_to[wall.Id]=0;}
+  pm_sent_to[wall.Id] += 1;
+  disable_recipients(pm_sent_to);
 }
 /////////////////////////////////////
 /////////////////////////////////////
@@ -461,15 +460,16 @@ if (recipient == 'All Friends'){
 if (messageRound == -1){
     
 } else if((recipient == 'All Friends') && (wall.Id != nodeId) && (sent)) {
-    wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#wall .message-text").val(), key));
-    $('#selector-success').fadeIn().delay(5000).fadeOut(); 
+    wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#messenger .message-text").val(), key));
+    $('#selector-success').fadeIn().delay(5000).fadeOut();
+
 } else if((recipient != 'All Friends') && (recipient != noSendMessage)) {
-    wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#wall .message-text").val(), key));
-    $('#selector-success').fadeIn().delay(5000).fadeOut(); 
+    wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#messenger .message-text").val(), key));
+    $('#selector-success').fadeIn().delay(5000).fadeOut();
 }
 
-    $("#wall .message-text").val('');
-    $("#wall .recipient-text").val('');
+    $("#messenger .message-text").val('');
+    $("#messenger .recipient-text").val('');
     $('.user-display').empty();
 	$('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');  
 
@@ -478,37 +478,33 @@ if (messageRound == -1){
 
 });
 
-
-
-$("#wall").on('click', '.removeEntry', function(event){
+$("#messenger").on('click', '.removeEntry', function(event){
     var entry = $(this).parents(".newly-added")[0];
     var key = $(entry).children(".key").html();
-    
     var message = {
   	    wallId: wall.Id,
         key: key,
     }
     var toSend = JSON.stringify({
-  		'type': 'wall-delete',
+  		'type': 'private-delete',
   		'content': message,
   	});
     console.log(toSend);
-    chat.activeChannel.send(toSend);
+    chat.privateChannel.send(toSend);
     wall.removeEntry(entry);
-    wall_sent_to[wall.Id] -= 1;
-    disable_recipients(wall_sent_to);
+    pm_sent_to[wall.Id] -= 1;
+    disable_recipients(pm_sent_to);
 });
 
-$("#wall .message-option").click(function(event){
+$("#messenger .message-option").click(function(event){
 	var text = $(this).html();
-	$("#wall .message-text").val(text);
+	$("#messenger .message-text").val(text);
 });
 
-$("#wall .recipient-option").click(function(event){
+$("#messenger .recipient-option").click(function(event){
     if(!$(this).parent().hasClass('disabled')){
-        
 	var text = $(this).find('.recipient-name').html();
-	$("#wall .recipient-text").val(text);
+	$("#messenger .recipient-text").val(text);
 	$('.user-display').empty();
 	$('.user-display').html($(this).find('.img-recipient').clone());
 	var id = $(this).find('#ID').html();
@@ -516,15 +512,14 @@ $("#wall .recipient-option").click(function(event){
 	   chat.setActiveChannel(id);
 		wall.changeId(id);
 		chat.infoChannel.send(JSON.stringify({
-		  'type': 'list',
+		  'type': 'private-list',
 		  'content': {'playerId': id, 'sentBy': nodeId},				
 		}));
 	}
 	
     $('.linking-button').removeClass('active');
     $('#player-button'+id).addClass('active');
-    
-}
+    }
 });
 
 
@@ -534,7 +529,7 @@ $("#wall .recipient-option").click(function(event){
 
 
 // To-do. enable clicking on text input
-$('#wall input[type="text"]:disabled').click(function(e){
+$('#messenger input[type="text"]:disabled').click(function(e){
 //	alert('hey');
   // Kill click event:
 //  e.stopPropagation();
