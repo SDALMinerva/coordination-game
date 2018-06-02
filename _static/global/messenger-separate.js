@@ -20,7 +20,8 @@ function disable_recipients(pm_sent_to){
            nSent += 1; 
         }
     }
-    
+    console.log('Results');
+    console.log(pm_sent_to);
     nNeighbors = neighbors.length;
     if (nSent == nNeighbors){$('#recipient-option-all').parent().addClass('disabled');}
     if (nSent > 0){$('#recipient-option-no-send').parent().addClass('disabled');}
@@ -416,8 +417,8 @@ if (recipient == 'All Friends'){
         chat.privateChannel.send(toSend);
         $('#btn-discuss-next').attr('disabled', false);
         
-        if(!(wall.Id in pm_sent_to)){pm_sent_to[wall.Id]=0;}
-        pm_sent_to[wall.Id] += 1;
+        if(!(neighbor in pm_sent_to)){pm_sent_to[neighbor]=0;}
+        pm_sent_to[neighbor] += 1;
         disable_recipients(pm_sent_to);
         if (wall.Id == neighbor){
         sent = true;}
@@ -460,7 +461,8 @@ if (messageRound == -1){
     
 } else if((recipient == 'All Friends') && (wall.Id != nodeId) && (sent)) {
     wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#messenger .message-text").val(), key));
-    $('#selector-success').fadeIn().delay(5000).fadeOut(); 
+    $('#selector-success').fadeIn().delay(5000).fadeOut();
+
 } else if((recipient != 'All Friends') && (recipient != noSendMessage)) {
     wall.addEntry(new NewlyAddedEntry(nodeId,2018,$("#messenger .message-text").val(), key));
     $('#selector-success').fadeIn().delay(5000).fadeOut();

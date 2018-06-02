@@ -418,8 +418,8 @@ if (recipient == 'All Friends'){
         chat.channels[neighbor].send(toSend);
         $('#btn-discuss-next').attr('disabled', false);
         
-        if(!(wall.Id in wall_sent_to)){wall_sent_to[wall.Id]=0;}
-        wall_sent_to[wall.Id] += 1;
+        if(!(neighbor in wall_sent_to)){wall_sent_to[neighbor]=0;}
+        wall_sent_to[neighbor] += 1;
         disable_recipients(wall_sent_to);
         if (wall.Id == neighbor){
         sent = true;}
