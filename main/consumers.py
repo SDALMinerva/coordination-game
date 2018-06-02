@@ -133,15 +133,24 @@ def ws_receive(message):
             messageRound = P.participant.vars['message_round']
 #            entryList = node.wall_set.first().message_set.filter(messageRound__lt = messageRound).order_by('datetime')
             
-            #DOMINGO- Left off here... (should be last fix)
-            past_wall_messages = wall.privatemessage_set.filter(messageRound__lt = messageRound)
-            past_wall_messages = past_wall_messages.exclude(deleted = True)
-            posted_wall_messages_to = PrivateMessage.objects.filter(createdBy = player_node, wall__node = node)
-            posted_wall_messages_to = posted_wall_messages_to.exclude(deleted = True)
-            posted_wall_messages_from = PrivateMessage.objects.filter(createdBy = node, wall__node = player_node)
-            posted_wall_messages_from = posted_wall_messages_to.exclude(deleted = True)
+                        #DOMINGO- Left off here... (should be last fix) -- doesn't matter for < 2 message rounds.
+            #past_wall_messages = wall.privatemessage_set.filter(messageRound__lt = messageRound)
+            #past_wall_messages = past_wall_messages.exclude(deleted = True)
             
-            entryList = past_wall_messages | posted_wall_messages_to | posted_wall_messages_from
+            posted_wall_messages_to = PrivateMessage.objects.filter(wall__node = -1)
+            posted_wall_messages_from = PrivateMessage.objects.filter(wall__node = -1)
+            # Show messages from other player to own player.
+            if node.pk == player_node.pk:
+                posted_wall_messages_to = PrivateMessage.objects.filter(wall__node = node)
+                posted_wall_messages_to = posted_wall_messages_to.exclude(deleted = True)
+            
+            # Show messages from own player to other player.
+            
+            else:
+                posted_wall_messages_from = PrivateMessage.objects.filter(wall__node = node).filter(createdBy = player_node)
+                posted_wall_messages_from = posted_wall_messages_from.exclude(deleted = True)
+            
+            entryList =  posted_wall_messages_to | posted_wall_messages_from
             entryList.order_by('datetime')
                 
         entries = [entry.to_dict() for entry in entryList]

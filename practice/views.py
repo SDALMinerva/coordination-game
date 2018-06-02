@@ -67,8 +67,8 @@ class Discuss(Page):
         posted_pm_messages = posted_pm_messages.exclude(deleted = True)
         posted_pm_messages = posted_pm_messages.filter(createdBy = player_node)
         
-        pm_counts = posted_pm_messages.values('privatemessageboard__node').annotate(count=Count('privatemessageboard__node'))
-        pm_counts = {r['privatemessageboard__node']:r['count'] for r in pm_counts}         
+        pm_counts = posted_pm_messages.values('wall__node').annotate(count=Count('wall__node'))
+        pm_counts = {r['wall__node']:r['count'] for r in pm_counts}         
         
         return {
         'avatar': self.player.get_avatar(),

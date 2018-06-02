@@ -395,6 +395,7 @@ var displayed = false;
       		    <script type="text/javascript" >
       		        var playerProfile = document.getElementById('playerLabel');
                     playerProfile.onclick = function() {
+                    console.log('own player clicked');
                     chat.setActiveChannel(nodeId);
 	                wall.changeId(nodeId);
 	                chat.infoChannel.send(JSON.stringify({
@@ -417,16 +418,6 @@ var displayed = false;
 {% endwith %}
 
 <script type="text/javascript" >
-  var playerProfile = document.getElementById('playerLabel');
-  playerProfile.onclick = function() {
-    chat.setActiveChannel(nodeId);
-	wall.changeId(nodeId);
-	chat.infoChannel.send(JSON.stringify({
-	  'type': 'list',
-	  'content': {'playerId': nodeId, 'sentBy': nodeId},				
-	}));
-  }
-  
   $('.otree-next-button').click(function () {
 	chat.infoChannel.send(JSON.stringify({
 		'type': 'moved_on_flag',
