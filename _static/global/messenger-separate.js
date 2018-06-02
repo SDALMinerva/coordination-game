@@ -190,9 +190,9 @@ function MessageWindow() {
 		this.labeltext = document.createElement('h6');
 		this.labeltext.className = "card-subtitle mb-2 text-muted";
 		if (output) {
-		this.labeltext.innerHTML = 'Use the tool above to send a message to your friend. Messages will appear once you and everyone else is done sending messages and proceeds to the decision part by clicking "Next" below.';
+		this.labeltext.innerHTML = 'Use the tool above to send a message to your friend. Sent messages will be received once you and everyone else is done sending messages and proceeds to the decision part by clicking "Next" below.';
         } else {
-        this.labeltext.innerHTML = "View posts on your wall or your friend's wall.";        
+        this.labeltext.innerHTML = "View messages from your friends or messages you have sent to your friends.";        
         }
 		this.topRowHeader.appendChild(this.label);
 		this.topRowHeader.appendChild(this.labeltext);
@@ -261,7 +261,7 @@ function MessageWindow() {
 	this.changeId = function(id) {
 		this.Id = id;
         
-        var uName = ((id == this.ownId) ?  'Your Inbox (All Messages)' : "Messages between you and " + userNames[id]);		
+        var uName = ((id == this.ownId) ?  'Your Inbox (All Messages to You)' : "Messages from you to " + userNames[id]);		
 		
 		this.label.innerHTML = "";// + uName + " Thread";
 		this.wallLabel.innerHTML = uName;

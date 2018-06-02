@@ -211,7 +211,7 @@ function Wall() {
 		this.labeltext = document.createElement('h6');
 		this.labeltext.className = "card-subtitle mb-2 text-muted";
 		if (output) {
-		this.labeltext.innerHTML = 'Use the tool above to post a message on the wall. The posts will appear once you and everyone else is done with sending messages and proceed to the decision part by clicking "Next" below.';
+		this.labeltext.innerHTML = 'Use the tool above to post a message on the wall. Sent posts will be received once you and everyone else is done with sending messages and proceed to the decision part by clicking "Next" below.';
         } else {
         this.labeltext.innerHTML = "View posts on your wall or your friend's wall.";        
         }
