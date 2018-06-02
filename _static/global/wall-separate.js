@@ -12,13 +12,18 @@ function disable_recipients(wall_sent_to){
     console.log('Disabling...');
     console.log(wall_sent_to);
     $('.recipient-option').each(function() {$(this).parent().removeClass('disabled')});
-    console.log(wall_sent_to);
+    var nSent = 0
     for (var key in wall_sent_to){
         if(wall_sent_to[key] > 0){
            console.log('Disabling ' + key);
-           $('#recipient-option-'+key).parent().addClass('disabled'); 
+           $('#recipient-option-'+key).parent().addClass('disabled');
+           nSent += 1; 
         }
     }
+    
+    nNeighbors = neighbors.length;
+    if (nSent == nNeighbors){$('#recipient-option-all').parent().addClass('disabled');}
+    if (nSent > 0){$('#recipient-option-no-send').parent().addClass('disabled');}
 };
 
 function WallMessenger() {
@@ -173,7 +178,7 @@ function WallMessenger() {
 		this.dropdown.appendChild(this.send_button);
 		
 		this.messages.append(this.dropdown);		
-		this.messageBlock.appendChild(this.messages)
+		this.messageBlock.appendChild(this.messages);
 		
 		disable_recipients(wall_sent_to);
 	}

@@ -62,6 +62,13 @@ class Discuss(Page):
 
         wall_counts = posted_wall_messages.values('wall__node').annotate(count=Count('wall__node'))
         wall_counts = {r['wall__node']:r['count'] for r in wall_counts}
+
+        posted_pm_messages = PrivateMessage.objects.filter(messageRound = message_round)
+        posted_pm_messages = posted_pm_messages.exclude(deleted = True)
+        posted_pm_messages = posted_pm_messages.filter(createdBy = player_node)
+        
+        pm_counts = posted_pm_messages.values('privatemessageboard__node').annotate(count=Count('privatemessageboard__node'))
+        pm_counts = {r['privatemessageboard__node']:r['count'] for r in pm_counts}         
         
         return {
         'avatar': self.player.get_avatar(),
@@ -81,6 +88,7 @@ class Discuss(Page):
         'networkDisplay': networkDisplay,
         'group': group_dict,
         'wall_sent_to': wall_counts,
+        'pm_sent_to': pm_counts,
         }
 
 class BeginWaitPage(WaitPage):
