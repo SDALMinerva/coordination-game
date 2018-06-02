@@ -272,7 +272,7 @@ SESSION_CONFIGS = [
          'app_sequence': [
                           'practice', 
                          ],
-         'condition_messaging': 'wall',
+         'condition_messaging': 'bilateral',
          'condition_network_knowledge': 'global',
      },
      {
@@ -308,7 +308,7 @@ SESSION_CONFIGS = [
           'round_seq_file': 'seq-48rounds.json',
           
           # Treatment Configs
-          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
           'condition_network_knowledge': 'local',      #local, global
      },
      {

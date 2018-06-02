@@ -21,7 +21,7 @@ class AssignAvatar(Page):
 
 class Discuss(Page):
 
-    timeout_seconds = 60*10    
+    #timeout_seconds = 60*10    
 
     def before_next_page(self):
         if self.timeout_happened:
@@ -67,7 +67,6 @@ class Discuss(Page):
         del group_dict[self.player.get_user_name()]
         
         player_node = self.player.node
-        print('HEY LOOK AT THIS!!!!!')
         print(player_node)      
         posted_wall_messages = Message.objects.filter(messageRound = message_round)
         posted_wall_messages = posted_wall_messages.exclude(deleted = True)
