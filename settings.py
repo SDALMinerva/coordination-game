@@ -173,8 +173,8 @@ DEV_CONFIGS = [
          'app_sequence': [
                           'practice', 
                          ],
-         'condition_messaging': 'wall',
-         'condition_network_knowledge': 'local',
+         'condition_messaging': 'none',
+         'condition_network_knowledge': 'global',
      },
      {
          'name': 'test_survey_initial',

@@ -21,7 +21,7 @@ class AssignAvatar(Page):
 
 class Discuss(Page):
 
-    #timeout_seconds = 60*10    
+    timeout_seconds = 60*10    
 
     def before_next_page(self):
         if self.timeout_happened:
@@ -126,27 +126,27 @@ class IntermediateWaitPage(WaitPage):
 
 ### SIMPLE CODE FOR AUTOMATED MESSAGES
         message_round = group_players[0].participant.vars['message_round']        
-        for node in self.group.network.node_set.all():
-            if node.bot:
-                neighbors = node.get_neighbors()
-                for neighbor in neighbors:
-                    if int(round(random())) and (self.session.config['condition_messaging'] in ['wall','both']):
-                        wall = neighbor.wall_set.first()
-                        wall.message_set.add(
-                            Message(createdBy=node,
-                            messageRound = message_round, 
-                            message=Constants.messages[randint(1,2)]
-                            )
-                        )
-                    
-                    if int(round(random())) and (self.session.config['condition_messaging'] in ['bilateral','both']):    
-                        privateMessageBoard = neighbor.privatemessageboard_set.first()
-                        privateMessageBoard.privatemessage_set.add(
-                        PrivateMessage(createdBy=node,
-                            messageRound = message_round, 
-                            message=Constants.messages[randint(1,2)]
-                            )
-                        )        
+#        for node in self.group.network.node_set.all():
+#            if node.bot:
+#                neighbors = node.get_neighbors()
+#                for neighbor in neighbors:
+#                    if int(round(random())) and (self.session.config['condition_messaging'] in ['wall','both']):
+#                        wall = neighbor.wall_set.first()
+#                        wall.message_set.add(
+#                            Message(createdBy=node,
+#                            messageRound = message_round, 
+#                            message=Constants.messages[randint(1,2)]
+#                            )
+#                        )
+#                    
+#                    if int(round(random())) and (self.session.config['condition_messaging'] in ['bilateral','both']):    
+#                        privateMessageBoard = neighbor.privatemessageboard_set.first()
+#                        privateMessageBoard.privatemessage_set.add(
+#                        PrivateMessage(createdBy=node,
+#                            messageRound = message_round, 
+#                            message=Constants.messages[randint(1,2)]
+#                            )
+#                        )        
         
         group_players[0].participant.vars['message_round'] += 1
         
