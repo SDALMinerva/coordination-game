@@ -13,10 +13,10 @@ class AssignAvatar(Page):
         
     def before_next_page(self):
         if self.timeout_happened:
-            for player in self.player.participant.get_players():
-                if player.node:
-                    player.node.bot = True
-                    player.node.save()
+            players_change = [player for player in self.player.participant.get_players() if 'node' in player._meta.get_all_field_names()]
+            for player in players_change:
+                player.node.bot = True
+                player.node.save()
 
 
 class Discuss(Page):
@@ -25,10 +25,10 @@ class Discuss(Page):
 
     def before_next_page(self):
         if self.timeout_happened:
-            for player in self.player.participant.get_players():
-                if player.node:
-                    player.node.bot = True
-                    player.node.save()
+            players_change = [player for player in self.player.participant.get_players() if 'node' in player._meta.get_all_field_names()]
+            for player in players_change:
+                player.node.bot = True
+                player.node.save()
     
     def is_displayed(self):
         return (not self.player.node.bot) and (self.subsession.session.config['condition_messaging'] != 'none')    
@@ -183,10 +183,10 @@ class Decide(Discuss):
     
     def before_next_page(self):
         if self.timeout_happened:
-            for player in self.player.participant.get_players():
-                if player.node:
-                    player.node.bot = True
-                    player.node.save()
+            players_change = [player for player in self.player.participant.get_players() if 'node' in player._meta.get_all_field_names()]
+            for player in players_change:
+                player.node.bot = True
+                player.node.save()
             
     def is_displayed(self):
         return not self.player.node.bot
