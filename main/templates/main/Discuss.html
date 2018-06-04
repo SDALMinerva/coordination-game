@@ -82,8 +82,8 @@ $(window).on('load',function(){
     <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;">If you do not participate:<strong> {{session.config.payoff_no_participate}}</strong> </p>
     <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px;">If you participate: </p>
     <ul>
-    <li style="text-align: left; font-size: 8pt; margin: 0; margin-left: 0px;"><strong>{{session.config.payoff_above_threshold}}</strong> if at least {{player.threshold}} more participate </li>
-    <li style="text-align: left; font-size: 8pt; margin: 0; margin-left: 0px;"><strong>{{session.config.payoff_below_threshold}}</strong> if less than {{player.threshold}} participate </li>
+    <li style="text-align: left; font-size: 8pt; margin: 0; margin-left: 0px;"><strong>{{session.config.payoff_above_threshold}}</strong> if at least {{player.threshold|default:'1'}} more participate </li>
+    <li style="text-align: left; font-size: 8pt; margin: 0; margin-left: 0px;"><strong>{{session.config.payoff_below_threshold}}</strong> if less than {{player.threshold|default:'1'}} participate </li>
     </ul>
 </div>
       	 <div id="friendsDiv">
