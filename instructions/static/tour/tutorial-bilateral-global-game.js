@@ -1,15 +1,14 @@
 function startDiscussIntro() {   
     var intro = introJs();
-    intro.setOption('exitOnOverlayClick', false);
-    intro.setOption('exitOnEsc', false);
+    intro.setOption('exitOnOverlayClick', true);
+    intro.setOption('exitOnEsc', true);
     intro.setOption('showStepNumbers', false);
     intro.setOption('skipLabel', '');
     intro.addSteps([
       {
         element: document.querySelectorAll('#playerDiv')[0],
         intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>. " +
-               "In this example above, your avatar is <strong>Cow</strong> and your <strong>threshold T=1</strong>. " +
-               "Note that, in each round, everyone will be assigned a new avatar and a new threshold. " +
+               "In each round, everyone will be assigned a new avatar and a new threshold. " +
 
                "<br><br>You can click on your avatar at any time to see your own wall.",
       },
@@ -73,7 +72,7 @@ function startDiscussIntro() {
         intro: "<h5><em><strong>Please click Continue to move to the decision part.</strong></em><h5>",
       },*/
     ]);
-    intro.onchange(function(targetElement) {   
+    /*intro.onchange(function(targetElement) {   
         if (targetElement.id == 'stopModal-content') 
             { 
                 $('#stopModal-content').css('display','inline-block');
@@ -82,15 +81,15 @@ function startDiscussIntro() {
             { 
                 $('#stopModal-content').css('display','none');
             }
-        });
+        });*/
     intro.start();
   }
   
   
   function startDecideIntro() {   
     var intro = introJs();
-    intro.setOption('exitOnOverlayClick', false);
-    intro.setOption('exitOnEsc', false);
+    intro.setOption('exitOnOverlayClick', true);
+    intro.setOption('exitOnEsc', true);
     intro.setOption('showStepNumbers', false);
     intro.setOption('skipLabel', '');
     intro.addSteps([

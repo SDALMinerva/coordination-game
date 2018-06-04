@@ -173,7 +173,7 @@ DEV_CONFIGS = [
          'app_sequence': [
                           'practice', 
                          ],
-         'condition_messaging': 'none',
+         'condition_messaging': 'bilateral',
          'condition_network_knowledge': 'global',
      },
      {
