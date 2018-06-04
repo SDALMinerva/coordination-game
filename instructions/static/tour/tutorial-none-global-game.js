@@ -1,7 +1,7 @@
 function startDiscussIntro() {   
     var intro = introJs();
-    intro.setOption('exitOnOverlayClick', false);
-    intro.setOption('exitOnEsc', false);
+//    intro.setOption('exitOnOverlayClick', false);
+//    intro.setOption('exitOnEsc', false);
     intro.setOption('showStepNumbers', false);
     intro.setOption('skipLabel', '');
     intro.addSteps([
@@ -21,7 +21,9 @@ function startDiscussIntro() {
         element: document.querySelectorAll('#friendsDiv')[0],
         intro: "In each round, you will be connected to some or all of the other people in your group. " +
                "They will be called Your friends, and will be listed in this box. You will also see the thresholds of your friends here. " +
-               "<br><br>You can click on your friends' avatars to see the messages you have sent to them. ",
+               "<br><br>You can click on your friends' avatars to see their page. " +
+               "You can also see their friends (and their thresholds) on their pages, and you can post messages on your friends’ walls. " +
+               "Try clicking on a few to see their walls. ",
       },
       {
         element: document.querySelectorAll('.container-network')[0],
@@ -38,40 +40,46 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('.message-tool')[0],
-        intro: "Before making your participation decision, you will be given an opportunity to sendmessages to your friends to reveal " +
-               "your intention to participate or not in the group event. You have the following two messaging options to post on the walls: " +
-               "1) 'I will participate', 2) 'I will not participate'. Each player can send a message only to his/her own friends. " +
-               "No one can see other players’ messages. You will view the messages sent to you by your friends in the decision part. " +
-               "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu) to send a message to " +
-               "your friend. You also have the option to send to 'All Friends' which means sending the message to all of your friends. " +
-               "During the game, click the 'Send Message' button, to send your messages on to your friends. ",
-        position: "top",
+        intro: "Before making your participation decision, you will be given an opportunity to post messages on your wall " +
+               "or on your friends' walls to reveal your intention to participate or not in the group event. " +
+               "You have the following two messaging options to post on the walls: 1) 'I will participate', 2) 'I will not participate'. "+
+               "Each player can post a message only on his/her own friends' walls. " +
+               "Posts on a player's wall can be viewed by all of his/her friends. " +
+               "You will view the posts on your wall and on your friends' walls in the decision part. " +
+               "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu) to post a message on the recipient’s wall. " +
+               "You also have the option to send to 'All Friends' which means posting on all of your friends’ walls. " +
+               "Click the 'Post Message' button, to post your messages on the recipient’s wall.",
+        position: "top",        
         disableInteraction: false,
         position: "right",
       },
       {
-        element: document.querySelectorAll('.message-card')[0],
-        intro: "You will view the messages sent to you by your friends in the decision part in this box.",
+        element: document.querySelectorAll('.wall-card')[0],
+        intro: "Every player has a 'wall', which is a place where messages can be posted and these messages can be viewed by friends. " +
+               "Below is an example of a wall (Swan’s wall in this case). " +
+               "You will view the posts on your wall and on your friends' walls in the decision part.",
         //position: "top",
       },
       {
         element: document.querySelectorAll('#stopButton')[0],
-        intro: "Once you are done with sending messages, you can click 'Next' below to proceed to the decision part. " +
-               "You cannot send messages in the decision part.",
+        intro: "Once you are done with posting messages, you can click 'Next' below to proceed to the decision part. " +
+               "You cannot post messages in the decision part.",
         disableInteraction: true,
       },
+      /*
       {
         element: document.querySelectorAll('#stopModal-content')[0],
-        intro: "You will have one last chance to review and edit your messages. " +
-               "Click 'Edit' to make changes to your messages; you can change or remove existing messages or post new ones. " +
+        intro: "You will have one last chance to review and edit your posts. " +
+               "Click “Edit” to make changes to your posts; you can change or remove existing messages or post new ones. " +
                "Click 'Continue' to proceed to the decision part. " +
-               "Make sure that you send all of the messages you want before clicking 'Continue' as you cannot get back to the messaging part.",
+               "Make sure that you post all of the messages you want before clicking 'Continue' as you cannot get back to the messaging part.",
         disableInteraction: true,
       },
       {
         element: document.querySelectorAll('.next-button')[0],
         intro: "<h5><em><strong>Please click Continue to move to the decision part.</strong></em><h5>",
       },
+      */
     ]);
     intro.onchange(function(targetElement) {   
         if (targetElement.id == 'stopModal-content') 
@@ -89,21 +97,21 @@ function startDiscussIntro() {
   
   function startDecideIntro() {   
     var intro = introJs();
-    intro.setOption('exitOnOverlayClick', false);
-    intro.setOption('exitOnEsc', false);
+//    intro.setOption('exitOnOverlayClick', false);
+//    intro.setOption('exitOnEsc', false);
     intro.setOption('showStepNumbers', false);
     intro.setOption('skipLabel', '');
     intro.addSteps([
       {
-        element: document.querySelectorAll('.message-card')[0],
-        intro: "In the decision part, each player can observe the messages sent to them. " +
-               "You will be able to view all of the messages sent to you by your friends. " +
-               "You will not be able to send or receive any more messages.",
+        element: document.querySelectorAll('.wall-card')[0],
+        intro: "In the decision part, each player can observe the messages posted on their own walls and on their friends' walls. " +
+               "You will be able to view all of the posts from you and your friends on your wall. " +
+               "You will not be able to post or receive any more messages. ",        
         position: "top",
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "You can click on your friends avatars to view messages sent by your friends.", 
+        intro: "You can click on your friends avatars to view their walls and the messages  posted on them by their friends.", 
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
@@ -113,16 +121,20 @@ function startDiscussIntro() {
                "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
       },
+      /*
       {
         element: document.querySelectorAll('#help-nav')[0],
         intro: "At any time, you can view the instructions, this tour and the quiz.",
-        disableInteraction: true,
       },
       {
         element: document.querySelectorAll('.next-button')[0],
-        intro: "Next, you will practice with test rounds, and when you are ready, begin the game. <br/><br/><h5><em><strong>Please click 'Continue' now.</strong></em><h5/>",
+        intro: "Next, you will take a short quiz, play test rounds, and when you are ready, begin the game. <br/><br/><h5><em><strong>Please click 'Continue' now.</strong></em><h5/>",
       },
+      */
     ]);
      
     intro.start();
   }
+  
+  
+  

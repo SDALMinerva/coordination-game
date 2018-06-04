@@ -11,15 +11,19 @@ class QuizIntro(Page):
     
 class InstructionsPage(Page):
     def vars_for_template(self):
-        screenImage = 'instructions/screenshot-wall-global.png'
-        if self.session.config['condition_network_knowledge'] == 'local':
-            screenImage = 'instructions/screenshot-wall-local.png'
+        comm_type = self.session.config['condition_messaging']
+        network_type = self.session.config['condition_network_knowledge']
+        screenImage = 'instructions/screenshot-{}-{}.png'
         return {
-            'screenImage': screenImage
+            'screenImage': screenImage.format(comm_type,network_type)
         }
 
 class TourDiscuss(Page):
     template_name = 'tour/Tour-Discuss.html'
+
+    def is_displayed(self):
+        return (self.subsession.session.config['condition_messaging'] != 'none')    
+    
     def vars_for_template(self):            
         if self.session.config['condition_network_knowledge'] == 'global':
             networkDisplay = 'The'

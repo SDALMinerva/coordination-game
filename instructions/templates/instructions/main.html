@@ -5,16 +5,19 @@
 This is an experiment to study how individuals and groups make decisions. 
 Your earnings in the experiment will depend on your own decisions, the decisions of others, and chance. 
 If you follow the instructions carefully, you will earn a reward at the end of the experiment. 
-During the experiment, your earnings will be accounted by <strong>experimental points</strong>. 
+During the experiment, your earnings will be tabulated by <strong>experimental points</strong>. 
 At the end of the experiment, the points will be used to determine your final payment.
 </p>
 
 <h4>General Instructions:</h4>
 
 <p>
-The experiment consists of <strong>24 rounds</strong> in which you and other players independently make the decision on whether to participate in a group event such as a social event (e.g., party), 
+The experiment consists of <strong>24 rounds</strong> in which you and other players independently make the decision on whether to participate as a group.
+Examples of participation could include going to a social event (e.g., party), 
 team sports (e.g., volleyball, football) or a political event (e.g., march, rally). 
-These are events which you are more willing to participate if there are others participating with you.
+These are events where you are more willing to participate if there are others participating with you.
+A specific type of event will not be given in this experiment.
+However, you will be given a similar decision to participate in a group or not, and that decision will affect the earnings you receive.
 </p>
 
 <p>
@@ -38,40 +41,42 @@ Your earnings in a round depend on your threshold, your participation decision a
 Each round is independent from the other: whatever happens in a round does not affect the next round.
 </p>
 
-<p> <strong>*If your threshold is T=1:</strong></p>
+<p> <strong>1. If your threshold is T=1:</strong></p>
 
-<p>
+<ul>
+<li>
 If you <strong>participate</strong> and at least <strong>1 other player</strong> participates, 
 then your earnings in the round will be <strong>{{session.config.payoff_above_threshold|c}}</strong>.
-</p>
+</li>
 
-<p>
+<li>
 If you <strong>participate</strong> and <strong>no one else</strong> participates, 
 then your earnings in the round will be <strong>{{session.config.payoff_below_threshold|c}}</strong>.
-</p>
+</li>
 
-<p>
+<li>
 If you do <strong>not participate</strong>, your earnings in the round will be 
 <strong>{{session.config.payoff_no_participate|c}}</strong> regardless of what others do.
-</p>
+</li>
+</ul>
 
-
-<p> <strong>*If your threshold is T=3:</strong></p>
-
-<p>
+<p> <strong>2. If your threshold is T=3:</strong></p>
+<ul>
+<li>
 If you <strong>participate</strong> and at least <strong>3 other players</strong> participate, 
 then your earnings in the round will be <strong>{{session.config.payoff_above_threshold|c}}</strong>.
-</p>
+</li>
 
-<p>
+<li>
 If you <strong>participate</strong> and less than <strong>3 other players</strong> participate, 
 then your earnings in the round will be <strong>{{session.config.payoff_below_threshold|c}}</strong>.
-</p>
+</li>
 
-<p> 
+<li> 
 If you do <strong>not participate</strong>, your earnings in the round will be <strong>{{session.config.payoff_no_participate|c}}</strong> 
 regardless of what others do.
-</p>
+</li>
+</ul>
 
 <h4>Experimental Earnings:</h4>
 <p>  
@@ -84,19 +89,39 @@ Thus, at the end of the experiment, your total earnings would equal: $7 + $0 = $
 
 
 <h4>Platform Layout</h4>
+{% if session.config.condition_messaging == 'wall' %}
 <p>
-This is the platform that you will use to play the game, you will use it to observe other players and exchange messages (in the messaging part) 
+This is the platform that you will use to play the game. You will use it to observe other players and exchange messages (in the messaging part) 
 before you make the final decision to participate for that round. 
 Before making your participation decision, you will be given an opportunity to post messages 
 on your wall or on your friends' walls to reveal your intention to participate or not in the group event. 
 Every player has a 'wall', which is a place where messages can be posted and these messages can be viewed by friends. 
-Below is an example of a wall (Cow's wall in this case). You will view the posts on your wall and on your friends' walls in the decision part.
+Below is an example of a wall (Rabbit's wall in this case). You will view the posts on your wall and on your friends' walls in the decision part.
 </p>
+{% endif %}
+{% if session.config.condition_messaging == 'bilateral' %}
+<p>
+This is the platform that you will use to play the game. You will use it to observe other players and exchange messages (in the messaging part) 
+before you make the final decision to participate for that round. 
+Before making your participation decision, you will be given an opportunity to send messages 
+to your friends to reveal your intention to participate or not in the group event. 
+Every player can read messages. Each player can only read messages sent to them directly. 
+Below is an example of a message window (Rabbit's messages in this case). Everyone will view messages from their friends in the decision part.
+</p>
+{% endif %}
+{% if session.config.condition_messaging == 'none' %}
+<p>
+This is the platform that you will use to play the game, you will use it to make a decision on whether or not to participate. 
+Here, you cannot communicate with your friends, but you can see who you are connected to and see their threshold.
+Below is an example of what the platform looks like. Everyone can view the network to which they belong and the friends to whom they are connected.
+</p>
+{% endif %}
 
+<div style="width:70%; margin: auto; border: 1px solid black;">
 <img class="img img-responsive" src="{% static screenImage %}" alt="NO IMAGE!!!!!!!">
+</div>
 
-
-
+{% comment %}
 <h4>Platform Tour</h4>
 <p>
 We will now introduce you to the platform that you will be using to play the game. 
@@ -104,14 +129,14 @@ We will show you an interactive tour of all of the components.
 After the tour, you will have the chance to play trial rounds to become familiar with the platform. 
 You can practice for as many rounds as you need before proceeding to the actual experiment.
 </p>
-
+{% endcomment %}
 
 
 
 
 <br/>
 <p>
-Click <strong>Next</strong> to begin the tour.
+Click <strong>Next</strong> to take a quiz on these instructions.
 </p>
 
 

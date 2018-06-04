@@ -148,7 +148,10 @@ sequence = [
 ]
 
 DEV_CONFIGS = [
-     {
+]
+
+SESSION_CONFIGS = [
+    {
          'name': 'run_group3_treatment1',
          'display_name': '[1] Run: Groups, 3; Messaging, none; Network Knowledge, local',
          'num_demo_participants': 1,
@@ -158,6 +161,18 @@ DEV_CONFIGS = [
           
           # Treatment Configs
           'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'run_group3_treatment2',
+         'display_name': '[2] Run: Groups, 3; Messaging, wall; Network Knowledge, local',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
           'condition_network_knowledge': 'local',      #local, global
      },
      {
@@ -197,6 +212,18 @@ DEV_CONFIGS = [
           'condition_network_knowledge': 'global',      #local, global
      },
      {
+         'name': 'run_group3_treatment6',
+         'display_name': '[6] Run: Groups, 3; Messaging, wall; Network Knowledge, global',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
          'name': 'run_group3_treatment7',
          'display_name': '[7] Run: Groups, 3; Messaging, bilateral; Network Knowledge, global',
          'num_demo_participants': 1,
@@ -220,33 +247,6 @@ DEV_CONFIGS = [
           'condition_messaging': 'both',               #none, wall, bilateral, both
           'condition_network_knowledge': 'global',      #local, global
      },
-]
-
-SESSION_CONFIGS = [
-     {
-         'name': 'run_group3_treatment2',
-         'display_name': '[2] Run: Groups, 3; Messaging, wall; Network Knowledge, local',
-         'num_demo_participants': 1,
-         'app_sequence': sequence,
-          # Rounds
-          'round_seq_file': 'seq-48rounds.json',
-          
-          # Treatment Configs
-          'condition_messaging': 'wall',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'local',      #local, global
-     },
-     {
-         'name': 'run_group3_treatment6',
-         'display_name': '[6] Run: Groups, 3; Messaging, wall; Network Knowledge, global',
-         'num_demo_participants': 1,
-         'app_sequence': sequence,
-          # Rounds
-          'round_seq_file': 'seq-48rounds.json',
-          
-          # Treatment Configs
-          'condition_messaging': 'wall',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'global',      #local, global
-     },
      {
          'name': 'test_welcome',
          'display_name': 'Test: Welcome and Consent',
@@ -262,7 +262,7 @@ SESSION_CONFIGS = [
          'app_sequence': [
                           'instructions', 
                          ],
-         'condition_messaging': 'wall',
+         'condition_messaging': 'none',
          'condition_network_knowledge': 'local',
      },
      {
@@ -272,8 +272,8 @@ SESSION_CONFIGS = [
          'app_sequence': [
                           'practice', 
                          ],
-         'condition_messaging': 'bilateral',
-         'condition_network_knowledge': 'global',
+         'condition_messaging': 'wall',
+         'condition_network_knowledge': 'local',
      },
      {
          'name': 'test_survey_initial',
@@ -308,7 +308,7 @@ SESSION_CONFIGS = [
           'round_seq_file': 'seq-48rounds.json',
           
           # Treatment Configs
-          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_messaging': 'none',               #none, wall, bilateral, both
           'condition_network_knowledge': 'local',      #local, global
      },
      {

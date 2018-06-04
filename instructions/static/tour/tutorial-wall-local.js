@@ -48,7 +48,7 @@ function startDiscussIntro() {
                "You will view the posts on your wall and on your friends' walls in the decision part. " +
                "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu) to post a message on the recipient’s wall. " +
                "You also have the option to send to 'All Friends' which means posting on all of your friends’ walls. " +
-               "Click the 'Post Message' button, to post your messages on the recipient’s wall.",
+               "During the game, click the 'Post Message' button, to post your messages on the recipient’s wall.",
         position: "top",
         disableInteraction: false,
         position: "right",
@@ -122,10 +122,11 @@ function startDiscussIntro() {
       {
         element: document.querySelectorAll('#help-nav')[0],
         intro: "At any time, you can view the instructions, this tour and the quiz.",
+        disableInteraction: true,
       },
       {
         element: document.querySelectorAll('.next-button')[0],
-        intro: "Next, you will take a short quiz, play test rounds, and when you are ready, begin the game. <br/><br/><h5><em><strong>Please click 'Continue' now.</strong></em><h5/>",
+        intro: "Next, you will practice with test rounds, and when you are ready, begin the game. <br/><br/><h5><em><strong>Please click 'Continue' now.</strong></em><h5/>",
       },
     ]);
      

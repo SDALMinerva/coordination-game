@@ -1,5 +1,5 @@
 var player_list = new PlayerList();
-player_list.init(neighbors, 'playerList', isWall);
+player_list.init(neighbors, 'playerList', isLink);
 
 function PlayerList() {
 	
@@ -123,8 +123,8 @@ function PlayerButton(id, link) {
 		    var element = document.createElement('a');
 		    element.id = "player-button" + id;
 		    element.href = "#" + id;
-		    element.className = "list-group-item player-button linking-button clicktrack";
-		    element.onclick = function () {
+		    element.className = "list-group-item player-button clicktrack";
+		    /*element.onclick = function () {
 				chat.setActiveChannel(id);
 				wall.changeId(id);
 				chat.infoChannel.send(JSON.stringify({
@@ -134,7 +134,7 @@ function PlayerButton(id, link) {
 				$('.recipient-text').val('');
 				$('.user-display').empty();
 	            $('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');
-			};
+			};*/
 		}
 		
 		element.appendChild(media);
