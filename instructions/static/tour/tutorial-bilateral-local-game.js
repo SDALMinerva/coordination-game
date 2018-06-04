@@ -1,7 +1,7 @@
 function startDiscussIntro() {   
     var intro = introJs();
-//    intro.setOption('exitOnOverlayClick', false);
-//    intro.setOption('exitOnEsc', false);
+    intro.setOption('exitOnOverlayClick', false);
+    intro.setOption('exitOnEsc', false);
     intro.setOption('showStepNumbers', false);
     intro.setOption('skipLabel', '');
     intro.addSteps([
@@ -53,7 +53,7 @@ function startDiscussIntro() {
         position: "right",
       },
       {
-        element: document.querySelectorAll('.wall-card')[0],
+        element: document.querySelectorAll('.message-card')[0],
         intro: "You will view the messages sent to you by your friends in the decision part in this box.",
         //position: "top",
       },
@@ -63,8 +63,7 @@ function startDiscussIntro() {
                "You cannot send messages in the decision part.",
         disableInteraction: true,
       },
-      /*
-      {
+      /*{
         element: document.querySelectorAll('#stopModal-content')[0],
         intro: "You will have one last chance to review and edit your messages. " +
                "Click 'Edit' to make changes to your messages; you can change or remove existing messages or post new ones. " +
@@ -75,8 +74,7 @@ function startDiscussIntro() {
       {
         element: document.querySelectorAll('.next-button')[0],
         intro: "<h5><em><strong>Please click Continue to move to the decision part.</strong></em><h5>",
-      },
-      */
+      },*/
     ]);
     intro.onchange(function(targetElement) {   
         if (targetElement.id == 'stopModal-content') 
@@ -94,13 +92,13 @@ function startDiscussIntro() {
   
   function startDecideIntro() {   
     var intro = introJs();
-//    intro.setOption('exitOnOverlayClick', false);
-//    intro.setOption('exitOnEsc', false);
+    intro.setOption('exitOnOverlayClick', false);
+    intro.setOption('exitOnEsc', false);
     intro.setOption('showStepNumbers', false);
     intro.setOption('skipLabel', '');
     intro.addSteps([
       {
-        element: document.querySelectorAll('.wall-card')[0],
+        element: document.querySelectorAll('.message-card')[0],
         intro: "In the decision part, each player can observe the messages sent to them. " +
                "You will be able to view all of the messages sent to you by your friends. " +
                "You will not be able to send or receive any more messages.",
@@ -118,16 +116,15 @@ function startDiscussIntro() {
                "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
       },
-      /*
-      {
+      /*{
         element: document.querySelectorAll('#help-nav')[0],
         intro: "At any time, you can view the instructions, this tour and the quiz.",
+        disableInteraction: true,
       },
       {
         element: document.querySelectorAll('.next-button')[0],
-        intro: "Next, you will take a short quiz, play test rounds, and when you are ready, begin the game. <br/><br/><h5><em><strong>Please click 'Continue' now.</strong></em><h5/>",
-      },
-      */
+        intro: "Next, you will practice with test rounds, and when you are ready, begin the game. <br/><br/><h5><em><strong>Please click 'Continue' now.</strong></em><h5/>",
+      },*/
     ]);
      
     intro.start();

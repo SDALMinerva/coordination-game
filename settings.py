@@ -148,6 +148,78 @@ sequence = [
 ]
 
 DEV_CONFIGS = [
+     {
+         'name': 'test_welcome',
+         'display_name': 'Test: Welcome and Consent',
+         'num_demo_participants': 1,
+         'app_sequence': [
+                          'welcome_consent', 
+                         ],
+     },
+     {
+         'name': 'test_instructions',
+         'display_name': 'Test: Instructions',
+         'num_demo_participants': 1,
+         'app_sequence': [
+                          'instructions', 
+                         ],
+         'condition_messaging': 'none',
+         'condition_network_knowledge': 'local',
+     },
+     {
+         'name': 'test_practice',
+         'display_name': 'Test: Practice',
+         'num_demo_participants': 5,
+         'app_sequence': [
+                          'practice', 
+                         ],
+         'condition_messaging': 'wall',
+         'condition_network_knowledge': 'local',
+     },
+     {
+         'name': 'test_survey_initial',
+         'display_name': 'Test: Initial Survey',
+         'num_demo_participants': 1,
+         'app_sequence': [ 
+                          'survey_initial',
+                         ],
+     },
+     {
+         'name': 'test_main',
+         'display_name': 'Test: Main Coordination Experiment',
+         'num_demo_participants': 15,
+         'app_sequence': [ 
+                          'main',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'test_main_oneParticipant',
+         'display_name': 'Test: Main Coordination Experiment',
+         'num_demo_participants': 1,
+         'app_sequence': [ 
+                          'main',
+                         ],
+          # Rounds
+          'round_seq_file': 'seq-48rounds.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'test_survey_final',
+         'display_name': 'Test: Final Survey',
+         'num_demo_participants': 1,
+         'app_sequence': [
+                          'survey_final',
+                         ],
+     },
 ]
 
 SESSION_CONFIGS = [
@@ -246,78 +318,6 @@ SESSION_CONFIGS = [
           # Treatment Configs
           'condition_messaging': 'both',               #none, wall, bilateral, both
           'condition_network_knowledge': 'global',      #local, global
-     },
-     {
-         'name': 'test_welcome',
-         'display_name': 'Test: Welcome and Consent',
-         'num_demo_participants': 1,
-         'app_sequence': [
-                          'welcome_consent', 
-                         ],
-     },
-     {
-         'name': 'test_instructions',
-         'display_name': 'Test: Instructions',
-         'num_demo_participants': 1,
-         'app_sequence': [
-                          'instructions', 
-                         ],
-         'condition_messaging': 'none',
-         'condition_network_knowledge': 'local',
-     },
-     {
-         'name': 'test_practice',
-         'display_name': 'Test: Practice',
-         'num_demo_participants': 5,
-         'app_sequence': [
-                          'practice', 
-                         ],
-         'condition_messaging': 'wall',
-         'condition_network_knowledge': 'local',
-     },
-     {
-         'name': 'test_survey_initial',
-         'display_name': 'Test: Initial Survey',
-         'num_demo_participants': 1,
-         'app_sequence': [ 
-                          'survey_initial',
-                         ],
-     },
-     {
-         'name': 'test_main',
-         'display_name': 'Test: Main Coordination Experiment',
-         'num_demo_participants': 15,
-         'app_sequence': [ 
-                          'main',
-                         ],
-          # Rounds
-          'round_seq_file': 'seq-48rounds.json',
-          
-          # Treatment Configs
-          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'global',      #local, global
-     },
-     {
-         'name': 'test_main_oneParticipant',
-         'display_name': 'Test: Main Coordination Experiment',
-         'num_demo_participants': 1,
-         'app_sequence': [ 
-                          'main',
-                         ],
-          # Rounds
-          'round_seq_file': 'seq-48rounds.json',
-          
-          # Treatment Configs
-          'condition_messaging': 'none',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'local',      #local, global
-     },
-     {
-         'name': 'test_survey_final',
-         'display_name': 'Test: Final Survey',
-         'num_demo_participants': 1,
-         'app_sequence': [
-                          'survey_final',
-                         ],
      },
 ]
 

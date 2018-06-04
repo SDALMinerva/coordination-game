@@ -103,7 +103,7 @@ function PlayerButton(id, link) {
 
 		var media = createMediaObject(img_src, display_name, display_threshold);		
 		
-		if (link){
+		if (link == 'wall'){
 		    var element = document.createElement('a');
 		    element.id = "player-button" + id;
 		    element.href = "#" + id;
@@ -119,12 +119,12 @@ function PlayerButton(id, link) {
 				$('.user-display').empty();
 	            $('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');
 			};
-		} else {
+		} else if(link == 'bilateral') {
 		    var element = document.createElement('a');
 		    element.id = "player-button" + id;
 		    element.href = "#" + id;
-		    element.className = "list-group-item player-button clicktrack";
-		    /*element.onclick = function () {
+		    element.className = "list-group-item player-button linking-button clicktrack";
+		    element.onclick = function () {
 				chat.setActiveChannel(id);
 				wall.changeId(id);
 				chat.infoChannel.send(JSON.stringify({
@@ -134,7 +134,12 @@ function PlayerButton(id, link) {
 				$('.recipient-text').val('');
 				$('.user-display').empty();
 	            $('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');
-			};*/
+			};
+		} else {
+		    var element = document.createElement('a');
+		    element.id = "player-button" + id;
+		    element.href = "#" + id;
+		    element.className = "list-group-item player-button clicktrack";
 		}
 		
 		element.appendChild(media);

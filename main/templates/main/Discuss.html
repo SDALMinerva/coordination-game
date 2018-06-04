@@ -365,7 +365,7 @@ var displayed = false;
         {% with 'wall both' as list %}
             {% if session.config.condition_messaging in list.split %}
                 <script type="text/javascript" >
-                    var isLink = true;
+                    var isLink = 'wall';
                     var isWall = true;
                 </script>                
                 
@@ -388,7 +388,7 @@ var displayed = false;
   		{% with 'bilateral both' as list %}
   		{% if session.config.condition_messaging in list.split %}
   		        <script type="text/javascript" >
-                    var isLink = true;
+                    var isLink = 'bilateral';
                     var isWall = false;
                 </script>                
                 
@@ -411,7 +411,7 @@ var displayed = false;
         
         {% if session.config.condition_messaging == 'none' %}
           		<script type="text/javascript" >
-                    var isLink = false;
+                    var isLink = 'none';
                     var isWall = false;
                 </script>                
                 

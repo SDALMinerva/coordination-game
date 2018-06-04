@@ -82,6 +82,10 @@ class Discuss(Page):
         
         pm_counts = posted_pm_messages.values('wall__node').annotate(count=Count('wall__node'))
         pm_counts = {r['wall__node']:r['count'] for r in pm_counts}        
+
+        comm_type = self.session.config['condition_messaging']
+        network_type = self.session.config['condition_network_knowledge']
+        screenImage = 'instructions/screenshot-{}-{}.png'        
         
         return {
         'avatar': self.player.get_avatar(),
@@ -102,6 +106,7 @@ class Discuss(Page):
         'group': group_dict,
         'wall_sent_to': wall_counts,
         'pm_sent_to': pm_counts,
+        'screenImage': screenImage.format(comm_type,network_type),
         }
 
 class BeginWaitPage(WaitPage):

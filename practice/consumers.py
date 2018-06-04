@@ -54,7 +54,7 @@ def ws_receive(message):
         message.save()
 
     elif ws_data['type'] == 'private':
-        
+        print('DOING PRIVATE')
         data = ws_data['content']
         createdBy = Node.objects.get(id = data['createdBy'])
         messageRound = data['messageRound']
@@ -149,6 +149,11 @@ def ws_receive(message):
             else:
                 posted_wall_messages_from = PrivateMessage.objects.filter(wall__node = node).filter(createdBy = player_node)
                 posted_wall_messages_from = posted_wall_messages_from.exclude(deleted = True)
+
+            print('wall_to')
+            print(posted_wall_messages_to)
+            print('wall_from')
+            print(posted_wall_messages_from)            
             
             entryList =  posted_wall_messages_to | posted_wall_messages_from
             entryList.order_by('datetime')
