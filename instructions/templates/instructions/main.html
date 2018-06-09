@@ -159,6 +159,33 @@ In the decision part, you will view the messages sent to you from your friends, 
 
 </p>
 {% endif %}
+{% if session.config.condition_messaging == 'none' %}
+<p>
+This is the platform that you will use to play the game. You will use it to make a decision on whether or not to participate. On this platform, you will see:
+<ul>
+<li>
+<strong>Your Profile:</strong> your avatar (a randomly chose identity), and your threshold for the round.
+</li>
+
+<li>
+<strong>Your Group:</strong> the list of all 5 players in your group. 
+</li>
+
+<li>
+<strong>Your Friends:</strong> players in your group that you are connected to. You can see the thresholds of your friends in 'Your Friends' box.
+</li>
+
+<li>
+<strong>Your Network:</strong> a diagram showing your connections (friends) in the group. There is a gray line between your avatar and each of your friends' avatars. 
+</li>
+
+<li>
+<strong>The Network:</strong> a diagram showing the connections between all players in your group. The gray line between two avatars means that they are friends.
+</li>
+</ul>	
+
+</p>
+{% endif %}
 
 <div style="width:70%; margin: auto; border: 1px solid black;">
 <img class="img img-responsive" src="{% static screenImage %}" alt="NO IMAGE!!!!!!!">
