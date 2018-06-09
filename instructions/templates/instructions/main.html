@@ -93,29 +93,70 @@ Because each round is independent from the others and equally likely to be chose
 <h4>Platform Layout</h4>
 {% if session.config.condition_messaging == 'wall' %}
 <p>
-This is the platform that you will use to play the game. You will use it to observe other players and exchange messages (in the messaging part) 
-before you make the final decision to participate for that round. 
-Before making your participation decision, you will be given an opportunity to post messages 
-on your wall or on your friends' walls to reveal your intention to participate or not in the group event. 
-Every player has a 'wall', which is a place where messages can be posted and these messages can be viewed by friends. 
-Below is an example of a wall (Rabbit's wall in this case). You will view the posts on your wall and on your friends' walls in the decision part.
+This is the platform that you will use to play the game. On this platform, you will see:
+<ul>
+<li>
+<strong>Your Profile:</strong> your avatar (a randomly chose identity), and your threshold for the round.
+</li>
+
+<li>
+<strong>Your Group:</strong> the list of all 5 players in your group. 
+</li>
+
+<li>
+<strong>Your Friends:</strong> players in your group that you are connected to. You can see the thresholds of your friends in 'Your Friends' box.
+</li>
+
+<li>
+<strong>Your Network:</strong> a diagram showing your connections (friends) in the group. There is a gray line between your avatar and each of your friends' avatars. 
+</li>
+
+<li>
+<strong>The Network:</strong> a diagram showing the connections between all players in your group. The gray line between two avatars means that they are friends.
+</li>
+
+<li>
+<strong>The Wall Messaging Tool:</strong> Every player has a 'wall', which is a place where messages can be posted by friends and these messages can be viewed by friends. 
+Below is an example of a wall (Rabbit's wall in this case). Each round starts with a <strong>messaging part</strong> followed by a <strong>decision part</strong>. In the messaging part, you will be given an opportunity to post messages 
+"I will participate" or "I will not participate" on your wall or on your friends' walls to reveal your intention to participate or not in the group event. 
+In the decision part, you will view the posts on your wall and on your friends' walls and will make your participation decision for the round.
+</li>	
+</ul>	
+
 </p>
 {% endif %}
 {% if session.config.condition_messaging == 'bilateral' %}
 <p>
-This is the platform that you will use to play the game. You will use it to observe other players and exchange messages (in the messaging part) 
-before you make the final decision to participate for that round. 
-Before making your participation decision, you will be given an opportunity to send messages 
-to your friends to reveal your intention to participate or not in the group event. 
-Every player can read messages. Each player can only read messages sent to them directly. 
-Below is an example of a message window (Rabbit's messages in this case). Everyone will view messages from their friends in the decision part.
-</p>
-{% endif %}
-{% if session.config.condition_messaging == 'none' %}
-<p>
-This is the platform that you will use to play the game. You will use it to make a decision on whether or not to participate. 
-Here, you cannot communicate with your friends, but you can see who you are connected to and see their threshold.
-Below is an example of what the platform looks like. Everyone can view the network to which they belong and the friends to whom they are connected.
+This is the platform that you will use to play the game. On this platform, you will see:
+<ul>
+<li>
+<strong>Your Profile:</strong> your avatar (a randomly chose identity), and your threshold for the round.
+</li>
+
+<li>
+<strong>Your Group:</strong> the list of all 5 players in your group. 
+</li>
+
+<li>
+<strong>Your Friends:</strong> players in your group that you are connected to. You can see the thresholds of your friends in 'Your Friends' box.
+</li>
+
+<li>
+<strong>Your Network:</strong> a diagram showing your connections (friends) in the group. There is a gray line between your avatar and each of your friends' avatars. 
+</li>
+
+<li>
+<strong>The Network:</strong> a diagram showing the connections between all players in your group. The gray line between two avatars means that they are friends.
+</li>
+
+<li>
+<strong>The Private Messaging Tool:</strong> Every player has a 'messaging tool', which is a place to send and receive private messages among friends. 
+Below is an example of a messaging tool (Rabbit's messages in this case). Each round starts with a <strong>messaging part</strong> followed by a <strong>decision part</strong>. In the messaging part, you will be given an opportunity to send private messages 
+"I will participate" or "I will not participate" to your friends to reveal your intention to participate or not in the group event. 
+In the decision part, you will view the messages sent to you by your friends and will make your participation decision for the round.
+</li>	
+</ul>	
+
 </p>
 {% endif %}
 
