@@ -22,11 +22,11 @@
       },
       {
         element: document.querySelectorAll('.container-network')[0],
-        intro: "The network represents how people are connected in your group in a round. " +
-               "The gray line between two avatars means that they are friends. " +
-               "All of the five people in your group will be connected to some or all of the other people in the group. " + 
-               "You (and everyone else) can observe the connections between people in your group in ‘The Network’ box. " +
-               "Note that you will be assigned to a new group in each round. The shape of the network may or may not be the same in each round.",
+        intro: "Your network represents how you are connected with the rest of the players in your group in a round. " +
+               "The gray line between your avatar and another avatar means that you are friends with that player. " +
+               "All of the 5 players in your group will be connected to some or all of the other players in the group." +
+               "You can observe your connections in ‘Your Network’ box, but you cannot observe the connections between your friends or other players in this box." +
+               "<br><br>Note that you will be assigned to a new group in each round. The shape of the network may or may not be the same in each round.",
       },
       {
         element: document.querySelectorAll('.container-groupList')[0],
