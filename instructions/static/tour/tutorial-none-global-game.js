@@ -13,7 +13,7 @@ function startDecideIntro() {
       },
       {
         element: document.querySelectorAll('#reward-summary')[0],
-        intro: "Here you can see the earnings structure for the game.",
+        intro: "Here you can see the possible earnings for the round.",
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
