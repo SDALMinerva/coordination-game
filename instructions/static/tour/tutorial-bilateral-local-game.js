@@ -39,7 +39,7 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('.message-tool')[0],
-        intro: "Before making your participation decision, you will be given an opportunity to sendmessages to your friends to reveal " +
+        intro: "Before making your participation decision, you will be given an opportunity to send messages to your friends to reveal " +
                "your intention to participate or not in the group event. You have the following two messaging options to post on the walls: " +
                "1) 'I will participate', 2) 'I will not participate'. Each player can send a message only to his/her own friends. " +
                "No one can see other players’ messages. You will view the messages sent to you by your friends in the decision part. " +
@@ -110,7 +110,7 @@ function startDiscussIntro() {
       {
         element: document.querySelectorAll('#participate-group')[0],
         intro: "After reviewing the messages by friends,  each person in the group then must decide whether to participate or not " +
-               "participate in the group event for this round. After making your participation decision for the round, a new round will start. " +
+               "participate in the group event for this round. After making your participation decision for the round, a new round will start. You will not observe the outcome of the rounds." +
                "After you play all the rounds, at the end of the experiment, we will choose a random round and you will be paid based on the " +
                "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
