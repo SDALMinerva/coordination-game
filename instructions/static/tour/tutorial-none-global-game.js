@@ -17,8 +17,8 @@ function startDecideIntro() {
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "In each round, you will be connected to some or all of the other people in your group. " +
-               "They will be called Your friends, and will be listed in this box. You will also see the thresholds of your friends here. ",
+        intro: "In each round, you will be connected to some or all of the other players in your group. " +
+               "They will be called 'your friends', and will be listed in this box. You will also see the thresholds of your friends here. ",
       },
       {
         element: document.querySelectorAll('.container-network')[0],
@@ -30,7 +30,7 @@ function startDecideIntro() {
       },
       {
         element: document.querySelectorAll('.container-groupList')[0],
-        intro: "These are all the members of your group. They may or may not be included in your network. " +
+        intro: "These are all of the players in your group. Some or all of them are in your list of friends." +
                "When a player moves on to the next page and is waiting for you, it will be displayed here.  ",
       }, 
       {
