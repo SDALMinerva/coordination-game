@@ -18,8 +18,8 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "In each round, you will be connected to some or all of the other people in your group. " +
-               "They will be called Your friends, and will be listed in this box. You will also see the thresholds of your friends here. " +
+        intro: "In each round, you will be connected to some or all of the other players in your group. " +
+               "They will be called 'your friends', and will be listed in this box. You will also see the thresholds of your friends here. " +
                "<br><br>You can click on your friends' avatars to see the messages you have sent to them. ",
       },
       {
@@ -32,8 +32,8 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('.container-groupList')[0],
-        intro: "These are all the members of your group. They may or may not be included in your network. " +
-               "When a player moves on to the next page and is waiting for you, it will be displayed here.  ",
+        intro: "These are all of the players in your group. Some or all of them are your friends. " +
+               "When a player moves on to the next page and is waiting for you, it will be displayed here.",
       },
       {
         element: document.querySelectorAll('.message-tool')[0],
