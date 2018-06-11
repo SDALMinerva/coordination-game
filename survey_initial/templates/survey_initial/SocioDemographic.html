@@ -23,11 +23,6 @@ We remind you that the confidentiality of your responses will be protected.
     {% if session.is_demo %}
         <a href="#" onclick="setVals()">DEMO: Click here to fill vals.</a>
     {% endif %}
-    <h5>
-        This survey is designed to collect information about socio-demographics and preferences.  
-        Please answer the following questions as accurately as you can. 
-        We remind you that the confidentiality of your responses will be protected.
-    </h5>
 <br>
     <div class="form-group required">
     
@@ -146,8 +141,10 @@ We remind you that the confidentiality of your responses will be protected.
     
     <p class="qMarker">9. How much time do you spend during a <strong>typical week</strong> doing the following activities?</p>   
     {{q12Table|safe}}
+    {% comment %}
     <p>If other, please specify:</p>
     {% formfield player.q12o_activities_otherPrint label=""%}
+    {% endcomment %}
 
 {% endblock %}
 

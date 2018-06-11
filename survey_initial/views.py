@@ -200,8 +200,8 @@ class SocioDemographic(Page):
 #            "q12k_activities_partying",
             "q12l_activities_working",
 #            "q12m_activities_household",
-            "q12n_activities_other",
-            "q12o_activities_otherPrint",
+#            "q12n_activities_other",
+#            "q12o_activities_otherPrint",
         ]     
         
         return questions

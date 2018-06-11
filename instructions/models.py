@@ -35,13 +35,13 @@ class Player(BasePlayer):
     qb1c = models.CharField(choices = ['100 points', '50 points', '0 points'])
     
     qb2a = models.CharField(choices = ['100 points', '50 points', '0 points'])
-    qb2b = models.CharField(choices = ['100 points', '50 points', '0 points'])
+#    qb2b = models.CharField(choices = ['100 points', '50 points', '0 points'])
     qb2c = models.CharField(choices = ['100 points', '50 points', '0 points'])
     qb2d = models.CharField(choices = ['100 points', '50 points', '0 points'])
     
     qb3a = models.CharField(choices = ['100 points', '50 points', '0 points'])
-    qb3b = models.CharField(choices = ['100 points', '50 points', '0 points'])
+#    qb3b = models.CharField(choices = ['100 points', '50 points', '0 points'])
     qb3c = models.CharField(choices = ['100 points', '50 points', '0 points'])
-    qb3d = models.CharField(choices = ['100 points', '50 points', '0 points'])
+#    qb3d = models.CharField(choices = ['100 points', '50 points', '0 points'])
     qb3e = models.CharField(choices = ['100 points', '50 points', '0 points'])
     qb3f = models.CharField(choices = ['100 points', '50 points', '0 points'])
