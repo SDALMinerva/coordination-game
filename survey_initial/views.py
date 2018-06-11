@@ -197,9 +197,9 @@ class SocioDemographic(Page):
             "q12h_activities_socializing",
             "q12i_activities_socialNetworks",
             "q12j_activities_onlineGames",
-            "q12k_activities_partying",
+#            "q12k_activities_partying",
             "q12l_activities_working",
-            "q12m_activities_household",
+#            "q12m_activities_household",
             "q12n_activities_other",
             "q12o_activities_otherPrint",
         ]     
