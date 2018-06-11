@@ -14,30 +14,30 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('#reward-summary')[0],
-        intro: "Here you can see the earnings structure for the game.",
+        intro: "Here you can see the possible earnings for the round.",
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "In each round, you will be connected to some or all of the other people in your group. " +
-               "They will be called Your friends, and will be listed in this box. You will also see the thresholds of your friends here. " +
+        intro: "In each round, you will be connected to some or all of the other players in your group. " +
+               "They will be called 'your friends', and will be listed in this box. You will also see the thresholds of your friends here. " +
                "<br><br>You can click on your friends' avatars to see the messages you have sent to them. ",
       },
       {
         element: document.querySelectorAll('.container-network')[0],
-        intro: "The network represents how people are connected in your group in a round. " +
+        intro: "The network represents how players are connected in your group in a round. " +
                "The gray line between two avatars means that they are friends. " +
-               "All of the five people in your group will be connected to some or all of the other people in the group. " + 
-               "You (and everyone else) can observe the connections between people in your group in ‘The Network’ box. " +
+               "All of the 5 players in your group will be connected to some or all of the other players in the group. " + 
+               "You (and everyone else) can observe the connections between players in your group in ‘The Network’ box. " +
                "Note that you will be assigned to a new group in each round. The shape of the network may or may not be the same in each round.",
       },
       {
         element: document.querySelectorAll('.container-groupList')[0],
-        intro: "These are all the members of your group. They may or may not be included in your network. " +
-               "When a player moves on to the next page and is waiting for you, it will be displayed here.  ",
+        intro: "These are all of the players in your group. Some or all of them are in your list of friends." +
+               "When a player moves on to the next page and is waiting for you, it will be displayed here.",
       },
       {
         element: document.querySelectorAll('.message-tool')[0],
-        intro: "Before making your participation decision, you will be given an opportunity to sendmessages to your friends to reveal " +
+        intro: "Before making your participation decision, you will be given an opportunity to send messages to your friends to reveal " +
                "your intention to participate or not in the group event. You have the following two messaging options to post on the walls: " +
                "1) 'I will participate', 2) 'I will not participate'. Each player can send a message only to his/her own friends. " +
                "No one can see other players’ messages. You will view the messages sent to you by your friends in the decision part. " +
@@ -102,12 +102,12 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "You can click on your friends avatars to view messages sent by your friends.", 
+        intro: "You can click on your friends' avatars to view messages sent by your friends.", 
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
-        intro: "After reviewing the messages by friends,  each person in the group then must decide whether to participate or not " +
-               "participate in the group event for this round. After making your participation decision for the round, a new round will start. " +
+        intro: "After reviewing the messages by friends, each person in the group then must decide whether to participate or not " +
+               "participate in the group event for this round. After making your participation decision for the round, a new round will start. You will not observe the outcome of the rounds." +
                "After you play all the rounds, at the end of the experiment, we will choose a random round and you will be paid based on the " +
                "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",

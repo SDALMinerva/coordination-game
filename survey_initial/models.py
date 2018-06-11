@@ -510,10 +510,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',        
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
@@ -522,10 +522,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',        
         ],
         widget = widgets.RadioSelectHorizontal(),   
     )
@@ -534,10 +534,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',    
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
@@ -546,10 +546,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',   
         ],
         widget = widgets.RadioSelectHorizontal(),
     )
@@ -558,10 +558,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',       
         ],
         widget = widgets.RadioSelectHorizontal(),
     )
@@ -570,10 +570,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',       
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
@@ -582,10 +582,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',        
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
@@ -594,10 +594,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',       
         ],
         widget = widgets.RadioSelectHorizontal(),
     )
@@ -606,10 +606,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',     
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
@@ -618,22 +618,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
-        ],
-        widget = widgets.RadioSelectHorizontal(),    
-    )
-    q12k_activities_partying = models.CharField(
-        verbose_name = "Partying",
-        choices = [
-            'None',
-            'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',       
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
@@ -642,22 +630,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
-        ],
-        widget = widgets.RadioSelectHorizontal(),    
-    )
-    q12m_activities_household = models.CharField(
-        verbose_name = "Household duties",
-        choices = [
-            'None',
-            'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',     
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
@@ -666,10 +642,10 @@ class Player(BasePlayer):
         choices = [
             'None',
             'Less than 1 hour',
-            '1-5',
-            '6-10',
-            '11-20',
-            'Over 20',        
+            '1-5 hours',
+            '6-10 hours',
+            '11-20 hours',
+            'Over 20 hours',       
         ],
         widget = widgets.RadioSelectHorizontal(),
         blank = True,    

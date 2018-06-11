@@ -1,7 +1,6 @@
 {% load staticfiles otree_tags %}
 
 <p>
-This short quiz will test your understanding of the instructions. 
 Each question addresses a different situation for fictional players. 
 Therefore, treat each question separately. 
 Once you submit your answer, you can view the correct answer and the explanation. 
@@ -25,7 +24,7 @@ If Cat chooses <strong>participate</strong> and <strong>2 other players</strong>
 	                   <span style="display: inline-block; width: 3em;">True</span>
 	                   <div class="question-message">
 	                       <span class="glyphicon glyphicon-remove"></span>
-                           <span class="question-explain">Player Cat needs at least three other players to participate in order to earn 100 points.</span>
+                           <span class="question-explain">Player Cat needs at least 3 other players to participate in order to earn 100 points.</span>
                        </div>
 	                   </label>               
 	               </li>
@@ -35,7 +34,7 @@ If Cat chooses <strong>participate</strong> and <strong>2 other players</strong>
                           <span style="display: inline-block; width: 3em;">False</span>
                           <div class="question-message">
                           <span class="glyphicon glyphicon-ok"></span>
-                          <span class="question-explain">Player Cat needs at least three other players to participate in order to earn 100 points.</span>
+                          <span class="question-explain">Player Cat needs at least 3 other players to participate in order to earn 100 points.</span>
                           </div>                       
                        </label>
                    </li>
@@ -87,7 +86,7 @@ Suppose Tiger has a threshold <strong>T=3</strong> in a round. If Tiger chooses 
 <p>
 <strong>Question A3.</strong>
 Suppose Elephant has a threshold <strong>T=1</strong> in a round, her earning for choosing <strong>participate</strong> is always 
-equal to 100 points in that round.
+equal to 100 points.
 </p>
 <div class="row">
     <div class="col-xs-12">
@@ -99,7 +98,7 @@ equal to 100 points in that round.
 	                   <span style="display: inline-block; width: 3em;">True</span>
 	                   <div class="question-message">
 	                   <span class="glyphicon glyphicon-remove"></span>
-                       <span class="question-explain">Elephant’s earning for choosing participate is 100 points if at least 1 other player participates.</span>
+                       <span class="question-explain">Elephant needs at least 1 other player to participate in order to earn 100 points.</span>
                        </div>
 	                   </label>               
 	               </li>
@@ -109,7 +108,7 @@ equal to 100 points in that round.
                           <span style="display: inline-block; width: 3em;">False</span>
                           <div class="question-message">
                           <span class="glyphicon glyphicon-ok"></span>
-                          <span class="question-explain">Elephant’s earning for choosing participate is 100 points if at least 1 other player participates.</span>
+                          <span class="question-explain">Elephant needs at least 1 other player to participate in order to earn 100 points.</span>
                           </div>
                        </label>
                    </li>
@@ -124,18 +123,16 @@ equal to 100 points in that round.
 <h3 style="margin-top: 40px;">Part B.</h3>
 <p>
 Each question below addresses a different scenario in a particular round of a game. 
-Each circle represents a player in the game. 
-In each figure, two circles that are connected with a line mean that they are friends. 
-A circle that is not colored means that the player has not yet made a decision in the game. 
+Each avatar represents a player in the game, and two avatars that are connected with a line mean that they are friends.  
 A <span style="color: red; font-weight: bold;">red</span> circle means that the player has chosen <span style="color: red; font-weight: bold;">not participate</span> in that round. 
 A <span style="color: green; font-weight: bold;">green</span> circle means that the player has chosen <span style="color: green; font-weight: bold;">participate</span> in that round.
 </p>
 
 <p style="margin-top: 30px;">
 <strong>Question B1.</strong>
-Suppose there are <strong>3 players</strong> in the game, as shown in the figure below. 
+Suppose there are <strong>3 players</strong> in the group.
 Everyone’s threshold is <strong>T=1</strong>. 
-Each player’s choices for the round are shown by colors for three different scenarios in the figure below.
+For three different scenarios, each player’s choices are shown by colors in the figures below. What are their earnings for each of these rounds?
 </p>
 
 <div class="row">
@@ -211,9 +208,9 @@ Each player’s choices for the round are shown by colors for three different sc
 
 <p style="margin-top: 30px;">
 <strong>Question B2.</strong>
-Suppose there are <strong>3 players</strong> in the game, as shown in the figure below. 
+Suppose there are <strong>3 players</strong> in the group. 
 Everyone’s threshold is <strong>T=1</strong>. 
-Player’s choices for the round are shown by colors in the figure below (Bull and Chicken have 
+Each player’s choices for the round are shown by colors in the figure below (Bull and Chicken have 
 chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle has chosen <span style="color: red; font-weight: bold;">not participate</span>).
 </p>
 
@@ -300,7 +297,7 @@ chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle 
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
         <div class="col-xs-8 thin-text question-message qb2d" style="display: inline-block;">
-            <span class="question-explain">Eagle’s threshold is T=1: If Eagle choses participate, she needs at least 1 other player to participate to earn 100 points. Since 2 other players (Chicken and Bull) have chosen participate, she would earn 100 points.</span>
+            <span class="question-explain">Eagle’s threshold is T=1: If Eagle chooses participate, she needs at least 1 other player to participate to earn 100 points. Since 2 other players (Chicken and Bull) have chosen participate, she would earn 100 points.</span>
         </div>
     </div><!--- .controls -->
 </div><!--- .form-group -->
@@ -311,9 +308,9 @@ chosen <span style="color: green; font-weight: bold;">participate</span>, Eagle 
 
 <p style="margin-top: 30px;">
 <strong>Question B3.</strong>
-Suppose there are <strong>4 players</strong> in the game, as shown in the figure below. 
+Suppose there are <strong>4 players</strong> in the group.
 Beaver and Fish’s thresholds are <strong>T= 3</strong>; Cat and Giraffe’s thresholds are <strong>T=1</strong>. 
-Player’s choices for the round are shown by colors in the figure below (Cat and Giraffe have chosen <span style="color: green; font-weight: bold;">participate</span>, 
+Each player’s choices for the round are shown by colors in the figure below (Cat and Giraffe have chosen <span style="color: green; font-weight: bold;">participate</span>, 
 Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not participate</span>).
 </p>
 
@@ -418,7 +415,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
         <div class="col-xs-8 thin-text question-message qb3e" style="display: inline-block;">
-            <span class="question-explain">Beaver’s threshold is T=3: If Beaver choses participate, she needs at least 3 other players to participate to earn 100 points. Since only 2 other players (Giraffe and Cat) have chosen participate, she would earn 0 points.</span>
+            <span class="question-explain">Beaver’s threshold is T=3: If Beaver chooses participate, she needs at least 3 other players to participate to earn 100 points. Since only 2 other players (Giraffe and Cat) have chosen participate, she would earn 0 points.</span>
         </div>
     </div><!--- .controls -->
 </div><!--- .form-group -->
@@ -426,7 +423,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
 
 <div class="row in-line-select">
 <div class="form-group required ''">
-    <label class="control-label" for="id_qb3f">If Beaver and Fish had chosen to participate, their earnings would be:</label>
+    <label class="control-label" for="id_qb3f">If Beaver and Fish had chosen to participate, Beaver's earnings would be:</label>
     <div class="controls  field-qb3f">
         <div class="col-xs-4" style="display: inline-block; min-width: 205px;">
         <select name="qb3f" required id="id_qb3f" class="form-control" style="display: inline-block">
@@ -438,7 +435,7 @@ Beaver and Fish have chosen <span style="color: red; font-weight: bold;">not par
         <span style="padding-left: 5px; display: inline-block;" class="question-icon glyphicon glyphicon-ok"></span>
         </div>
         <div class="col-xs-8 thin-text question-message qb3f" style="display: inline-block;">
-            <span class="question-explain">Beaver’s threshold is T=3: If Beaver choses participate, she needs at least 3 other players to participate to earn 100 points. Since 3 other players (Giraffe, Cat and Fish) would have chosen participate in this scenario, she would earn 100 points.</span>
+            <span class="question-explain">Beaver’s threshold is T=3: If Beaver chooses participate, she needs at least 3 other players to participate to earn 100 points. Since 3 other players (Giraffe, Cat and Fish) would have chosen participate in this scenario, she would earn 100 points.</span>
         </div>
     </div><!--- .controls -->
 </div><!--- .form-group -->

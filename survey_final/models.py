@@ -32,6 +32,7 @@ class Player(BasePlayer):
         choices = [
             'Never',
             'Once a year',
+            'A couple of times a year',
             'A few times a month',
             '1-2 times a week',
             'A couple of times a week',
@@ -45,11 +46,12 @@ class Player(BasePlayer):
         choices = [
             'Never',
             'Once a year',
+            'A couple of times a year',
             'A few times a month',
             '1-2 times a week',
             'A couple of times a week',
             'Once a day',
-            'More than once a day',        
+            'More than once a day',      
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
@@ -58,11 +60,12 @@ class Player(BasePlayer):
         choices = [
             'Never',
             'Once a year',
+            'A couple of times a year',
             'A few times a month',
             '1-2 times a week',
             'A couple of times a week',
             'Once a day',
-            'More than once a day',        
+            'More than once a day',       
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
@@ -71,6 +74,7 @@ class Player(BasePlayer):
         choices = [
             'Never',
             'Once a year',
+            'A couple of times a year',
             'A few times a month',
             '1-2 times a week',
             'A couple of times a week',
@@ -84,11 +88,12 @@ class Player(BasePlayer):
         choices = [
             'Never',
             'Once a year',
+            'A couple of times a year',
             'A few times a month',
             '1-2 times a week',
             'A couple of times a week',
             'Once a day',
-            'More than once a day',        
+            'More than once a day',     
         ],
         widget = widgets.RadioSelectHorizontal(),            
     )
@@ -97,11 +102,12 @@ class Player(BasePlayer):
         choices = [
             'Never',
             'Once a year',
+            'A couple of times a year',
             'A few times a month',
             '1-2 times a week',
             'A couple of times a week',
             'Once a day',
-            'More than once a day',        
+            'More than once a day',       
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
@@ -110,6 +116,7 @@ class Player(BasePlayer):
         choices = [
             'Never',
             'Once a year',
+            'A couple of times a year',
             'A few times a month',
             '1-2 times a week',
             'A couple of times a week',
@@ -123,11 +130,12 @@ class Player(BasePlayer):
         choices = [
             'Never',
             'Once a year',
+            'A couple of times a year',
             'A few times a month',
             '1-2 times a week',
             'A couple of times a week',
             'Once a day',
-            'More than once a day',        
+            'More than once a day',       
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
