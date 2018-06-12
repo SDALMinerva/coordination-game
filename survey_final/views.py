@@ -8,6 +8,9 @@ class SocioDemographic(Page):
     form_model = models.Player
     is_debug = False
 
+    def is_displayed(self):
+        return self.participant.vars['consent']
+
     def makeCheckTable(self, qName, choices, table_rows):
                       
         header = ''.join(['<th class="verticalTableHeader"><div><p>{}</p></div></th>'.format(c) for c in choices])
@@ -58,6 +61,7 @@ class SocioDemographic(Page):
     <col style="background-color:#fff; width: 30px;">
     <col style="background-color:#eee; width: 30px;">
     <col style="background-color:#fff; width: 30px;">
+    <col style="background-color:#eee; width: 30px;">
   </colgroup>
     <thead>
         <tr>
@@ -151,7 +155,8 @@ class SocioDemographic(Page):
             'Meetup',
             'Nextdoor',
             'Snapchat',
-            'Weibo',        
+            'Weibo',
+            'WeChat',        
         ]
         
         rows = [
@@ -165,8 +170,8 @@ class SocioDemographic(Page):
             ("money", "To make money"),
             ("games", "To play games"),
             ("research", "Research"),
-            ("other", "Other"),
-            ("dont_use","I don’t use this social networking site"),
+#            ("other", "Other"),
+#            ("dont_use","I don’t use this social networking site"),
         ]        
         
         return {
@@ -177,10 +182,12 @@ class SocioDemographic(Page):
 
 
 class SocioDemographic13(SocioDemographic):
+    def is_displayed(self):
+        return self.participant.vars['consent']
     def get_form_fields(self):
         questions = [
-            "q13a_transportation",
-            "q13b_volunteer",
+#            "q13a_transportation",
+#            "q13b_volunteer",
             "q13c_donations",
             "q13d_discussPolitics",
             "q13e_communicate",
@@ -192,6 +199,8 @@ class SocioDemographic13(SocioDemographic):
         return questions
     
 class SocioDemographic14(SocioDemographic):
+    def is_displayed(self):
+        return self.participant.vars['consent']
     def get_form_fields(self):
         questions = [
             "q14_l_networking_otherPrint",             
@@ -207,7 +216,8 @@ class SocioDemographic14(SocioDemographic):
             'Meetup',
             'Nextdoor',
             'Snapchat',
-            'Weibo',        
+            'Weibo',
+            'WeChat',        
         ]
         
         rows = [
@@ -221,8 +231,8 @@ class SocioDemographic14(SocioDemographic):
             ("money", "To make money"),
             ("games", "To play games"),
             ("research", "Research"),
-            ("other", "Other"),
-            ("dont_use","I don’t use this social networking site"),
+#            ("other", "Other"),
+#            ("wechat","I don’t use this social networking site"),
         ]
         i = 0
         for r in rows:
@@ -234,6 +244,8 @@ class SocioDemographic14(SocioDemographic):
         return questions
 
 class SocioDemographic15(SocioDemographic):
+    def is_displayed(self):
+        return self.participant.vars['consent']
     def get_form_fields(self):
         questions = [
             "q15a_ethics_wealth",
@@ -246,6 +258,8 @@ class SocioDemographic15(SocioDemographic):
 
 
 class Behavioral1(Page):
+    def is_displayed(self):
+        return self.participant.vars['consent']
     form_model = models.Player
     form_fields = [
         "daringness",
@@ -271,6 +285,8 @@ class Behavioral1(Page):
         
 
 class Results(Page):
+    def is_displayed(self):
+        return self.participant.vars['consent']
     def vars_for_template(self):
         return {
             'payoff_currency': self.participant.payoff.to_real_world_currency(self.session) - self.player.payoff.to_real_world_currency(self.session),

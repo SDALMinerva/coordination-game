@@ -2,7 +2,10 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-Round 1: Decision Part
+Round 1: Decision 
+{% if session.config.condition_messaging != 'none' %}    
+    Part
+    {% endif %}
 {% endblock %}
 
 {% block avatar %}
@@ -49,8 +52,8 @@ Round 1: Decision Part
     <label class="control-label" for="id_participate">Will you participate?</label>
     <div class="controls  field-participate">
         <ul>
-	       <li><label for="id_participate_1"><input type="radio" id="id_participate_1" value="True"> Yes</label></li>
-	       <li><label for="id_participate_2"><input type="radio" id="id_participate_2" value="False"> No</label></li>
+	       <li><label for="id_participate_1"><input name="participate" type="radio" id="id_participate_1" value="True"> Yes</label></li>
+	       <li><label for="id_participate_2"><input name="participate" type="radio" id="id_participate_2" value="False"> No</label></li>
         </ul>
     </div><!--- .controls -->
 </div><!--- .form-group -->

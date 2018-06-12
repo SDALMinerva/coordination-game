@@ -17,15 +17,15 @@ Main Coordination Game
 
 
 # Open Round Specification
-with open('./main/round_specs/seq-48rounds.json') as oFile:
-    round_specs = json.load(oFile)
+#with open('./main/round_specs/seq-48rounds.json') as oFile:
+#    round_specs = json.load(oFile)
 
 
 class Constants(BaseConstants):
     name_in_url = 'main'
     chat_name = 'chat'
     players_per_group = None               #EDIT: Make flexible with number of players.
-    num_rounds = 24                      #EDIT: Make adjustable from session config.
+    num_rounds = 15                      #EDIT: Make adjustable from session config.
     num_messaging_rounds = 1            #EDIT: Make adjustable from session config.
     messages = {
             1: 'I will participate.',
@@ -45,7 +45,9 @@ class Subsession(BaseSubsession):
         #### BEGIN GROUP ASSIGNMENT / BOT ADJUSTMENT ####
         #################################################
         
-        # To-do: Handle Dropouts mid-game.
+        fName = self.session.config['round_seq_file']
+        with open('./main/round_specs/{}'.format(fName)) as oFile:
+            round_specs = json.load(oFile)
         
         # Player Assignment from Round Specification
         n_players = self.session.num_participants
@@ -62,15 +64,15 @@ class Subsession(BaseSubsession):
             p.avatar = Avatar.objects.get(src = next(avatar_assignments))
             p.user_name = p.avatar.name.split('-')[0]
             
-
-        # Set up network (every group in subsession)
-        # Only create network for active players.
-        network_spec = round_specs[str(self.round_number)]['network']
-        network_type, network_threshold = network_spec.split('-')
-        network_threshold = [int(x) for x in network_threshold if x.isdigit()]
-        
         group_id = 0
         for group, eligible_players in zip(group_matrix_full, group_matrix):
+
+            # Set up network (every group in subsession)
+            # Only create network for active players.
+            network_spec = round_specs[str(self.round_number)]['network'][str(group_id + 1)] #dictionary
+            network_type, network_threshold = network_spec.split('-')
+            network_threshold = [int(x) for x in network_threshold if x.isdigit()]            
+            
             network = Network(n_nodes = len(group), 
                         description = network_spec,
                         nType = network_type)                     

@@ -637,23 +637,23 @@ class Player(BasePlayer):
         ],
         widget = widgets.RadioSelectHorizontal(),    
     )
-    q12n_activities_other = models.CharField(
-        verbose_name = "Other",
-        choices = [
-            'None',
-            'Less than 1 hour',
-            '1-5 hours',
-            '6-10 hours',
-            '11-20 hours',
-            'Over 20 hours',       
-        ],
-        widget = widgets.RadioSelectHorizontal(),
-        blank = True,    
-    )
-    q12o_activities_otherPrint = models.CharField(
-        verbose_name = "If other, please print",
-        blank = True, 
-    ) 
+#    q12n_activities_other = models.CharField(
+#        verbose_name = "Other",
+#        choices = [
+#            'None',
+#            'Less than 1 hour',
+#            '1-5 hours',
+#            '6-10 hours',
+#            '11-20 hours',
+#            'Over 20 hours',       
+#        ],
+#        widget = widgets.RadioSelectHorizontal(),
+#        blank = True,    
+#    )
+#    q12o_activities_otherPrint = models.CharField(
+#        verbose_name = "If other, please print",
+#        blank = True, 
+#    ) 
     
         
         

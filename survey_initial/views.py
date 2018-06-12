@@ -5,10 +5,15 @@ from .models import Constants
 
 class Intro(Page):
     template_name = "survey_initial/intro.html"
+    def is_displayed(self):
+        return self.participant.vars['consent']
     
 class SocioDemographic(Page):
     form_model = models.Player
     is_debug = False
+
+    def is_displayed(self):
+        return self.participant.vars['consent']
 
     def makeCheckTable(self, qName, choices, table_rows):
                       
@@ -197,11 +202,11 @@ class SocioDemographic(Page):
             "q12h_activities_socializing",
             "q12i_activities_socialNetworks",
             "q12j_activities_onlineGames",
-            "q12k_activities_partying",
+#            "q12k_activities_partying",
             "q12l_activities_working",
-            "q12m_activities_household",
-            "q12n_activities_other",
-            "q12o_activities_otherPrint",
+#            "q12m_activities_household",
+#            "q12n_activities_other",
+#            "q12o_activities_otherPrint",
         ]     
         
         return questions
@@ -242,6 +247,8 @@ class SocioDemographic(Page):
 
 
 class Behavioral1(Page):
+    def is_displayed(self):
+        return self.participant.vars['consent']
     form_model = models.Player
     form_fields = [
         "daringness",
@@ -254,6 +261,8 @@ class Behavioral1(Page):
 
 
 class Behavioral2(Page):
+    def is_displayed(self):
+        return self.participant.vars['consent']
     form_model = models.Player
     form_fields = ['timeScenerio_{}'.format(i) for i in range(1, 26)]
     
@@ -289,6 +298,8 @@ class Behavioral2(Page):
 
 
 class Behavioral3(Page):
+    def is_displayed(self):
+        return self.participant.vars['consent']
     form_model = models.Player
     form_fields = ['coinScenerio_{}'.format(i) for i in range(1, 32)]
     
@@ -297,11 +308,15 @@ class Behavioral3(Page):
 
     
 class ResultsWaitPage(WaitPage):
+    def is_displayed(self):
+        return self.participant.vars['consent']
     def after_all_players_arrive(self):
         pass
 
 
 class Results(Page):
+    def is_displayed(self):
+        return self.participant.vars['consent']
     pass
 
 

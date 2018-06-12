@@ -27,34 +27,34 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # Question 13
-    q13a_transportation = models.CharField(
-        verbose_name = "Used public transportation",
-        choices = [
-            'Never',
-            'Once a year',
-            'A couple of times a year',
-            'A few times a month',
-            '1-2 times a week',
-            'A couple of times a week',
-            'Once a day',
-            'More than once a day',        
-        ],
-        widget = widgets.RadioSelectHorizontal(),    
-    )
-    q13b_volunteer = models.CharField(
-        verbose_name = "Performed volunteer work",
-        choices = [
-            'Never',
-            'Once a year',
-            'A couple of times a year',
-            'A few times a month',
-            '1-2 times a week',
-            'A couple of times a week',
-            'Once a day',
-            'More than once a day',      
-        ],
-        widget = widgets.RadioSelectHorizontal(),    
-    )
+#    q13a_transportation = models.CharField(
+#        verbose_name = "Used public transportation",
+#        choices = [
+#            'Never',
+#            'Once a year',
+#            'A couple of times a year',
+#            'A few times a month',
+#            '1-2 times a week',
+#            'A couple of times a week',
+#            'Once a day',
+#            'More than once a day',        
+#        ],
+#        widget = widgets.RadioSelectHorizontal(),    
+#    )
+#    q13b_volunteer = models.CharField(
+#        verbose_name = "Performed volunteer work",
+#        choices = [
+#            'Never',
+#            'Once a year',
+#            'A couple of times a year',
+#            'A few times a month',
+#            '1-2 times a week',
+#            'A couple of times a week',
+#            'Once a day',
+#            'More than once a day',      
+#        ],
+#        widget = widgets.RadioSelectHorizontal(),    
+#    )
     q13c_donations = models.CharField(
         verbose_name = "Helped raise donations (e.g., money, books) for a cause or campaign",
         choices = [
@@ -512,7 +512,8 @@ columns = [
             'Meetup',
             'Nextdoor',
             'Snapchat',
-            'Weibo',        
+            'Weibo',
+            'WeChat',        
         ]
         
 rows = [
@@ -526,8 +527,8 @@ rows = [
     ("money", "To make money"),
     ("games", "To play games"),
     ("research", "Research"),
-    ("other", "Other"),
-    ("dont_use","I don’t use this social networking site"),
+#    ("other", "Other"),
+#    ("dont_use","I don’t use this social networking site"),
 ]
 
 i = 0
