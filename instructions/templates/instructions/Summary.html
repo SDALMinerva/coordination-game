@@ -6,14 +6,8 @@ Summary of the Instructions
 {% endblock %}
 
 {% block content %}
-
-<h5>
-A summary of the instructions is available below.
-</h5>
-
 <div class="card">
   <div class="card-block">
-    <h4 class="card-title">Summary of Instructions</h4>
     <ul style="font-size: 10pt;">
     {% if session.config.condition_messaging == 'bilateral'%}
     {% include "instructions/private-messaging-summary.html" %}

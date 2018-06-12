@@ -58,6 +58,7 @@ class SocioDemographic(Page):
     <col style="background-color:#fff; width: 30px;">
     <col style="background-color:#eee; width: 30px;">
     <col style="background-color:#fff; width: 30px;">
+    <col style="background-color:#eee; width: 30px;">
   </colgroup>
     <thead>
         <tr>
@@ -151,7 +152,8 @@ class SocioDemographic(Page):
             'Meetup',
             'Nextdoor',
             'Snapchat',
-            'Weibo',        
+            'Weibo',
+            'WeChat',        
         ]
         
         rows = [
@@ -165,8 +167,8 @@ class SocioDemographic(Page):
             ("money", "To make money"),
             ("games", "To play games"),
             ("research", "Research"),
-            ("other", "Other"),
-            ("dont_use","I don’t use this social networking site"),
+#            ("other", "Other"),
+#            ("dont_use","I don’t use this social networking site"),
         ]        
         
         return {
@@ -179,8 +181,8 @@ class SocioDemographic(Page):
 class SocioDemographic13(SocioDemographic):
     def get_form_fields(self):
         questions = [
-            "q13a_transportation",
-            "q13b_volunteer",
+#            "q13a_transportation",
+#            "q13b_volunteer",
             "q13c_donations",
             "q13d_discussPolitics",
             "q13e_communicate",
@@ -207,7 +209,8 @@ class SocioDemographic14(SocioDemographic):
             'Meetup',
             'Nextdoor',
             'Snapchat',
-            'Weibo',        
+            'Weibo',
+            'WeChat',        
         ]
         
         rows = [
@@ -221,8 +224,8 @@ class SocioDemographic14(SocioDemographic):
             ("money", "To make money"),
             ("games", "To play games"),
             ("research", "Research"),
-            ("other", "Other"),
-            ("dont_use","I don’t use this social networking site"),
+#            ("other", "Other"),
+#            ("wechat","I don’t use this social networking site"),
         ]
         i = 0
         for r in rows:
