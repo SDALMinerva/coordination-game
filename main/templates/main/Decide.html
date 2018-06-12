@@ -2,7 +2,10 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    {% block practice %}{% endblock %}Round {{subsession.round_number}}: Decision Part
+    {% block practice %}{% endblock %}Round {{subsession.round_number}}: Decision 
+    {% if session.config.condition_messaging != 'none' %}    
+    Part
+    {% endif %}
 {% endblock %}
 
 {% block beginModal %}

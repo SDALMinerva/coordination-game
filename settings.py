@@ -115,7 +115,7 @@ mturk_hit_settings = {
 
 SESSION_CONFIG_DEFAULTS = {
     # AMT Configs
-    'real_world_currency_per_point': 0.1,
+    'real_world_currency_per_point': 0.15,
     'participation_fee': 7.00,
     'doc': "",
     'mturk_hit_settings': mturk_hit_settings,
@@ -206,7 +206,7 @@ DEV_CONFIGS = [
                           'main',
                          ],
           # Rounds
-          'round_seq_file': 'seq-48rounds.json',
+          'round_seq_file': 'seq-15rounds-123-high_low.json',
           
           # Treatment Configs
           'condition_messaging': 'none',               #none, wall, bilateral, both
@@ -248,76 +248,292 @@ DEV_CONFIGS = [
 
 SESSION_CONFIGS = [
     {
-         'name': 'run_group3_treatment1',
-         'display_name': '[1] Run: Groups, 3; Messaging, none; Network Knowledge, local',
+         'name': 'Session_1_none_local_456_highlow',
+         'display_name': '[Session 1] Run: Groups, 3; Messaging, none; Network Knowledge, local; Seq, 456; Order, H-L',
          'num_demo_participants': 1,
          'app_sequence': sequence,
           # Rounds
-          'round_seq_file': 'seq-48rounds.json',
+          'round_seq_file': 'seq-15rounds-456-high_low.json',
           
           # Treatment Configs
           'condition_messaging': 'none',               #none, wall, bilateral, both
           'condition_network_knowledge': 'local',      #local, global
      },
      {
-         'name': 'run_group3_treatment2',
-         'display_name': '[2] Run: Groups, 3; Messaging, wall; Network Knowledge, local',
+         'name': 'Session_2_none_global_123_highlow',
+         'display_name': '[Session 2] Run: Groups, 3; Messaging, none; Network Knowledge, global; Seq, 123; Order, H-L',
          'num_demo_participants': 1,
          'app_sequence': sequence,
           # Rounds
-          'round_seq_file': 'seq-48rounds.json',
-          
-          # Treatment Configs
-          'condition_messaging': 'wall',               #none, wall, bilateral, both
-          'condition_network_knowledge': 'local',      #local, global
-     },
-     {
-         'name': 'run_group3_treatment3',
-         'display_name': '[3] Run: Groups, 3; Messaging, bilateral; Network Knowledge, local',
-         'num_demo_participants': 1,
-         'app_sequence': sequence,
-          # Rounds
-          'round_seq_file': 'seq-48rounds.json',
-          
-          # Treatment Configs
-          'condition_messaging': 'bilateral',           #none, wall, bilateral, both
-          'condition_network_knowledge': 'local',      #local, global
-     },
-     {
-         'name': 'run_group3_treatment5',
-         'display_name': '[5] Run: Groups, 3; Messaging, none; Network Knowledge, global',
-         'num_demo_participants': 1,
-         'app_sequence': sequence,
-          # Rounds
-          'round_seq_file': 'seq-48rounds.json',
+          'round_seq_file': 'seq-15rounds-123-high_low.json',
           
           # Treatment Configs
           'condition_messaging': 'none',               #none, wall, bilateral, both
           'condition_network_knowledge': 'global',      #local, global
      },
      {
-         'name': 'run_group3_treatment6',
-         'display_name': '[6] Run: Groups, 3; Messaging, wall; Network Knowledge, global',
+         'name': 'Session_3_wall_global_123_lowhigh',
+         'display_name': '[Session 3] Run: Groups, 3; Messaging, wall; Network Knowledge, global; Seq, 123; Order, L-H',
          'num_demo_participants': 1,
          'app_sequence': sequence,
           # Rounds
-          'round_seq_file': 'seq-48rounds.json',
+          'round_seq_file': 'seq-15rounds-123-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',           #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'Session_4_wall_global_456_highlow',
+         'display_name': '[Session 4] Run: Groups, 3; Messaging, wall; Network Knowledge, global; Seq, 456; Order, H-L',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-high_low.json',
           
           # Treatment Configs
           'condition_messaging': 'wall',               #none, wall, bilateral, both
           'condition_network_knowledge': 'global',      #local, global
      },
      {
-         'name': 'run_group3_treatment7',
-         'display_name': '[7] Run: Groups, 3; Messaging, bilateral; Network Knowledge, global',
+         'name': 'Session_5_bilateral_local_123_lowhigh',
+         'display_name': '[Session 5] Run: Groups, 3; Messaging, bilateral; Network Knowledge, local; Seq, 123; Order, L-H',
          'num_demo_participants': 1,
          'app_sequence': sequence,
           # Rounds
-          'round_seq_file': 'seq-48rounds.json',
+          'round_seq_file': 'seq-15rounds-123-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'Session_6_bilateral_global_123_lowhigh',
+         'display_name': '[Session 6] Run: Groups, 3; Messaging, bilateral; Network Knowledge, global; Seq, 123; Order, L-H',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-123-low_high.json',
           
           # Treatment Configs
           'condition_messaging': 'bilateral',               #none, wall, bilateral, both
           'condition_network_knowledge': 'global',      #local, global
+     },
+         {
+         'name': 'Session_7_wall_local_456_highlow',
+         'display_name': '[Session 7] Run: Groups, 3; Messaging, wall; Network Knowledge, local; Seq, 456; Order, H-L',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-high_low.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'Session_8_bilateral_local_123_highlow',
+         'display_name': '[Session 8] Run: Groups, 3; Messaging, bilateral; Network Knowledge, local; Seq, 123; Order, H-L',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-123-high_low.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'Session_9_wall_global_123_highlow',
+         'display_name': '[Session 9] Run: Groups, 3; Messaging, wall; Network Knowledge, global; Seq, 123; Order, H-L',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-123-high_low.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',           #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'Session_10_none_global_456_highlow',
+         'display_name': '[Session 10] Run: Groups, 3; Messaging, none; Network Knowledge, global; Seq, 456; Order, H-L',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-high_low.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'Session_11_none_local_456_lowhigh',
+         'display_name': '[Session 11] Run: Groups, 3; Messaging, none; Network Knowledge, local; Seq, 456; Order, L-H',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'Session_12_bilateral_global_123_highlow',
+         'display_name': '[Session 12] Run: Groups, 3; Messaging, bilateral; Network Knowledge, global; Seq, 123; Order, H-L',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-123-high_low.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'Session_13_bilateral_global_456_highlow',
+         'display_name': '[Session 13] Run: Groups, 3; Messaging, bilateral; Network Knowledge, global; Seq, 456; Order, H-L',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-high_low.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'Session_14_wall_local_123_highlow',
+         'display_name': '[Session 14] Run: Groups, 3; Messaging, wall; Network Knowledge, local; Seq, 123; Order, H-L',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-123-high_low.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'Session_15_wall_global_456_lowhigh',
+         'display_name': '[Session 15] Run: Groups, 3; Messaging, wall; Network Knowledge, global; Seq, 456; Order, L-H',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',           #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'Session_16_none_local_123_highlow',
+         'display_name': '[Session 16] Run: Groups, 3; Messaging, none; Network Knowledge, local; Seq, 123; Order, H-L',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-123-high_low.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'Session_17_none_global_123_lowhigh',
+         'display_name': '[Session 17] Run: Groups, 3; Messaging, none; Network Knowledge, global; Seq, 123; Order, L-H',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-123-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'Session_18_bilateral_global_456_lowhigh',
+         'display_name': '[Session 18] Run: Groups, 3; Messaging, bilateral; Network Knowledge, global; Seq, 456; Order, L-H',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+          {
+         'name': 'Session_19_none_global_456_lowhigh',
+         'display_name': '[Session 19] Run: Groups, 3; Messaging, none; Network Knowledge, global; Seq, 456; Order, L-H',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'global',      #local, global
+     },
+     {
+         'name': 'Session_20_wall_local_456_lowhigh',
+         'display_name': '[Session 20] Run: Groups, 3; Messaging, wall; Network Knowledge, local; Seq, 456; Order, L-H',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'Session_21_wall_local_123_lowhigh',
+         'display_name': '[Session 21] Run: Groups, 3; Messaging, wall; Network Knowledge, local; Seq, 123; Order, L-H',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-123-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'wall',           #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'Session_22_bilateral_local_456_highlow',
+         'display_name': '[Session 22] Run: Groups, 3; Messaging, bilateral; Network Knowledge, local; Seq, 456; Order, H-L',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-high_low.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'Session_23_none_local_123_lowhigh',
+         'display_name': '[Session 23] Run: Groups, 3; Messaging, none; Network Knowledge, local; Seq, 123; Order, L-H',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-123-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
+     },
+     {
+         'name': 'Session_24_bilateral_local_456_lowhigh',
+         'display_name': '[Session 24] Run: Groups, 3; Messaging, bilateral; Network Knowledge, local; Seq, 456; Order, L-H',
+         'num_demo_participants': 1,
+         'app_sequence': sequence,
+          # Rounds
+          'round_seq_file': 'seq-15rounds-456-low_high.json',
+          
+          # Treatment Configs
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_network_knowledge': 'local',      #local, global
      },
 ]
 

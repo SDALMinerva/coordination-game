@@ -2,7 +2,10 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-Round 1: Decision Part
+Round 1: Decision 
+{% if session.config.condition_messaging != 'none' %}    
+    Part
+    {% endif %}
 {% endblock %}
 
 {% block avatar %}
