@@ -21,11 +21,12 @@ class ResultsWaitPage(WaitPage):
         pass
 
 class Results(Page):
-    pass
+    def is_displayed(self):
+        return not self.participant.vars['consent']
 
 
 page_sequence = [
     WelcomePage,
     ConsentPage,
-#    Results
+    Results,
 ]

@@ -11,7 +11,7 @@ class AssignAvatar(Page):
     template_name = 'practice/AssignAvatar.html'
     
     def is_displayed(self):
-        return self.participant.vars['practice-continue']
+        return self.participant.vars['practice-continue'] and self.participant.vars['consent']
         
     pass
 
@@ -20,7 +20,7 @@ class Discuss(Page):
     template_name = 'practice/Discuss.html'
 
     def is_displayed(self):
-        return self.participant.vars['practice-continue'] and (self.subsession.session.config['condition_messaging'] != 'none')
+        return self.participant.vars['practice-continue'] and (self.subsession.session.config['condition_messaging'] != 'none') and self.participant.vars['consent']
 
     def vars_for_template(self):
         group_players = self.group.get_players()
@@ -101,7 +101,7 @@ class BeginWaitPage(WaitPage):
     template_name = 'main/wait_page.html'
 
     def is_displayed(self):
-        return self.participant.vars['practice-continue']
+        return self.participant.vars['practice-continue'] and self.participant.vars['consent']
 
     def after_all_players_arrive(self):
         pass
@@ -112,7 +112,7 @@ class IntermediateWaitPage(WaitPage):
     template_name = 'main/wait_page.html'
 
     def is_displayed(self):
-        return self.participant.vars['practice-continue']
+        return self.participant.vars['practice-continue'] and self.participant.vars['consent']
 
     def after_all_players_arrive(self):
         group_players = self.group.get_players()
@@ -149,7 +149,7 @@ class EndWaitPage(WaitPage):
     template_name = 'main/wait_page.html'
 
     def is_displayed(self):
-        return self.participant.vars['practice-continue']
+        return self.participant.vars['practice-continue'] and self.participant.vars['consent']
 
     def after_all_players_arrive(self):
 
@@ -170,7 +170,7 @@ class Decide(Discuss):
     template_name = 'practice/Decide.html'
 
     def is_displayed(self):
-        return self.participant.vars['practice-continue']    
+        return self.participant.vars['practice-continue'] and self.participant.vars['consent']   
     
     form_model = models.Player
     form_fields = [
@@ -185,7 +185,7 @@ class Continue(Page):
             self.template_name = 'practice/PracticeEnd.html'
         else:
             self.template_name = 'practice/Continue.html'
-        return self.participant.vars['practice-continue']
+        return self.participant.vars['practice-continue'] and self.participant.vars['consent']
 
     def before_next_page(self):
         self.participant.vars['practice-continue'] = self.player.continue_practice
@@ -200,7 +200,7 @@ class Intro(Page):
     template_name = 'practice/intro.html'
     
     def is_displayed(self):
-        return self.subsession.round_number == 1
+        return (self.subsession.round_number == 1) and self.participant.vars['consent']
 
 messaging_apps = [x for i in range(Constants.num_messaging_rounds) for x in [Discuss, IntermediateWaitPage]]
 seq = [Intro, AssignAvatar, BeginWaitPage]
