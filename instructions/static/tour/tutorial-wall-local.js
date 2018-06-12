@@ -17,23 +17,23 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "In each round, you will be connected to some or all of the other people in your group. " +
-               "They will be called Your friends, and will be listed in this box. You will also see the thresholds of your friends here. " +
+        intro: "In each round, you will be connected to some or all of the other players in your group. " +
+               "They will be called 'your friends', and will be listed in this box. You will also see the thresholds of your friends here. " +
                "<br><br>You can click on your friends' avatars to see their page. " +
                "You can also see their friends (and their thresholds) on their pages, and you can post messages on your friends’ walls. " +
                "Try clicking on a few to see their walls. ",
       },
       {
         element: document.querySelectorAll('.container-network')[0],
-        intro: "Your network represents how you are connected with the rest of the people in your group in a round. " +
+        intro: "Your network represents how you are connected with the rest of the players in your group in a round. " +
                "The gray line between your avatar and another avatar means that you are friends with that player.  " +
-               "All of the five people in your group will be connected to some or all of the other people in the group. " +
+               "All of the 5 players in your group will be connected to some or all of the other players in the group. " +
                "You can observe your connections in ‘Your Network’ box, but you cannot observe the connections between your friends or other players in this box. " +
                "<br><br>Note that you will be assigned to a new group in each round. The shape of the network may or may not be the same in each round.",
       },
       {
         element: document.querySelectorAll('.container-groupList')[0],
-        intro: "These are all the members of your group. They may or may not be included in your network. " +
+        intro: "These are all of the players in your group. Some or all of them are in your list of friends." +
                "When a player moves on to the next page and is waiting for you, it will be displayed here.  ",
       },
       {
@@ -46,7 +46,7 @@ function startDiscussIntro() {
                "You will view the posts on your wall and on your friends' walls in the decision part. " +
                "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu) to post a message on the recipient’s wall. " +
                "You also have the option to send to 'All Friends' which means posting on all of your friends’ walls. " +
-               "During the game, click the 'Post Message' button, to post your messages on the recipient’s wall.",
+               "Click the 'Post Message' button, to post your messages on the recipient’s wall.",
         position: "top",
         disableInteraction: false,
         position: "right",
@@ -107,12 +107,12 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "You can click on your friends avatars to view their walls and the messages posted on them by their friends.", 
+        intro: "You can click on your friends' avatars to view their walls and the messages posted on them by their friends.", 
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
-        intro: "After reviewing the messages by friends,  each person in the group then must decide whether to participate or not " +
-               "participate in the group event for this round. After making your participation decision for the round, a new round will start. " +
+        intro: "After reviewing the messages by friends, each person in the group then must decide whether to participate or not " +
+               "participate in the group event for this round. After making your participation decision for the round, a new round will start. <br><br>You will not observe the outcome of the rounds." +
                "After you play all the rounds, at the end of the experiment, we will choose a random round and you will be paid based on the " +
                "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
