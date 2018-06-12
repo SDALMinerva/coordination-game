@@ -7,15 +7,13 @@ function startDiscussIntro() {
     intro.addSteps([
       {
         element: document.querySelectorAll('#playerDiv')[0],
-        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>. " +
-               "In this example above, your avatar is <strong>Cow</strong> and your <strong>threshold T=1</strong>. " +
-               "Note that, in each round, everyone will be assigned a new avatar and a new threshold. " +
+        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>." +
 
-               "<br><br>You can click on your avatar at any time to see your own wall.",
+               "<br><br>In each round, everyone will be assigned a new avatar and a new threshold.",
       },
       {
         element: document.querySelectorAll('#reward-summary')[0],
-        intro: "Here you can see the earnings structure for the game.",
+        intro: "Here you can see the possible earnings for the round.",
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
