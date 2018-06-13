@@ -129,6 +129,10 @@
 	z-index: 6;
 }
 
+.dropdown-backdrop {
+    display:none;
+}
+
 #wall .recipient-option img{
     display: inline;
     float: left;
