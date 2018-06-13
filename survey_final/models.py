@@ -528,7 +528,7 @@ rows = [
     ("games", "To play games"),
     ("research", "Research"),
 #   ("other", "Other"),
-    ("used_sites","Choose the sites that you use a couple of times a week"),
+    ("used_sites","Select the sites that you use a couple of times a week"),
 ]
 
 i = 0
