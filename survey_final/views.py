@@ -171,7 +171,7 @@ class SocioDemographic(Page):
             ("games", "To play games"),
             ("research", "Research"),
 #            ("other", "Other"),
-#            ("dont_use","I don’t use this social networking site"),
+            ("used_sites","Select the sites that you use a couple of times a week"),
         ]        
         
         return {
@@ -187,7 +187,7 @@ class SocioDemographic13(SocioDemographic):
     def get_form_fields(self):
         questions = [
 #            "q13a_transportation",
-#            "q13b_volunteer",
+            "q13b_volunteer",
             "q13c_donations",
             "q13d_discussPolitics",
             "q13e_communicate",
@@ -226,13 +226,13 @@ class SocioDemographic14(SocioDemographic):
             ("xchng_info", "Exchange of information with peers and family"),
             ("soc_events","Organize and/or attend social events"),
             ("pol_events","Organize and/or attend political events"),
-            ("news_info", "News and Information about people and places"),
+            ("news_info", "News and information about people and places"),
             ("job", "Job seeking"),
             ("money", "To make money"),
             ("games", "To play games"),
             ("research", "Research"),
 #            ("other", "Other"),
-#            ("wechat","I don’t use this social networking site"),
+            ("used_sites","Select the sites that you use a couple of times a week"),
         ]
         i = 0
         for r in rows:
