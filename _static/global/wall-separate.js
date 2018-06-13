@@ -180,7 +180,7 @@ function WallMessenger() {
 		this.messages.appendChild(this.dropdown);		
 		this.messageBlock.appendChild(this.messages);
 		
-		disable_recipients(wall_sent_to);
+		//disable_recipients(wall_sent_to);
 	}
 };
 
