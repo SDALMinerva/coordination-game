@@ -22,8 +22,7 @@ function startDiscussIntro() {
         intro: "In each round, you will be connected to some or all of the other people in your group. " +
                "They will be called Your friends, and will be listed in this box. You will also see the thresholds of your friends here. " +
                "<br><br>You can click on your friends' avatars to see their page. " +
-               "You can also see their friends (and their thresholds) on their pages, and you can post messages on your friends’ walls. " +
-               "Try clicking on a few to see their walls. ",
+               "You can also see their friends (and their thresholds) on their pages, and you can post messages on your friends’ walls. ",
       },
       {
         element: document.querySelectorAll('.container-network')[0],
@@ -31,7 +30,7 @@ function startDiscussIntro() {
                "The gray line between two avatars means that they are friends. " +
                "All of the five people in your group will be connected to some or all of the other people in the group. " + 
                "You (and everyone else) can observe the connections between people in your group in ‘The Network’ box. " +
-               "Note that you will be assigned to a new group in each round. The shape of the network may or may not be the same in each round.",
+               "The shape of the network may or may not be the same in each round.",
       },
       {
         element: document.querySelectorAll('.container-groupList')[0],

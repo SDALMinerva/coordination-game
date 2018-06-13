@@ -35,7 +35,7 @@
     {% for offer in coinOffers %}
     <tr>
         <td>{{ offer.num }}</td>
-        <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="1" required>  Tail = $200    Head = $0</td>
+        <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="1" required>  Head = $200    Tail = $0</td>
         <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="2" required>  ${{ offer.amt }}</td>
     </tr>
     {% endfor %}

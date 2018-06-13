@@ -86,11 +86,12 @@ $(window).on('load',function(){
     <li style="text-align: left; font-size: 8pt; margin: 0; margin-left: 0px;"><strong>{{session.config.payoff_below_threshold}}</strong> if less than {{player.threshold|default:'1'}} participate </li>
     </ul>
 </div>
+        {% block friendList_message %}
       	 <div id="friendsDiv">
       	    <h4>Your Friends:</h4>
       	    {% if session.config.condition_messaging == 'bilateral' %}
       	    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 8pt;">
-      	    Click on your friends avatars to see messages that you have sent to them.
+      	    Click on your friends avatars to see their friends and thresholds.
       	    </h6>
       	    {% endif %}
       	    {% if session.config.condition_messaging == 'wall' %}
@@ -104,7 +105,8 @@ $(window).on('load',function(){
       	    </h6>
       	    {% endif %}
             <div id="playerList" class="clearfix" ></div>
-         </div>        
+         </div>
+         {% endblock %}        
         </div>
 
         {% if session.config.condition_messaging != 'none' %}
