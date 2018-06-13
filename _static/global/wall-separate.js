@@ -318,7 +318,32 @@ function Wall() {
 };
 
 
+$("#wall .recipient-option").click(function(event){
+    console.log('CLICK RECORDED');
+    if(!$(this).parent().hasClass('disabled')){
+        
+	var text = $(this).find('.recipient-name').html();
+	$("#wall .recipient-text").val(text);
+	$('.user-display').empty();
+	$('.user-display').html($(this).find('.img-recipient').clone());
+	var id = $(this).find('#ID').html();
+	if(id != 'all'){
+	   chat.setActiveChannel(id);
+		wall.changeId(id);
+		chat.infoChannel.send(JSON.stringify({
+		  'type': 'list',
+		  'content': {'playerId': id, 'sentBy': nodeId},				
+		}));
+	}
+	
+    $('.linking-button').removeClass('active');
+    $('#player-button'+id).addClass('active');
+    
+}
+});
+
 $("#wall").on("click", ".recipient-option", function(event){
+    console.log('CLICK RECORDED 2');
     if(!$(this).parent().hasClass('disabled')){
         if ($(".recipient-text").val() == noSendMessage){
             $('#message-list-dropdown').attr('disabled',true);
@@ -502,29 +527,6 @@ $("#wall").on('click', '.removeEntry', function(event){
 $("#wall .message-option").click(function(event){
 	var text = $(this).html();
 	$("#wall .message-text").val(text);
-});
-
-$("#wall .recipient-option").click(function(event){
-    if(!$(this).parent().hasClass('disabled')){
-        
-	var text = $(this).find('.recipient-name').html();
-	$("#wall .recipient-text").val(text);
-	$('.user-display').empty();
-	$('.user-display').html($(this).find('.img-recipient').clone());
-	var id = $(this).find('#ID').html();
-	if(id != 'all'){
-	   chat.setActiveChannel(id);
-		wall.changeId(id);
-		chat.infoChannel.send(JSON.stringify({
-		  'type': 'list',
-		  'content': {'playerId': id, 'sentBy': nodeId},				
-		}));
-	}
-	
-    $('.linking-button').removeClass('active');
-    $('#player-button'+id).addClass('active');
-    
-}
 });
 
 
