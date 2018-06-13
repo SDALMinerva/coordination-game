@@ -186,7 +186,7 @@ function WallMessenger() {
 
 function Wall() {
 	
-	this.init = function (id,entries, output=true) {
+	this.init = function (id,entries, output) {
 
         output = typeof output !== 'undefined' ? output : true;
 
