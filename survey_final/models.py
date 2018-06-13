@@ -527,8 +527,8 @@ rows = [
     ("money", "To make money"),
     ("games", "To play games"),
     ("research", "Research"),
-#    ("other", "Other"),
-#    ("dont_use","I don’t use this social networking site"),
+#   ("other", "Other"),
+    ("used_sites","Choose the sites that you use a couple of times a week"),
 ]
 
 i = 0
