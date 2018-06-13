@@ -121,7 +121,7 @@ function WallMessenger() {
 		dropdown.appendChild(messageListBox);
 //		dropdown.appendChild(send_button);
 		
-		this.sendTo.append(dropdown);		
+		this.sendTo.appendChild(dropdown);		
 		this.messageBlock.appendChild(this.sendTo);		
 		
 		
