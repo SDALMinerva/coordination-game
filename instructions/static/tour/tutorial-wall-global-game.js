@@ -115,7 +115,7 @@ function startDiscussIntro() {
       {
         element: document.querySelectorAll('#participate-group')[0],
         intro: "After reviewing the messages by friends, each person in the group then must decide whether to participate or not " +
-               "participate in the group event for this round. After making your participation decision for the round, a new round will start.<br><br> You will not observe the outcome of the rounds." +
+               "participate in the group event for this round. After making your participation decision for the round, a new round will start.<br><br> You will not observe the outcome of the rounds. " +
                "After you play all the rounds, at the end of the experiment, we will choose a random round and you will be paid based on the " +
                "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
