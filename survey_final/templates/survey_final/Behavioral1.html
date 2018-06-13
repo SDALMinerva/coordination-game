@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Risk Questions
+    Post-survey Questions
 {% endblock %}
 
 {% block content %}
@@ -21,6 +21,7 @@
 
     <p class="qMarker">
     <strong>2. You will be given hypothetical coin toss scenarios in the table below.</strong><br> 
+    Each row corresponds to a different scenario.
     <em>For each of these scenarios, you must decide whether you want the coin toss or not.</em>  
     If you choose to toss the coin <strong>(YES Coin Toss)</strong>, you would get $200 if heads or $0 if tails. 
     If you choose not to toss the coin <strong>(NO Coin Toss)</strong>, you would receive a sure payment amount listed 
@@ -44,19 +45,19 @@
 
 
 
-    <h4 class="qMarker" style="font-size: 14pt;">Payment Questions</h4>
+    <h4 class="qMarker" style="font-size: 14pt;">Paid Questions</h4>
     <h5>
-    The following questions count toward your final payment score. 
-    When you submit answers to these questions, we will evaluate the outcome of the scenario according the probability given. 
-    Your earnings in each scenario will be added to your total earnings in this experiment.
+    The following questions will add to your final earnings. You can earn <strong>up to $3</strong> based on your choice and chance. 
+    After you submit your answers to these questions, one of them will be randomly chosen and its outcome will determine your earning. 
+    In these questions, we will use experimental points and they will be converted to cash with the following conversion rate: 1 experimental point = 0.005$
     </h5>    
     
-    <p class=""><strong>3. Consider this hypothetical scenario:</strong><br> 
-    Suppose you have 3.5 experimental points that you can choose to keep or invest in a risky project.
+    <p class=""><strong>3. Consider this scenario:</strong><br> 
+    Suppose you have <strong>200 experimental points</strong> that you can choose to keep or invest in a risky project.
     </p>
     <ol>
         <li>Money that is not invested in the risky project is yours to keep.</li> 
-        <li>The risky project has a 40% chance of success. If the project is successful, you will receive 3 times the amount you chose to invest.</li> 
+        <li>The risky project has a <strong>40% chance of success</strong>. If the project is successful, you will receive <strong>3 times<strong> the amount you chose to invest.</li> 
         <li>If the project is unsuccessful, you will lose the amount invested.</li>    
     </ol>
     <p>Please choose a percentage of points that you feel comfortable with investing in the risky project.<br>
@@ -64,12 +65,12 @@
     {% formfield player.risky_project label="" %}
     
 
-    <p class="qMarker"><strong>4. Consider this hypothetical scenario.</strong><br> 
-    Suppose you have 3.5 experimental points that you can choose to keep or invest in <em><strong>another</strong></em> risky project if you would like.
+    <p class="qMarker"><strong>4. Consider this scenario.</strong><br> 
+    Suppose you have <strong>200 experimental points</strong> that you can choose to keep or invest in <em><strong>another</strong></em> risky project if you would like.
     </p>
     <ol>
         <li>Money that is not invested in the risky project is yours to keep.</li> 
-        <li>The risky project has a 50% chance of success. If the project is successful, you will receive 2.5 times the amount you chose to invest.</li> 
+        <li>The risky project has a <strong>50% chance of success</strong>. If the project is successful, you will receive <strong>2.5 times</strong> the amount you chose to invest.</li> 
         <li>If the project is unsuccessful, you will lose the amount invested.</li>    
     </ol>
     <p>Please choose a percentage of points that you feel comfortable with investing in the risky project.<br>
