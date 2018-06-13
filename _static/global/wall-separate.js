@@ -177,7 +177,7 @@ function WallMessenger() {
 		this.dropdown.appendChild(this.messageList);
 		this.dropdown.appendChild(this.send_button);
 		
-		this.messages.append(this.dropdown);		
+		this.messages.appendChild(this.dropdown);		
 		this.messageBlock.appendChild(this.messages);
 		
 		disable_recipients(wall_sent_to);
