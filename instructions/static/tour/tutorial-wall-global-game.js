@@ -55,7 +55,6 @@ function startDiscussIntro() {
       {
         element: document.querySelectorAll('.wall-card')[0],
         intro: "Every player has a 'wall', which is a place where messages can be posted and these messages can be viewed by friends. " +
-               "Below is an example of a wall (Swan’s wall in this case). " +
                "You will view the posts on your wall and on your friends' walls in the decision part.",
         //position: "top",
       },
@@ -110,7 +109,7 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "You can click on your friends' avatars to view their walls and the messages  posted on them by their friends.", 
+        intro: "You can click on your friends' avatars to view their walls and the messages posted on them by their friends.", 
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
