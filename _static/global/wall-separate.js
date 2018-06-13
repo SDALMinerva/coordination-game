@@ -319,7 +319,7 @@ function Wall() {
 
 
 $("#wall .recipient-option").click(function(event){
-    console.log('CLICK RECORDED');
+    //console.log('CLICK RECORDED');
     if(!$(this).parent().hasClass('disabled')){
         
 	var text = $(this).find('.recipient-name').html();
@@ -343,7 +343,7 @@ $("#wall .recipient-option").click(function(event){
 });
 
 $("#wall").on("click", ".recipient-option", function(event){
-    console.log('CLICK RECORDED 2');
+    //console.log('CLICK RECORDED 2');
     if(!$(this).parent().hasClass('disabled')){
         if ($(".recipient-text").val() == noSendMessage){
             $('#message-list-dropdown').attr('disabled',true);

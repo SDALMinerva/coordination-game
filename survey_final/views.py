@@ -9,7 +9,7 @@ class SocioDemographic(Page):
     is_debug = False
 
     def is_displayed(self):
-        return self.participant.vars['consent']
+        return not self.participant.vars['consent']
 
     def makeCheckTable(self, qName, choices, table_rows):
                       
@@ -183,7 +183,7 @@ class SocioDemographic(Page):
 
 class SocioDemographic13(SocioDemographic):
     def is_displayed(self):
-        return self.participant.vars['consent']
+        return not self.participant.vars['consent']
     def get_form_fields(self):
         questions = [
 #            "q13a_transportation",
@@ -200,7 +200,7 @@ class SocioDemographic13(SocioDemographic):
     
 class SocioDemographic14(SocioDemographic):
     def is_displayed(self):
-        return self.participant.vars['consent']
+        return not self.participant.vars['consent']
     def get_form_fields(self):
         questions = [
             "q14_l_networking_otherPrint",             
@@ -245,7 +245,7 @@ class SocioDemographic14(SocioDemographic):
 
 class SocioDemographic15(SocioDemographic):
     def is_displayed(self):
-        return self.participant.vars['consent']
+        return not self.participant.vars['consent']
     def get_form_fields(self):
         questions = [
             "q15a_ethics_wealth",
@@ -259,7 +259,7 @@ class SocioDemographic15(SocioDemographic):
 
 class Behavioral1(Page):
     def is_displayed(self):
-        return self.participant.vars['consent']
+        return not self.participant.vars['consent']
     form_model = models.Player
     form_fields = [
         "daringness",
@@ -286,7 +286,7 @@ class Behavioral1(Page):
 
 class Results(Page):
     def is_displayed(self):
-        return self.participant.vars['consent']
+        return not self.participant.vars['consent']
     def vars_for_template(self):
         return {
             'payoff_currency': self.participant.payoff.to_real_world_currency(self.session) - self.player.payoff.to_real_world_currency(self.session),
