@@ -6,8 +6,15 @@ from .models import Constants
 class Intro(Page):
     template_name = 'instructions/intro.html'
     
+    def is_displayed(self):
+        return self.participant.vars['consent']
+    
 class QuizIntro(Page):
     template_name = 'instructions/QuizIntro.html'
+    
+    def is_displayed(self):
+        return self.participant.vars['consent']
+        
     
 class InstructionsPage(Page):
     def vars_for_template(self):
@@ -17,12 +24,15 @@ class InstructionsPage(Page):
         return {
             'screenImage': screenImage.format(comm_type,network_type)
         }
+        
+    def is_displayed(self):
+        return self.participant.vars['consent']
 
 class TourDiscuss(Page):
     template_name = 'tour/Tour-Discuss.html'
 
     def is_displayed(self):
-        return (self.subsession.session.config['condition_messaging'] != 'none')    
+        return (self.subsession.session.config['condition_messaging'] != 'none') and self.participant.vars['consent']   
     
     def vars_for_template(self):            
         if self.session.config['condition_network_knowledge'] == 'global':
@@ -59,9 +69,16 @@ class TourDecide(Page):
                 'Eagle': 'Eagle-icon.png',
             }
         }
+        
+    def is_displayed(self):
+        return self.participant.vars['consent']
 
 class Quiz(Page):
     form_model = models.Player
+    
+    def is_displayed(self):
+        return self.participant.vars['consent']
+        
     def get_form_fields(self):
         questions = [
         'qa1',
@@ -71,19 +88,22 @@ class Quiz(Page):
         'qb1b',
         'qb1c',
         'qb2a',
-        'qb2b',
+#        'qb2b',
         'qb2c',
         'qb2d',
         'qb3a',
-        'qb3b',
+#        'qb3b',
         'qb3c',
-        'qb3d',
+#        'qb3d',
         'qb3e',
         'qb3f',
         ]
         return questions
 
 class Summary(Page):
+    def is_displayed(self):
+        return self.participant.vars['consent']
+        
     template_name = 'instructions/Summary.html'
 
 page_sequence = [

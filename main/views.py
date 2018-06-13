@@ -9,7 +9,7 @@ from django.db.models import Count
 
 class AssignAvatar(Page):
     def is_displayed(self):
-        return not self.player.node.bot
+        return (not self.player.node.bot) and self.participant.vars['consent']
         
     def before_next_page(self):
         if self.timeout_happened:
@@ -31,7 +31,7 @@ class Discuss(Page):
                 player.node.save()
     
     def is_displayed(self):
-        return (not self.player.node.bot) and (self.subsession.session.config['condition_messaging'] != 'none')    
+        return (not self.player.node.bot) and (self.subsession.session.config['condition_messaging'] != 'none') and self.participant.vars['consent']   
     
     def vars_for_template(self):
         group_players = self.group.get_players()
@@ -189,14 +189,14 @@ class Decide(Discuss):
                 player.node.save()
             
     def is_displayed(self):
-        return not self.player.node.bot
+        return (not self.player.node.bot) and self.participant.vars['consent']
 
 
 class Intro(Page):
     template_name = 'main/intro.html'
     
     def is_displayed(self):
-        return self.subsession.round_number == 1
+        return (self.subsession.round_number == 1) and self.participant.vars['consent']
 
 
 messaging_apps = [x for i in range(Constants.num_messaging_rounds) for x in [Discuss, IntermediateWaitPage]]

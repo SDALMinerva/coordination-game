@@ -4,44 +4,42 @@
 <p>
 This is an experiment to study how individuals and groups make decisions. 
 Your earnings in the experiment will depend on your own decisions, the decisions of others, and chance. 
-If you follow the instructions carefully, you will earn a reward at the end of the experiment. 
-During the experiment, your earnings will be tabulated by <strong>experimental points</strong>. 
-At the end of the experiment, the points will be used to determine your final payment.
+During the experiment, you will earn <strong>experimental points</strong>. At the end of the experiment, these points will be converted to cash. 
 </p>
 
 <h4>General Instructions:</h4>
 
 <p>
-The experiment consists of <strong>24 rounds</strong> in which you and other players independently make the decision on whether to participate as a group.
-Examples of participation could include going to a social event (e.g., party), 
-team sports (e.g., volleyball, football) or a political event (e.g., march, rally). 
+The experiment consists of <strong>15 rounds</strong> in which you and other players independently make the decision on whether to participate in a group event.
+Examples could include going to a social or a cultural event (e.g., party, concert), 
+playing in team sports (e.g., volleyball, football) or attending a political event (e.g., march, rally). 
 These are events where you are more willing to participate if there are others participating with you.
 A specific type of event will not be given in this experiment.
-However, you will be given a similar decision to participate in a group or not, and that decision will affect the earnings you receive.
+However, at the end of each round, every player will be asked to make a decision <strong>to participate</strong> or <strong>not participate</strong>, and that decision will affect the earnings you receive.
 </p>
 
 <p>
-At the beginning of each round, you will be assigned to a new group that consists of <strong>5 people total</strong> (including yourself). 
+At the beginning of each round, you will be assigned to a new group that consists of <strong>5 players total</strong> (including yourself).
+You will see the list of 5 players in your group on the screen. Your earnings depend on your decision to participate and the participation decision of other players in your group. 
 </p>
 
+<h4>Threshold (T):</h4>
+
 <p>
-Your earnings depend on your decision and the participation decisions of others in your group. 
 In each round, each player will be assigned a <strong>threshold, T</strong>. 
-This threshold, T, represents the number of other people that you need in order to make it worthwhile for you to participate in the group event (see earnings in a round described below).
+This threshold, T, represents the number of other players that you need in order to make it worthwhile for you to participate in the group event (see earnings in a round described below).
+Each player will be assigned either a low threshold of <strong>T=1</strong> or high threshold of <strong>T=3</strong>.
+For example, if your threshold in a round is <strong>T=1</strong>, it means that you need <strong>at least 1 other player</strong> from your group; 
+if your threshold is <strong>T=3</strong>, you need <strong>at least 3 other players</strong> from your group to participate in order to make it worthwhile to participate in the group event.
 </p>
-
-<p>At the end of each round, everyone in your group will be asked to make a decision <strong>to participate</strong> or <strong>not participate</strong> in the event.</p>
-<p>Each round is independent from the other: whatever happens in a round does not affect the next round. </p>
 
 <h4>Earnings in a round:</h4>
 
-<p>
-Each player will be assigned a threshold either low T=1 or high T=3. 
+<p> 
 Your earnings in a round depend on your threshold, your participation decision and the decisions of other players <strong>in your group</strong>. 
-Each round is independent from the other: whatever happens in a round does not affect the next round.
 </p>
 
-<p> <strong>1. If your threshold is T=1:</strong></p>
+<p> <strong>(a) If your threshold is T=1:</strong></p>
 
 <ul>
 <li>
@@ -60,7 +58,7 @@ If you do <strong>not participate</strong>, your earnings in the round will be
 </li>
 </ul>
 
-<p> <strong>2. If your threshold is T=3:</strong></p>
+<p> <strong>(b) If your threshold is T=3:</strong></p>
 <ul>
 <li>
 If you <strong>participate</strong> and at least <strong>3 other players</strong> participate, 
@@ -78,42 +76,120 @@ regardless of what others do.
 </li>
 </ul>
 
-<h4>Experimental Earnings:</h4>
+<p>
+Each round is independent from the other: whatever happens in a round does not affect the next round.
+You will not observe the outcome of the rounds during the game until the end of the experiment.
+</p>
+
+<h4>Final (Cash) Earnings:</h4>
 <p>  
-You will be paid $7.00 for completing all the rounds. 
-In addition, after completing all the rounds, we will choose ONE random round to add to your earnings. 
-1 experimental point is equivalent to 0.1 US dollars. 
-Thus, at the end of the experiment, your total earnings would equal: $7 + $0 = $7.00, $7 + $5.00 = $12.00, or $7 + $10.00 = $17.00 depending on the outcome of the randomly chosen round.
- Because each round is independent from the others and equally likely to be chosen for your payment, you should pay close attention to your decisions in each round.
+After completing all the rounds, we will choose ONE random round to determine your final earnings. 
+1 experimental point is equivalent to 0.15 US dollars. 
+Thus, for your decisions, your total earnings could be: $0, $7.5, or $15.00 depending on the outcome of the randomly chosen round.
+Because each round is independent from the others and equally likely to be chosen for your payment, you should pay close attention to your decisions in each round.
 </p>
 
 
 <h4>Platform Layout</h4>
 {% if session.config.condition_messaging == 'wall' %}
 <p>
-This is the platform that you will use to play the game. You will use it to observe other players and exchange messages (in the messaging part) 
-before you make the final decision to participate for that round. 
-Before making your participation decision, you will be given an opportunity to post messages 
-on your wall or on your friends' walls to reveal your intention to participate or not in the group event. 
-Every player has a 'wall', which is a place where messages can be posted and these messages can be viewed by friends. 
-Below is an example of a wall (Rabbit's wall in this case). You will view the posts on your wall and on your friends' walls in the decision part.
+This is the platform that you will use to play the game. On this platform, you will see:
+<ul>
+<li>
+<strong>Your Profile:</strong> your avatar (a randomly chose identity), and your threshold for the round.
+</li>
+
+<li>
+<strong>Your Group:</strong> the list of all 5 players in your group. 
+</li>
+
+<li>
+<strong>Your Friends:</strong> players in your group that you are connected to. You can see the thresholds of your friends in 'Your Friends' box.
+</li>
+
+{% if session.config.condition_network_knowledge == 'local' %}
+<li>
+<strong>Your Network:</strong> a diagram showing your connections (friends) in the group. There is a gray line between your avatar and each of your friends' avatars. 
+</li>
+{% else %}
+<li>
+<strong>The Network:</strong> a diagram showing the connections between all players in your group. The gray line between two avatars means that they are friends.
+</li>
+{% endif %}
+
+<li>
+<strong>The Wall Messaging Tool:</strong> Every player has a 'wall', which is a place where messages can be posted by friends and these messages can be viewed by friends. 
+Below is an example of a wall (Rabbit's wall in this case). Each round starts with a <strong>messaging part</strong> followed by a <strong>decision part</strong>. In the messaging part, you will be given an opportunity to post messages 
+"I will participate" or "I will not participate" on your wall or on your friends' walls to reveal your intention to participate or not in the group event. 
+In the decision part, you will view the posts on your wall and on your friends' walls, and will make your participation decision for the round.
+</li>	
+</ul>	
+
 </p>
 {% endif %}
 {% if session.config.condition_messaging == 'bilateral' %}
 <p>
-This is the platform that you will use to play the game. You will use it to observe other players and exchange messages (in the messaging part) 
-before you make the final decision to participate for that round. 
-Before making your participation decision, you will be given an opportunity to send messages 
-to your friends to reveal your intention to participate or not in the group event. 
-Every player can read messages. Each player can only read messages sent to them directly. 
-Below is an example of a message window (Rabbit's messages in this case). Everyone will view messages from their friends in the decision part.
+This is the platform that you will use to play the game. On this platform, you will see:
+<ul>
+<li>
+<strong>Your Profile:</strong> your avatar (a randomly chosen identity), and your threshold for the round.
+</li>
+
+<li>
+<strong>Your Group:</strong> the list of all 5 players in your group. 
+</li>
+
+<li>
+<strong>Your Friends:</strong> players in your group that you are connected to. You can see the thresholds of your friends in 'Your Friends' box.
+</li>
+
+{% if session.config.condition_network_knowledge == 'local' %}
+<li>
+<strong>Your Network:</strong> a diagram showing your connections (friends) in the group. There is a gray line between your avatar and each of your friends' avatars. 
+</li>
+{% else %}
+<li>
+<strong>The Network:</strong> a diagram showing the connections between all players in your group. The gray line between two avatars means that they are friends.
+</li>
+{% endif %}
+
+<li>
+<strong>The Private Messaging Tool:</strong> Every player has a 'messaging tool', which is a place to send and receive private messages among friends. 
+Below is an example of a messaging tool (Rabbit's in this case). Each round starts with a <strong>messaging part</strong> followed by a <strong>decision part</strong>. In the messaging part, you will be given an opportunity to send private messages 
+"I will participate" or "I will not participate" to your friends to reveal your intention to participate or not in the group event. 
+In the decision part, you will view the messages sent to you from your friends, and will make your participation decision for the round.
+</li>	
+</ul>	
+
 </p>
 {% endif %}
 {% if session.config.condition_messaging == 'none' %}
 <p>
-This is the platform that you will use to play the game. You will use it to make a decision on whether or not to participate. 
-Here, you cannot communicate with your friends, but you can see who you are connected to and see their threshold.
-Below is an example of what the platform looks like. Everyone can view the network to which they belong and the friends to whom they are connected.
+This is the platform that you will use to play the game. You will use it to make a decision on whether or not to participate. On this platform, you will see:
+<ul>
+<li>
+<strong>Your Profile:</strong> your avatar (a randomly chose identity), and your threshold for the round.
+</li>
+
+<li>
+<strong>Your Group:</strong> the list of all 5 players in your group. 
+</li>
+
+<li>
+<strong>Your Friends:</strong> players in your group that you are connected to. You can see the thresholds of your friends in 'Your Friends' box.
+</li>
+
+{% if session.config.condition_network_knowledge == 'local' %}
+<li>
+<strong>Your Network:</strong> a diagram showing your connections (friends) in the group. There is a gray line between your avatar and each of your friends' avatars. 
+</li>
+{% else %}
+<li>
+<strong>The Network:</strong> a diagram showing the connections between all players in your group. The gray line between two avatars means that they are friends.
+</li>
+{% endif %}
+</ul>	
+
 </p>
 {% endif %}
 
@@ -132,11 +208,9 @@ You can practice for as many rounds as you need before proceeding to the actual 
 {% endcomment %}
 
 
-
-
 <br/>
 <p>
-Click <strong>Next</strong> to take a quiz on these instructions.
+Click <strong>Next</strong> to take a quiz on these instructions. After the quiz, we will show you an interactive tour of the platform that describes what you can do on the platform.
 </p>
 
 

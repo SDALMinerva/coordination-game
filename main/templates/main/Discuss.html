@@ -44,11 +44,11 @@ $(window).on('load',function(){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Your Friends Are Waiting!</h4>
+        <h4 class="modal-title">Your Group Is Waiting!</h4>
       </div>
       <div class="modal-body">
         <p>
-            Your friends are waiting for you to move to the next page. Please help them by making your decisions and advancing the game! Click the button below to continue.
+            Your group is waiting for you to move to the next page. Please help them by making your decisions and advancing the game! Click the button below to continue.
         </p>
       </div>
       <div class="modal-footer">
@@ -68,7 +68,7 @@ $(window).on('load',function(){
         <div id="playerDiv" class="clicktrack">        
         <h4 style="text-align: left; padding-left: 0px;">Your Profile:</h4>
         <h6 class="card-subtitle mb-2 text-muted" style="font-size: 8pt;">
-      	    Click below to return to your screen.
+      	    Click on your avatar anytime to return to your main page.
       	</h6>
             <div id="playerLabel" class="linking-button" style="height: 170px; border: 1px #ddd solid; border-radius: 4px; max-width: 170px">
                 <br>
@@ -90,17 +90,17 @@ $(window).on('load',function(){
       	    <h4>Your Friends:</h4>
       	    {% if session.config.condition_messaging == 'bilateral' %}
       	    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 8pt;">
-      	    Click on your friends to see messages that you have sent to them.
+      	    Click on your friends avatars to see messages that you have sent to them.
       	    </h6>
       	    {% endif %}
       	    {% if session.config.condition_messaging == 'wall' %}
       	    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 8pt;">
-      	    Click on your friends to see posts on their wall.
+      	    Click on your friends avatars to see posts on their wall.
       	    </h6>
       	    {% endif %}
       	    {% if session.config.condition_messaging == 'none' %}
       	    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 8pt;">
-      	    These are your friends in the network.
+      	    These are your friends in your group.
       	    </h6>
       	    {% endif %}
             <div id="playerList" class="clearfix" ></div>
@@ -179,7 +179,7 @@ $(window).on('load',function(){
                         </button>
                     </div>
                     <div id="selector-move-on" class="alert alert-warning alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
-                        <strong>Your friends are waiting.</strong> Please make your decisions and click 'Next' at the bottom of the page.
+                        <strong>Your group is waiting.</strong> Please make your decisions and click 'Next' at the bottom of the page.
                         <button type="button" class="close" onclick="$('#selector-move-on').hide()" aria-label="Close">
                              <span aria-hidden="true">&times;</span>
                         </button>
@@ -247,7 +247,7 @@ $(window).on('load',function(){
             <div class="container-groupList">
                 <h4 id="groupList-title">Your Group:</h4>
                 <h6 class="card-subtitle mb-2 text-muted" style="font-size: 8pt;">
-      	         These are all the members of your group. They may or may not be in your list of friends.
+      	         These are all of the players in your group. Some or all of them are in your list of friends.
       	        </h6>
                 <div id="groupList" style="height: 300px; width: 100%;">
                     <ul class="mr-2 list-unstyled">
