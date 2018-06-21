@@ -291,8 +291,7 @@ class Behavioral1(Page):
         print(game_outcome)
         print((200. * xRate * amtInvested * .01 * 2.5) * game_outcome + (200. - 200. * amtInvested * .01) * xRate)
         self.player.risky_project_outcome_2 = game_outcome
-        self.player.payoff += (200. * xRate * amtInvested * .01 * 2.5) * game_outcome + (200. - 200. * amtInvested * .01) * xRate
-        
+        self.player.payoff += (200. * xRate * amtInvested * .01 * 2.5) * game_outcome + (200. - 200. * amtInvested * .01) * xRate  
 
 class Results(Page):
     def is_displayed(self):

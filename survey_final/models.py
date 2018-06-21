@@ -41,20 +41,20 @@ class Player(BasePlayer):
 #        ],
 #        widget = widgets.RadioSelectHorizontal(),    
 #    )
-#    q13b_volunteer = models.CharField(
-#        verbose_name = "Performed volunteer work",
-#        choices = [
-#            'Never',
-#            'Once a year',
-#            'A couple of times a year',
-#            'A few times a month',
-#            '1-2 times a week',
-#            'A couple of times a week',
-#            'Once a day',
-#            'More than once a day',      
-#        ],
-#        widget = widgets.RadioSelectHorizontal(),    
-#    )
+   q13b_volunteer = models.CharField(
+       verbose_name = "Performed volunteer work",
+       choices = [
+           'Never',
+           'Once a year',
+           'A couple of times a year',
+           'A few times a month',
+           '1-2 times a week',
+           'A couple of times a week',
+          'Once a day',
+           'More than once a day',      
+      ],
+       widget = widgets.RadioSelectHorizontal(),    
+    )
     q13c_donations = models.CharField(
         verbose_name = "Helped raise donations (e.g., money, books) for a cause or campaign",
         choices = [
@@ -522,13 +522,13 @@ rows = [
     ("xchng_info", "Exchange of information with peers and family"),
     ("soc_events","Organize and/or attend social events"),
     ("pol_events","Organize and/or attend political events"),
-    ("news_info", "News and Information about people and places"),
+    ("news_info", "News and information about people and places"),
     ("job", "Job seeking"),
     ("money", "To make money"),
     ("games", "To play games"),
     ("research", "Research"),
-#    ("other", "Other"),
-#    ("dont_use","I don’t use this social networking site"),
+#   ("other", "Other"),
+    ("used_sites","Select the sites that you use a couple of times a week"),
 ]
 
 i = 0

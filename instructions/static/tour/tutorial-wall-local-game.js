@@ -24,36 +24,33 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('.container-network')[0],
-        intro: "Your network represents how you are connected with the rest of the players in your group in a round. " +
-               "The gray line between your avatar and another avatar means that you are friends with that player.  " +
-               "All of the 5 players in your group will be connected to some or all of the other players in the group. " +
+        intro: "This diagram shows <strong>your network</strong> for the round: your connections (friends) in the group. " +
+               "There is a gray line between your avatar and each of your friends' avatars. " +
                "You can observe your connections in ‘Your Network’ box, but you cannot observe the connections between your friends or other players in this box. " +
                "The shape of the network may or may not be the same in each round.",
       },
       {
         element: document.querySelectorAll('.container-groupList')[0],
-        intro: "These are all of the players in your group. Some or all of them are in your list of friends." +
+        intro: "These are all of the players in your group. Some or all of them are in your list of friends. " +
                "When a player moves on to the next page and is waiting for you, it will be displayed here.  ",
       },
       {
         element: document.querySelectorAll('.message-tool')[0],
-        intro: "Before making your participation decision, you will be given an opportunity to post messages on your wall " +
+        intro: "Before making your participation decision, you can use this tool to post messages on your wall " +
                "or on your friends' walls to reveal your intention to participate or not in the group event. " +
-               "You have the following two messaging options to post on the walls: 1) 'I will participate', 2) 'I will not participate'. "+
-               "Each player can post a message only on his/her own friends' walls. " +
-               "Posts on a player's wall can be viewed by all of his/her friends. " +
-               "You will view the posts on your wall and on your friends' walls in the decision part. " +
-               "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu) to post a message on the recipient’s wall. " +
-               "You also have the option to send to 'All Friends' which means posting on all of your friends’ walls. " +
-               "Click the 'Post Message' button, to post your messages on the recipient’s wall.",
+               "You can post: <strong>1) 'I will participate'</strong>, 2) <strong>'I will not participate'</strong> or choose not to post any messages. "+
+               "<br><br>Each player can post a message only on friends' walls. " +
+               "Posts on a player's wall can be viewed by all of his/her friends in the decision part. " +
+               "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu). " +
+               "You can also post a message on all of your friends’ walls. " +
+               "Click the 'Submit' button, to post your messages on the recipient’s wall.",        
         position: "top",
         disableInteraction: false,
         position: "right",
       },
       {
         element: document.querySelectorAll('.wall-card')[0],
-        intro: "Every player has a 'wall', which is a place where messages can be posted and these messages can be viewed by friends. " +
-               "Below is an example of a wall (Swan’s wall in this case). " +
+        intro: "Every player has a 'wall', where messages can be posted and these messages can be viewed by friends. " +
                "You will view the posts on your wall and on your friends' walls in the decision part.",
         //position: "top",
       },
@@ -112,9 +109,9 @@ function startDiscussIntro() {
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
-        intro: "After reviewing the messages by friends, each person in the group then must decide whether to participate or not " +
-               "participate in the group event for this round. After making your participation decision for the round, a new round will start. <br><br>You will not observe the outcome of the rounds." +
-               "After you play all the rounds, at the end of the experiment, we will choose a random round and you will be paid based on the " +
+        intro: "After reviewing the messages by friends, each person in the group then must decide whether <strong>to participate or not " +
+               "participate</strong> for this round. After making your participation decision for the round, a new round will start. You will not observe the outcome of the rounds. " +
+               "<br><br>After you play all the rounds, we will choose a random round and you will be paid based on the " +
                "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
       },
