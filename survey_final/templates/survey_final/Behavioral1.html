@@ -36,7 +36,7 @@
     {% for offer in coinOffers %}
     <tr>
         <td>{{ offer.num }}</td>
-        <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="1" required>  Tail = $200    Head = $0</td>
+        <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="1" required>  Head = $200    Tail = $0</td>
         <td><input type="radio" class="coin" name="coinScenerio_{{ offer.num }}" value="2" required>  ${{ offer.amt }}</td>
     </tr>
     {% endfor %}
@@ -48,8 +48,8 @@
     <h4 class="qMarker" style="font-size: 14pt;">Paid Questions</h4>
     <h5>
     The following questions will add to your final earnings. You can earn <strong>up to $3</strong> based on your choice and chance. 
-    After you submit your answers to these questions, one of them will be randomly chosen and its outcome will determine your earning. 
-    In these questions, we will use experimental points and they will be converted to cash with the following conversion rate: 1 experimental point = 0.005$
+    After you submit your answers to these questions, the outcomes will determine your earnings. 
+    In these questions, we will use experimental points and they will be converted to cash with the following conversion rate: 1 experimental point = $0.0025.
     </h5>    
     
     <p class=""><strong>3. Consider this scenario:</strong><br> 

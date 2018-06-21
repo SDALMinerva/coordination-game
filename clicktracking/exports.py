@@ -24,6 +24,7 @@ class ClickExport(vanilla.View):
         )
 
         column_names = [
+            'session__code',
             'participant__code',
             'participant_id',
             'page',

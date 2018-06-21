@@ -20,8 +20,7 @@ function startDiscussIntro() {
         intro: "In each round, you will be connected to some or all of the other players in your group. " +
                "They will be called 'your friends', and will be listed in this box. You will also see the thresholds of your friends here. " +
                "<br><br>You can click on your friends' avatars to see their page. " +
-               "You can also see their friends (and their thresholds) on their pages, and you can post messages on your friends’ walls. " +
-               "Try clicking on a few to see their walls. ",
+               "You can also see their friends (and their thresholds) on their pages, and you can post messages on your friends’ walls. ",
       },
       {
         element: document.querySelectorAll('.container-network')[0],

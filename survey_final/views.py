@@ -171,7 +171,7 @@ class SocioDemographic(Page):
             ("games", "To play games"),
             ("research", "Research"),
 #            ("other", "Other"),
-            ("used_sites","Select the sites that you use a couple of times a week"),
+#            ("dont_use","I don’t use this social networking site"),
         ]        
         
         return {
@@ -187,7 +187,7 @@ class SocioDemographic13(SocioDemographic):
     def get_form_fields(self):
         questions = [
 #            "q13a_transportation",
-            "q13b_volunteer",
+#            "q13b_volunteer",
             "q13c_donations",
             "q13d_discussPolitics",
             "q13e_communicate",
@@ -226,13 +226,13 @@ class SocioDemographic14(SocioDemographic):
             ("xchng_info", "Exchange of information with peers and family"),
             ("soc_events","Organize and/or attend social events"),
             ("pol_events","Organize and/or attend political events"),
-            ("news_info", "News and information about people and places"),
+            ("news_info", "News and Information about people and places"),
             ("job", "Job seeking"),
             ("money", "To make money"),
             ("games", "To play games"),
             ("research", "Research"),
 #            ("other", "Other"),
-            ("used_sites","Select the sites that you use a couple of times a week"),
+#            ("wechat","I don’t use this social networking site"),
         ]
         i = 0
         for r in rows:
@@ -272,17 +272,26 @@ class Behavioral1(Page):
         
     def before_next_page(self):
         self.player.payoff = 0
+
+        xRate = .016667        
         
         amtInvested = self.player.risky_project
+        print(amtInvested)
         game_outcome = binomial(1,.4)
         self.player.risky_project_outcome = game_outcome
-        self.player.payoff += (3.5 * amtInvested * .01 * 3.) * game_outcome + (3.5 - 3.5 * amtInvested * .01)
+        print(game_outcome)
+        print((200. * xRate * amtInvested * .01 * 3.) * game_outcome + (200. - 200. * amtInvested * .01) * xRate)
+        self.player.payoff += (200. * xRate * amtInvested * .01 * 3.) * game_outcome + (200. - 200. * amtInvested * .01) * xRate
+
+        print(self.player.payoff)        
         
         amtInvested = self.player.risky_project_2
+        print(amtInvested)
         game_outcome = binomial(1,.5)
+        print(game_outcome)
+        print((200. * xRate * amtInvested * .01 * 2.5) * game_outcome + (200. - 200. * amtInvested * .01) * xRate)
         self.player.risky_project_outcome_2 = game_outcome
-        self.player.payoff += (3.5 * amtInvested * .01 * 2.5) * game_outcome + (3.5 - 3.5 * amtInvested * .01)
-        
+        self.player.payoff += (200. * xRate * amtInvested * .01 * 2.5) * game_outcome + (200. - 200. * amtInvested * .01) * xRate  
 
 class Results(Page):
     def is_displayed(self):
