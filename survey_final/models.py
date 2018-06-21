@@ -41,7 +41,7 @@ class Player(BasePlayer):
 #        ],
 #        widget = widgets.RadioSelectHorizontal(),    
 #    )
-   q13b_volunteer = models.CharField(
+    q13b_volunteer = models.CharField(
        verbose_name = "Performed volunteer work",
        choices = [
            'Never',
@@ -50,7 +50,7 @@ class Player(BasePlayer):
            'A few times a month',
            '1-2 times a week',
            'A couple of times a week',
-          'Once a day',
+           'Once a day',
            'More than once a day',      
       ],
        widget = widgets.RadioSelectHorizontal(),    

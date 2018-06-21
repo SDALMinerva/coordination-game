@@ -9,7 +9,10 @@ class SocioDemographic(Page):
     is_debug = False
 
     def is_displayed(self):
-        return self.participant.vars['consent']
+        if self.session.is_demo:
+            return True
+        else:
+            return self.participant.vars['consent']
 
     def makeCheckTable(self, qName, choices, table_rows):
                       
@@ -171,7 +174,7 @@ class SocioDemographic(Page):
             ("games", "To play games"),
             ("research", "Research"),
 #            ("other", "Other"),
-#            ("dont_use","I don’t use this social networking site"),
+            ("used_sites","Select the sites that you use a couple of times a week"),
         ]        
         
         return {
@@ -183,11 +186,15 @@ class SocioDemographic(Page):
 
 class SocioDemographic13(SocioDemographic):
     def is_displayed(self):
-        return self.participant.vars['consent']
+        if self.session.is_demo:
+            return True
+        else:
+            return self.participant.vars['consent']
+        
     def get_form_fields(self):
         questions = [
 #            "q13a_transportation",
-#            "q13b_volunteer",
+            "q13b_volunteer",
             "q13c_donations",
             "q13d_discussPolitics",
             "q13e_communicate",
@@ -200,7 +207,10 @@ class SocioDemographic13(SocioDemographic):
     
 class SocioDemographic14(SocioDemographic):
     def is_displayed(self):
-        return self.participant.vars['consent']
+        if self.session.is_demo:
+            return True
+        else:
+            return self.participant.vars['consent']
     def get_form_fields(self):
         questions = [
             "q14_l_networking_otherPrint",             
@@ -232,7 +242,7 @@ class SocioDemographic14(SocioDemographic):
             ("games", "To play games"),
             ("research", "Research"),
 #            ("other", "Other"),
-#            ("wechat","I don’t use this social networking site"),
+            ("used_sites","Select the sites that you use a couple of times a week"),
         ]
         i = 0
         for r in rows:
@@ -245,7 +255,10 @@ class SocioDemographic14(SocioDemographic):
 
 class SocioDemographic15(SocioDemographic):
     def is_displayed(self):
-        return self.participant.vars['consent']
+        if self.session.is_demo:
+            return True
+        else:
+            return self.participant.vars['consent']
     def get_form_fields(self):
         questions = [
             "q15a_ethics_wealth",
@@ -259,7 +272,10 @@ class SocioDemographic15(SocioDemographic):
 
 class Behavioral1(Page):
     def is_displayed(self):
-        return self.participant.vars['consent']
+        if self.session.is_demo:
+            return True
+        else:
+            return self.participant.vars['consent']
     form_model = models.Player
     form_fields = [
         "daringness",
@@ -295,7 +311,10 @@ class Behavioral1(Page):
 
 class Results(Page):
     def is_displayed(self):
-        return self.participant.vars['consent']
+        if self.session.is_demo:
+            return True
+        else:
+            return self.participant.vars['consent']
     def vars_for_template(self):
         return {
             'payoff_currency': self.participant.payoff.to_real_world_currency(self.session) - self.player.payoff.to_real_world_currency(self.session),
