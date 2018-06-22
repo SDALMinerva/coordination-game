@@ -253,6 +253,7 @@ class SocioDemographic14(SocioDemographic):
         
         return questions
 
+
 class SocioDemographic15(SocioDemographic):
     def is_displayed(self):
         if self.session.is_demo:
@@ -269,6 +270,23 @@ class SocioDemographic15(SocioDemographic):
         ]
         return questions
 
+
+class Behavioral2(Page):
+    def is_displayed(self):
+        if self.session.is_demo:
+            return True
+        else:
+            return self.participant.vars['consent']
+            
+    form_model = models.Player
+    form_fields = [
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4",
+    ]
+    
+    template_name = "survey_final/Behavioral2.html"
 
 class Behavioral1(Page):
     def is_displayed(self):
@@ -309,6 +327,7 @@ class Behavioral1(Page):
         self.player.risky_project_outcome_2 = game_outcome
         self.player.payoff += (200. * xRate * amtInvested * .01 * 2.5) * game_outcome + (200. - 200. * amtInvested * .01) * xRate  
 
+
 class Results(Page):
     def is_displayed(self):
         if self.session.is_demo:
@@ -326,6 +345,7 @@ page_sequence = [
     SocioDemographic13,
     SocioDemographic14,
     SocioDemographic15,
+    Behavioral2,
     Behavioral1,
     Results
 ]

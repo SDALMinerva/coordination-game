@@ -26,6 +26,52 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+
+    trust_1 = models.CharField(
+        verbose_name = "1. Generally speaking, would you say that most people can be trusted or that you need to be very careful in dealing with people? (Code one answer):",
+        choices = [
+            "Most people can be trusted",
+            "Need to be very careful"
+        ],
+        widget = widgets.RadioSelect(),
+    )
+        
+    trust_2 = models.CharField(
+        verbose_name = "2. Do you think most people would try to take advantage of you if they got the chance, or would they try to be fair?",
+        choices = [
+            "Most of the time they would try to be fair",
+            "Most of the time they would try to take advantage"
+        ],
+        widget = widgets.RadioSelect(),
+    )
+
+    trust_3 = models.CharField(
+        verbose_name = "3. Would you say that most of the time people try to be helpful, or that they are mostly just looking out for themselves?",
+        choices = [
+            "Most of the time people are helpful",
+            "Most of the time they are just looking out for themselves"
+        ],
+        widget = widgets.RadioSelect(),
+    )
+        
+    trust_4 = models.PositiveIntegerField(
+        verbose_name = "4. Suppose you left your wallet with $50 on Campus. On a scale of 1 to 10, what are the chances that you will get it back?",
+        choices = [
+            [1, "1"],
+            [2, "2"],
+            [3, "3"],
+            [4, "4"],
+            [5, "5"],
+            [6, "6"],
+            [7, "7"],
+            [8, "8"],
+            [9, "9"],
+            [10, "10"],
+        ],
+        widget = widgets.RadioSelectHorizontal(),
+    )
+     
+    
     # Question 13
 #    q13a_transportation = models.CharField(
 #        verbose_name = "Used public transportation",
