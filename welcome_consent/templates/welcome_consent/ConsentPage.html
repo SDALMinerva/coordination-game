@@ -249,5 +249,49 @@ project. &nbsp;</p>
 <div class='blk'><b>Consent:</b>
 {% formfield player.consent with label="By checking here, you indicate that: you are at least 18 years of age, the research has been explained to you, your questions have been fully answered, and you freely and voluntarily choose to participate in this research project. " %}
 </div>
-{% next_button %} 
+<div class="modal fade" id="stopModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" id="stopModal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Please verify your choice.</h4>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Your choice indicates that you have <strong><span id="choice" style="color: blue;">not consented</span></strong> to participate.</h4>
+        <h6 class="card-subtitle mb-2">
+            If this is correct, please click 'Continue' to move on to the next page. 
+            If it is incorrect, please click 'Edit' to revise your choice. 
+        </h6>
+    <div id="resultTable"></div>
+    </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-discuss-continue" class="otree-btn-next btn btn-primary next-button otree-next-button clicktrack">Continue</button>
+        <button id="btn-discuss-edit" type="button" class="btn btn-primary clicktrack" data-dismiss="modal">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="buttons">
+    <p id="stopButton"> 
+    <button id="btn-discuss-next" type="button" class="btn btn-primary clicktrack" onclick="$('#stopModal').modal('show')">Next</button>
+    </p>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" >
+function setChoiceText() {
+  var choice = $('#id_consent').prop('checked');
+  if (choice){
+    $('#choice').html("consented");
+  } else {
+    $('#choice').html("not consented");
+  }
+}
+$('#id_consent').click(setChoiceText); 
+</script>
 {% endblock %}
