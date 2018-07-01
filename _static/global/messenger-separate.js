@@ -639,7 +639,7 @@ function NewlyAddedEntry(id,timestamp,content, key) {
 //   						+ '[' + this.timestamp + ']' 
    	listP.className = 'media-body';
    	listItem.appendChild(listP);
-   	listItem.innerHTML += '<p class="sent-message">only you can see this message - it will be received in the decision part</p>';
+   	listItem.innerHTML += '<p class="sent-message">Only you can see this message - it will be received in the decision part</p>';
    	
    	var keyDiv = document.createElement('div');
    	keyDiv.innerHTML = key;
