@@ -7,10 +7,9 @@ function startDiscussIntro() {
     intro.addSteps([
       {
         element: document.querySelectorAll('#playerDiv')[0],
-        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>. " +
-               "In each round, everyone will be assigned a new avatar and a new threshold. " +
-
-               "<br><br>You can click on your avatar at any time to see your own wall.",
+        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>." +
+               "In this example above, your avatar is <strong>Cow</strong> and your <strong>threshold T=1</strong>. " +
+               "<br><br>In each round, every player will be assigned a new avatar and a new threshold.",
       },
       {
         element: document.querySelectorAll('#reward-summary')[0],
@@ -18,16 +17,16 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "In each round, you will be connected to some or all of the other players in your group. " +
-               "They will be called 'your friends', and will be listed in this box. You will also see the thresholds of your friends here. " +
-               "<br><br>You can click on your friends' avatars to see their page. " +
-               "You can also see their friends (and their thresholds) on their pages, and you can post messages on your friends’ walls. ",
+        intro: "In each round, you will be connected to some or all of the other players in your group. They will be called <strong>your friends</strong>. " +
+               "Here, you will see your friends and their thresholds. " +
+               "<br><br>You can <strong>click on your friends' avatars</strong> to see their page, their friends, and their friends' thresholds. " +
+               "<br><br>You can <strong>post messages</strong> on your friends’ walls.",
       },
       {
         element: document.querySelectorAll('.container-network')[0],
-        intro: "This diagram shows <strong>the network</strong> for the round: the connections between all of the 5 players in your group. " +
+        intro: "This diagram shows <strong>the network</strong> for the round: the connections between all players in your group. "
                "The gray line between two avatars means that they are friends. " +
-               "You (and everyone else) can observe the connections between players in your group in ‘The Network’ box. " +
+               "<br><br>You (and everyone else) can observe all of the connections between players in your group in this box. " +
                "The shape of the network may or may not be the same in each round.",
       },
       {
@@ -37,42 +36,40 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('.message-tool')[0],
-        intro: "Before making your participation decision, you can use this tool to post messages on your wall " +
-               "or on your friends' walls to reveal your intention to participate or not in the group event. " +
-               "You can post: <strong>1) 'I will participate'</strong>, 2) <strong>'I will not participate'</strong> or choose not to post any messages. "+
-               "<br><br>Each player can post a message only on friends' walls. " +
-               "Posts on a player's wall can be viewed by all of his/her friends in the decision part. " +
+        intro: "In the <strong>messaging part</strong>, you can use this tool to post messages " +
+               "revealing your intention to participate or not in the group event. " +
+               "<br><br>You can post: <strong>1) 'I will participate'</strong>, 2) <strong>'I will not participate'</strong> or choose <strong>'no messages</strong> for the round. "+
+               "<br><br>Each player can post a message on his/her own wall and friends' walls. " +
+               "Posts on a player's wall can be viewed by all of his/her friends. " +
                "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu). " +
-               "You can also post a message on all of your friends’ walls. " +
-               "Click the 'Submit' button, to post your messages on the recipient’s wall.",
+               "You will click 'Submit' to post your messages in the actual game.",  
         position: "top",        
         disableInteraction: false,
         position: "right",
       },
       {
         element: document.querySelectorAll('.wall-card')[0],
-        intro: "Every player has a 'wall', where messages can be posted and these messages can be viewed by friends. " +
-               "You will view the posts on your wall and on your friends' walls in the decision part.",
+        intro: "Every player has a <strong>wall</strong>, where messages can be posted and viewed by friends. " +
+               "The messages on your wall and on your friends' walls will be received and viewed in the <strong>decision part</strong>.",
         //position: "top",
       },
       {
         element: document.querySelectorAll('#stopButton')[0],
-        intro: "Once you are done with posting messages, you can click 'Next' below to proceed to the decision part. " +
+        intro: "Once you are done with posting messages, you can click 'Next' to proceed to the decision part. " +
                "You cannot post messages in the decision part.",
         disableInteraction: true,
       },
       /*
       {
         element: document.querySelectorAll('#stopModal-content')[0],
-        intro: "You will have one last chance to review and edit your posts. " +
-               "Click “Edit” to make changes to your posts; you can change or remove existing messages or post new ones. " +
-               "Click 'Continue' to proceed to the decision part. " +
-               "Make sure that you post all of the messages you want before clicking 'Continue' as you cannot get back to the messaging part.",
+        intro: "You can review your posts and click “Edit” to make changes: you can remove existing messages or post new ones. " +
+               "Make sure that you post all of the messages you want before clicking 'Continue' as you cannot get back to the messaging part.  " +
+               "When you click 'Continue', you will proceed to the decision part.",
         disableInteraction: true,
       },
       {
         element: document.querySelectorAll('.next-button')[0],
-        intro: "<h5><em><strong>Please click Continue to move to the decision part.</strong></em><h5>",
+        intro: "<h5><em><strong>Please click Continue to move to the tour of the decision part.</strong></em><h5>",
       },
       */
     ]);
@@ -100,17 +97,16 @@ function startDiscussIntro() {
       {
         element: document.querySelectorAll('.wall-card')[0],
         intro: "In the decision part, each player can observe the messages posted on their own walls and on their friends' walls. " +
-               "You will be able to view all of the posts from you and your friends on your wall. " +
                "You will not be able to post or receive any more messages. ",        
         position: "top",
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "You can click on your friends' avatars to view their walls and the messages posted on them by their friends.", 
+        intro: "You can click on your friends' avatars to view the messages posted on their walls by their friends.",  
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
-        intro: "After reviewing the messages by friends, each player in the group then must decide whether <strong>to participate or not " +
+        intro: "After reviewing the messages, each player in the group then must decide whether <strong>to participate or not " +
                "participate</strong> for this round. After making your participation decision for the round, a new round will start. You will not observe the outcome of the rounds. " +
                "<br><br>After you play all the rounds, we will choose a random round and you will be paid based on the " +
                "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
@@ -123,7 +119,7 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('.next-button')[0],
-        intro: "Next, you will take a short quiz, play test rounds, and when you are ready, begin the game. <br/><br/><h5><em><strong>Please click 'Continue' now.</strong></em><h5/>",
+        intro: "Next, you will have 3 practice rounds before the actual game starts. <br/><br/><h5><em><strong>Please click 'Continue' now.</strong></em><h5/>",
       },
       */
     ]);
