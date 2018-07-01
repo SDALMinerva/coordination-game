@@ -218,7 +218,7 @@ function Wall() {
 		if (output) {
 		this.labeltext.innerHTML = 'Use the tool above to post a message on the wall. Sent posts will be received once you and everyone else is done with sending messages and proceed to the decision part by clicking "Next" below.';
         } else {
-        this.labeltext.innerHTML = "View posts on your wall or your friend's wall.";        
+        this.labeltext.innerHTML = "View posts by your friends on your wall in the decision part.";        
         }
 		this.topRowHeader.appendChild(this.label);
 		this.topRowHeader.appendChild(this.labeltext);
