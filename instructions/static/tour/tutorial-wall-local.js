@@ -32,7 +32,7 @@ function startDiscussIntro() {
       {
         element: document.querySelectorAll('.container-groupList')[0],
         intro: "These are all of the players in your group. Some or all of them are in your list of friends. " +
-               "When a player moves on to the next page and is waiting for you, it will be displayed here.  ",
+               "When a player moves on to the next page and is waiting for you, it will be displayed here. ",
       },
       {
         element: document.querySelectorAll('.message-tool')[0],
