@@ -214,7 +214,7 @@ function MessageWindow() {
 		if (output) {
 		this.labeltext.innerHTML = 'Use the tool above to send a message to your friend. Sent messages will be received once you and everyone else is done sending messages and proceeds to the decision part by clicking "Next" below.';
         } else {
-        this.labeltext.innerHTML = "View messages from your friends or messages you have sent to your friends.";        
+        this.labeltext.innerHTML = "View messages between you and your friends.";        
         }
 		this.topRowHeader.appendChild(this.label);
 		this.topRowHeader.appendChild(this.labeltext);
@@ -639,7 +639,7 @@ function NewlyAddedEntry(id,timestamp,content, key) {
 //   						+ '[' + this.timestamp + ']' 
    	listP.className = 'media-body';
    	listItem.appendChild(listP);
-   	listItem.innerHTML += '<p class="sent-message">only you can see this message - it will be received in the decision part</p>';
+   	listItem.innerHTML += '<p class="sent-message">Only you can see this message - it will be received in the decision part</p>';
    	
    	var keyDiv = document.createElement('div');
    	keyDiv.innerHTML = key;

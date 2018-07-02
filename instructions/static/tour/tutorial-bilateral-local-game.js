@@ -7,10 +7,9 @@ function startDiscussIntro() {
     intro.addSteps([
       {
         element: document.querySelectorAll('#playerDiv')[0],
-        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>. " +
-               "In each round, everyone will be assigned a new avatar and a new threshold. " +
-
-               "<br><br>You can click on your avatar at any time to see your own wall.",
+        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>." +
+               "In this example above, your avatar is <strong>Cow</strong> and your <strong>threshold T=1</strong>. " +
+               "<br><br>In each round, every player will be assigned a new avatar and a new threshold.",
       },
       {
         element: document.querySelectorAll('#reward-summary')[0],
@@ -18,47 +17,44 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "In each round, you will be connected to some or all of the other players in your group. " +
-               "They will be called 'your friends', and will be listed in this box. You will also see the thresholds of your friends here. " +
-               "<br><br>You can click on your friends' avatars to see their page. " +
-               "You can also see their friends (and their thresholds) on their pages, and you can post messages on your friends’ walls. " +
-               "Try clicking on a few to see their walls. ",
+        intro: "In each round, you will be connected to some or all of the other players in your group. They will be called <strong>your friends</strong>. " +
+               "Here, you will see your friends and their thresholds. " +
+               "<br><br>You can <strong>send messages</strong> to your friends.",
       },
       {
         element: document.querySelectorAll('.container-network')[0],
-        intro: "Your network represents how you are connected with the rest of the players in your group in a round. " +
-               "The gray line between your avatar and another avatar means that you are friends with that player.  " +
-               "All of the 5 players in your group will be connected to some or all of the other players in the group. " +
-               "You can observe your connections in ‘Your Network’ box, but you cannot observe the connections between your friends or other players in this box. " +
-               "<br><br>Note that you will be assigned to a new group in each round. The shape of the network may or may not be the same in each round.",
+        intro: "This diagram shows <strong>your network</strong> for the round: your connections (friends) in the group. " +
+               "There is a gray line between your avatar and each of your friends' avatars. " +
+               "<br><br>You can observe your connections in this box, but you cannot observe the connections between your friends or other players. " +
+               "The shape of the network may or may not be the same in each round.",
       },
       {
         element: document.querySelectorAll('.container-groupList')[0],
         intro: "These are all of the players in your group. Some or all of them are in your list of friends." +
-               "When a player moves on to the next page and is waiting for you, it will be displayed here.  ",
+               "When a player moves on to the next page and is waiting for you, it will be displayed here. ",
       },
       {
         element: document.querySelectorAll('.message-tool')[0],
-        intro: "Before making your participation decision, you will be given an opportunity to send messages to your friends to reveal " +
-               "your intention to participate or not in the group event. You have the following two messaging options to post on the walls: " +
-               "1) 'I will participate', 2) 'I will not participate'. Each player can send a message only to his/her own friends. " +
-               "No one can see other players’ messages. You will view the messages sent to you by your friends in the decision part. " +
-               "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu) to send a message to " +
-               "your friend. You also have the option to send to 'All Friends' which means sending the message to all of your friends. " +
-               "Click the 'Send Message' button, to send your messages on to your friends. " + 
-               "You will receive a confirmation each time you send a message.",
+        intro: "In the <strong>messaging part</strong>, you can use this tool to send messages to your friends " +
+               "revealing your intention to participate or not in the group event. " +
+               "<br><br>You can send: <strong>1) 'I will participate'</strong>, 2) <strong>'I will not participate'</strong> or choose <strong>'no messages</strong> for the round. " +    
+               "<br><br>Each player can send a message only to his/her friends. " +
+               "No one can see other players’ messages. " +
+               "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu). " +
+               "You will click 'Submit' to send your messages in the actual game.",     
         position: "top",
         disableInteraction: false,
         position: "right",
       },
       {
         element: document.querySelectorAll('.message-card')[0],
-        intro: "You will view the messages sent to you by your friends in the decision part in this box.",
+        intro: "You will view the messages sent to you by your friends in your inbox. " +
+               "The messages from friends will be received and viewed in the <strong>decision part</strong>."   
         //position: "top",
       },
       {
         element: document.querySelectorAll('#stopButton')[0],
-        intro: "Once you are done with sending messages, you can click 'Next' below to proceed to the decision part. " +
+        intro: "Once you are done with sending messages, you can click 'Next' to proceed to the decision part. " +
                "You cannot send messages in the decision part.",
         disableInteraction: true,
       },
@@ -99,22 +95,20 @@ function startDiscussIntro() {
       {
         element: document.querySelectorAll('.message-card')[0],
         intro: "In the decision part, each player can observe the messages sent to them. " +
-               "You will be able to view all of the messages sent to you by your friends. " +
                "You will not be able to send or receive any more messages.",
         position: "top",
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "You can click on your friends' avatars to view messages sent by your friends.", 
+        intro: "You can click on your friends' avatars to view the messages you sent to them.", 
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
-        intro: "After reviewing the messages by friends, each person in the group then must decide whether to participate or not " +
-               "participate in the group event for this round. After making your participation decision for the round, a new round will start. <br><br>You will not observe the outcome of the rounds." +
-               "After you play all the rounds, at the end of the experiment, we will choose a random round and you will be paid based on the " +
+        intro: "After reviewing the messages, each player in the group then must decide whether <strong>to participate or not " +
+               "participate</strong> for this round. After making your participation decision for the round, a new round will start. You will not observe the outcome of the rounds. " +
+               "<br><br>After you play all the rounds, we will choose a random round and you will be paid based on the " +
                "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
-      },
       /*{
         element: document.querySelectorAll('#help-nav')[0],
         intro: "At any time, you can view the instructions, this tour and the quiz.",

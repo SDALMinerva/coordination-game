@@ -157,7 +157,7 @@ $(window).on('load',function(){
                 <div id="message-tool" class="card message-tool">
                     <div class="card-body">
                         <h4 class="card-title">Wall Messaging Tool</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Post a message to your wall or your friends' walls. Once a message has been sent to a friend, 
+                        <h6 class="card-subtitle mb-2 text-muted">Post messages to your wall or your friends' walls. Once a message has been sent to a friend, 
                         you will not be able to select them as a recipient and you will have to delete (<span class="glyphicon glyphicon-trash"></span>) the message
                          below to send another message to the same friend.</h6>
                         <div class="message-tool-content"></div>
@@ -169,7 +169,7 @@ $(window).on('load',function(){
                         </button>
                     </div>
                     <div id="selector-success" class="alert alert-success alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
-                        <strong>Message sent!</strong> You can send more messages or delete this one until the decision part.
+                        <strong>Message sent!</strong> You can send more messages or delete this one before the decision part.
                         <button type="button" class="close" onclick="$('#selector-success').hide()" aria-label="Close">
                              <span aria-hidden="true">&times;</span>
                         </button>
@@ -203,8 +203,8 @@ $(window).on('load',function(){
                     <div class="card-body">
                         <h4 class="card-title">Private Messaging Tool</h4>
                         <h6 class="card-subtitle mb-2 text-muted">
-                            Send a message to your friends. 
-                            Once a message has been sent to a friend, Once a message has been sent to a friend, you will not be able to select them as a recipient and you will have to delete 
+                            Send messages to your friends. 
+                            Once a message has been sent to a friend, you will not be able to select them as a recipient and you will have to delete 
                             (<span class="glyphicon glyphicon-trash"></span>) the message below to send another message to the same friend.
                         </h6>
                         <div class="message-tool-content"></div>
@@ -274,7 +274,7 @@ $(window).on('load',function(){
 {% endblock %}
 
 {% block checkSubmission %}
-<p id="exit-message">Click <strong>Next</strong> to continue. <strong>Note: The button is disabled until you make at least one choice using the message tool above. You must use the messaging tool one or more times before you can proceed.</strong></p>
+<p id="exit-message">Click <strong>Next</strong> to continue. <strong>Note: The button is disabled until you use the messaging tool above at least once.</strong></p>
 <br>
 <div class="modal fade" id="stopModal">
   <div class="modal-dialog" role="document">

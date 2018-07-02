@@ -208,7 +208,7 @@ class Player(BasePlayer):
         initial = True,
         choices = [
             [True, "Yes, I would like to continue practicing."],
-            [False,"No, I understand the game and would like to advance to the next step."],        
+            [False,"No, I understand the game and would like to advance to the main rounds."],        
         ]);
 
 
