@@ -100,7 +100,7 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "You can click on your friends' avatars to view messages sent to them by you.", 
+        intro: "You can click on your friends' avatars to view the messages you sent to them.", 
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
