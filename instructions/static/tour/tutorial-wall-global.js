@@ -7,7 +7,7 @@ function startDiscussIntro() {
     intro.addSteps([
       {
         element: document.querySelectorAll('#playerDiv')[0],
-        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>." +
+        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>. " +
                "In this example above, your avatar is <strong>Cow</strong> and your <strong>threshold T=1</strong>. " +
                "<br><br>In each round, every player will be assigned a new avatar and a new threshold.",
       },
@@ -32,7 +32,7 @@ function startDiscussIntro() {
       {
         element: document.querySelectorAll('.container-groupList')[0],
         intro: "These are all of the players in your group. Some or all of them are in your list of friends. " +
-               "When a player moves on to the next page and is waiting for you, it will be displayed here.  ",
+               "When a player moves on to the next page and is waiting for you, it will be displayed here. ",
       },
       {
         element: document.querySelectorAll('.message-tool')[0],
@@ -68,7 +68,7 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('.next-button')[0],
-        intro: "<h5><em><strong>Please click Continue to move to the tour of the decision part.</strong></em><h5>",
+        intro: "<h5><em><strong>Please click 'Continue' to move to the tour of the decision part.</strong></em><h5>",
       },
     ]);
     intro.onchange(function(targetElement) {   
