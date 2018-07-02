@@ -22,6 +22,10 @@ $(function () {
     socket.onclose = function () {
         console.log("Disconnected from clicktrack socket");
     };
+    
+    $(window).bind('beforeunload', function(){
+        socket.close();
+    });
 
     function clickListener(e) {
         var clickedElement;

@@ -161,6 +161,7 @@ DEV_CONFIGS = [
          'display_name': 'Test: Instructions',
          'num_demo_participants': 1,
          'app_sequence': [
+                          'welcome_consent',
                           'instructions', 
                          ],
          'condition_messaging': 'none',
@@ -171,6 +172,7 @@ DEV_CONFIGS = [
          'display_name': 'Test: Practice',
          'num_demo_participants': 5,
          'app_sequence': [
+                          'welcome_consent',                          
                           'practice', 
                          ],
          'condition_messaging': 'bilateral',
@@ -181,6 +183,7 @@ DEV_CONFIGS = [
          'display_name': 'Test: Initial Survey',
          'num_demo_participants': 1,
          'app_sequence': [ 
+                          'welcome_consent',
                           'survey_initial',
                          ],
      },
@@ -188,7 +191,8 @@ DEV_CONFIGS = [
          'name': 'test_main',
          'display_name': 'Test: Main Coordination Experiment',
          'num_demo_participants': 15,
-         'app_sequence': [ 
+         'app_sequence': [
+                          'welcome_consent', 
                           'main',
                          ],
           # Rounds
@@ -202,14 +206,15 @@ DEV_CONFIGS = [
          'name': 'test_main_oneParticipant',
          'display_name': 'Test: Main Coordination Experiment',
          'num_demo_participants': 1,
-         'app_sequence': [ 
+         'app_sequence': [
+                          'welcome_consent', 
                           'main',
                          ],
           # Rounds
           'round_seq_file': 'seq-15rounds-123-high_low.json',
           
           # Treatment Configs
-          'condition_messaging': 'none',               #none, wall, bilateral, both
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
           'condition_network_knowledge': 'local',      #local, global
      },
      {
@@ -217,6 +222,7 @@ DEV_CONFIGS = [
          'display_name': 'Test: Final Survey',
          'num_demo_participants': 1,
          'app_sequence': [
+                          'welcome_consent',
                           'survey_final',
                          ],
      },
