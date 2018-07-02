@@ -109,6 +109,7 @@ function startDiscussIntro() {
                "<br><br>After you play all the rounds, we will choose a random round and you will be paid based on the " +
                "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
+       },
       /*{
         element: document.querySelectorAll('#help-nav')[0],
         intro: "At any time, you can view the instructions, this tour and the quiz.",
