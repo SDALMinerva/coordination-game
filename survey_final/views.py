@@ -288,6 +288,7 @@ class Behavioral2(Page):
     
     template_name = "survey_final/Behavioral2.html"
 
+
 class Behavioral1(Page):
     def is_displayed(self):
         if self.session.is_demo:
@@ -297,12 +298,23 @@ class Behavioral1(Page):
     form_model = models.Player
     form_fields = [
         "daringness",
-        "risky_project",
-        "risky_project_2",
     ] + ['coinScenerio_{}'.format(i) for i in range(1, 32)]
     
     def vars_for_template(self):
         return {'coinOffers': [{"num": i, "amt": 10 * (i - 1)} for i in range(1, 32)]}
+        
+
+class Paid(Page):
+    def is_displayed(self):
+        if self.session.is_demo:
+            return True
+        else:
+            return self.participant.vars['consent']
+    form_model = models.Player
+    form_fields = [
+        "risky_project",
+        "risky_project_2",
+    ]
         
     def before_next_page(self):
         self.player.payoff = 0
@@ -310,20 +322,12 @@ class Behavioral1(Page):
         xRate = .016667        
         
         amtInvested = self.player.risky_project
-        print(amtInvested)
         game_outcome = binomial(1,.4)
         self.player.risky_project_outcome = game_outcome
-        print(game_outcome)
-        print((200. * xRate * amtInvested * .01 * 3.) * game_outcome + (200. - 200. * amtInvested * .01) * xRate)
-        self.player.payoff += (200. * xRate * amtInvested * .01 * 3.) * game_outcome + (200. - 200. * amtInvested * .01) * xRate
-
-        print(self.player.payoff)        
+        self.player.payoff += (200. * xRate * amtInvested * .01 * 3.) * game_outcome + (200. - 200. * amtInvested * .01) * xRate       
         
         amtInvested = self.player.risky_project_2
-        print(amtInvested)
         game_outcome = binomial(1,.5)
-        print(game_outcome)
-        print((200. * xRate * amtInvested * .01 * 2.5) * game_outcome + (200. - 200. * amtInvested * .01) * xRate)
         self.player.risky_project_outcome_2 = game_outcome
         self.player.payoff += (200. * xRate * amtInvested * .01 * 2.5) * game_outcome + (200. - 200. * amtInvested * .01) * xRate  
 
@@ -347,5 +351,6 @@ page_sequence = [
     SocioDemographic15,
     Behavioral2,
     Behavioral1,
+    Paid,
     Results
 ]

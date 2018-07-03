@@ -1,0 +1,94 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Post-survey Questions
+{% endblock %}
+
+{% block content %}
+    {% if session.is_demo %}
+        <a href="#" onclick="setVals()">DEMO: Click here to fill vals.</a>
+    {% endif %}
+    
+
+    <h4 class="qMarker" style="font-size: 14pt;">Paid Questions</h4>
+    <h5>
+    The following questions will add to your final earnings. You can earn <strong>up to $3</strong> based on your choice and chance. 
+    After you submit your answers to these questions, the outcomes will determine your earnings. 
+    In these questions, we will use experimental points and they will be converted to cash with the following conversion rate: 1 experimental point = $0.0025.
+    </h5>    
+    
+    <p class=""><strong>P1. Consider this scenario:</strong><br> 
+    Suppose you have <strong>200 experimental points</strong> that you can choose to keep or invest in a risky project.
+    </p>
+    <ol>
+        <li>Money that is not invested in the risky project is yours to keep.</li> 
+        <li>The risky project has a <strong>40% chance of success</strong>. If the project is successful, you will receive <strong>3 times</strong> the amount you chose to invest.</li> 
+        <li>If the project is unsuccessful, you will lose the amount invested.</li>    
+    </ol>
+    <p>Please choose a percentage of points that you feel comfortable with investing in the risky project.<br>
+             ***Note that you can pick any number between 0% and 100%, including 0% or 100%.</p>
+    {% formfield player.risky_project label="" %}
+    
+
+    <p class="qMarker"><strong>P2. Consider this scenario.</strong><br> 
+    Suppose you have <strong>200 experimental points</strong> that you can choose to keep or invest in <em><strong>another</strong></em> risky project.
+    </p>
+    <ol>
+        <li>Money that is not invested in the risky project is yours to keep.</li> 
+        <li>The risky project has a <strong>50% chance of success</strong>. If the project is successful, you will receive <strong>2.5 times</strong> the amount you chose to invest.</li> 
+        <li>If the project is unsuccessful, you will lose the amount invested.</li>    
+    </ol>
+    <p>Please choose a percentage of points that you feel comfortable with investing in the risky project.<br>
+             ***Note that you can pick any number between 0% and 100%, including 0% or 100%.</p>
+    {% formfield player.risky_project_2 label="" %}
+
+    
+    
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+
+        {% if session.is_demo %}
+        var setVals = function (){
+            $(":text").val('X');
+           	$('input[type="number"]').val('999');
+           	$('input:radio').prop('checked', true);
+           	$('select option').prop('selected', true);
+        }
+        {% endif %}    
+    
+    </script>
+{% endblock %}
+
+{% block app_styles %}
+    <style type="text/css">
+        .subquestion label, li label {
+            font-weight: normal;
+        }
+        
+        #id_middleInitial {
+            max-width: 50px;
+        }
+        
+        #id_otherWork, #id_otherFreeTime {
+            margin-top: 10px;
+        }
+        
+        .qualifier{
+    font-size: 8pt;
+    font-weight: bold;
+    padding-left: 20px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.qMarker{
+    font-size: 11pt;
+    margin-top: 60px;
+}
+    </style>
+{% endblock %}
