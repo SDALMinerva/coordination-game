@@ -149,6 +149,8 @@ def ws_receive(message):
             else:
                 posted_wall_messages_from = PrivateMessage.objects.filter(wall__node = node).filter(createdBy = player_node)
                 posted_wall_messages_from = posted_wall_messages_from.exclude(deleted = True)
+                posted_wall_messages_to = PrivateMessage.objects.filter(wall__node = player_node).filter(createdBy = node)
+                posted_wall_messages_to = posted_wall_messages_to.exclude(deleted = True) 
             
             entryList =  posted_wall_messages_to | posted_wall_messages_from
             entryList.order_by('datetime')

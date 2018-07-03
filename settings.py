@@ -170,7 +170,7 @@ DEV_CONFIGS = [
      {
          'name': 'test_practice',
          'display_name': 'Test: Practice',
-         'num_demo_participants': 5,
+         'num_demo_participants': 1,
          'app_sequence': [
                           'welcome_consent',                          
                           'practice', 
@@ -214,7 +214,7 @@ DEV_CONFIGS = [
           'round_seq_file': 'seq-15rounds-123-high_low.json',
           
           # Treatment Configs
-          'condition_messaging': 'wall',               #none, wall, bilateral, both
+          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
           'condition_network_knowledge': 'local',      #local, global
      },
      {
