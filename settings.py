@@ -164,7 +164,7 @@ DEV_CONFIGS = [
                           'welcome_consent',
                           'instructions', 
                          ],
-         'condition_messaging': 'none',
+         'condition_messaging': 'bilateral',
          'condition_network_knowledge': 'local',
      },
      {

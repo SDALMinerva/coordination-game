@@ -45,16 +45,32 @@ Round 1: Messaging Part
 
     <div class="modal-content" id="stopModal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Are you sure?</h4>
+        <h4 class="modal-title">
+        Are you sure?
+        </h4>
       </div>
       <div class="modal-body">
         <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Your Post Summary</h4>
+        <h4 class="card-title">
+        {% if session.config.condition_messaging == 'bilateral' %}
+         Your Message Summary
+        {% endif %}
+		{% if session.config.condition_messaging == 'wall' %}
+		 Your Post Summary
+		{% endif %}        
+        </h4>
         <h6 class="card-subtitle mb-2 text-muted">
+        {% if session.config.condition_messaging == 'bilateral' %}
+            This is a summary of your messages for this round. 
+            A check appears for the messages sent by you to the player shown. 
+            Click 'Continue' to continue to proceed to the decision part or 'Edit' to make changes to your messages.
+		{% endif %}
+		{% if session.config.condition_messaging == 'wall' %}
             This is a summary of your posts for this round.
             A check appears for the posts sent by you to the player shown.
-            Click 'Continue' to proceed to the decision part or 'Edit' to make changes to your posts.
+            Click 'Continue' to continue to the decision page or 'Edit' to make changes to your posts.
+		{% endif %}
         </h6>
     <div id="resultTable"></div>
     </div>

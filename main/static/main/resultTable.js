@@ -59,7 +59,11 @@ function ResultTable() {
         return tr;
     };
     
-    this.labels = ['', 'You Posted:<br/> "I will participate."', 'You Posted:<br/> "I will not participate."'];
+    if(isWall){
+        this.labels = ['', 'You Posted:<br/> "I will participate."', 'You Posted:<br/> "I will not participate."'];
+    } else {
+        this.labels = ['', 'You Sent:<br/> "I will participate."', 'You Sent:<br/> "I will not participate."'];
+    }
     this.row = function (r) {
         var tr = document.createElement('tr');
         tr.innerHTML = "<td>" + this.avatarSpan(r.icon,r.name) + "</td><td style='text-align: center;'>" + this.tfspan(r['0']) + "</td><td style='text-align: center;'>" + this.tfspan(r['1']) + "</td>";
