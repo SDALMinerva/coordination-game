@@ -24,7 +24,7 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('.container-network')[0],
-        intro: "This diagram shows <strong>the network</strong> for the round: the connections between all players in your group. "
+        intro: "This diagram shows <strong>the network</strong> for the round: the connections between all players in your group. " +
                "The gray line between two avatars means that they are friends. " +
                "<br><br>You (and everyone else) can observe all of the connections between players in your group in this box. " +
                "The shape of the network may or may not be the same in each round.",
