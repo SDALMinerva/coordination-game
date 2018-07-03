@@ -1,6 +1,28 @@
 {% load staticfiles otree_tags %}
+
+{% comment %}
 <div class="container-network">
 <h4 id="network-title">{{networkDisplay}} Network:</h4>
 <div id="mynetwork" style="height: 300px; width: 100%;"></div>
+</div>
+{% endcomment %}
+
+<div class="card">
+    <div class="card-body container-network">
+        <h4 id="network-title" class="card-title">
+        {{networkDisplay}} Network:
+        </h4>
+        <h6 style="font-size: 8pt;" class="card-subtitle mb-2 text-muted">
+        {% if session.config.condition_network_knowledge == 'global' %}
+            These are all of the connections between players in your group. 
+            You (and everyone else) can observe the connections between players in your group.
+		{% endif %}
+		{% if session.config.condition_network_knowledge == 'local' %}
+            These are your connections in the group. 
+            You cannot observe the connections between your friends or other players.
+		{% endif %}
+        </h6>
+    <div id="mynetwork" style="height: 300px; width: 100%;"></div>
+    </div>
 </div>
 
