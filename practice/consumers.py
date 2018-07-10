@@ -141,6 +141,7 @@ def ws_receive(message):
             # Show messages from other player to own player.
             if node.pk == player_node.pk:
                 posted_wall_messages_to = PrivateMessage.objects.filter(wall__node = node)
+                posted_wall_messages_to = posted_wall_messages_to.filter(messageRound__lt = messageRound)
                 posted_wall_messages_to = posted_wall_messages_to.exclude(deleted = True)
             
             # Show messages from own player to other player.
@@ -149,6 +150,7 @@ def ws_receive(message):
                 posted_wall_messages_from = PrivateMessage.objects.filter(wall__node = node).filter(createdBy = player_node)
                 posted_wall_messages_from = posted_wall_messages_from.exclude(deleted = True)
                 posted_wall_messages_to = PrivateMessage.objects.filter(wall__node = player_node).filter(createdBy = node)
+                posted_wall_messages_to = posted_wall_messages_to.filter(messageRound__lt = messageRound)
                 posted_wall_messages_to = posted_wall_messages_to.exclude(deleted = True)           
             
             entryList =  posted_wall_messages_to | posted_wall_messages_from

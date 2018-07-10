@@ -205,7 +205,7 @@ DEV_CONFIGS = [
      {
          'name': 'test_main_oneParticipant',
          'display_name': 'Test: Main Coordination Experiment',
-         'num_demo_participants': 1,
+         'num_demo_participants': 3,
          'app_sequence': [
                           'welcome_consent', 
                           'main',
