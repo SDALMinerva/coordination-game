@@ -38,7 +38,7 @@ function startDiscussIntro() {
         element: document.querySelectorAll('.message-tool')[0],
         intro: "In the <strong>messaging part</strong>, you can use this tool to post messages " +
                "revealing your intention to participate or not in the group event. " +
-               "<br><br>You can post: <strong>1) 'I will participate'</strong>, 2) <strong>'I will not participate'</strong> or choose <strong>'no messages</strong> for the round. " +
+               "<br><br>You can post: <strong>1) 'I will participate'</strong>, <strong>2) 'I will not participate'</strong> or choose <strong>'no messages</strong> for the round. " +
                "<br><br>Each player can post a message on his/her own wall and friends' walls. " +
                "Posts on a player's wall can be viewed by all of his/her friends. " +
                "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu). " +
@@ -104,10 +104,10 @@ function startDiscussIntro() {
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
-        intro: "After reviewing the messages, each player in the group then must decide whether <strong>to participate or not " +
+        intro: "After reviewing the messages, each player in the group then must decide whether <strong>to participate</strong> or <strong>not " +
                "participate</strong> for this round. After making your participation decision for the round, a new round will start. You will not observe the outcome of the rounds. " +
                "<br><br>After you play all the rounds, we will choose a random round and you will be paid based on the " +
-               "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
+               "result of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
       },
       {

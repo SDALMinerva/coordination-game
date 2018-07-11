@@ -7,7 +7,7 @@ function startDiscussIntro() {
     intro.addSteps([
       {
         element: document.querySelectorAll('#playerDiv')[0],
-        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>." +
+        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>. " +
                "In this example above, your avatar is <strong>Cow</strong> and your <strong>threshold T=1</strong>. " +
                "<br><br>In each round, every player will be assigned a new avatar and a new threshold.",
       },
@@ -30,14 +30,14 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('.container-groupList')[0],
-        intro: "These are all of the players in your group. Some or all of them are in your list of friends." +
+        intro: "These are all of the players in your group. Some or all of them are in your list of friends. " +
                "When a player moves on to the next page and is waiting for you, it will be displayed here.  ",
       },
       {
         element: document.querySelectorAll('.message-tool')[0],
         intro: "In the <strong>messaging part</strong>, you can use this tool to send messages to your friends " +
                "revealing your intention to participate or not in the group event. " +
-               "<br><br>You can send: <strong>1) 'I will participate'</strong>, 2) <strong>'I will not participate'</strong> or choose <strong>'no messages</strong> for the round. " +    
+               "<br><br>You can send: <strong>1) 'I will participate'</strong>, <strong>2) 'I will not participate'</strong> or choose <strong>'no messages</strong> for the round. " +    
                "<br><br>Each player can send a message only to his/her friends. " +
                "No one can see other players’ messages. " +
                "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu). " +
@@ -99,14 +99,14 @@ function startDiscussIntro() {
       },
       {
         element: document.querySelectorAll('#friendsDiv')[0],
-        intro: "You can click on your friends' avatars to view the messages you sent to them.", 
+        intro: "You can click on your friends' avatars to view the messages between you and them.", 
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
-        intro: "After reviewing the messages, each player in the group then must decide whether <strong>to participate or not " +
+        intro: "After reviewing the messages, each player in the group then must decide whether <strong>to participate</strong> or <strong>not " +
                "participate</strong> for this round. After making your participation decision for the round, a new round will start. You will not observe the outcome of the rounds. " +
                "<br><br>After you play all the rounds, we will choose a random round and you will be paid based on the " +
-               "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
+               "result of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
       },
       {

@@ -8,7 +8,7 @@
     intro.addSteps([
       {
         element: document.querySelectorAll('#playerDiv')[0],
-        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>." +
+        intro: "In each round, you will be assigned a randomly chosen <strong>identity (or avatar)</strong> and a <strong>threshold T</strong>. " +
                "In this example above, your avatar is <strong>Cow</strong> and your <strong>threshold T=1</strong>. " +
                "<br><br>In each round, every player will be assigned a new avatar and a new threshold.",
       },
@@ -30,15 +30,15 @@
       },
       {
         element: document.querySelectorAll('.container-groupList')[0],
-        intro: "These are all of the players in your group. Some or all of them are in your list of friends." +
+        intro: "These are all of the players in your group. Some or all of them are in your list of friends. " +
                "When a player moves on to the next page and is waiting for you, it will be displayed here. ",
       }, 
       {
         element: document.querySelectorAll('#participate-group')[0],
-        intro: "Each player in the group then must decide whether <strong>to participate or not " +
+        intro: "Each player in the group then must decide whether <strong>to participate</strong> or <strong>not " +
                 "participate</strong> for this round. After making your participation decision for the round, a new round will start. You will not observe the outcome of the rounds. " +
                "<br><br>After you play all the rounds, we will choose a random round and you will be paid based on the " +
-               "results of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
+               "result of that round. Because each round has the same chance of being chosen for payment, you should pay careful attention to " +
                "each round.",
       },
       /*{
