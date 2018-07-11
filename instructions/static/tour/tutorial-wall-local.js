@@ -38,7 +38,7 @@ function startDiscussIntro() {
         element: document.querySelectorAll('.message-tool')[0],
         intro: "In the <strong>messaging part</strong>, you can use this tool to post messages " +
                "revealing your intention to participate or not in the group event. " +
-               "<br><br>You can post: <strong>1) 'I will participate'</strong>, 2) <strong>'I will not participate'</strong> or choose <strong>'no messages</strong> for the round. " +
+               "<br><br>You can post: <strong>1) 'I will participate'</strong>, <strong>2) 'I will not participate'</strong> or choose <strong>'no messages</strong> for the round. " +
                "<br><br>Each player can post a message on his/her own wall and friends' walls. " +
                "Posts on a player's wall can be viewed by all of his/her friends. " +
                "<br><br>Try using the messaging tool by selecting the recipient and a message (from the dropdown menu). " +
