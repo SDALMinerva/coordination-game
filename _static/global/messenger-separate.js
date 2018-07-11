@@ -1,7 +1,7 @@
 var wall = new MessageWindow();
 wall.init(nodeId, privateEntries, output);
 
-var noSendMessage = 'Send no messages this round';
+var noSendMessage = 'No messages to display. Messages will be received in the decision part.';
 
 if (output){
     var messenger = new Messenger();
@@ -283,7 +283,7 @@ function MessageWindow() {
 	this.changeId = function(id) {
 		this.Id = id;
         
-        var uName = ((id == this.ownId) ?  'Your Inbox (All Messages to You)' : "Messages from you to " + userNames[id]);		
+        var uName = ((id == this.ownId) ?  'Your Inbox (All Messages to You)' : "Messages between you and " + userNames[id]);		
 		
 		this.label.innerHTML = "";// + uName + " Thread";
 		this.wallLabel.innerHTML = uName;
