@@ -306,9 +306,9 @@ function MessageWindow() {
 	
 	this.parseExistingEntries = function(entries){
 	    if ((entries.length == 0) && (messageRound <= nMessagingRound) ){
-            this.wall.innerHTML = '<p style="margin-top: 10px; font-size: 10pt; line-height: 100%;" id="wallMessage"> No messages to display.</p>';		
+            this.wall.innerHTML = '<p style="margin-top: 10px; font-size: 8pt; line-height: 100%;" id="wallMessage"> No messages to display. Messages will be received in the decision part.</p>';		
 		} else if (entries.length == 0) {
-            this.wall.innerHTML = '<p style="margin-top: 10px; font-size: 10pt; line-height: 100%;" id="wallMessage"> No messages to display.</p>';
+            this.wall.innerHTML = '<p style="margin-top: 10px; font-size: 8pt; line-height: 100%;" id="wallMessage"> No messages to display. Messages will be received in the decision part.</p>';
 		}
 
 		for (i = 0, len = entries.length; i<len; i++){
