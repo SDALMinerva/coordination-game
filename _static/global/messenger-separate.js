@@ -1,7 +1,7 @@
 var wall = new MessageWindow();
 wall.init(nodeId, privateEntries, output);
 
-var noSendMessage = 'No messages to display. Messages will be received in the decision part.';
+var noSendMessage = 'Send no messages this round';
 
 if (output){
     var messenger = new Messenger();
