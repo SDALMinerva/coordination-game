@@ -5,4 +5,5 @@ from main import exports
 data_export_views = [
     exports.WallMessageExport,
     exports.PrivateMessageExport,
+    exports.NetworkExport
     ]

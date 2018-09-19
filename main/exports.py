@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 import vanilla
 
-from .models import Message, PrivateMessage
+from .models import Message, PrivateMessage, Network
 
 
 class WallMessageExport(vanilla.View):
@@ -153,6 +153,58 @@ class PrivateMessageExport(vanilla.View):
             'deleted',
             'datetime',
         ]
+
+        writer = csv.writer(response)
+        writer.writerows([column_names])
+        writer.writerows(rows)
+
+        return response
+
+class NetworkExport(vanilla.View):
+
+    url_name = 'main_network_export'
+    url_pattern = '^main_network_export/$'
+    display_name = 'Network export'
+
+    def get(request, *args, **kwargs):
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="{}"'.format(
+            'Network (accessed {}).csv'.format(
+                datetime.date.today().isoformat()
+            )
+        )
+
+        networks = Network.objects.order_by()
+        rows = []
+        counter = 1;
+
+        for n in networks:
+            nodes = n.getNodes()
+            row = []
+            row.append(counter)
+
+            for node in nodes:
+                row.append((node['image'].split("/",3)[3]).split("-")[0])
+                row.append(node['label'].split(" ",1)[1])
+
+            rows.append(row)
+            counter += 1
+
+
+        column_names = [
+            'network',
+            'node 1 bot',
+            'node 1 threshold',
+            'node 2 bot',
+            'node 2 threshold',
+            'node 3 bot',
+            'node 3 threshold',
+            'node 4 bot',
+            'node 4 threshold',
+            'node 5 bot',
+            'node 5 threshold']
+       
 
         writer = csv.writer(response)
         writer.writerows([column_names])
