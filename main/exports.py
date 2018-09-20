@@ -181,8 +181,10 @@ class NetworkExport(vanilla.View):
 
         for n in networks:
             nodes = n.getNodes()
+            net_type = n.nType
             row = []
             row.append(counter)
+            row.append(net_type)
 
             for node in nodes:
                 row.append((node['image'].split("/",3)[3]).split("-")[0])
@@ -194,6 +196,7 @@ class NetworkExport(vanilla.View):
 
         column_names = [
             'network',
+            'network type',
             'node 1 bot',
             'node 1 threshold',
             'node 2 bot',
