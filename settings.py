@@ -130,6 +130,7 @@ SESSION_CONFIG_DEFAULTS = {
     'payoff_below_threshold': '0',
     'payoff_above_threshold': '100',
     'payoff_round': '1',
+    'payoff_message_penalty': '10',
     
     # Survey Type
     'student_survey': 'True',
@@ -214,7 +215,7 @@ DEV_CONFIGS = [
           'round_seq_file': 'seq-15rounds-123-high_low.json',
           
           # Treatment Configs
-          'condition_messaging': 'bilateral',               #none, wall, bilateral, both
+          'condition_messaging': 'wall',               #none, wall, bilateral, both
           'condition_network_knowledge': 'local',      #local, global
      },
      {

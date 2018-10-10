@@ -167,69 +167,27 @@ def ws_receive(message):
     
     elif ws_data['type'] == 'entry-table':
         data = ws_data['content']
-        player_node = Node.objects.get(id = data['sentBy'])      
-        
-        # Note: will not work for all-automated code (e.g., has to be at least 1 player in the group)
-        P = player_node.network.group_set.first().get_player_by_id(1)
-        messageRound = P.participant.vars['message_round']
+        player_node = Node.objects.get(id = data['sentBy'])              
 
-        posted_wall_messages = Message.objects.filter(messageRound = messageRound)
-        posted_wall_messages = posted_wall_messages.exclude(deleted = True)
-        posted_wall_messages = posted_wall_messages.filter(createdBy = player_node)
-
-        entryList = posted_wall_messages
-
-        message_list = player_node.wall_set.first().subsession.session.config['messages'].split('/')
-        neighbor_list = list(set(player_node.get_neighbors()))
-        
-        table = {}
-        for n in neighbor_list:
-            table[n.avatar.get_name()] = {'name': n.avatar.get_name(), 'icon': n.avatar.src, '0': False, '1': False}
-        
-        table[player_node.avatar.get_name()] = {'name': player_node.avatar.get_name() + ' (you)', 'icon': player_node.avatar.src, '0': False, '1': False}
-
-        for entry in entryList:
-            name = entry.wall.node.avatar.get_name()
-            table[name]['0'] = ((entry.message== message_list[0]) or table[name]['0'])
-            table[name]['1'] = ((entry.message== message_list[1]) or table[name]['1'])        
+        table = player_node.player_set.first().get_entry_table()        
             
         toSend = {
             'type': ws_data['type'],
-            'content': list(table.values()),
+            'content': table,
             }
-        Group('chat-' + label).send({'text': json.dumps(toSend)})#
-        
+        Group('chat-' + label).send({'text': json.dumps(toSend)})
+    
         
     elif ws_data['type'] == 'private-entry-table':
-        print('Private!!!')
+        print('Private Table')
         data = ws_data['content']
-        player_node = Node.objects.get(id = data['sentBy'])      
-        
-        # Note: will not work for all-automated code (e.g., has to be at least 1 player in the group)
-        P = player_node.network.group_set.first().get_player_by_id(1)
-        messageRound = P.participant.vars['message_round']
+        player_node = Node.objects.get(id = data['sentBy'])              
 
-        posted_wall_messages = PrivateMessage.objects.filter(messageRound = messageRound)
-        posted_wall_messages = posted_wall_messages.exclude(deleted = True)
-        posted_wall_messages = posted_wall_messages.filter(createdBy = player_node)
-
-        entryList = posted_wall_messages
-
-        message_list = player_node.privatemessageboard_set.first().subsession.session.config['messages'].split('/')
-        neighbor_list = set(player_node.get_neighbors())
-        
-        table = {}
-        for n in neighbor_list:
-            table[n.avatar.get_name()] = {'name': n.avatar.get_name(), 'icon': n.avatar.src, '0': False, '1': False}
-        
-        for entry in entryList:
-            name = entry.wall.node.avatar.get_name()
-            table[name]['0'] = ((entry.message== message_list[0]) or table[name]['0'])
-            table[name]['1'] = ((entry.message== message_list[1]) or table[name]['1'])        
+        table = player_node.player_set.first().get_private_entry_table()        
             
         toSend = {
             'type': 'entry-table',
-            'content': list(table.values()),
+            'content': table,
             }
         Group('chat-' + label).send({'text': json.dumps(toSend)})#
         

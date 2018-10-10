@@ -85,6 +85,9 @@ $(window).on('load',function(){
     <li style="text-align: left; font-size: 8pt; margin: 0; margin-left: 0px;"><strong>{{session.config.payoff_above_threshold}}</strong> if at least {{player.threshold|default:'1'}} more participate </li>
     <li style="text-align: left; font-size: 8pt; margin: 0; margin-left: 0px;"><strong>{{session.config.payoff_below_threshold}}</strong> if less than {{player.threshold|default:'1'}} participate </li>
     </ul>
+    {% if session.config.condition_messaging != 'none' %}
+    <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;"><strong>Cost per message: {{session.config.payoff_message_penalty}}</strong></p>
+    {% endif %}
 </div>
         {% block friendList_message %}
       	 <div id="friendsDiv">
@@ -162,6 +165,7 @@ $(window).on('load',function(){
                          below to send another message to the same friend.</h6>
                         <div class="message-tool-content"></div>
                     </div>
+                    <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;">Your current message cost is: <span id="message-cost">0</span></p>
                     <div id="selector-alert" class="alert alert-warning alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
                         <strong>Message not sent!</strong> Make sure both fields are selected.
                         <button type="button" class="close" onclick="$('#selector-alert').hide()" aria-label="Close">
@@ -209,6 +213,7 @@ $(window).on('load',function(){
                         </h6>
                         <div class="message-tool-content"></div>
                     </div>
+                    <p style="text-align: left; font-size: 8pt; margin: 0; margin-left: 20px; padding: 0px;">Your current message cost is: <span id="message-cost">0</span></p>
                     <div id="selector-alert" class="alert alert-warning alert-dismissible" style="display: none; font-size: 8pt; margin-bottom:0; padding-top: 5px; padding-bottom: 5px;" role="alert">
                         <strong>Message not sent!</strong> Make sure both fields are selected.
                         <button type="button" class="close" onclick="$('#selector-alert').hide()" aria-label="Close">
@@ -358,7 +363,8 @@ var network_edges = JSON.parse('{{edges|safe}}');
 var chat_name = '{{Constants.chat_name}}';
 var wall_sent_to = {{wall_sent_to | safe}};
 var pm_sent_to = {{pm_sent_to | safe}};
-
+var messageCost = parseFloat({{session.config.payoff_message_penalty}});
+var initEntryTable = {{initEntryTable|safe}};
 
 $(function () {
 var displayed = false;

@@ -121,6 +121,23 @@ class Group(BaseGroup):
     
     def set_payoffs(self):
         for p in self.get_players():
+
+            nMessages = 0
+            if self.session.config['condition_messaging'] == 'wall':
+                table = p.get_entry_table()
+                for v in table:
+                    nMessages += int(v['0'])
+                    nMessages += int(v['1'])
+                                    
+            if self.session.config['condition_messaging'] == 'bilateral':
+                table = p.get_private_entry_table()
+                for v in table:
+                    nMessages += int(v['0'])
+                    nMessages += int(v['1'])            
+
+            cost = nMessages * int(self.session.config['payoff_message_penalty'])
+            p.message_cost = cost            
+
             if p.participate:
                 group_nodes = p.node.network.node_set.all()
             
@@ -130,12 +147,14 @@ class Group(BaseGroup):
                         n_participants += 1
                     
                 if p.threshold < n_participants:
-                    p.round_payoff = self.session.config['payoff_above_threshold']
+                    p.round_payoff = self.session.config['payoff_above_threshold'] - p.message_cost
                 else:
-                    p.round_payoff = self.session.config['payoff_below_threshold']
+                    p.round_payoff = self.session.config['payoff_below_threshold'] - p.message_cost
                 
             else:
-                p.round_payoff = self.session.config['payoff_no_participate']
+                p.round_payoff = self.session.config['payoff_no_participate'] - p.message_cost
+                
+            p.round_payoff = max([p.round_payoff, 0])
                 
             if self.subsession.round_number == int(self.session.config['payoff_round']):
                 p.payoff = p.round_payoff       
@@ -144,6 +163,60 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):  
+
+    def get_entry_table(self):
+        player_node = self.node
+        P = player_node.network.group_set.first().get_player_by_id(1)
+        messageRound = P.participant.vars['message_round']
+
+        posted_wall_messages = Message.objects.filter(messageRound = messageRound)
+        posted_wall_messages = posted_wall_messages.exclude(deleted = True)
+        posted_wall_messages = posted_wall_messages.filter(createdBy = player_node)
+
+        entryList = posted_wall_messages
+
+        message_list = player_node.wall_set.first().subsession.session.config['messages'].split('/')
+        neighbor_list = list(set(player_node.get_neighbors()))
+        
+        table = {}
+        for n in neighbor_list:
+            table[n.avatar.get_name()] = {'name': n.avatar.get_name(), 'icon': n.avatar.src, '0': False, '1': False}
+        
+        table[player_node.avatar.get_name()] = {'name': player_node.avatar.get_name() + ' (you)', 'icon': player_node.avatar.src, '0': False, '1': False}
+
+        for entry in entryList:
+            name = entry.wall.node.avatar.get_name()
+            table[name]['0'] = ((entry.message== message_list[0]) or table[name]['0'])
+            table[name]['1'] = ((entry.message== message_list[1]) or table[name]['1'])    
+    
+        return list(table.values())
+        
+
+    def get_private_entry_table(self):
+        player_node = self.node
+        P = player_node.network.group_set.first().get_player_by_id(1)
+        messageRound = P.participant.vars['message_round']
+
+        posted_wall_messages = PrivateMessage.objects.filter(messageRound = messageRound)
+        posted_wall_messages = posted_wall_messages.exclude(deleted = True)
+        posted_wall_messages = posted_wall_messages.filter(createdBy = player_node)
+
+        entryList = posted_wall_messages
+
+        message_list = player_node.privatemessageboard_set.first().subsession.session.config['messages'].split('/')
+        neighbor_list = set(player_node.get_neighbors())
+        
+        table = {}
+        for n in neighbor_list:
+            table[n.avatar.get_name()] = {'name': n.avatar.get_name(), 'icon': n.avatar.src, '0': False, '1': False}
+        
+        for entry in entryList:
+            name = entry.wall.node.avatar.get_name()
+            table[name]['0'] = ((entry.message== message_list[0]) or table[name]['0'])
+            table[name]['1'] = ((entry.message== message_list[1]) or table[name]['1']) 
+            
+        return list(table.values())
+    
     
     def get_messages(self):
         wall = self.node.wall_set.first()
@@ -203,6 +276,7 @@ class Player(BasePlayer):
     
     # Round_Payoff
     round_payoff = models.CurrencyField();
+    message_cost = models.CurrencyField();
 
 
 class Wall(models.Model):

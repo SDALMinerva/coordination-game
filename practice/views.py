@@ -73,6 +73,12 @@ class Discuss(Page):
         comm_type = self.session.config['condition_messaging']
         network_type = self.session.config['condition_network_knowledge']
         screenImage = 'instructions/screenshot-{}-{}.png'     
+
+        initEntryTable = 'none'
+        if comm_type == 'bilateral':
+            initEntryTable = self.player.get_private_entry_table()
+        if comm_type == 'wall':
+            initEntryTable = self.player.get_entry_table()        
         
         return {
         'avatar': self.player.get_avatar(),
@@ -94,6 +100,7 @@ class Discuss(Page):
         'wall_sent_to': wall_counts,
         'pm_sent_to': pm_counts,
         'screenImage': screenImage.format(comm_type,network_type),
+        'initEntryTable': json.dumps(initEntryTable),
         }
 
 class BeginWaitPage(WaitPage):

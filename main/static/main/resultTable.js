@@ -1,19 +1,19 @@
-var d = [
-    {'name': 'Cow', 'icon': 'Cow-icon.png', '0': true, '1': false},
-    {'name': 'Turtle', 'icon': 'Turtle-icon.png', '0': true, '1': false},
-    {'name': 'Cat', 'icon': 'Cat-icon.png', '0': false, '1': true},
-    {'name': 'Swan', 'icon': 'Swan-icon.png', '0': true, '1': true},
+/*var d = [
+    {'name': 'Cow', 'icon': 'Cow-icon.png', '0': false, '1': false},
+    {'name': 'Turtle', 'icon': 'Turtle-icon.png', '0': false, '1': false},
+    {'name': 'Cat', 'icon': 'Cat-icon.png', '0': false, '1': false},
+    {'name': 'Swan', 'icon': 'Swan-icon.png', '0': false, '1': false},
     {'name': 'Eagle', 'icon': 'Eagle-icon.png', '0': false, '1': false},
-];
-
-if (output){
-    var resultTable = new ResultTable();
-    resultTable.init(d);
-}
+];*/
 
 var checkprivate = 'private-entry-table';
 if (isWall){
     checkprivate = 'entry-table';
+}
+
+if (output){
+    var resultTable = new ResultTable();
+    resultTable.init(initEntryTable);
 }
 
 function ResultTable() {
@@ -38,12 +38,27 @@ function ResultTable() {
         table.className = "table table-sm";
         
         table.appendChild(this.header(this.labels));
-
+        
+        var nMessages = 0
         for (var i=0; i<d.length; i++){
-            table.appendChild(this.row(d[i]));        
+            table.appendChild(this.row(d[i]));
+            nMessages += d[i][0];
+            nMessages += d[i][1];   
         }        
+
+        var messageCount = document.createElement('h6');
+        messageCount.innerHTML = "Message Count: " + nMessages;
+        
+        var cost_notice = document.createElement('h6');
+        var cost = nMessages * messageCost;
+        cost_notice.innerHTML = "Total Messaging Cost: " + cost;        
+
+        $('#message-cost').html(cost);        
         
         Parent.appendChild(table);
+        Parent.appendChild(messageCount)
+        Parent.appendChild(cost_notice);
+        
         this.Parent = Parent;        
         };
         

@@ -165,6 +165,14 @@ Round 1: Messaging Part
         var network_display = '{{networkDisplay|safe}}';
         var wall_sent_to = [];
         var pm_sent_to = [];
+        var messageCost = parseFloat({{session.config.payoff_message_penalty}});
+        var initEntryTable = [
+    {'name': 'Cow', 'icon': 'Cow-icon.png', '0': false, '1': false},
+    {'name': 'Turtle', 'icon': 'Turtle-icon.png', '0': false, '1': false},
+    {'name': 'Cat', 'icon': 'Cat-icon.png', '0': false, '1': false},
+    {'name': 'Swan', 'icon': 'Swan-icon.png', '0': false, '1': false},
+    {'name': 'Eagle', 'icon': 'Eagle-icon.png', '0': false, '1': false},
+];
     </script>
     <script type="text/javascript" src={% static "main/page-header-nav.js" %}></script>
     <script type="text/javascript" src={% static "global/hash.js" %}></script>

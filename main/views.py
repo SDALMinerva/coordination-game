@@ -86,6 +86,13 @@ class Discuss(Page):
         comm_type = self.session.config['condition_messaging']
         network_type = self.session.config['condition_network_knowledge']
         screenImage = 'instructions/screenshot-{}-{}.png'        
+
+        initEntryTable = 'none'
+        if comm_type == 'bilateral':
+            initEntryTable = self.player.get_private_entry_table()
+        if comm_type == 'wall':
+            initEntryTable = self.player.get_entry_table()
+                    
         
         return {
         'avatar': self.player.get_avatar(),
@@ -107,6 +114,7 @@ class Discuss(Page):
         'wall_sent_to': wall_counts,
         'pm_sent_to': pm_counts,
         'screenImage': screenImage.format(comm_type,network_type),
+        'initEntryTable': json.dumps(initEntryTable),
         }
 
 class BeginWaitPage(WaitPage):
@@ -166,8 +174,9 @@ class EndWaitPage(WaitPage):
             else:
                 node.participate = node.player_set.first().participate        
         
-        self.group.set_payoffs()
         group_players = self.group.get_players()
+        group_players[0].participant.vars['message_round'] -= 1
+        self.group.set_payoffs()
         group_players[0].participant.vars['message_round'] = 1        
         
         pass

@@ -309,8 +309,8 @@ function Wall() {
             this.wall.innerHTML = '<p style="margin-top: 10px; font-size: 10pt; line-height: 100%;" id="wallMessage"> No messages to display.</p>';		
 		} else if (entries.length == 0) {
             this.wall.innerHTML = '<p style="margin-top: 10px; font-size: 10pt; line-height: 100%;" id="wallMessage"> No messages to display.</p>';
-		}
-
+		}        
+        
 		for (i = 0, len = entries.length; i<len; i++){
 			this.parseAddEntry(entries[i]);		
 		}
@@ -389,7 +389,8 @@ $("#wall").on("click", ".send-message", function(event){
        console.log(toSend);
        chat.infoChannel.send(toSend);
        $('#selector-alert').fadeOut();
-       $('#selector-no-message').fadeIn().delay(10000).fadeOut(); 
+       $('#selector-no-message').fadeIn().delay(10000).fadeOut();
+       resultTable.getInfo(); 
        return;  
   }
 
@@ -479,6 +480,7 @@ if (recipient == 'All Friends'){
         wall_sent_to[wall.Id] += 1;
         disable_recipients(wall_sent_to);  
 }
+resultTable.getInfo();
 /////////////////////////////////////
 /////////////////////////////////////
 
@@ -522,6 +524,7 @@ $("#wall").on('click', '.removeEntry', function(event){
     wall.removeEntry(entry);
     wall_sent_to[wall.Id] -= 1;
     disable_recipients(wall_sent_to);
+    resultTable.getInfo();
 });
 
 $("#wall .message-option").click(function(event){

@@ -362,7 +362,8 @@ $("#messenger").on("click", ".send-message", function(event){
        console.log(toSend);
        chat.infoChannel.send(toSend);
        $('#selector-alert').fadeOut();
-       $('#selector-no-message').fadeIn().delay(10000).fadeOut(); 
+       $('#selector-no-message').fadeIn().delay(10000).fadeOut();
+       resultTable.getInfo();   
        return;  
   }
 
@@ -453,6 +454,7 @@ if (recipient == 'All Friends'){
   pm_sent_to[wall.Id] += 1;
   disable_recipients(pm_sent_to);
 }
+resultTable.getInfo();  
 /////////////////////////////////////
 /////////////////////////////////////
 
@@ -474,8 +476,6 @@ if (messageRound == -1){
 	$('.user-display').html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>');  
 
   return;
-  
-
 });
 
 $("#messenger").on('click', '.removeEntry', function(event){
@@ -494,6 +494,7 @@ $("#messenger").on('click', '.removeEntry', function(event){
     wall.removeEntry(entry);
     pm_sent_to[wall.Id] -= 1;
     disable_recipients(pm_sent_to);
+    resultTable.getInfo();
 });
 
 $("#messenger .message-option").click(function(event){
