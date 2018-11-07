@@ -3,6 +3,8 @@ from otree.api import (
     Currency as c, currency_range
 )
 
+#from . import views
+
 
 author = "Brian J. Goode & Ethan Vu"
 
