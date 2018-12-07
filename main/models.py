@@ -256,7 +256,7 @@ class Player(BasePlayer):
 
     def get_neighbors(self):
         results = Edge.objects.filter(node_from = self.node)
-#        neighbors = [Player.objects.get(node=r.node_to) for r in results]
+#        neighbors = [player.objects.get(node=r.node_to) for r in results]
         neighbors = [r.node_to for r in results]
         return neighbors
 
